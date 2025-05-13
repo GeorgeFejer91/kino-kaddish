@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaddish Kino - Filmriss und Widerhall aus dem Osten</title>
+    <style>
+        :root {
+            --main-bg-color: #000000;
+            --main-text-color: #ffffff;
+            --accent-color: #8a8a8a;
+            --separator-color: #3a3a3a;
+            --highlight-color: #c0c0c0;
+            --menu-hover-color: #444444;
+            --menu-active-color: #555555;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+            background-color: var(--main-bg-color);
+            color: var(--main-text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+            border-right: 1px solid var(--separator-color);
+            padding: 2rem 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            text-align: center;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .logo h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu li a {
+            color: var(--main-text-color);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .nav-menu li:hover {
+            background-color: var(--menu-hover-color);
+        }
+        
+        .active {
+            background-color: var(--menu-active-color);
+            border-left: 3px solid var(--highlight-color);
+        }
+        
+        .content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 2rem;
+        }
+        
+        .section {
+            padding: 3rem 0;
+            scroll-margin-top: 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            display: inline-block;
+            border-bottom: 1px solid var(--highlight-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .film {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--separator-color);
+        }
+        
+        .film:last-child {
+            border-bottom: none;
+        }
+        
+        .film-reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .film-image {
+            flex: 0 0 35%;
+            position: relative;
+        }
+        
+        .film-image img {
+            width: 100%;
+            height: auto;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .film-image img:hover {
+            opacity: 1;
+        }
+        
+        .film-details {
+            flex: 0 0 65%;
+        }
+        
+        .film-title {
+            font-size: 1.7rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--highlight-color);
+        }
+        
+        .film-year {
+            color: var(--accent-color);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .film-description {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('/api/placeholder/1920/1080') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-text {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+        
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--separator-color);
+        }
+        
+        .footer a {
+            color: var(--highlight-color);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 200px;
+            }
+            
+            .content {
+                margin-left: 200px;
+            }
+            
+            .film {
+                flex-direction: column;
+            }
+            
+            .film-reverse {
+                flex-direction: column;
+            }
+            
+            .film-image {
+                flex: 0 0 100%;
+            }
+            
+            .film-details {
+                flex: 0 0 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--separator-color);
+            }
+            
+            .content {
+                margin-left: 0;
+            }
+            
+            .container {
+                flex-direction: column;
+            }
+            
+            .film, .film-reverse {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <h1>Kaddish Kino</h1>
+                <h2>Filmriss und Widerhall</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="active"><a href="#home">Home</a></li>
+                <li><a href="#about">Über das Projekt</a></li>
+                <li><a href="#program">Programm</a></li>
+                <li><a href="#come-and-see">Come and See</a></li>
+                <li><a href="#der-golem">Der Golem</a></li>
+                <li><a href="#sanatorium">Sanatorium pod Klepsydrą</a></li>
+                <li><a href="#kommissarin">Die Kommissarin</a></li>
+                <li><a href="#passagierin">Die Passagierin</a></li>
+                <li><a href="#distant-journey">Distant Journey</a></li>
+                <li><a href="#kaddish">Kaddish</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="home" class="hero">
+                <h1>KADDISH KINO</h1>
+                <h2>Filmriss und Widerhall aus dem Osten</h2>
+                <div class="hero-text">
+                    <p>Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.</p>
+                </div>
+            </section>
+
+            <section id="about" class="section">
+                <h2 class="section-title">Über das Projekt</h2>
+                <div class="about">
+                    <p>Wie erinnern wir, wenn die Orte selbst schweigen? Wenn Geschichte in Ruinen flackert, in beschädigten Zelluloidstreifen, in Stimmen, die niemand mehr erkennt?</p>
+                    <br>
+                    <p><i>Kaddish Kino</i> ist eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann, und es als rituellen Raum zu begreifen, in dem Bilder nicht nur gesehen, sondern beschworen und wiedererlebt werden. Besonderes Augenmerk gilt dabei einer filmhistorischen Rückschau auf Werke, die vielen jungen Menschen heute kaum noch zugänglich sind — etwa weil es sich um frühe, oft stumme Filme handelt oder weil sie aus dem osteuropäischen und slawischen Kontext stammen.</p>
+                    <br>
+                    <p>Geplant ist eine kuratierte Reihe ortsspezifischer Filmvorführungen bei denen ausgewählte Werke des jüdischen, osteuropäischen und experimentellen Kinos an historisch wie symbolisch aufgeladenen Orten neu kontextualisiert werden.</p>
+                </div>
+            </section>
+
+            <section id="program" class="section">
+                <h2 class="section-title">Programm</h2>
+                <div class="section-content">
+                    <p>Alle Veranstaltungen werden durch eine begleitende Website unter <a href="http://kaddish-kino.de" style="color: var(--highlight-color);">kaddish-kino.de</a> dokumentiert. Dort werden sowohl kuratorische Überlegungen zur Auswahl und Kontextualisierung der Filme als auch Reflexionen und Eindrücke aus dem Publikum festgehalten.</p>
+                </div>
+            </section>
+
+            <section id="come-and-see" class="section">
+                <h2 class="section-title">Come and See</h2>
+                <div class="film">
+                    <div class="film-image">
+                        <img src="/api/placeholder/800/500" alt="Come and See (1985)">
+                    </div>
+                    <div class="film-details">
+                        <h3 class="film-title">Come and See (Иди и смотри)</h3>
+                        <p class="film-year">1985 | Elem Klimow</p>
+                        <p class="film-description">Eine der eindrücklichsten filmischen Auseinandersetzungen mit der Shoah und dem Krieg im osteuropäischen Raum. In Kooperation mit einer Gedenkstätte wie Sachsenhausen soll der Film aufgeführt werden, eingeleitet von einem kuratorischen Vortrag, der die Entstehungsgeschichte des Films sowie seine filmhistorische und erinnerungskulturelle Bedeutung für das Publikum kontextualisiert.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="der-golem" class="section">
+                <h2 class="section-title">Der Golem</h2>
+                <div class="film film-reverse">
+                    <div class="film-image">
+                        <img src="/api/placeholder/800/500" alt="Der Golem (1920)">
+                    </div>
+                    <div class="film-details">
+                        <h3 class="film-title">Der Golem — wie er in die Welt kam</h3>
+                        <p class="film-year">1920 | Paul Wegener</p>
+                        <p class="film-description">Mit der bestehenden Live-Vertonung des Duos InterZone Perceptible (Sven Hermann & Matthias Hettmer) in einer Berliner Synagoge. Ihr elektro-akustischer Sound — basierend auf elektrifiziertem Akkordeon, E-Bass, Stimme und Live-Elektronik — zielt nicht auf eine bloße Illustration des Films, sondern entfaltet ein komplexes klangliches Spannungsfeld, das die mythische, psychologische und rituelle Tiefe der Bilder akustisch erfahrbar macht.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sanatorium" class="section">
+                <h2 class="section-title">Sanatorium pod Klepsydrą</h2>
+                <div class="film">
+                    <div class="film-image">
+                        <img src="/api/placeholder/800/500" alt="Sanatorium pod Klepsydrą (1973)">
+                    </div>
+                    <div class="film-details">
+                        <h3 class="film-title">Sanatorium pod Klepsydrą</h3>
+                        <p class="film-year">1973 | Wojciech Jerzy Has</p>
+                        <p class="film-description">Basierend auf den Erzählungen von Bruno Schulz entfaltet der Film ein visuell überwältigendes, traumlogisches Erinnerungsuniversum, in dem jüdische Kindheit, familiäre Fragmente und untergehende Welten ineinanderfließen. Ohne die Shoah direkt zu thematisieren, ist der Film durchdrungen von ihrer Abwesenheit — von dem Wissen, dass die poetisch aufgeladene jüdische Welt Galiziens, die Schulz literarisch festhielt, wenige Jahre später ausgelöscht wurde.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="kommissarin" class="section">
+                <h2 class="section-title">Die Kommissarin</h2>
+                <div class="film film-reverse">
+                    <div class="film-image">
+                        <img src="/api/placeholder/800/500" alt="Die Kommissarin (1967)">
+                    </div>
+                    <div class="film-details">
+                        <h3 class="film-title">Die Kommissarin (Комиссар)</h3>
+                        <p class="film-year">1967 | Alexander Askoldov</p>
+                        <p class="film-description">Basiert auf der Erzählung "In der Stadt Berditschew" von Wassili Grossman. Vor dem Hintergrund des Bürgerkriegs in einer Provinzstadt kreuzen sich die Schicksale einer Kommissarin und einer jüdischen Familie, die sie bei sich aufnimmt. Fast unmittelbar nach der Fertigstellung wurde der Film verboten und für zwei Jahrzehnte auf Eis gelegt. Askoldow erhielt nie wieder die Gelegenheit, einen abendfüllenden Film zu drehen.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="passagierin" class="section">
+                <h2 class="section-title">Die Passagierin</h2>
+                <div class="film">
+                    <div class="film-image">
+                        <img src="/api/placeholder/800/500" alt="Die Passagierin (1963)">
+                    </div>
+                    <div class="film-details">
+                        <h3 class="film-title">Die Passagierin</h3>
+                        <p class="film-year">1963 | Andrzej Munk</p>
+                        <p class="film-description">Der Film, der zu Lebzeiten Munks unvollendet blieb, ist nicht nur eine tragische Geschichte, sondern auch eine Reflexion über das Wesen der Erinnerung, ihre Fragmentierung und die unvermeidlichen Lücken. Er spielt an Bord eines Ozeandampfers, wo Lisa, eine ehemalige KZ-Aufseherin, zufällig eine Frau trifft, die sie an Martha, eine ehemalige Auschwitz-Gefangene, erinnert. Diese Begegnung löst eine Flut von Erinnerungen aus, bei der die Grenzen zwischen Realität, Ausreden und verdrängten Ängsten ins Wanken geraten.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="distant-journey" class="section">
+                <h2 class="section-title">Distant Journey</h2>
+                <div class="film film-reverse">
+                    <div class="film-image">
+                        <img src="/api/placeholder/800/500" alt="Distant Journey (1949)">
+                    </div>
+                    <div class="film-details">
+                        <h3 class="film-title">Distant Journey (Daleká cesta)</h3>
+                        <p class="film-year">1949 | Alfred Radok</p>
+                        <p class="film-description">Einer der ersten Spielfilme, die sich direkt mit dem Holocaust befassten. Regisseur Alfred Radok, der die Verfolgung selbst überlebt hatte, schuf einen Film, in dem sich persönliche Geschichte mit dokumentarischem Material vermischt und die Tragödie der tschechischen Juden während der Nazi-Besetzung widerspiegelt. Radok bedient sich innovativer Techniken und kombiniert Fiktion mit Wochenschauen, darunter Aufnahmen aus der Nazi-Propaganda sowie tatsächliche KZ-Aufnahmen.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="kaddish" class="section">
+                <h2 class="section-title">Kaddish</h2>
+                <div class="film">
+                    <div class="film-image">
+                        <img src="/api/placeholder/800/500" alt="Kaddish (1999)">
+                    </div>
+                    <div class="film-details">
+                        <h3 class="film-title">Kaddish</h3>
+                        <p class="film-year">1999 | Konstantin Fam</p>
+                        <p class="film-description">Ein eindringlicher Kurzfilmzyklus über Generationen nach der Shoah. Durch die bewusste Verbindung von Film, Raum und kuratorischer Kontextualisierung soll ein dialogischer Erinnerungsraum entstehen, der sowohl historische Reflexion als auch zeitgenössische Perspektiven ermöglicht.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="section">
+                <h2 class="section-title">Kontakt</h2>
+                <div class="section-content">
+                    <p>Für weitere Informationen und Veranstaltungstermine besuchen Sie bitte die Webseite <a href="http://kaddish-kino.de" style="color: var(--highlight-color);">kaddish-kino.de</a> oder kontaktieren Sie uns direkt.</p>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <p>&copy; 2025 Kaddish Kino | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Simple active menu highlighting
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-menu li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.parentElement.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.parentElement.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
