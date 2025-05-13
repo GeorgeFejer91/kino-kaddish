@@ -53,13 +53,13 @@ body {
 }
 
 .logo h1 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 2vw, 2rem);
     font-weight: 300;
     letter-spacing: 2px;
 }
 
 .logo h2 {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
     font-weight: 300;
     letter-spacing: 2px;
     margin-top: 0.5rem;
@@ -79,13 +79,13 @@ body {
     text-decoration: none;
     display: block;
     padding: 0.5rem 0;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1vw, 0.9rem);
     letter-spacing: 1px;
 }
 
 .nav-menu li a .original-title {
     display: block;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 0.8vw, 0.8rem);
     color: var(--accent-color);
     margin-top: 0.3rem;
 }
@@ -248,11 +248,11 @@ body {
 
 @media (max-width: 992px) {
     .sidebar {
-        width: 200px;
+        width: clamp(200px, 25vw, 250px);
     }
     
     .content {
-        margin-left: 200px;
+        margin-left: clamp(200px, 25vw, 250px);
     }
     
     .film-image {
@@ -271,9 +271,20 @@ body {
     .sidebar {
         width: 100%;
         height: auto;
+        min-height: unset;
         position: relative;
         border-right: none;
         border-bottom: 1px solid var(--separator-color);
+    }
+    
+    .nav-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-menu li {
+        margin: 0 0.5rem;
     }
     
     .content {
@@ -289,6 +300,26 @@ body {
         width: 100%;
         max-width: 100%;
         margin: 0 0 1.5rem 0;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    .nav-menu {
+        flex-direction: column;
+    }
+    
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo h2 {
+        font-size: 1rem;
     }
 }
 </style>
