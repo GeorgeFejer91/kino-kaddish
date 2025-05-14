@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Kino Kaddish - Filmriss und Widerhall aus dem Osten</title>
   <style>
     :root {
@@ -11,238 +11,264 @@
       --accent-color: #8a8a8a;
       --separator-color: #3a3a3a;
       --highlight-color: #c0c0c0;
-      --menu-hover-color: #444;
-      --menu-active-color: #555;
+      --menu-hover-color: rgba(68,68,68,0.5);
+      --menu-active-color: rgba(85,85,85,0.5);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
-      font-family: 'Roboto','Helvetica Neue',sans-serif;
+      font-family:'Roboto','Helvetica Neue',sans-serif;
       background: var(--main-bg-color);
       color: var(--main-text-color);
-      line-height: 1.6;
+      line-height:1.6;
     }
 
-    .container { display: flex; min-height: 100vh; }
+    .container { display:flex; min-height:100vh; }
 
+    /* ---------- SIDEBAR ---------- */
     .sidebar {
-      width: 250px;
-      position: fixed;
-      height: 100%;
-      overflow-y: auto;
-      background: rgba(0,0,0,0.9);
-      border-right: 1px solid var(--separator-color);
-      padding: 2rem 0;
-      z-index: 100;
+      width:250px;
+      position:fixed;
+      top:0; left:0;
+      height:100%;
+      overflow-y:auto;
+      background:rgba(0,0,0,0.9);
+      border-right:1px solid var(--separator-color);
+      padding:2rem 0;
+      z-index:100;
     }
 
-    /* Custom scrollbar for sidebar */
-    .sidebar::-webkit-scrollbar {
-      width: 8px;
-    }
+    /* Black scrollbar */
+    .sidebar::-webkit-scrollbar { width:8px; }
+    .sidebar::-webkit-scrollbar-track { background: var(--separator-color); }
     .sidebar::-webkit-scrollbar-thumb {
-      background-color: #000 !important;
-      border: 1px solid #333 !important;
-      border-radius: 4px;
+      background-color:#000!important;
+      border:1px solid #333!important;
+      border-radius:4px;
     }
-    .sidebar::-webkit-scrollbar-track {
-      background-color: var(--separator-color);
-    }
-
-    /* IE10+ */
-    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @media all and (-ms-high-contrast:none),(-ms-high-contrast:active) {
       .sidebar {
-        -ms-overflow-style: auto;
-        background-color: #111;
+        -ms-overflow-style:-ms-autohiding-scrollbar;
+        background-color:#111;
       }
     }
 
-    .sidebar-content {
-      /* inner wrapper, no scrollbar here */
-      padding: 0 1rem;
-    }
-
     .logo {
-      text-align: center;
-      padding: 1rem;
-      margin-bottom: 2rem;
-      position: relative;
-      z-index: 10;
+      text-align:center;
+      padding:1rem;
+      margin-bottom:2rem;
+      position:relative; z-index:10;
     }
     .logo h1 {
-      font-size: clamp(1.5rem,2vw,2rem);
-      font-weight: 300;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px rgba(255,255,255,0.5);
+      font-size:clamp(1.5rem,2vw,2rem);
+      font-weight:300;
+      letter-spacing:2px;
+      text-shadow:0 0 10px rgba(255,255,255,0.5);
     }
     .logo h2 {
-      font-size: clamp(1rem,1.5vw,1.5rem);
-      font-weight: 300;
-      letter-spacing: 2px;
-      margin-top: .5rem;
-      color: var(--highlight-color);
+      font-size:clamp(1rem,1.5vw,1.5rem);
+      font-weight:300;
+      letter-spacing:2px;
+      margin-top:.5rem;
+      color:var(--highlight-color);
     }
 
     .nav-menu {
-      list-style: none;
-      position: relative;
-      z-index: 10;
+      list-style:none;
+      position:relative; z-index:10;
     }
     .nav-menu li {
-      margin: .5rem 0;
-      padding: .5rem 0;
-      text-align: center;
-      transition: background .3s ease;
+      margin:.5rem 0;
+      padding:.5rem 0;
+      text-align:center;
+      transition:background .3s ease;
     }
     .nav-menu li a {
-      color: var(--main-text-color);
-      text-decoration: none;
-      display: block;
-      font-size: clamp(.8rem,1vw,.9rem);
-      letter-spacing: 1px;
+      color:var(--main-text-color);
+      text-decoration:none;
+      display:block;
+      font-size:clamp(.8rem,1vw,.9rem);
+      letter-spacing:1px;
     }
     .nav-menu li a .original-title {
-      display: block;
-      font-size: clamp(.7rem,.8vw,.8rem);
-      color: var(--accent-color);
-      margin-top: .3rem;
+      display:block;
+      font-size:clamp(.7rem,.8vw,.8rem);
+      color:var(--accent-color);
+      margin-top:.3rem;
     }
     .nav-menu li:hover {
-      background-color: rgba(68,68,68,.5);
+      background:var(--menu-hover-color);
     }
     .nav-menu .active {
-      background-color: rgba(85,85,85,.5);
-      box-shadow: inset 0 0 10px rgba(0,0,0,.5);
+      background:var(--menu-active-color);
+      box-shadow:inset 0 0 10px rgba(0,0,0,0.5);
     }
 
+    /* ---------- CONTENT ---------- */
     .content {
-      flex: 1;
-      margin-left: 250px;
-      padding: 2rem;
+      flex:1;
+      margin-left:250px;
+      padding:2rem;
     }
 
-    .section { padding: 3rem 0; scroll-margin-top: 2rem; }
+    .section {
+      padding:3rem 0;
+      scroll-margin-top:2rem;
+    }
     .section-title {
-      font-size: 2rem;
-      font-weight: 300;
-      letter-spacing: 1px;
-      border-bottom: 1px solid var(--highlight-color);
-      display: inline-block;
-      margin-bottom: 2rem;
-      padding-bottom: .5rem;
+      font-size:2rem;
+      font-weight:300;
+      margin-bottom:2rem;
+      letter-spacing:1px;
+      border-bottom:1px solid var(--highlight-color);
+      display:inline-block;
+      padding-bottom:.5rem;
     }
-    .section-content { display: flex; flex-direction: column; gap: 2rem; }
+    .section-content {
+      display:flex;
+      flex-direction:column;
+      gap:2rem;
+    }
 
+    /* ---------- FILM ENTRY (GRID) ---------- */
     .film {
-      position: relative;
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--separator-color);
+      display:grid;
+      grid-template-columns: max-content 1fr;
+      gap:2rem;
+      align-items:start;
+      padding:2rem 0;
+      border-bottom:1px solid var(--separator-color);
+      position:relative;
     }
     .film:last-child {
-      border-bottom: none;
+      border-bottom:none;
     }
-    .film-image {
-      width: 40%;
-      max-width: 400px;
-      float: left;
-      margin-right: 2rem;
-      margin-bottom: 1rem;
-    }
-    .film-reverse .film-image {
-      float: right;
-      margin-left: 2rem;
-      margin-right: 0;
-    }
-    .film:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
+
     .film-image img {
-      width: 100%;
-      height: auto;
-      max-height: 300px;
-      opacity: .9;
-      transition: opacity .3s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,.5);
-      object-fit: cover;
-    }
-    .film-image img:hover {
-      opacity: 1;
-    }
-    .film-details { flex: 0 0 65%; }
-    .film-title { font-size: 1.7rem; margin-bottom: 1rem; color: var(--highlight-color); }
-    .film-year { font-style: italic; color: var(--accent-color); margin-bottom: 1rem; }
-    .film-description { text-align: justify; margin-bottom: 1.5rem; }
-
-    /* film-frame styling */
-    .film-frame {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background-color: var(--separator-color);
-      z-index: 1;
+      display:block;
+      width:auto;
+      height:auto;
+      max-width:400px;   /* enforce maximum */
+      max-height:300px;  /* enforce maximum */
+      box-shadow:0 4px 8px rgba(0,0,0,0.5);
+      object-fit:cover;
     }
 
+    .film-details { /* takes remaining space automatically */ }
+
+    .film-year {
+      font-style:italic;
+      color:var(--accent-color);
+      margin-bottom:1rem;
+    }
+    .film-description {
+      text-align:justify;
+      margin-bottom:1.5rem;
+    }
+
+    /* ---------- HERO & OTHER STYLES ---------- */
     .hero {
-      height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      background: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
-                  url('images/hero-background.jpg') no-repeat center/cover fixed;
-      padding: 0 2rem;
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:0 2rem;
+      background:
+        linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
+        url('images/hero-background.jpg') no-repeat center/cover fixed;
     }
-    .hero h1 { font-size: 3.5rem; letter-spacing: 3px; font-weight: 300; margin-bottom: 1rem; }
-    .hero h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 2rem; }
-    .hero-text { max-width: 800px; margin: 0 auto; }
+    .hero h1 {
+      font-size:3.5rem; font-weight:300; letter-spacing:3px;
+      margin-bottom:1rem;
+    }
+    .hero h2 {
+      font-size:1.5rem; font-weight:300; margin-bottom:2rem;
+    }
+    .hero-text { max-width:800px; margin:0 auto; }
 
-    .about { max-width: 800px; margin: 0 auto; text-align: justify; }
+    .about { max-width:800px; margin:0 auto; text-align:justify; }
 
     .footer {
-      background: rgba(0,0,0,.8);
-      padding: 2rem;
-      text-align: center;
-      border-top: 1px solid var(--separator-color);
+      background:rgba(0,0,0,.8);
+      padding:2rem; text-align:center;
+      border-top:1px solid var(--separator-color);
     }
-    .footer a { color: var(--highlight-color); text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
+    .footer a {
+      color:var(--highlight-color);
+      text-decoration:none;
+    }
+    .footer a:hover { text-decoration:underline; }
 
-    /* Responsive rules… (unchanged) */
-    @media (max-width: 992px) { /* … */ }
-    @media (max-width: 768px) { /* … */ }
-    @media (max-width: 480px) { /* … */ }
-
+    /* sprocket + frame styles */
+    .film-frame {
+      position:absolute;
+      left:0; width:100%; height:1px;
+      background:var(--separator-color);
+      z-index:1;
+    }
     .film-sprocket {
-      position: absolute;
-      width: 12px;
-      height: 4px;
-      background-color: rgba(50,50,50,.2);
-      z-index: 2;
+      position:absolute;
+      width:12px; height:4px;
+      background:rgba(50,50,50,.2);
+      z-index:2;
     }
-    .film-sprocket-left { left: 0; border-right: 1px solid rgba(255,255,255,.1); }
-    .film-sprocket-right { right: 0; border-left: 1px solid rgba(255,255,255,.1); }
+    .film-sprocket-left {
+      left:0; border-right:1px solid rgba(255,255,255,.1);
+    }
+    .film-sprocket-right {
+      right:0; border-left:1px solid rgba(255,255,255,.1);
+    }
+
+    /* responsive tweaks (keep your existing ones) */
+    @media (max-width:992px){ /* … */ }
+    @media (max-width:768px){ /* … */ }
+    @media (max-width:480px){ /* … */ }
   </style>
 </head>
+
 <body>
   <div class="container">
     <div class="sidebar">
-      <div class="sidebar-content">
-        <div class="logo">
-          <h1>Kino Kaddish</h1>
-          <h2>Filmriss und Widerhall</h2>
-        </div>
-        <ul class="nav-menu">
-          <li class="active"><a href="#home">Home</a></li>
-          <!-- … other menu items … -->
-        </ul>
+      <div class="logo">
+        <h1>Kino Kaddish</h1>
+        <h2>Filmriss und Widerhall</h2>
       </div>
+      <ul class="nav-menu">
+        <li class="active"><a href="#home">Home</a></li>
+        <li><a href="#about">Über das Projekt</a></li>
+        <li><a href="#program">Kuration</a></li>
+        <li><a href="#come-and-see">Komm und sieh <span class="original-title">Иди и смотри, 1985</span></a></li>
+        <li><a href="#der-golem">Der Golem <span class="original-title">1920</span></a></li>
+        <!-- … other items … -->
+      </ul>
     </div>
 
     <div class="content">
-      <!-- … all your sections … -->
+      <section id="home" class="hero">
+        <h1>KINO KADDISH</h1>
+        <h2>Filmriss und Widerhall aus dem Osten</h2>
+        <div class="hero-text">
+          <p>Eine Serie filmischer Interventionen, …</p>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <h2 class="section-title">Über das Projekt</h2>
+        <div class="about">
+          <p>Wie erinnern wir, …</p>
+        </div>
+      </section>
+
+      <section id="program" class="section">
+        <h2 class="section-title">Kuration</h2>
+        <div class="section-content">
+          <p>Im Rahmen …</p>
+        </div>
+      </section>
+
       <section id="come-and-see" class="section">
         <h2 class="section-title">Komm und sieh (Come and See)</h2>
         <div class="film">
@@ -256,76 +282,80 @@
           </div>
         </div>
       </section>
-      <!-- … -->
+
+      <!-- … repeat .film blocks for each movie … -->
+
+      <footer class="footer">
+        <p>&copy; 2025 Kino Kaddish | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+      </footer>
     </div>
   </div>
 
   <script>
-    const sections   = document.querySelectorAll('.section');
-    const navLinks   = document.querySelectorAll('.nav-menu li a');
-    const sidebar    = document.querySelector('.sidebar');
+    const sidebar  = document.querySelector('.sidebar');
+    const sections = document.querySelectorAll('.section');
+    const links    = document.querySelectorAll('.nav-menu li a');
 
+    // Active‐menu on scroll
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach(sec => {
-        const top    = sec.offsetTop;
-        const height = sec.clientHeight;
-        if (pageYOffset >= top - height/3) current = sec.id;
+        const top = sec.offsetTop, h = sec.clientHeight;
+        if (pageYOffset >= top - h/3) current = sec.id;
       });
-      navLinks.forEach(link => {
-        link.parentElement.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`)
-          link.parentElement.classList.add('active');
+      links.forEach(a => {
+        a.parentElement.classList.toggle(
+          'active',
+          a.getAttribute('href') === `#${current}`
+        );
       });
     });
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', e => {
+    // Smooth scroll + reset sidebar
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
         e.preventDefault();
-        const target = document.querySelector(anchor.getAttribute('href'));
-        if (target) {
-          window.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
-          sidebar.scrollTop = 0;  // reset the actual scroll container
-        }
+        const tgt = document.querySelector(a.getAttribute('href'));
+        if (!tgt) return;
+        window.scrollTo({ top: tgt.offsetTop, behavior: 'smooth' });
+        sidebar.scrollTop = 0;
       });
     });
 
-    function adjustSidebarHeight() {
-      if (window.innerWidth > 768) {
-        sidebar.style.height = window.innerHeight + 'px';
-      } else {
-        sidebar.style.height = 'auto';
-      }
-      createFilmSprockets();
-    }
-
+    // Sprocket holes & frames
     function createFilmSprockets() {
       if (window.innerWidth <= 768) return;
       document.querySelectorAll('.film-sprocket, .film-frame')
               .forEach(el => el.remove());
 
-      const height     = sidebar.offsetHeight;
-      const frameH     = 65;
-      const frameCount = Math.ceil(height / frameH) + 1;
+      const height = sidebar.offsetHeight,
+            fh     = 65,
+            cnt    = Math.ceil(height/fh)+1;
 
-      for (let i = 0; i <= frameCount; i++) {
-        const top = i * frameH;
+      for (let i=0; i<=cnt; i++) {
+        const top = i*fh;
         // frame line
         const frame = document.createElement('div');
         frame.className = 'film-frame';
-        frame.style.top  = top + 'px';
+        frame.style.top = top + 'px';
         sidebar.appendChild(frame);
-        // sprockets
-        [1,2,3,4].forEach(j => {
-          if (j === 1) return;
+        // sprocket holes
+        [2,3,4].forEach(j => {
           ['film-sprocket-left','film-sprocket-right'].forEach(cls => {
             const hole = document.createElement('div');
             hole.className = `film-sprocket ${cls}`;
-            hole.style.top = (top + j * (frameH/5)) + 'px';
+            hole.style.top = (top + j*(fh/5)) + 'px';
             sidebar.appendChild(hole);
           });
         });
       }
+    }
+
+    function adjustSidebarHeight() {
+      sidebar.style.height = window.innerWidth > 768
+        ? window.innerHeight + 'px'
+        : 'auto';
+      createFilmSprockets();
     }
 
     window.addEventListener('load', adjustSidebarHeight);
