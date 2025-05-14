@@ -1,640 +1,654 @@
-.film:last-child {
-    border-bottom: none;
-}<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kino Kaddish - Filmriss und Widerhall aus dem Osten</title>
-<style>
-:root {
-    --main-bg-color: #000000;
-    --main-text-color: #ffffff;
-    --accent-color: #8a8a8a;
-    --separator-color: #3a3a3a;
-    --highlight-color: #c0c0c0;
-    --menu-hover-color: #444444;
-    --menu-active-color: #555555;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kino Kaddish - Filmriss und Widerhall aus dem Osten</title>
+    <style>
+        /* ---- ROOT VARIABLES ---- */
+        :root {
+            --main-bg-color: #000000;
+            --main-text-color: #ffffff;
+            --accent-color: #8a8a8a;
+            --separator-color: #3a3a3a;
+            --highlight-color: #c0c0c0;
+            --menu-hover-color: rgba(68, 68, 68, 0.5);
+            --menu-active-color: rgba(85, 85, 85, 0.5);
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        /* ---- RESET ---- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
-    background-color: var(--main-bg-color);
-    color: var(--main-text-color);
-    line-height: 1.6;
-}
+        /* ---- BASIC STYLING ---- */
+        body {
+            font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+            background-color: var(--main-bg-color);
+            color: var(--main-text-color);
+            line-height: 1.6;
+        }
 
-.container {
-    display: flex;
-    min-height: 100vh;
-}
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
 
-.sidebar {
-    width: 250px;
-    background-color: rgba(0, 0, 0, 0.9);
-    position: fixed;
-    height: 100%;
-    overflow-y: auto;
-    border-right: 1px solid var(--separator-color);
-    padding: 2rem 0;
-    z-index: 100;
-}
+        /* ---- SIDEBAR STYLES ---- */
+        .sidebar {
+            width: 250px;
+            background-color: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+            border-right: 1px solid var(--separator-color);
+            padding: 2rem 0;
+            z-index: 100;
+            
+            /* Firefox scrollbar styling */
+            scrollbar-width: thin;
+            scrollbar-color: #000 var(--separator-color);
+        }
 
-.logo {
-    text-align: center;
-    padding: 1rem;
-    margin-bottom: 2rem;
-    position: relative;
-    z-index: 10;
-}
+        /* WebKit scrollbar styling (Chrome, Safari, newer Edge) */
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--separator-color);
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #000;
+            border: 1px solid #333;
+            border-radius: 4px;
+        }
 
-.logo h1 {
-    font-size: clamp(1.5rem, 2vw, 2rem);
-    font-weight: 300;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
+        /* MS Edge / IE scrollbar fallback */
+        @media all and (-ms-high-contrast:none), (-ms-high-contrast:active) {
+            .sidebar {
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+                background-color: #111;
+            }
+        }
 
-.logo h2 {
-    font-size: clamp(1rem, 1.5vw, 1.5rem);
-    font-weight: 300;
-    letter-spacing: 2px;
-    margin-top: 0.5rem;
-    color: #c0c0c0;
-}
+        .logo {
+            text-align: center;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 10;
+        }
 
-.nav-menu {
-    list-style: none;
-    position: relative;
-    z-index: 10;
-}
+        .logo h1 {
+            font-size: clamp(1.5rem, 2vw, 2rem);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
 
-.nav-menu li {
-    padding: 0.5rem 0;
-    transition: all 0.3s ease;
-    margin: 0.5rem 0;
-    position: relative;
-    text-align: center;
-}
+        .logo h2 {
+            font-size: clamp(1rem, 1.5vw, 1.5rem);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+            color: var(--highlight-color);
+        }
 
-.nav-menu li a {
-    color: var(--main-text-color);
-    text-decoration: none;
-    display: block;
-    padding: 0.5rem 0;
-    font-size: clamp(0.8rem, 1vw, 0.9rem);
-    letter-spacing: 1px;
-}
+        .nav-menu {
+            list-style: none;
+            position: relative;
+            z-index: 10;
+        }
 
-.nav-menu li a .original-title {
-    display: block;
-    font-size: clamp(0.7rem, 0.8vw, 0.8rem);
-    color: var(--accent-color);
-    margin-top: 0.3rem;
-}
+        .nav-menu li {
+            margin: 0.5rem 0;
+            padding: 0.5rem 0;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-.nav-menu li:hover {
-    background-color: rgba(68, 68, 68, 0.5);
-}
+        .nav-menu li a {
+            color: var(--main-text-color);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            font-size: clamp(0.8rem, 1vw, 0.9rem);
+            letter-spacing: 1px;
+        }
 
-.active {
-    background-color: rgba(85, 85, 85, 0.5);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
-}
+        .nav-menu li a .original-title {
+            display: block;
+            font-size: clamp(0.7rem, 0.8vw, 0.8rem);
+            color: var(--accent-color);
+            margin-top: 0.3rem;
+        }
 
-.content {
-    flex: 1;
-    margin-left: 250px;
-    padding: 2rem;
-}
+        .nav-menu li:hover {
+            background-color: var(--menu-hover-color);
+        }
 
-.section {
-    padding: 3rem 0;
-    scroll-margin-top: 2rem;
-}
+        .nav-menu .active {
+            background-color: var(--menu-active-color);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
 
-.section-title {
-    font-size: 2rem;
-    font-weight: 300;
-    margin-bottom: 2rem;
-    letter-spacing: 1px;
-    display: inline-block;
-    border-bottom: 1px solid var(--highlight-color);
-    padding-bottom: 0.5rem;
-}
+        /* ---- CONTENT STYLES ---- */
+        .content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 2rem;
+        }
 
-.section-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
+        .section {
+            padding: 3rem 0;
+            scroll-margin-top: 2rem;
+        }
 
-.film {
-    display: block;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--separator-color);
-}
+        .section-title {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            display: inline-block;
+            border-bottom: 1px solid var(--highlight-color);
+            padding-bottom: 0.5rem;
+        }
 
-.film-reverse .film-image {
-    float: right;
-    margin-left: 2rem;
-    margin-bottom: 1rem;
-}
+        .section-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
 
-.film .film-image {
-    float: left;
-    margin-right: 2rem;
-    margin-bottom: 1rem;
-}
+        /* ---- FILM ENTRY STYLES ---- */
+        .film {
+            display: block;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--separator-color);
+        }
 
-.film-image {
-    width: 40%;
-    max-width: 400px;
-    position: relative;
-}
+        .film:last-child {
+            border-bottom: none;
+        }
 
-.film:after {
-    content: "";
-    display: table;
-    clear: both;
-}
+        .film-reverse .film-image {
+            float: right;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
 
-.film:last-child {
-    border-bottom: none;
-}
+        .film .film-image {
+            float: left;
+            margin-right: 2rem;
+            margin-bottom: 1rem;
+        }
 
-.film-image img {
-    width: 100%;
-    height: auto;
-    max-width: 400px;
-    max-height: 300px;
-    opacity: 0.9;
-    transition: opacity 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    object-fit: cover;
-    display: block;
-}
+        .film-image {
+            width: 40%;
+            max-width: 400px;
+            position: relative;
+        }
 
-.film-image img:hover {
-    opacity: 1;
-}
+        /* Clearfix for floated elements */
+        .film::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
 
-.film-details {
-    flex: 0 0 65%;
-}
+        .film-image img {
+            width: 100%;
+            height: auto;
+            max-width: 400px;
+            max-height: 300px;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            object-fit: cover;
+            display: block;
+        }
 
-.film-title {
-    font-size: 1.7rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
-    color: var(--highlight-color);
-}
+        .film-image img:hover {
+            opacity: 1;
+        }
 
-.film-year {
-    color: var(--accent-color);
-    font-style: italic;
-    margin-bottom: 1rem;
-}
+        .film-details {
+            flex: 0 0 65%;
+        }
 
-.film-description {
-    text-align: justify;
-    margin-bottom: 1.5rem;
-}
+        .film-year {
+            color: var(--accent-color);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
 
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 2rem;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('images/hero-background.jpg') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed;
-}
+        .film-description {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
 
-.hero h1 {
-    font-size: 3.5rem;
-    font-weight: 300;
-    letter-spacing: 3px;
-    margin-bottom: 1rem;
-}
+        /* ---- HERO SECTION ---- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/hero-background.jpg') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
 
-.hero h2 {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-bottom: 2rem;
-}
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
 
-.hero-text {
-    max-width: 800px;
-    margin: 0 auto;
-}
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
 
-.about {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: justify;
-}
+        .hero-text {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-.footer {
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 2rem;
-    text-align: center;
-    border-top: 1px solid var(--separator-color);
-}
+        /* ---- ABOUT SECTION ---- */
+        .about {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+        }
 
-.footer a {
-    color: var(--highlight-color);
-    text-decoration: none;
-}
+        /* ---- FOOTER ---- */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--separator-color);
+        }
 
-.footer a:hover {
-    text-decoration: underline;
-}
+        .footer a {
+            color: var(--highlight-color);
+            text-decoration: none;
+        }
 
-@media (max-width: 992px) {
-    .sidebar {
-        width: clamp(200px, 25vw, 250px);
-    }
-    
-    .content {
-        margin-left: clamp(200px, 25vw, 250px);
-    }
-    
-    .film-image {
-        float: none;
-        width: 100%;
-        max-width: 100%;
-        margin: 0 0 1.5rem 0;
-    }
-    
-    .film-image img {
-        max-width: 100%;
-    }
-}
+        .footer a:hover {
+            text-decoration: underline;
+        }
 
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        min-height: unset;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid var(--separator-color);
-    }
-    
-    .sidebar-content {
-        overflow: visible;
-        padding: 0;
-    }
-    
-    .nav-menu {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 0 10px;
-    }
-    
-    .nav-menu li {
-        margin: 0 0.5rem;
-        border-bottom: none;
-    }
-    
-    .nav-menu li::before, .nav-menu li::after {
-        display: none;
-    }
-    
-    .content {
-        margin-left: 0;
-    }
-    
-    .container {
-        flex-direction: column;
-    }
-    
-    .film-image {
-        float: none;
-        width: 100%;
-        max-width: 100%;
-        margin: 0 0 1.5rem 0;
-    }
-    
-    .film-sprocket, .film-frame {
-        display: none !important;
-    }
-}
+        /* ---- FILM SPROCKETS STYLING ---- */
+        .film-sprocket {
+            position: absolute;
+            width: 12px;
+            height: 4px;
+            background-color: rgba(50, 50, 50, 0.2);
+            z-index: 2;
+        }
 
-/* For very small screens */
-@media (max-width: 480px) {
-    .nav-menu {
-        flex-direction: column;
-    }
-    
-    .nav-menu li {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .logo h1 {
-        font-size: 1.5rem;
-    }
-    
-    .logo h2 {
-        font-size: 1rem;
-    }
-}
+        .film-sprocket-left {
+            left: 0;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-/* Sprocket hole styles - rectangular now instead of circular */
-.film-sprocket {
-    position: absolute;
-    width: 12px;
-    height: 4px;
-    background-color: rgba(50, 50, 50, 0.2);
-    z-index: 2;
-}
+        .film-sprocket-right {
+            right: 0;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-.film-sprocket-left {
-    left: 0;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
+        .film-frame {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--separator-color);
+            z-index: 1;
+        }
 
-.film-sprocket-right {
-    right: 0;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-}
-</style>
+        /* ---- RESPONSIVE DESIGNS ---- */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: clamp(200px, 25vw, 250px);
+            }
+            
+            .content {
+                margin-left: clamp(200px, 25vw, 250px);
+            }
+            
+            .film-image {
+                float: none;
+                width: 100%;
+                max-width: 100%;
+                margin: 0 0 1.5rem 0;
+            }
+            
+            .film-image img {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--separator-color);
+            }
+            
+            .nav-menu {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 0 10px;
+            }
+            
+            .nav-menu li {
+                margin: 0 0.5rem;
+            }
+            
+            .content {
+                margin-left: 0;
+            }
+            
+            .container {
+                flex-direction: column;
+            }
+            
+            /* Hide film sprockets on mobile */
+            .film-sprocket, .film-frame {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-menu {
+                flex-direction: column;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            .logo h2 {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-<div class="sidebar">
-    <div class="sidebar-content">
-        <div class="logo">
-            <h1>Kino Kaddish</h1>
-            <h2>Filmriss und Widerhall</h2>
+    <div class="container">
+        <!-- SIDEBAR / NAVIGATION -->
+        <div class="sidebar">
+            <div class="logo">
+                <h1>Kino Kaddish</h1>
+                <h2>Filmriss und Widerhall</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="active"><a href="#home">Home</a></li>
+                <li><a href="#about">Über das Projekt</a></li>
+                <li><a href="#program">Kuration</a></li>
+                <li><a href="#come-and-see">Komm und sieh <span class="original-title">Иди и смотри, 1985</span></a></li>
+                <li><a href="#der-golem">Der Golem <span class="original-title">1920</span></a></li>
+                <li><a href="#sanatorium">Sanatorium zur Sanduhr <span class="original-title">Sanatorium pod Klepsydrą, 1973</span></a></li>
+                <li><a href="#kommissarin">Die Kommissarin <span class="original-title">Комиссар, 1967</span></a></li>
+                <li><a href="#passagierin">Die Passagierin <span class="original-title">Pasażerka, 1963</span></a></li>
+                <li><a href="#distant-journey">Die weite Reise <span class="original-title">Daleká cesta, 1949</span></a></li>
+                <li><a href="#kaddish">Kaddish <span class="original-title">1999</span></a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+            <!-- Film sprocket holes will be added by JavaScript -->
         </div>
-        <ul class="nav-menu">
-            <li class="active"><a href="#home">Home</a></li>
-            <li><a href="#about">Über das Projekt</a></li>
-            <li><a href="#program">Kuration</a></li>
-            <li><a href="#come-and-see">Komm und sieh <span class="original-title">Иди и смотри, 1985</span></a></li>
-            <li><a href="#der-golem">Der Golem <span class="original-title">1920</span></a></li>
-            <li><a href="#sanatorium">Sanatorium zur Sanduhr <span class="original-title">Sanatorium pod Klepsydrą, 1973</span></a></li>
-            <li><a href="#kommissarin">Die Kommissarin <span class="original-title">Комиссар, 1967</span></a></li>
-            <li><a href="#passagierin">Die Passagierin <span class="original-title">Pasażerka, 1963</span></a></li>
-            <li><a href="#distant-journey">Die weite Reise <span class="original-title">Daleká cesta, 1949</span></a></li>
-            <li><a href="#kaddish">Kaddish <span class="original-title">1999</span></a></li>
-            <li><a href="#contact">Kontakt</a></li>
-        </ul>
+
+        <!-- MAIN CONTENT -->
+        <div class="content">
+            <!-- HERO SECTION -->
+            <section id="home" class="hero">
+                <h1>KINO KADDISH</h1>
+                <h2>Filmriss und Widerhall aus dem Osten</h2>
+                <div class="hero-text">
+                    <p>Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.</p>
+                </div>
+            </section>
+
+            <!-- ABOUT SECTION -->
+            <section id="about" class="section">
+                <h2 class="section-title">Über das Projekt</h2>
+                <div class="about">
+                    <p>Wie erinnern wir, wenn die Orte selbst schweigen? Wenn Geschichte in Ruinen flackert, in beschädigten Zelluloidstreifen, in Stimmen, die niemand mehr erkennt?</p>
+                    <br>
+                    <p><i>Kino Kaddish</i> ist eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann, und es als rituellen Raum zu begreifen, in dem Bilder nicht nur gesehen, sondern beschworen und wiedererlebt werden. Besonderes Augenmerk gilt dabei einer filmhistorischen Rückschau auf Werke, die vielen jungen Menschen heute kaum noch zugänglich sind — etwa weil es sich um frühe, oft stumme Filme handelt oder weil sie aus dem osteuropäischen und slawischen Kontext stammen.</p>
+                    <br>
+                    <p>Geplant ist eine kuratierte Reihe ortsspezifischer Filmvorführungen bei denen ausgewählte Werke des jüdischen, osteuropäischen und experimentellen Kinos an historisch wie symbolisch aufgeladenen Orten neu kontextualisiert werden.</p>
+                </div>
+            </section>
+
+            <!-- PROGRAM SECTION -->
+            <section id="program" class="section">
+                <h2 class="section-title">Kuration</h2>
+                <div class="section-content">
+                    <p>Im Rahmen von Kino Kaddish sind Filmvorführungen an symbolisch aufgeladenen Orten in Berlin geplant, darunter Institutionen wie das Jüdische Museum, das Deutsch-Russische Museum Karlshorst, das silent green Kulturquartier oder das Centrum Judaicum.</p>
+                    <p>Alle Veranstaltungen werden durch eine begleitende Website unter <a href="http://kino-kaddish.org" style="color: var(--highlight-color);">kino-kaddish.org</a> dokumentiert. Dort werden sowohl kuratorische Überlegungen zur Auswahl und Kontextualisierung der Filme als auch Reflexionen und Eindrücke aus dem Publikum festgehalten.</p>
+                    <p>Die Veranstaltungen stehen dabei insbesondere den Stipendiat*innen des Ernst Ludwig Ehrlich Studienwerks (ELES) offen, aus dessen Kontext die Antragstellung erfolgt. Darüber hinaus richten sie sich an ein breiteres Berliner Publikum — insbesondere an Menschen mit jüdischem Hintergrund oder Interesse an jüdischer Kultur im Spannungsfeld von vergessenem osteuropäischem Kino und zeitgenössischer Erinnerungspraxis.</p>
+                </div>
+            </section>
+
+            <!-- FILM SECTIONS -->
+            <section id="come-and-see" class="section">
+                <h2 class="section-title">Komm und sieh (Come and See)</h2>
+                <div class="film">
+                    <div class="film-image">
+                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/come-and-see.jpg" alt="Komm und sieh (1985)">
+                    </div>
+                    <div class="film-details">
+                        <p class="film-year">Directed by Elem Klimow, 1985</p>
+                        <p class="film-description">Eine der eindrücklichsten filmischen Auseinandersetzungen mit der Shoah und dem Krieg im osteuropäischen Raum. In Kooperation mit einer Gedenkstätte wie Sachsenhausen soll der Film aufgeführt werden, eingeleitet von einem kuratorischen Vortrag, der die Entstehungsgeschichte des Films sowie seine filmhistorische und erinnerungskulturelle Bedeutung für das Publikum kontextualisiert.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="der-golem" class="section">
+                <h2 class="section-title">Der Golem</h2>
+                <div class="film film-reverse">
+                    <div class="film-image">
+                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/der-golem.jpg" alt="Der Golem (1920)">
+                    </div>
+                    <div class="film-details">
+                        <p class="film-year">Directed by Paul Wegener, 1920</p>
+                        <p class="film-description">Mit der bestehenden Live-Vertonung des Duos InterZone Perceptible (Sven Hermann & Matthias Hettmer) in einer Berliner Synagoge. Ihr elektro-akustischer Sound — basierend auf elektrifiziertem Akkordeon, E-Bass, Stimme und Live-Elektronik — zielt nicht auf eine bloße Illustration des Films, sondern entfaltet ein komplexes klangliches Spannungsfeld, das die mythische, psychologische und rituelle Tiefe der Bilder akustisch erfahrbar macht. Die Aufführung in einer aktiven Synagoge wird durch die Live-Performance musikalisch verdichtet: Der mythologische Stoff wird in die Gegenwart übersetzt und der sakrale Raum zugleich klanglich aktiviert.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sanatorium" class="section">
+                <h2 class="section-title">Sanatorium zur Sanduhr (Sanatorium pod Klepsydrą)</h2>
+                <div class="film">
+                    <div class="film-image">
+                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/sanatorium.jpg" alt="Sanatorium pod Klepsydrą (1973)">
+                    </div>
+                    <div class="film-details">
+                        <p class="film-year">Directed by Wojciech Jerzy Has, 1973</p>
+                        <p class="film-description">Basierend auf den Erzählungen von Bruno Schulz entfaltet der Film ein visuell überwältigendes, traumlogisches Erinnerungsuniversum, in dem jüdische Kindheit, familiäre Fragmente und untergehende Welten ineinanderfließen. Ohne die Shoah direkt zu thematisieren, ist der Film durchdrungen von ihrer Abwesenheit — von dem Wissen, dass die poetisch aufgeladene jüdische Welt Galiziens, die Schulz literarisch festhielt, wenige Jahre später ausgelöscht wurde. Has übersetzt diese Leerstelle in eine überbordende filmische Sprache aus Zerfall, Wiederkehr und zeitlicher Desorientierung: Der Protagonist Józef wandert durch fragile Bildräume, in denen Geschichte, Traum und Tod ununterscheidbar werden. Sanatorium pod Klepsydrą ist ein elegisches Echo auf das Verschwinden — ein filmischer Ort des Schmerzes, der Verwandlung und des nicht enden wollenden Wartens.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="kommissarin" class="section">
+                <h2 class="section-title">Die Kommissarin (Комиссар)</h2>
+                <div class="film film-reverse">
+                    <div class="film-image">
+                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/kommissarin.jpg" alt="Die Kommissarin (1967)">
+                    </div>
+                    <div class="film-details">
+                        <p class="film-year">Directed by Alexander Askoldov, 1967</p>
+                        <p class="film-description">Basiert auf der Erzählung "In der Stadt Berditschew" von Wassili Grossman. Vor dem Hintergrund des Bürgerkriegs in einer Provinzstadt kreuzen sich die Schicksale einer Kommissarin und einer jüdischen Familie, die sie bei sich aufnimmt. Diese erzwungene Episode eines friedlichen Lebens wird zu einer subtilen und ergreifenden Reflexion über das Aufeinandertreffen von Persönlichem und Historischem, über Mutterschaft, Verletzlichkeit und die Zerbrechlichkeit der menschlichen Existenz. Fast unmittelbar nach der Fertigstellung wurde der Film verboten und für zwei Jahrzehnte auf Eis gelegt. Askoldow erhielt nie wieder die Gelegenheit, einen abendfüllenden Film zu drehen. Erst in den späten 1980er Jahren erblickte der Film das Licht der Welt — als späte Anerkennung der Bedeutung eines verlorenen Geschichtsbildes, in dem kollektives Gedächtnis und privater Schmerz in einem Atemzug genannt werden.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="passagierin" class="section">
+                <h2 class="section-title">Die Passagierin (Pasażerka)</h2>
+                <div class="film">
+                    <div class="film-image">
+                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/passagierin.jpg" alt="Die Passagierin (1963)">
+                    </div>
+                    <div class="film-details">
+                        <p class="film-year">Directed by Andrzej Munk, 1963</p>
+                        <p class="film-description">Der Film, der zu Lebzeiten Munks unvollendet blieb, ist nicht nur eine tragische Geschichte, sondern auch eine Reflexion über das Wesen der Erinnerung, ihre Fragmentierung und die unvermeidlichen Lücken. Er spielt an Bord eines Ozeandampfers, wo Lisa, eine ehemalige KZ-Aufseherin, zufällig eine Frau trifft, die sie an Martha, eine ehemalige Auschwitz-Gefangene, erinnert. Diese Begegnung löst eine Flut von Erinnerungen aus, bei der die Grenzen zwischen Realität, Ausreden und verdrängten Ängsten ins Wanken geraten. Die Erzählung bewegt sich zwischen Gegenwart und Lagervergangenheit, zwischen dem, was war, und dem, wie es in Schuld, Ausreden und Verdrängungen festgehalten wird. Munchs Film verweigert sich einer geradlinigen Verurteilung oder einem Dialektismus. Stattdessen konstruiert er eine komplexe Architektur der Erinnerung, in der das Bild selbst so fragmentarisch wird wie die menschliche Erinnerung.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="distant-journey" class="section">
+                <h2 class="section-title">Die weite Reise (Daleká cesta)</h2>
+                <div class="film film-reverse">
+                    <div class="film-image">
+                        <img src="/api/placeholder/400/300" alt="Daleká cesta (1949)">
+                    </div>
+                    <div class="film-details">
+                        <p class="film-year">Directed by Alfred Radok, 1949</p>
+                        <p class="film-description">Einer der ersten Spielfilme, die sich direkt mit dem Holocaust befassten. Regisseur Alfred Radok, der die Verfolgung selbst überlebt hatte, schuf einen Film, in dem sich persönliche Geschichte mit dokumentarischem Material vermischt und die Tragödie der tschechischen Juden während der Nazi-Besetzung widerspiegelt. Die Protagonistin Hana Kaufmanová, eine jüdische Ärztin aus Prag, sieht sich mit zunehmendem Antisemitismus konfrontiert: Sie wird entlassen, in ihren Rechten eingeschränkt und schließlich nach Theresienstadt deportiert. Radok bedient sich innovativer Techniken und kombiniert Fiktion mit Wochenschauen, darunter Aufnahmen aus der Nazi-Propaganda sowie tatsächliche KZ-Aufnahmen. Diese Technik verstärkt den Effekt der Präsenz und unterstreicht den Kontrast zwischen den persönlichen Erfahrungen der Figuren und dem Ausmaß der historischen Katastrophe. Der Film entstand nur wenige Jahre nach Kriegsende, wurde in der Tschechoslowakei zunächst zensiert und anschließend für viele Jahre verboten. Erst 1991 wurde er einem breiteren Publikum zugänglich gemacht.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="kaddish" class="section">
+                <h2 class="section-title">Kaddish</h2>
+                <div class="film">
+                    <div class="film-image">
+                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/kaddish.jpg" alt="Kaddish (1999)">
+                    </div>
+                    <div class="film-details">
+                        <p class="film-year">Directed by Konstantin Fam, 1999</p>
+                        <p class="film-description">Ein eindringlicher Kurzfilmzyklus über Generationen nach der Shoah. Durch die bewusste Verbindung von Film, Raum und kuratorischer Kontextualisierung soll ein dialogischer Erinnerungsraum entstehen, der sowohl historische Reflexion als auch zeitgenössische Perspektiven ermöglicht. Die Veranstaltungen stehen dabei insbesondere den Stipendiat*innen des Ernst Ludwig Ehrlich Studienwerks (ELES) offen, aus dessen Kontext die Antragstellung erfolgt. Darüber hinaus richten sie sich an ein breiteres Berliner Publikum — insbesondere an Menschen mit jüdischem Hintergrund oder Interesse an jüdischer Kultur im Spannungsfeld von vergessenem osteuropäischem Kino und zeitgenössischer Erinnerungspraxis.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="section">
+                <h2 class="section-title">Kontakt</h2>
+                <div class="section-content">
+                    <p>Für weitere Informationen und Veranstaltungstermine besuchen Sie bitte die Webseite <a href="http://kino-kaddish.org" style="color: var(--highlight-color);">kino-kaddish.org</a> oder kontaktieren Sie uns direkt.</p>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="footer">
+                <p>&copy; 2025 Kino Kaddish | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+            </footer>
+        </div>
     </div>
-    <!-- Film sprocket holes will be added by JavaScript -->
-</div>
 
-<div class="content">
-    <section id="home" class="hero">
-        <h1>KINO KADDISH</h1>
-        <h2>Filmriss und Widerhall aus dem Osten</h2>
-        <div class="hero-text">
-            <p>Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.</p>
-        </div>
-    </section>
+    <!-- JAVASCRIPT -->
+    <script>
+        // DOM Elements
+        const sidebar = document.querySelector('.sidebar');
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-menu li a');
 
-    <section id="about" class="section">
-        <h2 class="section-title">Über das Projekt</h2>
-        <div class="about">
-            <p>Wie erinnern wir, wenn die Orte selbst schweigen? Wenn Geschichte in Ruinen flackert, in beschädigten Zelluloidstreifen, in Stimmen, die niemand mehr erkennt?</p>
-            <br>
-            <p><i>Kino Kaddish</i> ist eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann, und es als rituellen Raum zu begreifen, in dem Bilder nicht nur gesehen, sondern beschworen und wiedererlebt werden. Besonderes Augenmerk gilt dabei einer filmhistorischen Rückschau auf Werke, die vielen jungen Menschen heute kaum noch zugänglich sind — etwa weil es sich um frühe, oft stumme Filme handelt oder weil sie aus dem osteuropäischen und slawischen Kontext stammen.</p>
-            <br>
-            <p>Geplant ist eine kuratierte Reihe ortsspezifischer Filmvorführungen bei denen ausgewählte Werke des jüdischen, osteuropäischen und experimentellen Kinos an historisch wie symbolisch aufgeladenen Orten neu kontextualisiert werden.</p>
-        </div>
-    </section>
-
-    <section id="program" class="section">
-        <h2 class="section-title">Kuration</h2>
-        <div class="section-content">
-            <p>Im Rahmen von Kino Kaddish sind Filmvorführungen an symbolisch aufgeladenen Orten in Berlin geplant, darunter Institutionen wie das Jüdische Museum, das Deutsch-Russische Museum Karlshorst, das silent green Kulturquartier oder das Centrum Judaicum.</p>
-            <p>Alle Veranstaltungen werden durch eine begleitende Website unter <a href="http://kaddish-kino.de" style="color: var(--highlight-color);">kaddish-kino.de</a> dokumentiert. Dort werden sowohl kuratorische Überlegungen zur Auswahl und Kontextualisierung der Filme als auch Reflexionen und Eindrücke aus dem Publikum festgehalten.</p>
-            <p>Die Veranstaltungen stehen dabei insbesondere den Stipendiat*innen des Ernst Ludwig Ehrlich Studienwerks (ELES) offen, aus dessen Kontext die Antragstellung erfolgt. Darüber hinaus richten sie sich an ein breiteres Berliner Publikum — insbesondere an Menschen mit jüdischem Hintergrund oder Interesse an jüdischer Kultur im Spannungsfeld von vergessenem osteuropäischem Kino und zeitgenössischer Erinnerungspraxis.</p>
-        </div>
-    </section>
-
-    <section id="come-and-see" class="section">
-        <h2 class="section-title">Komm und sieh (Come and See)</h2>
-        <div class="film">
-            <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/come-and-see.jpg" alt="Komm und sieh (1985)">>
-            </div>
-            <div class="film-details">
-                <p class="film-year">Directed by Elem Klimow</p>
-                <p class="film-description">Eine der eindrücklichsten filmischen Auseinandersetzungen mit der Shoah und dem Krieg im osteuropäischen Raum. In Kooperation mit einer Gedenkstätte wie Sachsenhausen soll der Film aufgeführt werden, eingeleitet von einem kuratorischen Vortrag, der die Entstehungsgeschichte des Films sowie seine filmhistorische und erinnerungskulturelle Bedeutung für das Publikum kontextualisiert.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="der-golem" class="section">
-        <h2 class="section-title">Der Golem</h2>
-        <div class="film film-reverse">
-            <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/der-golem.jpg" alt="Der Golem (1920)">>
-            </div>
-            <div class="film-details">
-                <p class="film-year">Directed by Paul Wegener</p>
-                <p class="film-description">Mit der bestehenden Live-Vertonung des Duos InterZone Perceptible (Sven Hermann & Matthias Hettmer) in einer Berliner Synagoge. Ihr elektro-akustischer Sound — basierend auf elektrifiziertem Akkordeon, E-Bass, Stimme und Live-Elektronik — zielt nicht auf eine bloße Illustration des Films, sondern entfaltet ein komplexes klangliches Spannungsfeld, das die mythische, psychologische und rituelle Tiefe der Bilder akustisch erfahrbar macht. Die Aufführung in einer aktiven Synagoge wird durch die Live-Performance musikalisch verdichtet: Der mythologische Stoff wird in die Gegenwart übersetzt und der sakrale Raum zugleich klanglich aktiviert.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="sanatorium" class="section">
-        <h2 class="section-title">Sanatorium zur Sanduhr (Sanatorium pod Klepsydrą)</h2>
-        <div class="film">
-            <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/sanatorium.jpg" alt="Sanatorium pod Klepsydrą (1973)">>
-            </div>
-            <div class="film-details">
-                <p class="film-year">Directed by Wojciech Jerzy Has</p>
-                <p class="film-description">Basierend auf den Erzählungen von Bruno Schulz entfaltet der Film ein visuell überwältigendes, traumlogisches Erinnerungsuniversum, in dem jüdische Kindheit, familiäre Fragmente und untergehende Welten ineinanderfließen. Ohne die Shoah direkt zu thematisieren, ist der Film durchdrungen von ihrer Abwesenheit — von dem Wissen, dass die poetisch aufgeladene jüdische Welt Galiziens, die Schulz literarisch festhielt, wenige Jahre später ausgelöscht wurde. Has übersetzt diese Leerstelle in eine überbordende filmische Sprache aus Zerfall, Wiederkehr und zeitlicher Desorientierung: Der Protagonist Józef wandert durch fragile Bildräume, in denen Geschichte, Traum und Tod ununterscheidbar werden. Sanatorium pod Klepsydrą ist ein elegisches Echo auf das Verschwinden — ein filmischer Ort des Schmerzes, der Verwandlung und des nicht enden wollenden Wartens.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="kommissarin" class="section">
-        <h2 class="section-title">Die Kommissarin (Комиссар)</h2>
-        <div class="film film-reverse">
-            <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/kommissarin.jpg" alt="Die Kommissarin (1967)">>
-            </div>
-            <div class="film-details">
-                <p class="film-year">Directed by Alexander Askoldov</p>
-                <p class="film-description">Basiert auf der Erzählung "In der Stadt Berditschew" von Wassili Grossman. Vor dem Hintergrund des Bürgerkriegs in einer Provinzstadt kreuzen sich die Schicksale einer Kommissarin und einer jüdischen Familie, die sie bei sich aufnimmt. Diese erzwungene Episode eines friedlichen Lebens wird zu einer subtilen und ergreifenden Reflexion über das Aufeinandertreffen von Persönlichem und Historischem, über Mutterschaft, Verletzlichkeit und die Zerbrechlichkeit der menschlichen Existenz. Fast unmittelbar nach der Fertigstellung wurde der Film verboten und für zwei Jahrzehnte auf Eis gelegt. Askoldow erhielt nie wieder die Gelegenheit, einen abendfüllenden Film zu drehen. Erst in den späten 1980er Jahren erblickte der Film das Licht der Welt — als späte Anerkennung der Bedeutung eines verlorenen Geschichtsbildes, in dem kollektives Gedächtnis und privater Schmerz in einem Atemzug genannt werden.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="passagierin" class="section">
-        <h2 class="section-title">Die Passagierin (Pasażerka)</h2>
-        <div class="film">
-            <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/passagierin.jpg" alt="Die Passagierin (1963)">>
-            </div>
-            <div class="film-details">
-                <p class="film-year">Directed by Andrzej Munk</p>
-                <p class="film-description">Der Film, der zu Lebzeiten Munks unvollendet blieb, ist nicht nur eine tragische Geschichte, sondern auch eine Reflexion über das Wesen der Erinnerung, ihre Fragmentierung und die unvermeidlichen Lücken. Er spielt an Bord eines Ozeandampfers, wo Lisa, eine ehemalige KZ-Aufseherin, zufällig eine Frau trifft, die sie an Martha, eine ehemalige Auschwitz-Gefangene, erinnert. Diese Begegnung löst eine Flut von Erinnerungen aus, bei der die Grenzen zwischen Realität, Ausreden und verdrängten Ängsten ins Wanken geraten. Die Erzählung bewegt sich zwischen Gegenwart und Lagervergangenheit, zwischen dem, was war, und dem, wie es in Schuld, Ausreden und Verdrängungen festgehalten wird. Munchs Film verweigert sich einer geradlinigen Verurteilung oder einem Dialektismus. Stattdessen konstruiert er eine komplexe Architektur der Erinnerung, in der das Bild selbst so fragmentarisch wird wie die menschliche Erinnerung.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="distant-journey" class="section">
-        <h2 class="section-title">Die weite Reise (Daleká cesta)</h2>
-        <div class="film film-reverse">
-            <div class="film-image">
-                <img src="/api/placeholder/800/500" alt="Daleká cesta (1949)">
-            </div>
-            <div class="film-details">
-                <p class="film-year">Directed by Alfred Radok</p>
-                <p class="film-description">Einer der ersten Spielfilme, die sich direkt mit dem Holocaust befassten. Regisseur Alfred Radok, der die Verfolgung selbst überlebt hatte, schuf einen Film, in dem sich persönliche Geschichte mit dokumentarischem Material vermischt und die Tragödie der tschechischen Juden während der Nazi-Besetzung widerspiegelt. Die Protagonistin Hana Kaufmanová, eine jüdische Ärztin aus Prag, sieht sich mit zunehmendem Antisemitismus konfrontiert: Sie wird entlassen, in ihren Rechten eingeschränkt und schließlich nach Theresienstadt deportiert. Radok bedient sich innovativer Techniken und kombiniert Fiktion mit Wochenschauen, darunter Aufnahmen aus der Nazi-Propaganda sowie tatsächliche KZ-Aufnahmen. Diese Technik verstärkt den Effekt der Präsenz und unterstreicht den Kontrast zwischen den persönlichen Erfahrungen der Figuren und dem Ausmaß der historischen Katastrophe. Der Film entstand nur wenige Jahre nach Kriegsende, wurde in der Tschechoslowakei zunächst zensiert und anschließend für viele Jahre verboten. Erst 1991 wurde er einem breiteren Publikum zugänglich gemacht.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="kaddish" class="section">
-        <h2 class="section-title">Kaddish</h2>
-        <div class="film">
-            <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/kaddish.jpg" alt="Kaddish (1999)">>
-            </div>
-            <div class="film-details">
-                <p class="film-year">Directed by Konstantin Fam</p>
-                <p class="film-description">Ein eindringlicher Kurzfilmzyklus über Generationen nach der Shoah. Durch die bewusste Verbindung von Film, Raum und kuratorischer Kontextualisierung soll ein dialogischer Erinnerungsraum entstehen, der sowohl historische Reflexion als auch zeitgenössische Perspektiven ermöglicht. Die Veranstaltungen stehen dabei insbesondere den Stipendiat*innen des Ernst Ludwig Ehrlich Studienwerks (ELES) offen, aus dessen Kontext die Antragstellung erfolgt. Darüber hinaus richten sie sich an ein breiteres Berliner Publikum — insbesondere an Menschen mit jüdischem Hintergrund oder Interesse an jüdischer Kultur im Spannungsfeld von vergessenem osteuropäischem Kino und zeitgenössischer Erinnerungspraxis.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section">
-        <h2 class="section-title">Kontakt</h2>
-        <div class="section-content">
-            <p>Für weitere Informationen kontaktieren Sie uns direkt bei info@kino-kaddish.org.</p>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <p>&copy; 2025 Kino Kaddish | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
-    </footer>
-</div>
-</div>
-
-<script>
-// Simple active menu highlighting
-const sections = document.querySelectorAll('.section');
-const navLinks = document.querySelectorAll('.nav-menu li a');
-const sidebar = document.querySelector('.sidebar');
-const sidebarContent = document.querySelector('.sidebar-content');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.parentElement.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.parentElement.classList.add('active');
-        }
-    });
-});
-
-// Smooth scrolling for navigation links and reset sidebar scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop,
-                behavior: 'smooth'
+        // Active menu highlighting on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
             });
             
-            // Reset sidebar scroll to top after navigation
-            sidebarContent.scrollTop = 0;
-        }
-    });
-});
+            navLinks.forEach(link => {
+                link.parentElement.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.parentElement.classList.add('active');
+                }
+            });
+        });
 
-// Ensure the sidebar height is always correct even when zooming or resizing
-function adjustSidebarHeight() {
-    if (window.innerWidth > 768) {
-        sidebar.style.height = window.innerHeight + 'px';
-    } else {
-        sidebar.style.height = 'auto';
-    }
-    
-    // Recreate film sprockets when size changes
-    createFilmSprockets();
-}
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
 
-// Create film sprocket holes (rectangular ones now)
-function createFilmSprockets() {
-    // Only create these elements if we're on a larger screen
-    if (window.innerWidth <= 768) return;
-    
-    // Clear any existing sprocket holes and frames
-    const existingSprockets = document.querySelectorAll('.film-sprocket, .film-frame');
-    existingSprockets.forEach(element => element.remove());
-    
-    const height = sidebar.offsetHeight;
-    
-    // Create film frames every 70px
-    const frameHeight = 70;
-    const frameCount = Math.ceil(height / frameHeight);
-    
-    for (let i = 0; i <= frameCount; i++) {
-        const frameTop = i * frameHeight;
-        
-        // Create frame divider (the black line between frames)
-        const frame = document.createElement('div');
-        frame.classList.add('film-frame');
-        frame.style.top = frameTop + 'px';
-        sidebar.appendChild(frame);
-        
-        // Create 4 sprocket holes per frame on left side
-        for (let j = 1; j <= 4; j++) {
-            const leftHole = document.createElement('div');
-            leftHole.classList.add('film-sprocket', 'film-sprocket-left');
-            leftHole.style.top = (frameTop + (j * (frameHeight / 5))) + 'px';
-            sidebar.appendChild(leftHole);
+        // Adjust sidebar height and create film sprockets
+        function adjustSidebarHeight() {
+            if (window.innerWidth > 768) {
+                sidebar.style.height = window.innerHeight + 'px';
+                createFilmSprockets();
+            } else {
+                sidebar.style.height = 'auto';
+                // Remove sprockets on mobile
+                document.querySelectorAll('.film-sprocket, .film-frame').forEach(el => el.remove());
+            }
         }
-        
-        // Create 4 sprocket holes per frame on right side
-        for (let j = 1; j <= 4; j++) {
-            const rightHole = document.createElement('div');
-            rightHole.classList.add('film-sprocket', 'film-sprocket-right');
-            rightHole.style.top = (frameTop + (j * (frameHeight / 5))) + 'px';
-            sidebar.appendChild(rightHole);
-        }
-    }
-}
 
-// Run on load and whenever the window is resized
-window.addEventListener('load', adjustSidebarHeight);
-window.addEventListener('resize', adjustSidebarHeight);
-window.addEventListener('orientationchange', adjustSidebarHeight);
-</script>
+        // Create film sprocket holes (decorative elements to enhance film theme)
+        function createFilmSprockets() {
+            // Clear any existing sprocket holes
+            document.querySelectorAll('.film-sprocket, .film-frame').forEach(el => el.remove());
+            
+            const height = sidebar.offsetHeight;
+            const frameHeight = 65; // Height of each "film frame"
+            const frameCount = Math.ceil(height / frameHeight) + 1;
+            
+            for (let i = 0; i <= frameCount; i++) {
+                const frameTop = i * frameHeight;
+                
+                // Create horizontal frame divider line
+                const frame = document.createElement('div');
+                frame.className = 'film-frame';
+                frame.style.top = frameTop + 'px';
+                sidebar.appendChild(frame);
+                
+                // Create 3 sprocket holes per frame on each side
+                for (let j = 2; j <= 4; j++) {
+                    // Left side holes
+                    const leftHole = document.createElement('div');
+                    leftHole.className = 'film-sprocket film-sprocket-left';
+                    leftHole.style.top = (frameTop + (j * (frameHeight / 5))) + 'px';
+                    sidebar.appendChild(leftHole);
+                    
+                    // Right side holes
+                    const rightHole = document.createElement('div');
+                    rightHole.className = 'film-sprocket film-sprocket-right';
+                    rightHole.style.top = (frameTop + (j * (frameHeight / 5))) + 'px';
+                    sidebar.appendChild(rightHole);
+                }
+            }
+        }
+
+        // Initialize and setup on page load
+        window.addEventListener('load', adjustSidebarHeight);
+        window.addEventListener('resize', adjustSidebarHeight);
+        window.addEventListener('orientationchange', adjustSidebarHeight);
+    </script>
 </body>
 </html>
