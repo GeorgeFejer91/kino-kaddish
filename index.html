@@ -1,4 +1,10 @@
-/* If IE shows scrollbar despite the above, add extra measures */
+/* Force black scrollbar for all browsers with !important */
+        .sidebar-content::-webkit-scrollbar-thumb {
+            background-color: #000000 !important;
+            border: 1px solid #333333 !important;
+        }
+        
+        /* If IE shows scrollbar despite the above, add extra measures */
         @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
             /* IE10+ CSS */
             .sidebar-content {
@@ -7,10 +13,8 @@
             }
         }
         
-        /* Force black scrollbar for all browsers with !important */
-        .sidebar-content::-webkit-scrollbar-thumb {
-            background-color: #000000 !important;
-            border: 1px solid #333333 !important;
+        .film:last-child {
+            border-bottom: none;
         }        .film:last-child {
             border-bottom: none;
         }<!DOCTYPE html>
@@ -284,13 +288,13 @@
             
             .film-image {
                 float: none;
-                width: 100%;
-                max-width: 100%;
-                margin: 0 0 1.5rem 0;
+                margin: 0 auto 1.5rem auto;
+                display: block;
             }
             
             .film-image img {
                 max-width: 100%;
+                margin: 0 auto;
             }
         }
         
