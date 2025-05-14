@@ -1,11 +1,11 @@
-.film:last-child {
-    border-bottom: none;
-}<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kino Kaddish - Filmriss und Widerhall aus dem Osten</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 <style>
 :root {
     --main-bg-color: #000000;
@@ -15,6 +15,7 @@
     --highlight-color: #c0c0c0;
     --menu-hover-color: #444444;
     --menu-active-color: #555555;
+    --film-title-color: #d6d6d6;
 }
 
 * {
@@ -44,12 +45,15 @@ body {
     border-right: 1px solid var(--separator-color);
     padding: 2rem 0;
     z-index: 100;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out;
 }
 
 .logo {
     text-align: center;
     padding: 1rem;
     margin-bottom: 2rem;
+    border-bottom: 1px solid var(--separator-color);
 }
 
 .logo h1 {
@@ -72,6 +76,7 @@ body {
 .nav-menu li {
     padding: 0.5rem 1.5rem;
     transition: all 0.3s ease;
+    border-left: 3px solid transparent;
 }
 
 .nav-menu li a {
@@ -92,11 +97,12 @@ body {
 
 .nav-menu li:hover {
     background-color: var(--menu-hover-color);
+    border-left: 3px solid var(--highlight-color);
 }
 
 .active {
     background-color: var(--menu-active-color);
-    border-left: 3px solid var(--highlight-color);
+    border-left: 3px solid var(--highlight-color) !important;
 }
 
 .content {
@@ -108,6 +114,14 @@ body {
 .section {
     padding: 3rem 0;
     scroll-margin-top: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section.appear {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .section-title {
@@ -130,6 +144,12 @@ body {
     display: block;
     padding: 2rem 0;
     border-bottom: 1px solid var(--separator-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.film:last-child {
+    border-bottom: none;
 }
 
 .film-reverse .film-image {
@@ -148,6 +168,9 @@ body {
     width: 40%;
     max-width: 400px;
     position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    border-radius: 3px;
 }
 
 .film:after {
@@ -162,13 +185,13 @@ body {
     max-width: 400px;
     max-height: 300px;
     opacity: 0.9;
-    transition: opacity 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    object-fit: contain;
+    transition: all 0.5s ease;
+    object-fit: cover;
 }
 
-.film-image img:hover {
+.film-image:hover img {
     opacity: 1;
+    transform: scale(1.05);
 }
 
 .film-details {
@@ -179,18 +202,29 @@ body {
     font-size: 1.7rem;
     font-weight: 400;
     margin-bottom: 1rem;
-    color: var(--highlight-color);
+    color: var(--film-title-color);
 }
 
 .film-year {
     color: var(--accent-color);
     font-style: italic;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.film-year:before {
+    content: "\f008";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
 }
 
 .film-description {
     text-align: justify;
     margin-bottom: 1.5rem;
+    line-height: 1.7;
 }
 
 .hero {
@@ -201,9 +235,36 @@ body {
     align-items: center;
     text-align: center;
     padding: 0 2rem;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/hero-background.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('/api/placeholder/1920/1080') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/api/placeholder/100/100') repeat;
+    opacity: 0.05;
+    animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0) }
+    10% { transform: translate(-5%, -10%) }
+    20% { transform: translate(-15%, 5%) }
+    30% { transform: translate(7%, -25%) }
+    40% { transform: translate(-5%, 25%) }
+    50% { transform: translate(-15%, 10%) }
+    60% { transform: translate(15%, 0%) }
+    70% { transform: translate(0%, 15%) }
+    80% { transform: translate(3%, 35%) }
+    90% { transform: translate(-10%, 10%) }
 }
 
 .hero h1 {
@@ -211,17 +272,157 @@ body {
     font-weight: 300;
     letter-spacing: 3px;
     margin-bottom: 1rem;
+    position: relative;
+    animation: fadeInDown 1.5s;
+}
+
+.hero-title {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-title:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: translateX(-100%);
+    animation: typewriterCursor 10s ease-in-out infinite;
+}
+
+@keyframes typewriterCursor {
+    0%, 100% { transform: translateX(-100%); }
+    5% { transform: translateX(-100%); }
+    10% { transform: translateX(0%); }
+    12% { transform: translateX(100%); }
+    14% { transform: translateX(-100%); }
+    80% { transform: translateX(-100%); }
+    85% { transform: translateX(0%); }
+    87% { transform: translateX(100%); }
 }
 
 .hero h2 {
     font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    animation-delay: 0.5s;
+}
+
+.memory-text {
+    position: relative;
+    display: inline-block;
+}
+
+.memory-text:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: memoryLine 8s ease-in-out infinite;
+}
+
+@keyframes memoryLine {
+    0%, 100% { transform: scaleX(0); }
+    25% { transform: scaleX(1); }
+    75% { transform: scaleX(1); }
 }
 
 .hero-text {
     max-width: 800px;
     margin: 0 auto;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.celluloid-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.frame-line {
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+    top: 0;
+}
+
+.frame-line:nth-child(1) { left: 10%; }
+.frame-line:nth-child(2) { left: 30%; }
+.frame-line:nth-child(3) { left: 50%; }
+.frame-line:nth-child(4) { left: 70%; }
+.frame-line:nth-child(5) { left: 90%; }
+
+.frame-hole {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+}
+
+.left-holes .frame-hole {
+    left: 10px;
+}
+
+.right-holes .frame-hole {
+    right: 10px;
+}
+
+.frame-hole:nth-child(1) { top: 10%; }
+.frame-hole:nth-child(2) { top: 30%; }
+.frame-hole:nth-child(3) { top: 50%; }
+.frame-hole:nth-child(4) { top: 70%; }
+.frame-hole:nth-child(5) { top: 90%; }
+
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: var(--highlight-color);
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-20px) translateX(-50%); }
+    60% { transform: translateY(-10px) translateX(-50%); }
 }
 
 .about {
@@ -246,6 +447,20 @@ body {
     text-decoration: underline;
 }
 
+.mobile-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
 @media (max-width: 992px) {
     .sidebar {
         width: clamp(200px, 25vw, 250px);
@@ -256,10 +471,10 @@ body {
     }
     
     .film-image {
-        float: none;
+        float: none !important;
         width: 100%;
         max-width: 100%;
-        margin: 0 0 1.5rem 0;
+        margin: 0 0 1.5rem 0 !important;
     }
     
     .film-image img {
@@ -268,63 +483,204 @@ body {
 }
 
 @media (max-width: 768px) {
+    .mobile-toggle {
+        display: block;
+    }
+
     .sidebar {
-        width: 100%;
-        height: auto;
-        min-height: unset;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid var(--separator-color);
+        transform: translateX(-100%);
+        width: 70%;
     }
     
-    .nav-menu {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .nav-menu li {
-        margin: 0 0.5rem;
+    .sidebar.show {
+        transform: translateX(0);
     }
     
     .content {
         margin-left: 0;
     }
-    
-    .container {
-        flex-direction: column;
-    }
-    
-    .film-image {
-        float: none;
-        width: 100%;
-        max-width: 100%;
-        margin: 0 0 1.5rem 0;
-    }
 }
 
-/* For very small screens */
 @media (max-width: 480px) {
-    .nav-menu {
-        flex-direction: column;
+    .hero h1 {
+        font-size: 2.5rem;
     }
     
-    .nav-menu li {
-        width: 100%;
-        text-align: center;
+    .hero h2 {
+        font-size: 1.2rem;
     }
     
-    .logo h1 {
+    .section-title {
         font-size: 1.5rem;
     }
     
-    .logo h2 {
-        font-size: 1rem;
+    .film-title {
+        font-size: 1.3rem;
     }
+}
+
+/* Film reel animation */
+.film-strip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0) 95%, rgba(255,255,255,0.05) 95.5%, rgba(0,0,0,0) 96%),
+                linear-gradient(0deg, rgba(0,0,0,0) 95%, rgba(255,255,255,0.05) 95.5%, rgba(0,0,0,0) 96%);
+    background-size: 20px 20px;
+    opacity: 0.2;
+    pointer-events: none;
+    animation: filmMove 60s linear infinite;
+}
+
+@keyframes filmMove {
+    from { background-position: 0 0; }
+    to { background-position: 20px 20px; }
+}
+
+/* Flicker animation */
+.flicker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    opacity: 0;
+    pointer-events: none;
+    animation: flicker 10s infinite;
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 0; }
+    92% { opacity: 0; }
+    92.5% { opacity: 0.1; }
+    93% { opacity: 0; }
+    93.5% { opacity: 0.1; }
+    94% { opacity: 0; }
+    94.5% { opacity: 0.15; }
+    95% { opacity: 0; }
+    95.5% { opacity: 0.1; }
+    96% { opacity: 0; }
+    97% { opacity: 0.2; }
+    97.5% { opacity: 0; }
+    98% { opacity: 0.1; }
+    98.5% { opacity: 0; }
+}
+
+/* Filmriss - Film Tear Animation */
+.film-tear {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.tear-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.tear-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    z-index: 1000;
+    transform: translateY(-100%);
+    transition: transform 0.1s ease-in;
+}
+
+.tear-bottom {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.1s ease-in;
+}
+
+.film-tear.active {
+    opacity: 1;
+}
+
+.film-tear.active .tear-top {
+    transform: translateY(0);
+}
+
+.film-tear.active .tear-bottom {
+    transform: translateY(0);
+}
+
+/* Widerhall - Image Echo Animation */
+.film-image {
+    position: relative;
+}
+
+.film-image:before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    z-index: -1;
+    filter: grayscale(100%) brightness(0.5);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.film-image:hover:before {
+    opacity: 0.6;
+    transform: translate(-5px, -5px);
+}
+
+/* Film Burn Effect */
+.film-burn {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255,137,0,0.4) 0%, rgba(0,0,0,0) 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s ease;
+}
+
+/* Frame Jumping Animation */
+@keyframes frameJump {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-2px); }
+    75% { transform: translateY(2px); }
+}
+
+/* Memory Fade Text Animation */
+@keyframes memoryFade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
 }
 </style>
 </head>
 <body>
+<button class="mobile-toggle">
+    <i class="fas fa-bars"></i>
+</button>
+
 <div class="container">
 <div class="sidebar">
     <div class="logo">
@@ -348,17 +704,43 @@ body {
 
 <div class="content">
     <section id="home" class="hero">
-        <h1>KINO KADDISH</h1>
+        <div class="film-strip"></div>
+        <div class="flicker"></div>
+        <div class="celluloid-frame">
+            <div class="left-holes">
+                <div class="frame-hole"></div>
+                <div class="frame-hole"></div>
+                <div class="frame-hole"></div>
+                <div class="frame-hole"></div>
+                <div class="frame-hole"></div>
+            </div>
+            <div class="right-holes">
+                <div class="frame-hole"></div>
+                <div class="frame-hole"></div>
+                <div class="frame-hole"></div>
+                <div class="frame-hole"></div>
+                <div class="frame-hole"></div>
+            </div>
+            <div class="frame-line"></div>
+            <div class="frame-line"></div>
+            <div class="frame-line"></div>
+            <div class="frame-line"></div>
+            <div class="frame-line"></div>
+        </div>
+        <h1 class="hero-title">KINO KADDISH</h1>
         <h2>Filmriss und Widerhall aus dem Osten</h2>
         <div class="hero-text">
             <p>Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.</p>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
     <section id="about" class="section">
         <h2 class="section-title">Über das Projekt</h2>
         <div class="about">
-            <p>Wie erinnern wir, wenn die Orte selbst schweigen? Wenn Geschichte in Ruinen flackert, in beschädigten Zelluloidstreifen, in Stimmen, die niemand mehr erkennt?</p>
+            <p class="memory-text">Wie erinnern wir, wenn die Orte selbst schweigen? Wenn Geschichte in Ruinen flackert, in beschädigten Zelluloidstreifen, in Stimmen, die niemand mehr erkennt?</p>
             <br>
             <p><i>Kino Kaddish</i> ist eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann, und es als rituellen Raum zu begreifen, in dem Bilder nicht nur gesehen, sondern beschworen und wiedererlebt werden. Besonderes Augenmerk gilt dabei einer filmhistorischen Rückschau auf Werke, die vielen jungen Menschen heute kaum noch zugänglich sind — etwa weil es sich um frühe, oft stumme Filme handelt oder weil sie aus dem osteuropäischen und slawischen Kontext stammen.</p>
             <br>
@@ -379,10 +761,11 @@ body {
         <h2 class="section-title">Komm und sieh (Come and See)</h2>
         <div class="film">
             <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/come-and-see.jpg" alt="Komm und sieh (1985)">>
+                <img src="/api/placeholder/400/300" alt="Komm und sieh (1985)">
             </div>
             <div class="film-details">
-                <p class="film-year">Directed by Elem Klimow</p>
+                <h3 class="film-title">Komm und sieh (Иди и смотри)</h3>
+                <p class="film-year">Directed by Elem Klimow, 1985</p>
                 <p class="film-description">Eine der eindrücklichsten filmischen Auseinandersetzungen mit der Shoah und dem Krieg im osteuropäischen Raum. In Kooperation mit einer Gedenkstätte wie Sachsenhausen soll der Film aufgeführt werden, eingeleitet von einem kuratorischen Vortrag, der die Entstehungsgeschichte des Films sowie seine filmhistorische und erinnerungskulturelle Bedeutung für das Publikum kontextualisiert.</p>
             </div>
         </div>
@@ -392,10 +775,11 @@ body {
         <h2 class="section-title">Der Golem</h2>
         <div class="film film-reverse">
             <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/der-golem.jpg" alt="Der Golem (1920)">>
+                <img src="/api/placeholder/400/300" alt="Der Golem (1920)">
             </div>
             <div class="film-details">
-                <p class="film-year">Directed by Paul Wegener</p>
+                <h3 class="film-title">Der Golem — wie er in die Welt kam</h3>
+                <p class="film-year">Directed by Paul Wegener, 1920</p>
                 <p class="film-description">Mit der bestehenden Live-Vertonung des Duos InterZone Perceptible (Sven Hermann & Matthias Hettmer) in einer Berliner Synagoge. Ihr elektro-akustischer Sound — basierend auf elektrifiziertem Akkordeon, E-Bass, Stimme und Live-Elektronik — zielt nicht auf eine bloße Illustration des Films, sondern entfaltet ein komplexes klangliches Spannungsfeld, das die mythische, psychologische und rituelle Tiefe der Bilder akustisch erfahrbar macht. Die Aufführung in einer aktiven Synagoge wird durch die Live-Performance musikalisch verdichtet: Der mythologische Stoff wird in die Gegenwart übersetzt und der sakrale Raum zugleich klanglich aktiviert.</p>
             </div>
         </div>
@@ -405,10 +789,11 @@ body {
         <h2 class="section-title">Sanatorium zur Sanduhr (Sanatorium pod Klepsydrą)</h2>
         <div class="film">
             <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/sanatorium.jpg" alt="Sanatorium pod Klepsydrą (1973)">>
+                <img src="/api/placeholder/400/300" alt="Sanatorium pod Klepsydrą (1973)">
             </div>
             <div class="film-details">
-                <p class="film-year">Directed by Wojciech Jerzy Has</p>
+                <h3 class="film-title">Sanatorium zur Sanduhr</h3>
+                <p class="film-year">Directed by Wojciech Jerzy Has, 1973</p>
                 <p class="film-description">Basierend auf den Erzählungen von Bruno Schulz entfaltet der Film ein visuell überwältigendes, traumlogisches Erinnerungsuniversum, in dem jüdische Kindheit, familiäre Fragmente und untergehende Welten ineinanderfließen. Ohne die Shoah direkt zu thematisieren, ist der Film durchdrungen von ihrer Abwesenheit — von dem Wissen, dass die poetisch aufgeladene jüdische Welt Galiziens, die Schulz literarisch festhielt, wenige Jahre später ausgelöscht wurde. Has übersetzt diese Leerstelle in eine überbordende filmische Sprache aus Zerfall, Wiederkehr und zeitlicher Desorientierung: Der Protagonist Józef wandert durch fragile Bildräume, in denen Geschichte, Traum und Tod ununterscheidbar werden. Sanatorium pod Klepsydrą ist ein elegisches Echo auf das Verschwinden — ein filmischer Ort des Schmerzes, der Verwandlung und des nicht enden wollenden Wartens.</p>
             </div>
         </div>
@@ -418,10 +803,11 @@ body {
         <h2 class="section-title">Die Kommissarin (Комиссар)</h2>
         <div class="film film-reverse">
             <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/kommissarin.jpg" alt="Die Kommissarin (1967)">>
+                <img src="/api/placeholder/400/300" alt="Die Kommissarin (1967)">
             </div>
             <div class="film-details">
-                <p class="film-year">Directed by Alexander Askoldov</p>
+                <h3 class="film-title">Die Kommissarin</h3>
+                <p class="film-year">Directed by Alexander Askoldov, 1967</p>
                 <p class="film-description">Basiert auf der Erzählung "In der Stadt Berditschew" von Wassili Grossman. Vor dem Hintergrund des Bürgerkriegs in einer Provinzstadt kreuzen sich die Schicksale einer Kommissarin und einer jüdischen Familie, die sie bei sich aufnimmt. Diese erzwungene Episode eines friedlichen Lebens wird zu einer subtilen und ergreifenden Reflexion über das Aufeinandertreffen von Persönlichem und Historischem, über Mutterschaft, Verletzlichkeit und die Zerbrechlichkeit der menschlichen Existenz. Fast unmittelbar nach der Fertigstellung wurde der Film verboten und für zwei Jahrzehnte auf Eis gelegt. Askoldow erhielt nie wieder die Gelegenheit, einen abendfüllenden Film zu drehen. Erst in den späten 1980er Jahren erblickte der Film das Licht der Welt — als späte Anerkennung der Bedeutung eines verlorenen Geschichtsbildes, in dem kollektives Gedächtnis und privater Schmerz in einem Atemzug genannt werden.</p>
             </div>
         </div>
@@ -431,10 +817,11 @@ body {
         <h2 class="section-title">Die Passagierin (Pasażerka)</h2>
         <div class="film">
             <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/passagierin.jpg" alt="Die Passagierin (1963)">>
+                <img src="/api/placeholder/400/300" alt="Die Passagierin (1963)">
             </div>
             <div class="film-details">
-                <p class="film-year">Directed by Andrzej Munk</p>
+                <h3 class="film-title">Die Passagierin</h3>
+                <p class="film-year">Directed by Andrzej Munk, 1963</p>
                 <p class="film-description">Der Film, der zu Lebzeiten Munks unvollendet blieb, ist nicht nur eine tragische Geschichte, sondern auch eine Reflexion über das Wesen der Erinnerung, ihre Fragmentierung und die unvermeidlichen Lücken. Er spielt an Bord eines Ozeandampfers, wo Lisa, eine ehemalige KZ-Aufseherin, zufällig eine Frau trifft, die sie an Martha, eine ehemalige Auschwitz-Gefangene, erinnert. Diese Begegnung löst eine Flut von Erinnerungen aus, bei der die Grenzen zwischen Realität, Ausreden und verdrängten Ängsten ins Wanken geraten. Die Erzählung bewegt sich zwischen Gegenwart und Lagervergangenheit, zwischen dem, was war, und dem, wie es in Schuld, Ausreden und Verdrängungen festgehalten wird. Munchs Film verweigert sich einer geradlinigen Verurteilung oder einem Dialektismus. Stattdessen konstruiert er eine komplexe Architektur der Erinnerung, in der das Bild selbst so fragmentarisch wird wie die menschliche Erinnerung.</p>
             </div>
         </div>
@@ -444,10 +831,11 @@ body {
         <h2 class="section-title">Die weite Reise (Daleká cesta)</h2>
         <div class="film film-reverse">
             <div class="film-image">
-                <img src="/api/placeholder/800/500" alt="Daleká cesta (1949)">
+                <img src="/api/placeholder/400/300" alt="Daleká cesta (1949)">
             </div>
             <div class="film-details">
-                <p class="film-year">Directed by Alfred Radok</p>
+                <h3 class="film-title">Die weite Reise</h3>
+                <p class="film-year">Directed by Alfred Radok, 1949</p>
                 <p class="film-description">Einer der ersten Spielfilme, die sich direkt mit dem Holocaust befassten. Regisseur Alfred Radok, der die Verfolgung selbst überlebt hatte, schuf einen Film, in dem sich persönliche Geschichte mit dokumentarischem Material vermischt und die Tragödie der tschechischen Juden während der Nazi-Besetzung widerspiegelt. Die Protagonistin Hana Kaufmanová, eine jüdische Ärztin aus Prag, sieht sich mit zunehmendem Antisemitismus konfrontiert: Sie wird entlassen, in ihren Rechten eingeschränkt und schließlich nach Theresienstadt deportiert. Radok bedient sich innovativer Techniken und kombiniert Fiktion mit Wochenschauen, darunter Aufnahmen aus der Nazi-Propaganda sowie tatsächliche KZ-Aufnahmen. Diese Technik verstärkt den Effekt der Präsenz und unterstreicht den Kontrast zwischen den persönlichen Erfahrungen der Figuren und dem Ausmaß der historischen Katastrophe. Der Film entstand nur wenige Jahre nach Kriegsende, wurde in der Tschechoslowakei zunächst zensiert und anschließend für viele Jahre verboten. Erst 1991 wurde er einem breiteren Publikum zugänglich gemacht.</p>
             </div>
         </div>
@@ -457,10 +845,11 @@ body {
         <h2 class="section-title">Kaddish</h2>
         <div class="film">
             <div class="film-image">
-                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/kaddish.jpg" alt="Kaddish (1999)">>
+                <img src="/api/placeholder/400/300" alt="Kaddish (1999)">
             </div>
             <div class="film-details">
-                <p class="film-year">Directed by Konstantin Fam</p>
+                <h3 class="film-title">Kaddish</h3>
+                <p class="film-year">Directed by Konstantin Fam, 1999</p>
                 <p class="film-description">Ein eindringlicher Kurzfilmzyklus über Generationen nach der Shoah. Durch die bewusste Verbindung von Film, Raum und kuratorischer Kontextualisierung soll ein dialogischer Erinnerungsraum entstehen, der sowohl historische Reflexion als auch zeitgenössische Perspektiven ermöglicht. Die Veranstaltungen stehen dabei insbesondere den Stipendiat*innen des Ernst Ludwig Ehrlich Studienwerks (ELES) offen, aus dessen Kontext die Antragstellung erfolgt. Darüber hinaus richten sie sich an ein breiteres Berliner Publikum — insbesondere an Menschen mit jüdischem Hintergrund oder Interesse an jüdischer Kultur im Spannungsfeld von vergessenem osteuropäischem Kino und zeitgenössischer Erinnerungspraxis.</p>
             </div>
         </div>
@@ -470,6 +859,7 @@ body {
         <h2 class="section-title">Kontakt</h2>
         <div class="section-content">
             <p>Für weitere Informationen und Veranstaltungstermine besuchen Sie bitte die Webseite <a href="http://kaddish-kino.de" style="color: var(--highlight-color);">kaddish-kino.de</a> oder kontaktieren Sie uns direkt.</p>
+            <p>Email: <a href="mailto:info@kaddish-kino.de" style="color: var(--highlight-color);">info@kaddish-kino.de</a></p>
         </div>
     </section>
 
@@ -480,28 +870,46 @@ body {
 </div>
 
 <script>
-// Simple active menu highlighting
+// Active menu highlighting
 const sections = document.querySelectorAll('.section');
 const navLinks = document.querySelectorAll('.nav-menu li a');
+const mobileToggle = document.querySelector('.mobile-toggle');
+const sidebar = document.querySelector('.sidebar');
+const scrollDown = document.querySelector('.scroll-down');
 
-window.addEventListener('scroll', () => {
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-            current = section.getAttribute('id');
+// Mobile menu toggle
+mobileToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('show');
+});
+
+// Scroll down button on hero section
+scrollDown.addEventListener('click', () => {
+    document.querySelector('#about').scrollIntoView({
+        behavior: 'smooth'
+    });
+});
+
+// Observe sections for visibility
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('appear');
+            
+            // Update active menu item
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+                link.parentElement.classList.remove('active');
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.parentElement.classList.add('active');
+                }
+            });
         }
     });
-    
-    navLinks.forEach(link => {
-        link.parentElement.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.parentElement.classList.add('active');
-        }
-    });
+}, { threshold: 0.1 });
+
+// Observe all sections
+sections.forEach(section => {
+    observer.observe(section);
 });
 
 // Smooth scrolling for navigation links
@@ -517,9 +925,216 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 top: targetElement.offsetTop,
                 behavior: 'smooth'
             });
+            
+            // Close mobile menu after clicking
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('show');
+            }
         }
     });
 });
+
+// Film reel animation for hero section
+const hero = document.querySelector('.hero');
+const filmStrip = document.createElement('div');
+filmStrip.classList.add('film-strip');
+hero.appendChild(filmStrip);
+
+// Subtle film grain effect for entire page
+document.body.style.backgroundImage = "url('data:image/png;base64,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')";
+document.body.style.backgroundAttachment = "fixed";
+
+// ===== FILMRISS ANIMATIONS =====
+
+// Film Tear Animation
+function createFilmTear() {
+    // Create the film tear container
+    const filmTear = document.createElement('div');
+    filmTear.classList.add('film-tear');
+    
+    // Create a random position for the tear (somewhere in the middle of the screen)
+    const position = Math.random() * 60 + 20; // between 20% and 80% of the screen height
+    
+    // Create the tear line
+    const tearLine = document.createElement('div');
+    tearLine.classList.add('tear-line');
+    tearLine.style.top = `${position}%`;
+    
+    // Create the top part that moves up
+    const tearTop = document.createElement('div');
+    tearTop.classList.add('tear-top');
+    tearTop.style.height = `${position}%`;
+    
+    // Create the bottom part that moves down
+    const tearBottom = document.createElement('div');
+    tearBottom.classList.add('tear-bottom');
+    tearBottom.style.top = `${position}%`;
+    tearBottom.style.height = `${100 - position}%`;
+    
+    // Add all parts to the tear container
+    filmTear.appendChild(tearLine);
+    filmTear.appendChild(tearTop);
+    filmTear.appendChild(tearBottom);
+    
+    // Add the tear container to the body
+    document.body.appendChild(filmTear);
+    
+    // Activate the tear animation
+    setTimeout(() => {
+        filmTear.classList.add('active');
+    }, 100);
+    
+    // Remove the tear after the animation completes
+    setTimeout(() => {
+        filmTear.classList.remove('active');
+        setTimeout(() => {
+            document.body.removeChild(filmTear);
+        }, 200);
+    }, 500);
+}
+
+// Randomly trigger film tears
+function scheduleRandomTears() {
+    // Initial random delay before first tear
+    const initialDelay = Math.random() * 15000 + 5000; // 5-20 seconds
+    
+    setTimeout(() => {
+        // Show a tear
+        createFilmTear();
+        
+        // Schedule next tear
+        const nextDelay = Math.random() * 20000 + 10000; // 10-30 seconds
+        setTimeout(scheduleRandomTears, nextDelay);
+    }, initialDelay);
+}
+
+// Start the random tears
+scheduleRandomTears();
+
+// Frame Jump Animation
+function addFrameJumpAnimation() {
+    const sections = document.querySelectorAll('.section');
+    let isJumping = false;
+    
+    // Add animation when scrolling
+    window.addEventListener('scroll', () => {
+        if (!isJumping && Math.random() < 0.05) { // 5% chance of jumping when scrolling
+            isJumping = true;
+            
+            // Apply frame jump animation to each section
+            sections.forEach(section => {
+                section.style.animation = 'frameJump 0.2s';
+                
+                // Remove animation after it completes
+                setTimeout(() => {
+                    section.style.animation = '';
+                    isJumping = false;
+                }, 200);
+            });
+        }
+    });
+}
+
+addFrameJumpAnimation();
+
+// ===== WIDERHALL (ECHO) ANIMATIONS =====
+
+// Image Echo Effect
+function setupImageEchoEffect() {
+    const filmImages = document.querySelectorAll('.film-image');
+    
+    filmImages.forEach(image => {
+        const img = image.querySelector('img');
+        if (img) {
+            // Set the before pseudo-element's background image to match the image
+            image.addEventListener('mouseenter', () => {
+                image.style.setProperty('--echo-image', `url(${img.src})`);
+            });
+        }
+    });
+}
+
+// Set up after images are loaded
+window.addEventListener('load', setupImageEchoEffect);
+
+// Film Burn Effect
+function createRandomFilmBurn() {
+    const filmSections = document.querySelectorAll('.film');
+    
+    if (filmSections.length > 0) {
+        // Choose a random film section
+        const randomIndex = Math.floor(Math.random() * filmSections.length);
+        const randomSection = filmSections[randomIndex];
+        
+        // Create film burn element
+        const burnEffect = document.createElement('div');
+        burnEffect.classList.add('film-burn');
+        
+        // Add it to the selected section
+        randomSection.appendChild(burnEffect);
+        
+        // Randomly position it within the section
+        const maxX = randomSection.offsetWidth - 100;
+        const maxY = randomSection.offsetHeight - 100;
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+        
+        burnEffect.style.top = `${randomY}px`;
+        burnEffect.style.left = `${randomX}px`;
+        
+        // Make it visible and then fade out
+        setTimeout(() => {
+            burnEffect.style.opacity = '1';
+            
+            setTimeout(() => {
+                burnEffect.style.opacity = '0';
+                
+                // Remove after fade out
+                setTimeout(() => {
+                    randomSection.removeChild(burnEffect);
+                }, 2000);
+            }, 1000);
+        }, 100);
+    }
+}
+
+// Schedule random film burns
+function scheduleRandomBurns() {
+    const delay = Math.random() * 25000 + 15000; // 15-40 seconds
+    
+    setTimeout(() => {
+        createRandomFilmBurn();
+        scheduleRandomBurns();
+    }, delay);
+}
+
+scheduleRandomBurns();
+
+// Memory Fade Text Animation
+function addMemoryFadeAnimation() {
+    // Find some random words to animate
+    const paragraphs = document.querySelectorAll('.film-description');
+    
+    paragraphs.forEach(paragraph => {
+        // Get all the words
+        const text = paragraph.innerHTML;
+        const words = text.split(' ');
+        
+        // Choose a few random words to animate (about 5% of words)
+        for (let i = 0; i < words.length; i++) {
+            if (Math.random() < 0.05 && words[i].length > 4) {
+                // Wrap the word in a span with animation
+                words[i] = `<span style="animation: memoryFade 8s infinite; display: inline-block;">${words[i]}</span>`;
+            }
+        }
+        
+        // Reassemble the paragraph
+        paragraph.innerHTML = words.join(' ');
+    });
+}
+
+// Set up after the page is loaded
+window.addEventListener('load', addMemoryFadeAnimation);
 </script>
 </body>
 </html>
