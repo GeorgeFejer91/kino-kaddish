@@ -109,7 +109,7 @@
             flex-direction: column;
             background-color: #0a0a0a;
             /* Add subtle film grain texture */
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAEDklEQVRoQ+2aTW8bVRSG3zMztmMnbhJII1NRUBdI/QGIVZFQVUHFAolF2DBSVQ3ql1Q0XbVSu0FiAaxYdNEVP4BKXSAhJLpBXSDaRRZRg9I4bdLEk8T2zBnOHY/tJI4nE0/sJnA3UWbuvee577nnnnvuJTRNo3q9jvX1dSSTSTiOA9d14fs+hBAgIoxGI9i2jUKhgHK5DEIIgiDAwcEBVFU9xOv3+3AcB7IsQxRFCIIAURQhyzJ4noc0JQnD8Ig+x3F0XReCIEAQBLiui52dHYxGo2b5SZKExcVFKIpyOd709ToMaz8Ier0ehsMhXNeFbdvY3NxEr9drEkwkEigWi8jlcuB5HoQQEEIgiiJEURQ5jpMAIPr7IJvNIpvNgud5SCbTTQnAT0LIjUQi8U6xWLxFKV3iOE5gWfaXIAi+DcPwHgAKwAOAPiU08QN7TzicZVk2FY/HZwRBeMu27T+CIPA8z/MopWNzrutiZ2cHhmE02ZZlGZlMBpIkQZZl8DyPWCwGQgji8TgkSTKz2SwopcjnC0in08cvAUD7juP83G63Hxzacp1QJsty1Pd9oe+4Lvb39zEYDGDb9kSQIAiQTqeRTCahKApisRg4jgMhBDzPI51OgxCCTCYzZsplZFkOKpUqUqn0sYQAeEwpvd1qtat/kQCQSqVerVQqM8vLy6+n0+lrxWLxpWq1OlsqlWaPgDEMc5jKw6GF7e0t6LpxGOxRUiORSMDzPMzNzY2TRpYRBEHbMIytbrf7eRAED2zbfjgcDrumaQ4cx/EBqCeTeeXYvLa29h4A7Ny5M2eaZmxvby+u67qoqupcuVx+rVardRRFuXHct6VS6SMARGlvNptfaZq261vWk729vYHjOIppmssrKysfn4hIpVKxUqnUx81m89ZvGxtfappWt237+uLi4vlF2dLSUgTr1traGmsYxlJfVTsdVe1quj7QdN12XfcfABKAswP/NCcDQimdW1hYuFmtVhfPYtS/2pimyXU6nReazebHW+32V12z930QBGHTNEee5z09cR7o9/vIZrPgOA7VahXxePzkZfvf0sdxHPZ6Paiq2m02Gz92u91vAGzZtg3f958Gvy6ZGpFnbfmsHJ+UxNTkTk1uanJTkztTk5vG3DhTmuasanJnakQT1+SKougvLCy8s7i4+AYh5CXLsrKu676nadp3tVrtw1qtVjr+g3OqnxZN08ja2toXrVbrQRTgWq22u7q6+ulZjcTUcmAaMtOQmYbMNGSmIXPuhcxJzX3rduPPk4TuhR9jX/gRuzHGjoleeF2bOG8vzIj9L0bu/Exuxj0wmUwmlslkXlRV9cednZ1v2+32d4ZhPDZNc/vRfx4wGWNPeS8c1Q7GGPvgkf2jWq3+MsZgWVatVqud+BxVq9Vey+fzk3m42rYNN8rJ/wM/pFwqHgwNuQAAAABJRU5ErkJggg==');
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAEDklEQVRoQ+2aTW8bVRSG3zMztmMnbhJII1NRUBdI/QGIVZFQVUHFAolF2DBSVQ3ql1Q0XbVSu0FiAaxYdNEVP4BKXSAhJLpBXSDaRRZRg9I4bdLEk8T2zBnOHY/tJI4nE0/sJnA3UWbuvee577nnnnvuJTRNo3q9jvX1dSST');
             background-blend-mode: overlay;
             background-size: 100px;
         }
@@ -164,38 +164,58 @@
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
         }
 
-        /* Film sprocket holes - left side */
-        .nav-menu li::before {
-            content: "";
+        .nav-menu li:first-child {
+            border-top: 3px solid var(--frame-border);
+        }
+
+        /* Create multiple sprocket holes using pseudo-elements and their "before/after" generated content */
+        .nav-menu li .sprocket-left-1,
+        .nav-menu li .sprocket-left-2,
+        .nav-menu li .sprocket-left-3,
+        .nav-menu li .sprocket-right-1,
+        .nav-menu li .sprocket-right-2,
+        .nav-menu li .sprocket-right-3 {
             position: absolute;
-            width: 16px;
-            height: 12px;
+            width: 10px;
+            height: 7px;
             background-color: var(--sprocket-color);
             border: 1px solid var(--sprocket-border);
+            z-index: 2;
+            box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Left side sprocket holes */
+        .nav-menu li .sprocket-left-1 {
+            left: 8px;
+            top: 12px;
+        }
+        
+        .nav-menu li .sprocket-left-2 {
             left: 8px;
             top: 50%;
             transform: translateY(-50%);
-            z-index: 2;
-            box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.7);
+        }
+        
+        .nav-menu li .sprocket-left-3 {
+            left: 8px;
+            bottom: 12px;
         }
 
-        /* Film sprocket holes - right side */
-        .nav-menu li::after {
-            content: "";
-            position: absolute;
-            width: 16px;
-            height: 12px;
-            background-color: var(--sprocket-color);
-            border: 1px solid var(--sprocket-border);
+        /* Right side sprocket holes */
+        .nav-menu li .sprocket-right-1 {
+            right: 8px;
+            top: 12px;
+        }
+        
+        .nav-menu li .sprocket-right-2 {
             right: 8px;
             top: 50%;
             transform: translateY(-50%);
-            z-index: 2;
-            box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.7);
         }
-
-        .nav-menu li:first-child {
-            border-top: 3px solid var(--frame-border);
+        
+        .nav-menu li .sprocket-right-3 {
+            right: 8px;
+            bottom: 12px;
         }
 
         /* ---- CONTENT STYLES ---- */
@@ -403,8 +423,12 @@
                 padding: 0.5rem 0.8rem;
             }
             
-            .nav-menu li::before,
-            .nav-menu li::after {
+            .nav-menu li .sprocket-left-1,
+            .nav-menu li .sprocket-left-2,
+            .nav-menu li .sprocket-left-3,
+            .nav-menu li .sprocket-right-1,
+            .nav-menu li .sprocket-right-2,
+            .nav-menu li .sprocket-right-3 {
                 display: none;
             }
             
@@ -448,17 +472,105 @@
             </div>
             <div class="film-strip">
                 <ul class="nav-menu">
-                    <li class="active"><a href="#home">Home</a></li>
-                    <li><a href="#about">Über das Projekt</a></li>
-                    <li><a href="#program">Kuration</a></li>
-                    <li><a href="#come-and-see">Komm und sieh <span class="original-title">Иди и смотри, 1985</span></a></li>
-                    <li><a href="#der-golem">Der Golem <span class="original-title">1920</span></a></li>
-                    <li><a href="#sanatorium">Sanatorium zur Sanduhr <span class="original-title">Sanatorium pod Klepsydrą, 1973</span></a></li>
-                    <li><a href="#kommissarin">Die Kommissarin <span class="original-title">Комиссар, 1967</span></a></li>
-                    <li><a href="#passagierin">Die Passagierin <span class="original-title">Pasażerka, 1963</span></a></li>
-                    <li><a href="#distant-journey">Die weite Reise <span class="original-title">Daleká cesta, 1949</span></a></li>
-                    <li><a href="#kaddish">Kaddish <span class="original-title">1999</span></a></li>
-                    <li><a href="#contact">Kontakt</a></li>
+                    <li class="active">
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#home">Home</a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#about">Über das Projekt</a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#program">Kuration</a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#come-and-see">Komm und sieh <span class="original-title">Иди и смотри, 1985</span></a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#der-golem">Der Golem <span class="original-title">1920</span></a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#sanatorium">Sanatorium zur Sanduhr <span class="original-title">Sanatorium pod Klepsydrą, 1973</span></a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#kommissarin">Die Kommissarin <span class="original-title">Комиссар, 1967</span></a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#passagierin">Die Passagierin <span class="original-title">Pasażerka, 1963</span></a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#distant-journey">Die weite Reise <span class="original-title">Daleká cesta, 1949</span></a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#kaddish">Kaddish <span class="original-title">1999</span></a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#contact">Kontakt</a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
                 </ul>
             </div>
         </div>
