@@ -600,9 +600,9 @@ function createFilmSprockets() {
     
     const height = sidebar.offsetHeight;
     
-    // Create film frames every 65px (slightly smaller frames)
-    const frameHeight = 65;
-    const frameCount = Math.ceil(height / frameHeight) + 1; // Add extra frame for scrolling
+    // Create film frames every 70px
+    const frameHeight = 70;
+    const frameCount = Math.ceil(height / frameHeight);
     
     for (let i = 0; i <= frameCount; i++) {
         const frameTop = i * frameHeight;
@@ -615,8 +615,6 @@ function createFilmSprockets() {
         
         // Create 4 sprocket holes per frame on left side
         for (let j = 1; j <= 4; j++) {
-            if (j === 1) continue; // Skip first one to avoid overlap with frame line
-            
             const leftHole = document.createElement('div');
             leftHole.classList.add('film-sprocket', 'film-sprocket-left');
             leftHole.style.top = (frameTop + (j * (frameHeight / 5))) + 'px';
@@ -625,8 +623,6 @@ function createFilmSprockets() {
         
         // Create 4 sprocket holes per frame on right side
         for (let j = 1; j <= 4; j++) {
-            if (j === 1) continue; // Skip first one to avoid overlap with frame line
-            
             const rightHole = document.createElement('div');
             rightHole.classList.add('film-sprocket', 'film-sprocket-right');
             rightHole.style.top = (frameTop + (j * (frameHeight / 5))) + 'px';
