@@ -12,9 +12,12 @@
             --accent-color: #8a8a8a;
             --separator-color: #3a3a3a;
             --highlight-color: #c0c0c0;
-            --menu-hover-color: rgba(68, 68, 68, 0.7);
-            --menu-active-color: rgba(85, 85, 85, 0.8);
+            --menu-hover-color: rgba(40, 40, 40, 0.9);
+            --menu-active-color: rgba(60, 60, 60, 0.9);
             --frame-border: #333333;
+            --sprocket-color: #1a1a1a;
+            --sprocket-border: #2a2a2a;
+            --frame-height: 70px;
         }
 
         /* ---- RESET ---- */
@@ -40,12 +43,13 @@
         /* ---- SIDEBAR STYLES ---- */
         .sidebar {
             width: 250px;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(10, 10, 10, 0.98);
             position: fixed;
             height: 100%;
             overflow-y: auto;
             border-right: 1px solid var(--separator-color);
             z-index: 100;
+            padding: 0;
             
             /* Firefox scrollbar styling */
             scrollbar-width: thin;
@@ -79,7 +83,7 @@
             position: relative;
             z-index: 10;
             background-color: rgba(0, 0, 0, 0.9);
-            border-bottom: 1px solid var(--frame-border);
+            border-bottom: 3px solid var(--frame-border);
         }
 
         .logo h1 {
@@ -103,29 +107,45 @@
             width: 100%;
             display: flex;
             flex-direction: column;
+            background-color: #0a0a0a;
+            /* Add subtle film grain texture */
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAEDklEQVRoQ+2aTW8bVRSG3zMztmMnbhJII1NRUBdI/QGIVZFQVUHFAolF2DBSVQ3ql1Q0XbVSu0FiAaxYdNEVP4BKXSAhJLpBXSDaRRZRg9I4bdLEk8T2zBnOHY/tJI4nE0/sJnA3UWbuvee577nnnnvuJTRNo3q9jvX1dSSTSTiOA9d14fs+hBAgIoxGI9i2jUKhgHK5DEIIgiDAwcEBVFU9xOv3+3AcB7IsQxRFCIIAURQhyzJ4noc0JQnD8Ig+x3F0XReCIEAQBLiui52dHYxGo2b5SZKExcVFKIpyOd709ToMaz8Ier0ehsMhXNeFbdvY3NxEr9drEkwkEigWi8jlcuB5HoQQEEIgiiJEURQ5jpMAIPr7IJvNIpvNgud5SCbTTQnAT0LIjUQi8U6xWLxFKV3iOE5gWfaXIAi+DcPwHgAKwAOAPiU08QN7TzicZVk2FY/HZwRBeMu27T+CIPA8z/MopWNzrutiZ2cHhmE02ZZlGZlMBpIkQZZl8DyPWCwGQgji8TgkSTKz2SwopcjnC0in08cvAUD7juP83G63Hxzacp1QJsty1Pd9oe+4Lvb39zEYDGDb9kSQIAiQTqeRTCahKApisRg4jgMhBDzPI51OgxCCTCYzZsplZFkOKpUqUqn0sYQAeEwpvd1qtat/kQCQSqVerVQqM8vLy6+n0+lrxWLxpWq1OlsqlWaPgDEMc5jKw6GF7e0t6LpxGOxRUiORSMDzPMzNzY2TRpYRBEHbMIytbrf7eRAED2zbfjgcDrumaQ4cx/EBqCeTeeXYvLa29h4A7Ny5M2eaZmxvby+u67qoqupcuVx+rVardRRFuXHct6VS6SMARGlvNptfaZq261vWk729vYHjOIppmssrKysfn4hIpVKxUqnUx81m89ZvGxtfappWt237+uLi4vlF2dLSUgTr1traGmsYxlJfVTsdVe1quj7QdN12XfcfABKAswP/NCcDQimdW1hYuFmtVhfPYtS/2pimyXU6nReazebHW+32V12z930QBGHTNEee5z09cR7o9/vIZrPgOA7VahXxePzkZfvf0sdxHPZ6Paiq2m02Gz92u91vAGzZtg3f958Gvy6ZGpFnbfmsHJ+UxNTkTk1uanJTkztTk5vG3DhTmuasanJnakQT1+SKougvLCy8s7i4+AYh5CXLsrKu676nadp3tVrtw1qtVjr+g3OqnxZN08ja2toXrVbrQRTgWq22u7q6+ulZjcTUcmAaMtOQmYbMNGSmIXPuhcxJzX3rduPPk4TuhR9jX/gRuzHGjoleeF2bOG8vzIj9L0bu/Exuxj0wmUwmlslkXlRV9cednZ1v2+32d4ZhPDZNc/vRfx4wGWNPeS8c1Q7GGPvgkf2jWq3+MsZgWVatVqud+BxVq9Vey+fzk3m42rYNN8rJ/wM/pFwqHgwNuQAAAABJRU5ErkJggg==');
+            background-blend-mode: overlay;
+            background-size: 100px;
         }
 
         .nav-menu {
             list-style: none;
             position: relative;
             z-index: 10;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-menu li {
             position: relative;
             transition: all 0.3s ease;
-            border-bottom: 1px solid var(--frame-border);
+            border-bottom: 3px solid var(--frame-border);
             padding: 0;
+            height: var(--frame-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .nav-menu li a {
             color: var(--main-text-color);
             text-decoration: none;
             display: block;
-            padding: 0.8rem 0;
+            width: 100%;
+            height: 100%;
             font-size: clamp(0.8rem, 1vw, 0.9rem);
             letter-spacing: 1px;
             text-align: center;
+            padding: 0.5rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .nav-menu li a .original-title {
@@ -141,37 +161,41 @@
 
         .nav-menu .active {
             background-color: var(--menu-active-color);
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
         }
 
-        /* Film sprocket holes */
-        .nav-menu li::before,
-        .nav-menu li::after {
+        /* Film sprocket holes - left side */
+        .nav-menu li::before {
             content: "";
             position: absolute;
-            width: 12px;
-            height: 6px;
-            background-color: rgba(30, 30, 30, 0.7);
-            border: 1px solid rgba(60, 60, 60, 0.5);
+            width: 16px;
+            height: 12px;
+            background-color: var(--sprocket-color);
+            border: 1px solid var(--sprocket-border);
+            left: 8px;
             top: 50%;
             transform: translateY(-50%);
             z-index: 2;
+            box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.7);
         }
 
-        .nav-menu li::before {
-            left: 0;
-            border-top-right-radius: 2px;
-            border-bottom-right-radius: 2px;
-        }
-
+        /* Film sprocket holes - right side */
         .nav-menu li::after {
-            right: 0;
-            border-top-left-radius: 2px;
-            border-bottom-left-radius: 2px;
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 12px;
+            background-color: var(--sprocket-color);
+            border: 1px solid var(--sprocket-border);
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.7);
         }
 
         .nav-menu li:first-child {
-            border-top: 1px solid var(--frame-border);
+            border-top: 3px solid var(--frame-border);
         }
 
         /* ---- CONTENT STYLES ---- */
@@ -355,6 +379,10 @@
                 border-bottom: 1px solid var(--separator-color);
             }
             
+            .film-strip {
+                background-image: none;
+            }
+            
             .nav-menu {
                 display: flex;
                 flex-wrap: wrap;
@@ -367,6 +395,8 @@
                 background: rgba(30, 30, 30, 0.7);
                 margin: 0.3rem;
                 border-radius: 4px;
+                height: auto;
+                width: auto;
             }
             
             .nav-menu li a {
