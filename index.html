@@ -258,32 +258,27 @@
             border-bottom: none;
         }
 
-        .film-reverse .film-image {
-            float: right;
-            margin-left: 2rem;
-            margin-bottom: 1rem;
+        .film-year {
+            color: var(--accent-color);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            text-align: left;
         }
 
-        .film .film-image {
-            float: left;
-            margin-right: 2rem;
-            margin-bottom: 1rem;
+        .film-content {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
         }
 
         .film-image {
             width: 250px;
             max-width: 250px;
+            flex-shrink: 0;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-        }
-
-        /* Clearfix for floated elements */
-        .film::after {
-            content: "";
-            display: table;
-            clear: both;
         }
 
         .film-image img {
@@ -300,13 +295,7 @@
         }
 
         .film-details {
-            flex: 0 0 65%;
-        }
-
-        .film-year {
-            color: var(--accent-color);
-            font-style: italic;
-            margin-bottom: 1rem;
+            flex: 1;
         }
 
         .film-description {
@@ -422,12 +411,13 @@
                 margin-left: clamp(200px, 25vw, 250px);
             }
             
+            .film-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
             .film-image {
-                float: none;
-                width: 100%;
-                max-width: 250px;
                 margin: 0 auto 1.5rem auto;
-                text-align: center;
             }
             
             .film-image img {
@@ -595,12 +585,13 @@
                 background: linear-gradient(to left, rgba(0, 0, 0, 0.9), transparent);
             }
             
-            /* Special handling for film images */
-            .film-reverse .film-image,
-            .film .film-image {
-                float: none;
-                width: 100%;
-                max-width: 250px;
+            /* Special handling for film layout on mobile */
+            .film-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .film-image {
                 margin: 0 auto 1.5rem auto;
             }
             
@@ -918,46 +909,50 @@
             <section id="der-golem" class="section">
                 <h2 class="section-title">Der Golem</h2>
                 <div class="film">
-                    <div class="film-image">
-                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/der-golem.jpg" alt="Der Golem (1920)">
+                    <p class="film-year">1920</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/der-golem.jpg" alt="Der Golem (1920)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Der expressionistische Stummfilmklassiker Der Golem – wie er in die Welt kam zählt zu den bedeutendsten Werken des frühen jüdisch geprägten Kinos in Deutschland. Der Film verarbeitet den Golem-Mythos aus dem Prager Ghetto zu einer düsteren Legende über Macht, Projektion und Bedrohung. Die Erzählung folgt dem Prager Rabbi Löw, der einen Golem aus Ton erschafft, um seine Gemeinde zu schützen. Symbolträchtige Bildwelten machen ihn zum Sinnbild von Hoffnung und Angst.</p>
+                            <p class="film-description">Im Rahmen von Kino Kaddish wird eine Sondervorführung dieses Films an einem sakralen Ort geplant. Für die Veranstaltung ist eine Live-Vertonung mit elektro-akustischen Mitteln angedacht, inspiriert von der Tradition zahlreicher Musiker*innen, die dem Film in den letzten Jahrzehnten durch neu komponierte Soundtracks neue Dimensionen verliehen haben. Dabei geht es nicht um eine bloße Untermalung, sondern um eine klangliche Auseinandersetzung mit der psychologischen, rituellen und mythischen Tiefe des Films.</p>
+                            <p class="film-description">Die Aufführung in einem aktiven sakralen Raum soll den Golem-Mythos nicht nur filmisch, sondern auch atmosphärisch aktualisieren und in einem zeitgenössischen erinnerungskulturellen Kontext erfahrbar machen. Das begleitende Panel reflektiert den Golem-Mythos zwischen jüdischer Kultur und antisemitischen Projektionen, seine Transformation im Expressionismus sowie Fragen kultureller Kontinuität und mythischer Figuren heute.</p>
+                        </div>
                     </div>
-                    <div class="film-details">
-                        <p class="film-year">1920</p>
-                        <p class="film-description">Der expressionistische Stummfilmklassiker Der Golem – wie er in die Welt kam zählt zu den bedeutendsten Werken des frühen jüdisch geprägten Kinos in Deutschland. Der Film verarbeitet den Golem-Mythos aus dem Prager Ghetto zu einer düsteren Legende über Macht, Projektion und Bedrohung. Die Erzählung folgt dem Prager Rabbi Löw, der einen Golem aus Ton erschafft, um seine Gemeinde zu schützen. Symbolträchtige Bildwelten machen ihn zum Sinnbild von Hoffnung und Angst.</p>
-                        <p class="film-description">Im Rahmen von Kino Kaddish wird eine Sondervorführung dieses Films an einem sakralen Ort geplant. Für die Veranstaltung ist eine Live-Vertonung mit elektro-akustischen Mitteln angedacht, inspiriert von der Tradition zahlreicher Musiker*innen, die dem Film in den letzten Jahrzehnten durch neu komponierte Soundtracks neue Dimensionen verliehen haben. Dabei geht es nicht um eine bloße Untermalung, sondern um eine klangliche Auseinandersetzung mit der psychologischen, rituellen und mythischen Tiefe des Films.</p>
-                        <p class="film-description">Die Aufführung in einem aktiven sakralen Raum soll den Golem-Mythos nicht nur filmisch, sondern auch atmosphärisch aktualisieren und in einem zeitgenössischen erinnerungskulturellen Kontext erfahrbar machen. Das begleitende Panel reflektiert den Golem-Mythos zwischen jüdischer Kultur und antisemitischen Projektionen, seine Transformation im Expressionismus sowie Fragen kultureller Kontinuität und mythischer Figuren heute.</p>
+                    
+                    <div class="venue-info" style="margin-top: 1.5rem;">
+                        <strong>Live-Vertonung:</strong>
+                        <p style="margin-top: 0.5rem;"><strong><a href="https://www.udk-berlin.de/studium/klangkunstbuehne/dozentinnen/dozentinnen-past/2019/robyn-schulkowsky/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Robyn Schulkowsky</a></strong> – Percussion<br>
+                        Weltweit prämierte Perkussionistin und Pionierin neuer Klangräume mit Ausrichtung auf Improvisation und interdisziplinäre Projekte. Ihre internationale Zusammenarbeit (u.a. mit John Cage, Morton Feldman, Gustavo Dudamel) prägte die Perkussionslandschaft des 20./21. Jahrhunderts entscheidend.</p>
                         
-                        <div class="venue-info" style="margin-top: 1.5rem;">
-                            <strong>Live-Vertonung:</strong>
-                            <p style="margin-top: 0.5rem;"><strong><a href="https://www.udk-berlin.de/studium/klangkunstbuehne/dozentinnen/dozentinnen-past/2019/robyn-schulkowsky/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Robyn Schulkowsky</a></strong> – Percussion<br>
-                            Weltweit prämierte Perkussionistin und Pionierin neuer Klangräume mit Ausrichtung auf Improvisation und interdisziplinäre Projekte. Ihre internationale Zusammenarbeit (u.a. mit John Cage, Morton Feldman, Gustavo Dudamel) prägte die Perkussionslandschaft des 20./21. Jahrhunderts entscheidend.</p>
-                            
-                            <p style="margin-top: 1rem;"><strong>Andi Teichmann & Hannes Teichmann</strong> – Elektronik<br>
-                            Die Gebrüder Teichmann sind Musiker, Produzenten und Komponisten, bekannt für ihre Arbeit zwischen Clubkultur, experimenteller Elektronik und globalen Musiktraditionen. Mit internationalen Soundcamps und Projekten verbinden sie Klangexperimente, interkulturellen Austausch und kollektiven Dialog.</p>
-                            
-                            <p style="margin-top: 1rem; font-style: italic;">Percussion, Soundobjekte und Elektronik verweben sich zu immersiven Klangräumen, die den Stummfilm ins Heute übersetzen und ihm eine neue atmosphärische Dimension verleihen.</p>
-                        </div>
+                        <p style="margin-top: 1rem;"><strong>Andi Teichmann & Hannes Teichmann</strong> – Elektronik<br>
+                        Die Gebrüder Teichmann sind Musiker, Produzenten und Komponisten, bekannt für ihre Arbeit zwischen Clubkultur, experimenteller Elektronik und globalen Musiktraditionen. Mit internationalen Soundcamps und Projekten verbinden sie Klangexperimente, interkulturellen Austausch und kollektiven Dialog.</p>
                         
-                        <div class="venue-info">
-                            <strong>Veranstaltungsort:</strong>
-                            <a href="https://centrumjudaicum.de/" target="_blank" class="venue-button">
-                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logo_Stiftung_Neue_Synagoge_Berlin_Gold.png" alt="Centrum Judaicum Logo" class="venue-logo">
-                            </a>
-                        </div>
+                        <p style="margin-top: 1rem; font-style: italic;">Percussion, Soundobjekte und Elektronik verweben sich zu immersiven Klangräumen, die den Stummfilm ins Heute übersetzen und ihm eine neue atmosphärische Dimension verleihen.</p>
+                    </div>
+                    
+                    <div class="venue-info">
+                        <strong>Veranstaltungsort:</strong>
+                        <a href="https://centrumjudaicum.de/" target="_blank" class="venue-button">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logo_Stiftung_Neue_Synagoge_Berlin_Gold.png" alt="Centrum Judaicum Logo" class="venue-logo">
+                        </a>
                     </div>
                 </div>
             </section>
 
             <section id="korczak" class="section">
                 <h2 class="section-title">Korczak</h2>
-                <div class="film film-reverse">
-                    <div class="film-image">
-                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/korczak.png" alt="Korczak (1990)">
-                    </div>
-                    <div class="film-details">
-                        <p class="film-year">1990</p>
-                        <p class="film-description">Dieser biografische Film schildert die letzten Jahre des jüdisch-polnischen Pädagogen Janusz Korczak, der sein Waisenhaus ins Warschauer Ghetto verlegen musste und die über zweihundert Kinder bis zur Deportation nach Treblinka begleitete. In dokumentarischer Schwarz-Weiß-Ästhetik reflektiert der Film polnisch-jüdische Beziehungen im Holocaust und zeigt Korczaks kompromisslose Haltung, den Kindern Würde und Hoffnung zu bewahren.</p>
-                        <p class="film-description">Im Zentrum der begleitenden Diskussion stehen drei Leitfragen: Wie kann Erinnerung im Holocaustkino Hoffnung vermitteln, ohne historische Realität zu verfälschen? Welche Rolle spielen Trauma und seine filmische Darstellung? Und wie lässt sich moralisches Handeln über Generationen hinweg weitergeben? Der Film wird als Modell ethischer Verantwortung und Erinnerungsdidaktik präsentiert.</p>
+                <div class="film">
+                    <p class="film-year">1990</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/korczak.png" alt="Korczak (1990)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Dieser biografische Film schildert die letzten Jahre des jüdisch-polnischen Pädagogen Janusz Korczak, der sein Waisenhaus ins Warschauer Ghetto verlegen musste und die über zweihundert Kinder bis zur Deportation nach Treblinka begleitete. In dokumentarischer Schwarz-Weiß-Ästhetik reflektiert der Film polnisch-jüdische Beziehungen im Holocaust und zeigt Korczaks kompromisslose Haltung, den Kindern Würde und Hoffnung zu bewahren.</p>
+                            <p class="film-description">Im Zentrum der begleitenden Diskussion stehen drei Leitfragen: Wie kann Erinnerung im Holocaustkino Hoffnung vermitteln, ohne historische Realität zu verfälschen? Welche Rolle spielen Trauma und seine filmische Darstellung? Und wie lässt sich moralisches Handeln über Generationen hinweg weitergeben? Der Film wird als Modell ethischer Verantwortung und Erinnerungsdidaktik präsentiert.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -965,27 +960,31 @@
             <section id="passagierin" class="section">
                 <h2 class="section-title">Die Passagierin</h2>
                 <div class="film">
-                    <div class="film-image">
-                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/passagierin.jpg" alt="Die Passagierin (1963)">
-                    </div>
-                    <div class="film-details">
-                        <p class="film-year">Pasażerka, 1963</p>
-                        <p class="film-description">Auf einer Schiffspassage glaubt die ehemalige SS-Aufseherin Liza, ihre frühere KZ-Gefangene Marta wiederzuerkennen. Rückblenden öffnen Erinnerungen an Auschwitz-Birkenau, während Liza zwischen Schuld, Rechtfertigung und alternativen Vergangenheiten schwankt. Der Film blieb nach einem tödlichen Unfall des Regisseurs unvollendet; Fotografien und Kommentare markieren Brüche und Leerstellen, die Erinnerung als fragmentarisch erfahrbar machen. Die Passagierin verbindet Täterinnenerzählung mit den ästhetischen und ethischen Grenzen historischer Repräsentation.</p>
-                        <p class="film-description">Diskutiert werden Täter:innen-Subjektivität, weibliche Gewalt im NS-Kontext und Strategien filmischer Erinnerungsabwehr. Im Fokus stehen zudem die ästhetischen Effekte der Unvollständigkeit und ihre Bedeutung für kollektives Gedächtnis und Memory Politics in Ostmitteleuropa. Der Austausch verbindet historische Forschung, Erinnerungstheorie und transgenerationale Perspektiven und fragt, wie Filme wie Die Passagierin ein Publikum erreichen, das keinen Zugang mehr zu Zeitzeug:innen hat.</p>
+                    <p class="film-year">Pasażerka, 1963</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/passagierin.jpg" alt="Die Passagierin (1963)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Auf einer Schiffspassage glaubt die ehemalige SS-Aufseherin Liza, ihre frühere KZ-Gefangene Marta wiederzuerkennen. Rückblenden öffnen Erinnerungen an Auschwitz-Birkenau, während Liza zwischen Schuld, Rechtfertigung und alternativen Vergangenheiten schwankt. Der Film blieb nach einem tödlichen Unfall des Regisseurs unvollendet; Fotografien und Kommentare markieren Brüche und Leerstellen, die Erinnerung als fragmentarisch erfahrbar machen. Die Passagierin verbindet Täterinnenerzählung mit den ästhetischen und ethischen Grenzen historischer Repräsentation.</p>
+                            <p class="film-description">Diskutiert werden Täter:innen-Subjektivität, weibliche Gewalt im NS-Kontext und Strategien filmischer Erinnerungsabwehr. Im Fokus stehen zudem die ästhetischen Effekte der Unvollständigkeit und ihre Bedeutung für kollektives Gedächtnis und Memory Politics in Ostmitteleuropa. Der Austausch verbindet historische Forschung, Erinnerungstheorie und transgenerationale Perspektiven und fragt, wie Filme wie Die Passagierin ein Publikum erreichen, das keinen Zugang mehr zu Zeitzeug:innen hat.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section id="kommissarin" class="section">
                 <h2 class="section-title">Die Kommissarin</h2>
-                <div class="film film-reverse">
-                    <div class="film-image">
-                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/kommissarin.jpg" alt="Die Kommissarin (1967)">
-                    </div>
-                    <div class="film-details">
-                        <p class="film-year">Комиссар, 1967/1987</p>
-                        <p class="film-description">Die Kommissarin basiert auf einer Erzählung und spielt in Berditschew, einem der wichtigsten jüdischen Zentren des ehemaligen Russischen Kaiserreichs. Der Film erinnert an die Pogrome gegen jüdische Gemeinden während des Bürgerkriegs und verweist zugleich symbolisch auf die Verfolgungen des Holocaust. Vor dem Hintergrund des Bürgerkriegs in einer Provinzstadt kreuzen sich die Schicksale einer Kommissarin und einer jüdischen Familie, die sie bei sich aufnimmt. Diese erzwungene Episode eines friedlichen Lebens wird zu einer subtilen und ergreifenden Reflexion über das Aufeinandertreffen von Persönlichem und Historischem, über Mutterschaft, Verletzlichkeit und die Zerbrechlichkeit der menschlichen Existenz.</p>
-                        <p class="film-description">Wegen seiner Thematik blieb der Film fast 20 Jahre verboten – ein eindringliches Beispiel für das Verschweigen jüdischer Geschichte in der Sowjetunion. Im Mittelpunkt der Diskussion steht das Spannungsfeld von Zensur, Erinnerung und filmischer Darstellung jüdischer Lebenswelten. Es wird untersucht, wie trotz staatlicher Kontrolle mit Allegorien und Figurenzeichnung eine Gegen-Narration zur offiziellen Geschichtsdeutung entworfen wurde. Zugleich rückt die Bedeutung jüdischer Alltagskultur als Träger historischer Erinnerung in den Fokus.</p>
+                <div class="film">
+                    <p class="film-year">Комиссар, 1967/1987</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/kommissarin.jpg" alt="Die Kommissarin (1967)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Die Kommissarin basiert auf einer Erzählung und spielt in Berditschew, einem der wichtigsten jüdischen Zentren des ehemaligen Russischen Kaiserreichs. Der Film erinnert an die Pogrome gegen jüdische Gemeinden während des Bürgerkriegs und verweist zugleich symbolisch auf die Verfolgungen des Holocaust. Vor dem Hintergrund des Bürgerkriegs in einer Provinzstadt kreuzen sich die Schicksale einer Kommissarin und einer jüdischen Familie, die sie bei sich aufnimmt. Diese erzwungene Episode eines friedlichen Lebens wird zu einer subtilen und ergreifenden Reflexion über das Aufeinandertreffen von Persönlichem und Historischem, über Mutterschaft, Verletzlichkeit und die Zerbrechlichkeit der menschlichen Existenz.</p>
+                            <p class="film-description">Wegen seiner Thematik blieb der Film fast 20 Jahre verboten – ein eindringliches Beispiel für das Verschweigen jüdischer Geschichte in der Sowjetunion. Im Mittelpunkt der Diskussion steht das Spannungsfeld von Zensur, Erinnerung und filmischer Darstellung jüdischer Lebenswelten. Es wird untersucht, wie trotz staatlicher Kontrolle mit Allegorien und Figurenzeichnung eine Gegen-Narration zur offiziellen Geschichtsdeutung entworfen wurde. Zugleich rückt die Bedeutung jüdischer Alltagskultur als Träger historischer Erinnerung in den Fokus.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -993,50 +992,54 @@
             <section id="sanatorium" class="section">
                 <h2 class="section-title">Sanatorium zur Sanduhr</h2>
                 <div class="film">
-                    <div class="film-image">
-                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/sanatorium.jpg" alt="Sanatorium pod Klepsydrą (1973)">
-                    </div>
-                    <div class="film-details">
-                        <p class="film-year">Sanatorium pod Klepsydrą, 1973</p>
-                        <p class="film-description">Józef reist in ein Sanatorium, um seinen sterbenden Vater zu besuchen, doch Raum und Zeit geraten außer Kontrolle. Erinnerungen, Kindheit und Traumwelten überlagern sich, sodass Vergangenheit, Fantasie und Gegenwart ineinanderfließen. Diese preisgekrönte Adaption literarischer Prosa schafft eine visuelle Sprache für jüdische Identität, kulturellen Verlust und fragmentiertes Gedächtnis.</p>
-                        <p class="film-description">Basierend auf Erzählungen entfaltet der Film ein visuell überwältigendes, traumlogisches Erinnerungsuniversum, in dem jüdische Kindheit, familiäre Fragmente und untergehende Welten ineinanderfließen. Ohne die Shoah direkt zu thematisieren, ist der Film durchdrungen von ihrer Abwesenheit — von dem Wissen, dass die poetisch aufgeladene jüdische Welt Galiziens wenige Jahre später ausgelöscht wurde. Der Film übersetzt diese Leerstelle in eine überbordende filmische Sprache aus Zerfall, Wiederkehr und zeitlicher Desorientierung.</p>
-                        <p class="film-description">Die Veranstaltung diskutiert, wie literarische Prosa in filmische Allegorien von Geschichte und Erinnerung übersetzt wird. Im Zentrum steht die ästhetische Strategie des Films – Komposition, Licht, Farbe und Bildmetaphern – als Mittel, kollektive Traumata und kulturelle Transformation sichtbar zu machen.</p>
+                    <p class="film-year">Sanatorium pod Klepsydrą, 1973</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/sanatorium.jpg" alt="Sanatorium pod Klepsydrą (1973)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Józef reist in ein Sanatorium, um seinen sterbenden Vater zu besuchen, doch Raum und Zeit geraten außer Kontrolle. Erinnerungen, Kindheit und Traumwelten überlagern sich, sodass Vergangenheit, Fantasie und Gegenwart ineinanderfließen. Diese preisgekrönte Adaption literarischer Prosa schafft eine visuelle Sprache für jüdische Identität, kulturellen Verlust und fragmentiertes Gedächtnis.</p>
+                            <p class="film-description">Basierend auf Erzählungen entfaltet der Film ein visuell überwältigendes, traumlogisches Erinnerungsuniversum, in dem jüdische Kindheit, familiäre Fragmente und untergehende Welten ineinanderfließen. Ohne die Shoah direkt zu thematisieren, ist der Film durchdrungen von ihrer Abwesenheit — von dem Wissen, dass die poetisch aufgeladene jüdische Welt Galiziens wenige Jahre später ausgelöscht wurde. Der Film übersetzt diese Leerstelle in eine überbordende filmische Sprache aus Zerfall, Wiederkehr und zeitlicher Desorientierung.</p>
+                            <p class="film-description">Die Veranstaltung diskutiert, wie literarische Prosa in filmische Allegorien von Geschichte und Erinnerung übersetzt wird. Im Zentrum steht die ästhetische Strategie des Films – Komposition, Licht, Farbe und Bildmetaphern – als Mittel, kollektive Traumata und kulturelle Transformation sichtbar zu machen.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section id="come-and-see" class="section">
                 <h2 class="section-title">Komm und sieh</h2>
-                <div class="film film-reverse">
-                    <div class="film-image">
-                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/come-and-see.jpg" alt="Komm und sieh (1985)">
-                    </div>
-                    <div class="film-details">
-                        <p class="film-year">Иди и смотри, 1985</p>
-                        <p class="film-description">Ein 14-jähriger belarussischer Junge schließt sich den Partisanen an, voller Hoffnung, Teil des Widerstands zu werden. Stattdessen wird er Zeuge der grausamen Massaker deutscher Truppen an der Zivilbevölkerung. Der Film zeigt eindringlich die Zerstörung ganzer Dorfgemeinschaften und den psychischen Zusammenbruch eines Jugendlichen. Mit radikal realistischen Bildern entfaltet sich ein Panorama der Gewalt, das die Unmenschlichkeit des Vernichtungskrieges sichtbar macht.</p>
-                        <p class="film-description">Dies gilt als eine der eindrücklichsten filmischen Auseinandersetzungen mit der deutschen Besatzung in Osteuropa und dem Vernichtungskrieg. Die Veranstaltung an einem Gedenkort verbindet filmische Darstellungen von Gewalt und Erinnerung in Osteuropa mit historischem Kontext. Im Fokus stehen sowjetische Kriegsgefangene und die filmische Überlieferung deutscher Massaker in Belarus. Die Diskussion macht sichtbar, wie Opfergruppen aus Osteuropa lange marginalisiert wurden, und fragt, wie Gewalt und Trauma filmisch wie institutionell verhandelt werden.</p>
-                        
-                        <div class="venue-info">
-                            <strong>Veranstaltungsort:</strong>
-                            <a href="https://www.sachsenhausen-sbg.de/" target="_blank" class="venue-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 400" class="venue-logo-svg" style="background:black">
-                                    <!-- Six abstract concrete-like panels -->
-                                    <rect x="80" y="160" width="220" height="130" fill="white" />
-                                    <rect x="320" y="160" width="220" height="130" fill="white" />
-                                    <rect x="560" y="160" width="220" height="130" fill="white" />
-                                    <rect x="800" y="160" width="220" height="130" fill="white" />
-                                    <rect x="1040" y="160" width="220" height="130" fill="white" />
-                                    <rect x="1280" y="160" width="220" height="130" fill="white" />
-                                    <!-- Text distributed across six panels -->
-                                    <text x="110" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">GEDENK</text>
-                                    <text x="350" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">STÄTTE</text>
-                                    <text x="590" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">UND</text>
-                                    <text x="830" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">MUSEUM</text>
-                                    <text x="1070" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">SACHSEN</text>
-                                    <text x="1310" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">HAUSEN</text>
-                                </svg>
-                            </a>
+                <div class="film">
+                    <p class="film-year">Иди и смотри, 1985</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/come-and-see.jpg" alt="Komm und sieh (1985)">
                         </div>
+                        <div class="film-details">
+                            <p class="film-description">Ein 14-jähriger belarussischer Junge schließt sich den Partisanen an, voller Hoffnung, Teil des Widerstands zu werden. Stattdessen wird er Zeuge der grausamen Massaker deutscher Truppen an der Zivilbevölkerung. Der Film zeigt eindringlich die Zerstörung ganzer Dorfgemeinschaften und den psychischen Zusammenbruch eines Jugendlichen. Mit radikal realistischen Bildern entfaltet sich ein Panorama der Gewalt, das die Unmenschlichkeit des Vernichtungskrieges sichtbar macht.</p>
+                            <p class="film-description">Dies gilt als eine der eindrücklichsten filmischen Auseinandersetzungen mit der deutschen Besatzung in Osteuropa und dem Vernichtungskrieg. Die Veranstaltung an einem Gedenkort verbindet filmische Darstellungen von Gewalt und Erinnerung in Osteuropa mit historischem Kontext. Im Fokus stehen sowjetische Kriegsgefangene und die filmische Überlieferung deutscher Massaker in Belarus. Die Diskussion macht sichtbar, wie Opfergruppen aus Osteuropa lange marginalisiert wurden, und fragt, wie Gewalt und Trauma filmisch wie institutionell verhandelt werden.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="venue-info">
+                        <strong>Veranstaltungsort:</strong>
+                        <a href="https://www.sachsenhausen-sbg.de/" target="_blank" class="venue-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 400" class="venue-logo-svg" style="background:black">
+                                <!-- Six abstract concrete-like panels -->
+                                <rect x="80" y="160" width="220" height="130" fill="white" />
+                                <rect x="320" y="160" width="220" height="130" fill="white" />
+                                <rect x="560" y="160" width="220" height="130" fill="white" />
+                                <rect x="800" y="160" width="220" height="130" fill="white" />
+                                <rect x="1040" y="160" width="220" height="130" fill="white" />
+                                <rect x="1280" y="160" width="220" height="130" fill="white" />
+                                <!-- Text distributed across six panels -->
+                                <text x="110" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">GEDENK</text>
+                                <text x="350" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">STÄTTE</text>
+                                <text x="590" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">UND</text>
+                                <text x="830" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">MUSEUM</text>
+                                <text x="1070" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">SACHSEN</text>
+                                <text x="1310" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">HAUSEN</text>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -1044,27 +1047,31 @@
             <section id="son-of-saul" class="section">
                 <h2 class="section-title">Son of Saul</h2>
                 <div class="film">
-                    <div class="film-image">
-                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/son-of-saul.png" alt="Son of Saul (2015)">
-                    </div>
-                    <div class="film-details">
-                        <p class="film-year">Saul fia, 2015</p>
-                        <p class="film-description">Im KZ Auschwitz-Birkenau folgt die Kamera dem jüdisch-ungarischen Häftling Saul, Mitglied des Sonderkommandos. Als er glaubt, im Körper eines getöteten Jungen seinen Sohn zu erkennen, klammert er sich an das Ziel, ein Kaddish zu ermöglichen. Der Film bleibt radikal subjektiv: Gewalt und Tod erscheinen vor allem über Ton und unscharfe Wahrnehmung, wodurch ein fragmentierter Erinnerungsraum entsteht.</p>
-                        <p class="film-description">Diskutiert werden das „abwesende Bild", subjektive Perspektiven und das Konzept der Postmemory. Der Film unterläuft die Bilderflut des Holocaust-Kinos, indem es Grauen mehr spürbar als sichtbar macht. Unschärfe, Sounddesign und fragmentierte Ausschnitte fordern das Publikum auf, Erinnerungsräume selbst zu rekonstruieren. Damit stellt der Film die Frage, wie neue Generationen Trauma und Zeugenschaft indirekt, medial vermittelt und zugleich emotional verhandeln.</p>
+                    <p class="film-year">Saul fia, 2015</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/son-of-saul.png" alt="Son of Saul (2015)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Im KZ Auschwitz-Birkenau folgt die Kamera dem jüdisch-ungarischen Häftling Saul, Mitglied des Sonderkommandos. Als er glaubt, im Körper eines getöteten Jungen seinen Sohn zu erkennen, klammert er sich an das Ziel, ein Kaddish zu ermöglichen. Der Film bleibt radikal subjektiv: Gewalt und Tod erscheinen vor allem über Ton und unscharfe Wahrnehmung, wodurch ein fragmentierter Erinnerungsraum entsteht.</p>
+                            <p class="film-description">Diskutiert werden das „abwesende Bild", subjektive Perspektiven und das Konzept der Postmemory. Der Film unterläuft die Bilderflut des Holocaust-Kinos, indem es Grauen mehr spürbar als sichtbar macht. Unschärfe, Sounddesign und fragmentierte Ausschnitte fordern das Publikum auf, Erinnerungsräume selbst zu rekonstruieren. Damit stellt der Film die Frage, wie neue Generationen Trauma und Zeugenschaft indirekt, medial vermittelt und zugleich emotional verhandeln.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section id="der-gemalte-vogel" class="section">
                 <h2 class="section-title">Der gemalte Vogel</h2>
-                <div class="film film-reverse">
-                    <div class="film-image">
-                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/painted-bird.png" alt="Der gemalte Vogel (2019)">
-                    </div>
-                    <div class="film-details">
-                        <p class="film-year">2019</p>
-                        <p class="film-description">Ein jüdischer Junge irrt während des Zweiten Weltkriegs allein durch Osteuropa und erlebt extreme Gewalt, Missbrauch und Entmenschlichung. Die kompromisslose Schwarz-Weiß-Ästhetik verstärkt die Trostlosigkeit und stößt mit expliziten Szenen an ethische und ästhetische Grenzen. Basierend auf einem literarischen Roman, gilt dies als einer der radikalsten Holocaustfilme der letzten Jahre.</p>
-                        <p class="film-description">Diskutiert werden die filmische Darstellbarkeit von Gewalt, Fragen nach Authentizität, künstlerischer Freiheit und Verantwortung. Die Runde reflektiert, wie radikale Ästhetik Ohnmacht und Überleben erfahrbar macht, neue Formen der Anteilnahme eröffnet und wo filmische Erinnerung an ethische Grenzen stößt.</p>
+                <div class="film">
+                    <p class="film-year">2019</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/painted-bird.png" alt="Der gemalte Vogel (2019)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Ein jüdischer Junge irrt während des Zweiten Weltkriegs allein durch Osteuropa und erlebt extreme Gewalt, Missbrauch und Entmenschlichung. Die kompromisslose Schwarz-Weiß-Ästhetik verstärkt die Trostlosigkeit und stößt mit expliziten Szenen an ethische und ästhetische Grenzen. Basierend auf einem literarischen Roman, gilt dies als einer der radikalsten Holocaustfilme der letzten Jahre.</p>
+                            <p class="film-description">Diskutiert werden die filmische Darstellbarkeit von Gewalt, Fragen nach Authentizität, künstlerischer Freiheit und Verantwortung. Die Runde reflektiert, wie radikale Ästhetik Ohnmacht und Überleben erfahrbar macht, neue Formen der Anteilnahme eröffnet und wo filmische Erinnerung an ethische Grenzen stößt.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1072,27 +1079,31 @@
             <section id="distant-journey" class="section">
                 <h2 class="section-title">Die weite Reise</h2>
                 <div class="film">
-                    <div class="film-image">
-                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/distatnt-journey.jpg" alt="Daleká cesta (1949)">
-                    </div>
-                    <div class="film-details">
-                        <p class="film-year">Daleká cesta, 1949</p>
-                        <p class="film-description">Einer der ersten Spielfilme, die sich direkt mit dem Holocaust befassten. Ein Regisseur, der die Verfolgung selbst überlebt hatte, schuf einen Film, in dem sich persönliche Geschichte mit dokumentarischem Material vermischt und die Tragödie der tschechischen Juden während der Nazi-Besetzung widerspiegelt. Die Protagonistin, eine jüdische Ärztin aus Prag, sieht sich mit zunehmendem Antisemitismus konfrontiert: Sie wird entlassen, in ihren Rechten eingeschränkt und schließlich nach Theresienstadt deportiert.</p>
-                        <p class="film-description">Der Film bedient sich innovativer Techniken und kombiniert Fiktion mit Wochenschauen, darunter Aufnahmen aus der Nazi-Propaganda sowie tatsächliche KZ-Aufnahmen. Diese Technik verstärkt den Effekt der Präsenz und unterstreicht den Kontrast zwischen den persönlichen Erfahrungen der Figuren und dem Ausmaß der historischen Katastrophe. Der Film entstand nur wenige Jahre nach Kriegsende, wurde zunächst zensiert und anschließend für viele Jahre verboten.</p>
+                    <p class="film-year">Daleká cesta, 1949</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/distatnt-journey.jpg" alt="Daleká cesta (1949)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Einer der ersten Spielfilme, die sich direkt mit dem Holocaust befassten. Ein Regisseur, der die Verfolgung selbst überlebt hatte, schuf einen Film, in dem sich persönliche Geschichte mit dokumentarischem Material vermischt und die Tragödie der tschechischen Juden während der Nazi-Besetzung widerspiegelt. Die Protagonistin, eine jüdische Ärztin aus Prag, sieht sich mit zunehmendem Antisemitismus konfrontiert: Sie wird entlassen, in ihren Rechten eingeschränkt und schließlich nach Theresienstadt deportiert.</p>
+                            <p class="film-description">Der Film bedient sich innovativer Techniken und kombiniert Fiktion mit Wochenschauen, darunter Aufnahmen aus der Nazi-Propaganda sowie tatsächliche KZ-Aufnahmen. Diese Technik verstärkt den Effekt der Präsenz und unterstreicht den Kontrast zwischen den persönlichen Erfahrungen der Figuren und dem Ausmaß der historischen Katastrophe. Der Film entstand nur wenige Jahre nach Kriegsende, wurde zunächst zensiert und anschließend für viele Jahre verboten.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section id="wunder-von-purim" class="section">
                 <h2 class="section-title">Das Wunder von Purim</h2>
-                <div class="film film-reverse">
-                    <div class="film-image">
-                        <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/wunder-von-purim.jpeg" alt="Das Wunder von Purim (2000)">
-                    </div>
-                    <div class="film-details">
-                        <p class="film-year">2000</p>
-                        <p class="film-description">An Purim erfährt ein rechtsradikal gesinnter Arbeiter von einer unerwarteten Erbschaft, die ihn zwingt, seine jüdische Herkunft anzuerkennen und nach Traditionen zu leben. Die bittere Komödie entlarvt Antisemitismus und Ressentiments mit Humor, Selbstironie und der Kraft jüdischer Lebensfreude.</p>
-                        <p class="film-description">Purim steht für Umkehr, Rettung und Humor als Strategie kollektiver Resilienz. Die Veranstaltung beleuchtet liturgische und kulturelle Dimensionen des Festes und hebt die philosophisch-ethische Bedeutung des jüdischen Witzes hervor – als Mittel zur Selbstverständigung, Distanzierung von Bedrohung und zur Stärkung des Gemeinschaftsgefühls. So endet die Reihe mit einem versöhnlichen Ausblick und einer musikalischen Feier: L'chaim!</p>
+                <div class="film">
+                    <p class="film-year">2000</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/wunder-von-purim.jpeg" alt="Das Wunder von Purim (2000)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">An Purim erfährt ein rechtsradikal gesinnter Arbeiter von einer unerwarteten Erbschaft, die ihn zwingt, seine jüdische Herkunft anzuerkennen und nach Traditionen zu leben. Die bittere Komödie entlarvt Antisemitismus und Ressentiments mit Humor, Selbstironie und der Kraft jüdischer Lebensfreude.</p>
+                            <p class="film-description">Purim steht für Umkehr, Rettung und Humor als Strategie kollektiver Resilienz. Die Veranstaltung beleuchtet liturgische und kulturelle Dimensionen des Festes und hebt die philosophisch-ethische Bedeutung des jüdischen Witzes hervor – als Mittel zur Selbstverständigung, Distanzierung von Bedrohung und zur Stärkung des Gemeinschaftsgefühls. So endet die Reihe mit einem versöhnlichen Ausblick und einer musikalischen Feier: L'chaim!</p>
+                        </div>
                     </div>
                 </div>
             </section>
