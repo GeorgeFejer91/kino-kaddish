@@ -271,9 +271,12 @@
         }
 
         .film-image {
-            width: 40%;
-            max-width: 400px;
+            width: 35%;
+            max-width: 300px;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
 
         /* Clearfix for floated elements */
@@ -284,13 +287,14 @@
         }
 
         .film-image img {
-            width: 100%;
-            height: 350px;
-            max-width: 400px;
+            width: auto;
+            height: auto;
+            max-height: 400px;
+            max-width: 100%;
             opacity: 0.9;
             transition: opacity 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .film-image img:hover {
@@ -424,12 +428,16 @@
             .film-image {
                 float: none;
                 width: 100%;
-                max-width: 100%;
-                margin: 0 0 1.5rem 0;
+                max-width: 300px;
+                margin: 0 auto 1.5rem auto;
+                text-align: center;
             }
             
             .film-image img {
                 max-width: 100%;
+                max-height: 400px;
+                width: auto;
+                height: auto;
             }
         }
 
@@ -597,8 +605,15 @@
             .film .film-image {
                 float: none;
                 width: 100%;
+                max-width: 300px;
+                margin: 0 auto 1.5rem auto;
+            }
+            
+            .film-image img {
                 max-width: 100%;
-                margin: 0 0 1.5rem 0;
+                max-height: 400px;
+                width: auto;
+                height: auto;
             }
             
             /* Responsive venue buttons */
@@ -919,11 +934,21 @@
                         <p class="film-description">Im Rahmen von Kino Kaddish wird eine Sondervorführung dieses Films an einem sakralen Ort geplant. Für die Veranstaltung ist eine Live-Vertonung mit elektro-akustischen Mitteln angedacht, inspiriert von der Tradition zahlreicher Musiker*innen, die dem Film in den letzten Jahrzehnten durch neu komponierte Soundtracks neue Dimensionen verliehen haben. Dabei geht es nicht um eine bloße Untermalung, sondern um eine klangliche Auseinandersetzung mit der psychologischen, rituellen und mythischen Tiefe des Films.</p>
                         <p class="film-description">Die Aufführung in einem aktiven sakralen Raum soll den Golem-Mythos nicht nur filmisch, sondern auch atmosphärisch aktualisieren und in einem zeitgenössischen erinnerungskulturellen Kontext erfahrbar machen. Das begleitende Panel reflektiert den Golem-Mythos zwischen jüdischer Kultur und antisemitischen Projektionen, seine Transformation im Expressionismus sowie Fragen kultureller Kontinuität und mythischer Figuren heute.</p>
                         
+                        <div class="venue-info" style="margin-top: 1.5rem; border-left: 3px solid var(--accent-color);">
+                            <strong>Live-Vertonung:</strong>
+                            <p style="margin-top: 0.5rem;"><strong><a href="https://www.udk-berlin.de/studium/klangkunstbuehne/dozentinnen/dozentinnen-past/2019/robyn-schulkowsky/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Robyn Schulkowsky</a></strong> – Percussion<br>
+                            Weltweit prämierte Perkussionistin und Pionierin neuer Klangräume mit Ausrichtung auf Improvisation und interdisziplinäre Projekte. Ihre internationale Zusammenarbeit (u.a. mit John Cage, Morton Feldman, Gustavo Dudamel) prägte die Perkussionslandschaft des 20./21. Jahrhunderts entscheidend.</p>
+                            
+                            <p style="margin-top: 1rem;"><strong>Andi Teichmann & Hannes Teichmann</strong> – Elektronik<br>
+                            Die Gebrüder Teichmann sind Musiker, Produzenten und Komponisten, bekannt für ihre Arbeit zwischen Clubkultur, experimenteller Elektronik und globalen Musiktraditionen. Mit internationalen Soundcamps und Projekten verbinden sie Klangexperimente, interkulturellen Austausch und kollektiven Dialog.</p>
+                            
+                            <p style="margin-top: 1rem; font-style: italic;">Percussion, Soundobjekte und Elektronik verweben sich zu immersiven Klangräumen, die den Stummfilm ins Heute übersetzen und ihm eine neue atmosphärische Dimension verleihen.</p>
+                        </div>
+                        
                         <div class="venue-info">
                             <strong>Veranstaltungsort:</strong>
                             <a href="https://centrumjudaicum.de/" target="_blank" class="venue-button">
                                 <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logo_Stiftung_Neue_Synagoge_Berlin_Gold.png" alt="Centrum Judaicum Logo" class="venue-logo">
-                                <span class="venue-text">Centrum Judaicum – Neue Synagoge Berlin</span>
                             </a>
                         </div>
                     </div>
@@ -1017,7 +1042,6 @@
                                     <text x="1070" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">SACHSEN</text>
                                     <text x="1310" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">HAUSEN</text>
                                 </svg>
-                                <span class="venue-text">Gedenkstätte und Museum Sachsenhausen</span>
                             </a>
                         </div>
                     </div>
