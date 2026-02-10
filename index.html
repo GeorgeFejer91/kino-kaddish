@@ -289,6 +289,13 @@
             flex: 1;
             margin-left: 250px;
             padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .content > * {
+            width: 100%;
+            max-width: 1200px;
         }
 
         .section {
@@ -440,13 +447,13 @@
         }
 
         .hero-text {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         /* ---- ABOUT SECTION ---- */
         .about {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -477,9 +484,14 @@
             .sidebar {
                 width: clamp(200px, 25vw, 250px);
             }
-            
+
             .content {
                 margin-left: clamp(200px, 25vw, 250px);
+                padding: 2rem 1.5rem;
+            }
+
+            .content > * {
+                max-width: 1000px;
             }
             
             .film-content {
@@ -507,7 +519,12 @@
             /* Position content correctly without sidebar margin */
             .content {
                 margin-left: 0;
+                padding: 1.5rem 1rem;
                 padding-bottom: var(--mobile-menu-height); /* Space for fixed menu */
+            }
+
+            .content > * {
+                max-width: 100%;
             }
             
             /* Mobile menu container */
