@@ -397,66 +397,67 @@
             justify-content: center;
         }
 
-        /* Subtle color transition from white to light green */
+        /* Smooth color transition from white to light green */
         @keyframes golemGlowEffect {
             0% {
-                filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))
+                filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5))
                         brightness(1.0)
                         sepia(0)
                         hue-rotate(0deg)
                         saturate(1.0);
             }
             12.5% {
-                filter: drop-shadow(0 0 4.5px rgba(240, 245, 230, 0.32))
-                        brightness(1.01)
-                        sepia(0.05)
-                        hue-rotate(10deg)
-                        saturate(1.05);
-            }
-            25% {
-                filter: drop-shadow(0 0 5px rgba(220, 230, 200, 0.35))
-                        brightness(1.02)
-                        sepia(0.1)
-                        hue-rotate(20deg)
-                        saturate(1.1);
-            }
-            37.5% {
-                filter: drop-shadow(0 0 5.5px rgba(200, 220, 170, 0.37))
-                        brightness(1.035)
-                        sepia(0.125)
-                        hue-rotate(30deg)
-                        saturate(1.15);
-            }
-            50% {
-                filter: drop-shadow(0 0 6px rgba(184, 208, 142, 0.4))
+                filter: drop-shadow(0 0 7px rgba(240, 245, 230, 0.55))
                         brightness(1.05)
-                        sepia(0.15)
-                        hue-rotate(40deg)
+                        sepia(0.2)
+                        hue-rotate(15deg)
                         saturate(1.2);
             }
-            62.5% {
-                filter: drop-shadow(0 0 5.5px rgba(200, 220, 170, 0.37))
-                        brightness(1.035)
-                        sepia(0.125)
+            25% {
+                filter: drop-shadow(0 0 8px rgba(220, 230, 200, 0.6))
+                        brightness(1.1)
+                        sepia(0.35)
                         hue-rotate(30deg)
-                        saturate(1.15);
+                        saturate(1.4);
+            }
+            37.5% {
+                filter: drop-shadow(0 0 9px rgba(200, 220, 170, 0.65))
+                        brightness(1.15)
+                        sepia(0.45)
+                        hue-rotate(45deg)
+                        saturate(1.6);
+            }
+            50% {
+                filter: drop-shadow(0 0 10px rgba(184, 208, 142, 0.7))
+                        drop-shadow(0 0 20px rgba(184, 208, 142, 0.4))
+                        brightness(1.2)
+                        sepia(0.5)
+                        hue-rotate(60deg)
+                        saturate(1.8);
+            }
+            62.5% {
+                filter: drop-shadow(0 0 9px rgba(200, 220, 170, 0.65))
+                        brightness(1.15)
+                        sepia(0.45)
+                        hue-rotate(45deg)
+                        saturate(1.6);
             }
             75% {
-                filter: drop-shadow(0 0 5px rgba(220, 230, 200, 0.35))
-                        brightness(1.02)
-                        sepia(0.1)
-                        hue-rotate(20deg)
-                        saturate(1.1);
+                filter: drop-shadow(0 0 8px rgba(220, 230, 200, 0.6))
+                        brightness(1.1)
+                        sepia(0.35)
+                        hue-rotate(30deg)
+                        saturate(1.4);
             }
             87.5% {
-                filter: drop-shadow(0 0 4.5px rgba(240, 245, 230, 0.32))
-                        brightness(1.01)
-                        sepia(0.05)
-                        hue-rotate(10deg)
-                        saturate(1.05);
+                filter: drop-shadow(0 0 7px rgba(240, 245, 230, 0.55))
+                        brightness(1.05)
+                        sepia(0.2)
+                        hue-rotate(15deg)
+                        saturate(1.2);
             }
             100% {
-                filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))
+                filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5))
                         brightness(1.0)
                         sepia(0)
                         hue-rotate(0deg)
