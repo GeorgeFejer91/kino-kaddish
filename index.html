@@ -386,6 +386,7 @@
             max-height: 375px;
             display: block;
             object-fit: contain;
+            animation: golemGlowEffect 12s ease-in-out infinite;
         }
 
         .golem-poster {
@@ -396,25 +397,24 @@
             justify-content: center;
         }
 
-        /* Apply glow and color shift to the SVG object */
-        .golem-poster object {
-            width: 100%;
-            height: 100%;
-            animation: golemGlowEffect 12s ease-in-out infinite;
-        }
-
+        /* Eerie glow and color fluctuation for white SVG pattern */
         @keyframes golemGlowEffect {
             0%, 100% {
-                filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4))
-                        drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
-                        brightness(1.05);
+                filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6))
+                        drop-shadow(0 0 16px rgba(255, 255, 255, 0.4))
+                        drop-shadow(0 0 24px rgba(255, 255, 255, 0.2))
+                        brightness(1.0)
+                        sepia(0);
             }
             50% {
-                filter: drop-shadow(0 0 10px rgba(184, 208, 142, 0.6))
-                        drop-shadow(0 0 18px rgba(184, 208, 142, 0.4))
-                        drop-shadow(0 0 25px rgba(184, 208, 142, 0.2))
-                        brightness(1.15)
-                        saturate(1.2);
+                filter: drop-shadow(0 0 12px rgba(184, 208, 142, 0.8))
+                        drop-shadow(0 0 24px rgba(184, 208, 142, 0.6))
+                        drop-shadow(0 0 36px rgba(184, 208, 142, 0.4))
+                        drop-shadow(0 0 48px rgba(184, 208, 142, 0.2))
+                        brightness(1.1)
+                        sepia(0.3)
+                        hue-rotate(60deg)
+                        saturate(1.5);
             }
         }
 
