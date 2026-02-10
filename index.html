@@ -29,6 +29,10 @@
         }
 
         /* ---- BASIC STYLING ---- */
+        html {
+            font-size: 18px; /* Increased base font size for larger default zoom */
+        }
+
         body {
             font-family: 'Roboto', 'Helvetica Neue', sans-serif;
             background-color: var(--main-bg-color);
@@ -288,21 +292,21 @@
         .content {
             flex: 1;
             margin-left: 250px;
-            padding: 2rem;
+            padding: 2rem 3rem;
         }
 
         .section {
-            padding: 3rem 0;
+            padding: 2.5rem 0;
             scroll-margin-top: 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 300;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             letter-spacing: 1px;
             display: inline-block;
             border-bottom: 1px solid var(--highlight-color);
@@ -331,7 +335,7 @@
         /* ---- FILM ENTRY STYLES ---- */
         .film {
             display: block;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             border-bottom: 1px solid var(--separator-color);
         }
 
@@ -342,22 +346,22 @@
         .film-year {
             color: var(--accent-color);
             font-style: italic;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             text-align: left;
             font-size: 1rem;
-            line-height: 1.4;
+            line-height: 1.5;
             max-width: 75ch;
         }
 
         .film-content {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: flex-start;
         }
 
         /* Special layout for Der Golem section - 20/80 split */
         #der-golem .film-content {
-            gap: 3rem;
+            gap: 2.5rem;
             align-items: flex-start;
         }
 
@@ -491,12 +495,13 @@
 
         .film-details {
             flex: 1;
-            max-width: 75ch;
+            max-width: 80ch;
         }
 
         .film-description {
             text-align: justify;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
         }
 
         /* ---- VENUE INFO STYLES ---- */
