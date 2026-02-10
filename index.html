@@ -36,9 +36,74 @@
             line-height: 1.6;
         }
 
+        /* Language switching */
+        body:not(.lang-en) [data-lang="en"] {
+            display: none;
+        }
+
+        body.lang-en [data-lang="de"] {
+            display: none;
+        }
+
         .container {
             display: flex;
             min-height: 100vh;
+        }
+
+        /* ---- LANGUAGE SWITCHER ---- */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 5px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid var(--frame-border);
+        }
+
+        .lang-switcher button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher button:hover {
+            background: var(--menu-hover-color);
+            color: var(--highlight-color);
+        }
+
+        .lang-switcher button.active {
+            background: var(--highlight-color);
+            color: var(--main-bg-color);
+            border-color: var(--highlight-color);
+        }
+
+        /* ---- DISABLED NAVIGATION ITEMS ---- */
+        .nav-menu li.disabled,
+        .mobile-nav li.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        .nav-menu li.disabled a,
+        .mobile-nav li.disabled a {
+            cursor: not-allowed;
+            color: var(--accent-color);
+        }
+
+        /* Hide disabled film sections */
+        section.disabled-section {
+            display: none;
         }
 
         /* ---- SIDEBAR STYLES ---- */
@@ -381,26 +446,13 @@
 
         /* ---- ABOUT SECTION ---- */
         .about {
-            max-width: 100%;
+            max-width: 800px;
             margin: 0 auto;
-            text-align: justify;
-            columns: 2;
-            column-gap: 3rem;
-            line-height: 1.8;
         }
 
         .about p {
-            margin-bottom: 1.5rem;
-            break-inside: avoid;
-        }
-
-        .about p:first-child {
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--highlight-color);
-            column-span: all;
-            text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
         }
 
         /* ---- FOOTER ---- */
@@ -442,11 +494,6 @@
             .film-image img {
                 width: 250px;
                 height: auto;
-            }
-
-            /* About section - single column on tablets */
-            .about {
-                columns: 1;
             }
         }
 
@@ -671,6 +718,12 @@
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button onclick="switchLanguage('de')" id="btn-de" class="active">DE</button>
+        <button onclick="switchLanguage('en')" id="btn-en">EN</button>
+    </div>
+
     <div class="container">
         <!-- SIDEBAR / NAVIGATION (desktop) -->
         <div class="sidebar">
@@ -707,16 +760,7 @@
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
                     </li>
-                    <li>
-                        <span class="sprocket-left-1"></span>
-                        <span class="sprocket-left-2"></span>
-                        <span class="sprocket-left-3"></span>
-                        <a href="#come-and-see">Komm und sieh</a>
-                        <span class="sprocket-right-1"></span>
-                        <span class="sprocket-right-2"></span>
-                        <span class="sprocket-right-3"></span>
-                    </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
@@ -725,7 +769,7 @@
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
@@ -734,7 +778,7 @@
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
@@ -743,7 +787,7 @@
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
@@ -756,12 +800,21 @@
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <a href="#come-and-see">Komm und sieh</a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li class="disabled">
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
                         <a href="#son-of-saul">Son of Saul</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
@@ -770,7 +823,7 @@
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
@@ -779,7 +832,7 @@
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
@@ -826,35 +879,28 @@
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
-                    <li>
-                        <span class="sprocket-top-1"></span>
-                        <span class="sprocket-top-2"></span>
-                        <a href="#come-and-see">Komm und sieh</a>
-                        <span class="sprocket-bottom-1"></span>
-                        <span class="sprocket-bottom-2"></span>
-                    </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
                         <a href="#korczak">Korczak</a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
                         <a href="#passagierin">Passagierin</a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
                         <a href="#kommissarin">Kommissarin</a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
                         <a href="#sanatorium">Sanatorium</a>
@@ -864,25 +910,32 @@
                     <li>
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
+                        <a href="#come-and-see">Komm und sieh</a>
+                        <span class="sprocket-bottom-1"></span>
+                        <span class="sprocket-bottom-2"></span>
+                    </li>
+                    <li class="disabled">
+                        <span class="sprocket-top-1"></span>
+                        <span class="sprocket-top-2"></span>
                         <a href="#son-of-saul">Son of Saul</a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
                         <a href="#der-gemalte-vogel">Gemalte Vogel</a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
                         <a href="#distant-journey">Weite Reise</a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
-                    <li>
+                    <li class="disabled">
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
                         <a href="#wunder-von-purim">Purim</a>
@@ -905,22 +958,35 @@
             <!-- HERO SECTION -->
             <section id="home" class="hero">
                 <h1>KINO KADDISH</h1>
-                <h2>Filmriss und Widerhall aus dem Osten</h2>
+                <h2 data-lang="de">Filmriss und Widerhall aus dem Osten</h2>
+                <h2 data-lang="en">Film Break and Echo from the East</h2>
                 <div class="hero-text">
-                    <p>Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.</p>
+                    <p data-lang="de">Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.</p>
+                    <p data-lang="en">A series of cinematic interventions, revivals, and site-specific gatherings — an attempt to bring cinema back to those spaces where memory can become an event.</p>
                 </div>
             </section>
 
             <!-- ABOUT SECTION -->
             <section id="about" class="section">
-                <h2 class="section-title">Über das Projekt</h2>
+                <h2 class="section-title" data-lang="de">Über das Projekt</h2>
+                <h2 class="section-title" data-lang="en">About the Project</h2>
                 <div class="about">
-                    <p>Wie erinnern wir, wenn die Orte selbst schweigen? Wenn Geschichte in Ruinen flackert, in beschädigten Zelluloidstreifen, in Stimmen, die niemand mehr erkennt?</p>
-                    <p><i>Kino Kaddish</i> ist eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann, und es als rituellen Raum zu begreifen, in dem Bilder nicht nur gesehen, sondern beschworen und wiedererlebt werden. Besonderes Augenmerk gilt dabei einer filmhistorischen Rückschau auf Werke, die vielen jungen Menschen heute kaum noch zugänglich sind — etwa weil es sich um frühe, oft stumme Filme handelt oder weil sie aus dem osteuropäischen und slawischen Kontext stammen.</p>
-                    <p>Geplant ist eine kuratierte Reihe ortsspezifischer Filmvorführungen bei denen ausgewählte Werke des jüdischen, osteuropäischen und experimentellen Kinos an historisch wie symbolisch aufgeladenen Orten neu kontextualisiert werden.</p>
-                    <p>Im Rahmen von Kino Kaddish sind Filmvorführungen an symbolisch aufgeladenen Orten in Berlin geplant, darunter Institutionen wie das Jüdische Museum, das Deutsch-Russische Museum Karlshorst, das silent green Kulturquartier oder das Centrum Judaicum.</p>
-                    <p>Alle Veranstaltungen werden durch eine begleitende Website unter <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color);">info@kaddish-kino.org</a> dokumentiert. Dort werden sowohl kuratorische Überlegungen zur Auswahl und Kontextualisierung der Filme als auch Reflexionen und Eindrücke aus dem Publikum festgehalten.</p>
-                    <p>Die Veranstaltungen stehen insbesondere Stipendiat*innen des Ernst Ludwig Ehrlich Studienwerks (ELES) offen, aus dessen Kontext die Antragstellung erfolgt. Darüber hinaus richten sie sich an ein breiteres Berliner Publikum — insbesondere an Menschen mit jüdischem Hintergrund oder Interesse an jüdischer Kultur im Spannungsfeld von vergessenem osteuropäischem Kino und zeitgenössischer Erinnerungspraxis.</p>
+                    <div data-lang="de">
+                        <p>Wie erinnern wir, wenn die Orte selbst schweigen? Wenn Geschichte in Ruinen flackert, in beschädigten Zelluloidstreifen, in Stimmen, die niemand mehr erkennt?</p>
+                        <p><i>Kino Kaddish</i> ist eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann, und es als rituellen Raum zu begreifen, in dem Bilder nicht nur gesehen, sondern beschworen und wiedererlebt werden. Besonderes Augenmerk gilt dabei einer filmhistorischen Rückschau auf Werke, die vielen jungen Menschen heute kaum noch zugänglich sind — etwa weil es sich um frühe, oft stumme Filme handelt oder weil sie aus dem osteuropäischen und slawischen Kontext stammen.</p>
+                        <p>Geplant ist eine kuratierte Reihe ortsspezifischer Filmvorführungen bei denen ausgewählte Werke des jüdischen, osteuropäischen und experimentellen Kinos an historisch wie symbolisch aufgeladenen Orten neu kontextualisiert werden.</p>
+                        <p>Im Rahmen von Kino Kaddish sind Filmvorführungen an symbolisch aufgeladenen Orten in Berlin geplant, darunter Institutionen wie das Jüdische Museum, das Deutsch-Russische Museum Karlshorst, das silent green Kulturquartier oder das Centrum Judaicum.</p>
+                        <p>Alle Veranstaltungen werden durch eine begleitende Website unter <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color);">info@kaddish-kino.org</a> dokumentiert. Dort werden sowohl kuratorische Überlegungen zur Auswahl und Kontextualisierung der Filme als auch Reflexionen und Eindrücke aus dem Publikum festgehalten.</p>
+                        <p>Die Veranstaltungen stehen insbesondere Stipendiat*innen des Ernst Ludwig Ehrlich Studienwerks (ELES) offen, aus dessen Kontext die Antragstellung erfolgt. Darüber hinaus richten sie sich an ein breiteres Berliner Publikum — insbesondere an Menschen mit jüdischem Hintergrund oder Interesse an jüdischer Kultur im Spannungsfeld von vergessenem osteuropäischem Kino und zeitgenössischer Erinnerungspraxis.</p>
+                    </div>
+                    <div data-lang="en">
+                        <p>How do we remember when the places themselves are silent? When history flickers in ruins, in damaged celluloid strips, in voices no one recognizes anymore?</p>
+                        <p><i>Kino Kaddish</i> is a series of cinematic interventions, revivals, and site-specific gatherings — an attempt to bring cinema back to those spaces where memory can become an event, and to understand it as a ritual space where images are not only seen but conjured and relived. Special attention is given to a film-historical retrospective of works that are hardly accessible to many young people today — either because they are early, often silent films, or because they come from Eastern European and Slavic contexts.</p>
+                        <p>A curated series of site-specific film screenings is planned, where selected works of Jewish, Eastern European, and experimental cinema are recontextualized in historically and symbolically charged locations.</p>
+                        <p>As part of Kino Kaddish, film screenings are planned at symbolically charged locations in Berlin, including institutions such as the Jewish Museum, the German-Russian Museum Karlshorst, the silent green Kulturquartier, or the Centrum Judaicum.</p>
+                        <p>All events will be documented through an accompanying website at <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color);">info@kaddish-kino.org</a>. Both curatorial considerations regarding the selection and contextualization of the films, as well as reflections and impressions from the audience, will be recorded there.</p>
+                        <p>The events are particularly open to scholarship recipients of the Ernst Ludwig Ehrlich Studienwerk (ELES), from whose context the application is made. Beyond that, they are aimed at a broader Berlin audience — especially people with a Jewish background or interest in Jewish culture in the tension between forgotten Eastern European cinema and contemporary memory practices.</p>
+                    </div>
                 </div>
             </section>
 
@@ -958,6 +1024,72 @@
                 </div>
             </section>
 
+            <section id="korczak" class="section disabled-section">
+                <h2 class="section-title">Korczak</h2>
+                <div class="film">
+                    <p class="film-year">Korczak | PL/D/GB 1990</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/korczak.png" alt="Korczak (1990)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Dieser biografische Film schildert die letzten Jahre des jüdisch-polnischen Pädagogen Janusz Korczak, der sein Waisenhaus ins Warschauer Ghetto verlegen musste und die über zweihundert Kinder bis zur Deportation nach Treblinka begleitete. In dokumentarischer Schwarz-Weiß-Ästhetik reflektiert der Film polnisch-jüdische Beziehungen im Holocaust und zeigt Korczaks kompromisslose Haltung, den Kindern Würde und Hoffnung zu bewahren.</p>
+                            <p class="film-description"><strong>Gesprächsthemen:</strong> Wie kann Erinnerung im Holocaustkino Hoffnung vermitteln, ohne historische Realität zu verfälschen? Welche Rolle spielen Trauma und seine filmische Darstellung? Wie lässt sich moralisches Handeln über Generationen hinweg weitergeben? Der Film wird als Modell ethischer Verantwortung und Erinnerungsdidaktik diskutiert.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="passagierin" class="section disabled-section">
+                <h2 class="section-title">Die Passagierin</h2>
+                <div class="film">
+                    <p class="film-year">Pasażerka | PL 1963</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/passagierin.jpg" alt="Die Passagierin (1963)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Auf einer Schiffspassage glaubt die ehemalige SS-Aufseherin Liza, ihre frühere KZ-Gefangene Marta wiederzuerkennen. Rückblenden öffnen Erinnerungen an Auschwitz-Birkenau, während Liza zwischen Schuld, Rechtfertigung und alternativen Vergangenheiten schwankt. Der Film blieb nach einem tödlichen Unfall des Regisseurs unvollendet; Fotografien und Kommentare markieren Brüche und Leerstellen, die Erinnerung als fragmentarisch erfahrbar machen. Die Passagierin verbindet Täterinnenerzählung mit den ästhetischen und ethischen Grenzen historischer Repräsentation.</p>
+                            <p class="film-description"><strong>Gesprächsthemen:</strong> Täter:innen-Subjektivität, weibliche Gewalt im NS-Kontext und Strategien filmischer Erinnerungsabwehr. Die ästhetischen Effekte der Unvollständigkeit und ihre Bedeutung für kollektives Gedächtnis und Memory Politics in Ostmitteleuropa. Der Austausch verbindet historische Forschung, Erinnerungstheorie und transgenerationale Perspektiven und fragt, wie solche Filme ein Publikum erreichen, das keinen Zugang mehr zu Zeitzeug:innen hat.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="kommissarin" class="section disabled-section">
+                <h2 class="section-title">Die Kommissarin</h2>
+                <div class="film">
+                    <p class="film-year">Комиссар | SU 1967/1987</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/kommissarin.jpg" alt="Die Kommissarin (1967)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Die Kommissarin basiert auf einer Erzählung und spielt in Berditschew, einem der wichtigsten jüdischen Zentren des ehemaligen Russischen Kaiserreichs. Der Film erinnert an die Pogrome gegen jüdische Gemeinden während des Bürgerkriegs und verweist zugleich symbolisch auf die Verfolgungen des Holocaust. Vor dem Hintergrund des Bürgerkriegs in einer Provinzstadt kreuzen sich die Schicksale einer Kommissarin und einer jüdischen Familie, die sie bei sich aufnimmt. Diese erzwungene Episode eines friedlichen Lebens wird zu einer subtilen und ergreifenden Reflexion über das Aufeinandertreffen von Persönlichem und Historischem, über Mutterschaft, Verletzlichkeit und die Zerbrechlichkeit der menschlichen Existenz.</p>
+                            <p class="film-description">Wegen seiner Thematik blieb der Film fast 20 Jahre verboten – ein eindringliches Beispiel für das Verschweigen jüdischer Geschichte in der Sowjetunion.</p>
+                            <p class="film-description"><strong>Gesprächsthemen:</strong> Das Spannungsfeld von Zensur, Erinnerung und filmischer Darstellung jüdischer Lebenswelten. Wie wurden trotz staatlicher Kontrolle mit Allegorien und Figurenzeichnung Gegen-Narrationen zur offiziellen Geschichtsdeutung entworfen? Die Bedeutung jüdischer Alltagskultur als Träger historischer Erinnerung und wie „verbotene Stimmen" unser heutiges Verständnis von Erinnerungspolitik und filmischer Zeugenschaft prägen.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sanatorium" class="section disabled-section">
+                <h2 class="section-title">Sanatorium zur Sanduhr</h2>
+                <div class="film">
+                    <p class="film-year">Sanatorium pod Klepsydrą | PL 1973</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/sanatorium.jpg" alt="Sanatorium pod Klepsydrą (1973)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Józef reist in ein Sanatorium, um seinen sterbenden Vater zu besuchen, doch Raum und Zeit geraten außer Kontrolle. Erinnerungen, Kindheit und Traumwelten überlagern sich, sodass Vergangenheit, Fantasie und Gegenwart ineinanderfließen. Diese preisgekrönte Adaption literarischer Prosa schafft eine visuelle Sprache für jüdische Identität, kulturellen Verlust und fragmentiertes Gedächtnis.</p>
+                            <p class="film-description">Basierend auf Erzählungen entfaltet der Film ein visuell überwältigendes, traumlogisches Erinnerungsuniversum, in dem jüdische Kindheit, familiäre Fragmente und untergehende Welten ineinanderfließen. Ohne die Shoah direkt zu thematisieren, ist der Film durchdrungen von ihrer Abwesenheit — von dem Wissen, dass die poetisch aufgeladene jüdische Welt Galiziens wenige Jahre später ausgelöscht wurde. Der Film übersetzt diese Leerstelle in eine überbordende filmische Sprache aus Zerfall, Wiederkehr und zeitlicher Desorientierung.</p>
+                            <p class="film-description"><strong>Gesprächsthemen:</strong> Wie wird literarische Prosa in filmische Allegorien von Geschichte und Erinnerung übersetzt? Die ästhetische Strategie des Films – Komposition, Licht, Farbe und Bildmetaphern – als Mittel, kollektive Traumata und kulturelle Transformation sichtbar zu machen. Wie literarische Imagination zu kollektiven Bildern wird und welche Rolle künstlerische Verarbeitung im Umgang mit Verlust, jüdischer Kultur und osteuropäischem Gedächtnis spielt.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="come-and-see" class="section">
                 <h2 class="section-title">Komm und sieh</h2>
                 <div class="film">
@@ -972,7 +1104,7 @@
                             <p class="film-description"><strong>Gesprächsthemen:</strong> Die Veranstaltung an einem Gedenkort verbindet filmische Darstellungen von Gewalt und Erinnerung in Osteuropa mit historischem Kontext. Im Fokus stehen die „Russen-Aktion", sowjetische Kriegsgefangene und die filmische Überlieferung deutscher Massaker in Belarus. Die Diskussion macht sichtbar, wie Opfergruppen aus Osteuropa lange marginalisiert wurden, und fragt, wie Gewalt und Trauma filmisch wie institutionell verhandelt werden. Ziel ist es, blinde Flecken deutscher und europäischer Erinnerungskultur offenzulegen und osteuropäische Perspektiven einzubeziehen.</p>
                         </div>
                     </div>
-
+                    
                     <div class="venue-info">
                         <strong>Veranstaltungsort:</strong>
                         <a href="https://www.sachsenhausen-sbg.de/" target="_blank" class="venue-button">
@@ -997,73 +1129,7 @@
                 </div>
             </section>
 
-            <section id="korczak" class="section">
-                <h2 class="section-title">Korczak</h2>
-                <div class="film">
-                    <p class="film-year">Korczak | PL/D/GB 1990</p>
-                    <div class="film-content">
-                        <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/korczak.png" alt="Korczak (1990)">
-                        </div>
-                        <div class="film-details">
-                            <p class="film-description">Dieser biografische Film schildert die letzten Jahre des jüdisch-polnischen Pädagogen Janusz Korczak, der sein Waisenhaus ins Warschauer Ghetto verlegen musste und die über zweihundert Kinder bis zur Deportation nach Treblinka begleitete. In dokumentarischer Schwarz-Weiß-Ästhetik reflektiert der Film polnisch-jüdische Beziehungen im Holocaust und zeigt Korczaks kompromisslose Haltung, den Kindern Würde und Hoffnung zu bewahren.</p>
-                            <p class="film-description"><strong>Gesprächsthemen:</strong> Wie kann Erinnerung im Holocaustkino Hoffnung vermitteln, ohne historische Realität zu verfälschen? Welche Rolle spielen Trauma und seine filmische Darstellung? Wie lässt sich moralisches Handeln über Generationen hinweg weitergeben? Der Film wird als Modell ethischer Verantwortung und Erinnerungsdidaktik diskutiert.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="passagierin" class="section">
-                <h2 class="section-title">Die Passagierin</h2>
-                <div class="film">
-                    <p class="film-year">Pasażerka | PL 1963</p>
-                    <div class="film-content">
-                        <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/passagierin.jpg" alt="Die Passagierin (1963)">
-                        </div>
-                        <div class="film-details">
-                            <p class="film-description">Auf einer Schiffspassage glaubt die ehemalige SS-Aufseherin Liza, ihre frühere KZ-Gefangene Marta wiederzuerkennen. Rückblenden öffnen Erinnerungen an Auschwitz-Birkenau, während Liza zwischen Schuld, Rechtfertigung und alternativen Vergangenheiten schwankt. Der Film blieb nach einem tödlichen Unfall des Regisseurs unvollendet; Fotografien und Kommentare markieren Brüche und Leerstellen, die Erinnerung als fragmentarisch erfahrbar machen. Die Passagierin verbindet Täterinnenerzählung mit den ästhetischen und ethischen Grenzen historischer Repräsentation.</p>
-                            <p class="film-description"><strong>Gesprächsthemen:</strong> Täter:innen-Subjektivität, weibliche Gewalt im NS-Kontext und Strategien filmischer Erinnerungsabwehr. Die ästhetischen Effekte der Unvollständigkeit und ihre Bedeutung für kollektives Gedächtnis und Memory Politics in Ostmitteleuropa. Der Austausch verbindet historische Forschung, Erinnerungstheorie und transgenerationale Perspektiven und fragt, wie solche Filme ein Publikum erreichen, das keinen Zugang mehr zu Zeitzeug:innen hat.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="kommissarin" class="section">
-                <h2 class="section-title">Die Kommissarin</h2>
-                <div class="film">
-                    <p class="film-year">Комиссар | SU 1967/1987</p>
-                    <div class="film-content">
-                        <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/kommissarin.jpg" alt="Die Kommissarin (1967)">
-                        </div>
-                        <div class="film-details">
-                            <p class="film-description">Die Kommissarin basiert auf einer Erzählung und spielt in Berditschew, einem der wichtigsten jüdischen Zentren des ehemaligen Russischen Kaiserreichs. Der Film erinnert an die Pogrome gegen jüdische Gemeinden während des Bürgerkriegs und verweist zugleich symbolisch auf die Verfolgungen des Holocaust. Vor dem Hintergrund des Bürgerkriegs in einer Provinzstadt kreuzen sich die Schicksale einer Kommissarin und einer jüdischen Familie, die sie bei sich aufnimmt. Diese erzwungene Episode eines friedlichen Lebens wird zu einer subtilen und ergreifenden Reflexion über das Aufeinandertreffen von Persönlichem und Historischem, über Mutterschaft, Verletzlichkeit und die Zerbrechlichkeit der menschlichen Existenz.</p>
-                            <p class="film-description">Wegen seiner Thematik blieb der Film fast 20 Jahre verboten – ein eindringliches Beispiel für das Verschweigen jüdischer Geschichte in der Sowjetunion.</p>
-                            <p class="film-description"><strong>Gesprächsthemen:</strong> Das Spannungsfeld von Zensur, Erinnerung und filmischer Darstellung jüdischer Lebenswelten. Wie wurden trotz staatlicher Kontrolle mit Allegorien und Figurenzeichnung Gegen-Narrationen zur offiziellen Geschichtsdeutung entworfen? Die Bedeutung jüdischer Alltagskultur als Träger historischer Erinnerung und wie „verbotene Stimmen" unser heutiges Verständnis von Erinnerungspolitik und filmischer Zeugenschaft prägen.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="sanatorium" class="section">
-                <h2 class="section-title">Sanatorium zur Sanduhr</h2>
-                <div class="film">
-                    <p class="film-year">Sanatorium pod Klepsydrą | PL 1973</p>
-                    <div class="film-content">
-                        <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/sanatorium.jpg" alt="Sanatorium pod Klepsydrą (1973)">
-                        </div>
-                        <div class="film-details">
-                            <p class="film-description">Józef reist in ein Sanatorium, um seinen sterbenden Vater zu besuchen, doch Raum und Zeit geraten außer Kontrolle. Erinnerungen, Kindheit und Traumwelten überlagern sich, sodass Vergangenheit, Fantasie und Gegenwart ineinanderfließen. Diese preisgekrönte Adaption literarischer Prosa schafft eine visuelle Sprache für jüdische Identität, kulturellen Verlust und fragmentiertes Gedächtnis.</p>
-                            <p class="film-description">Basierend auf Erzählungen entfaltet der Film ein visuell überwältigendes, traumlogisches Erinnerungsuniversum, in dem jüdische Kindheit, familiäre Fragmente und untergehende Welten ineinanderfließen. Ohne die Shoah direkt zu thematisieren, ist der Film durchdrungen von ihrer Abwesenheit — von dem Wissen, dass die poetisch aufgeladene jüdische Welt Galiziens wenige Jahre später ausgelöscht wurde. Der Film übersetzt diese Leerstelle in eine überbordende filmische Sprache aus Zerfall, Wiederkehr und zeitlicher Desorientierung.</p>
-                            <p class="film-description"><strong>Gesprächsthemen:</strong> Wie wird literarische Prosa in filmische Allegorien von Geschichte und Erinnerung übersetzt? Die ästhetische Strategie des Films – Komposition, Licht, Farbe und Bildmetaphern – als Mittel, kollektive Traumata und kulturelle Transformation sichtbar zu machen. Wie literarische Imagination zu kollektiven Bildern wird und welche Rolle künstlerische Verarbeitung im Umgang mit Verlust, jüdischer Kultur und osteuropäischem Gedächtnis spielt.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="son-of-saul" class="section">
+            <section id="son-of-saul" class="section disabled-section">
                 <h2 class="section-title">Son of Saul</h2>
                 <div class="film">
                     <p class="film-year">Saul fia | HU 2015</p>
@@ -1079,7 +1145,7 @@
                 </div>
             </section>
 
-            <section id="der-gemalte-vogel" class="section">
+            <section id="der-gemalte-vogel" class="section disabled-section">
                 <h2 class="section-title">Der gemalte Vogel</h2>
                 <div class="film">
                     <p class="film-year">The Painted Bird | CZ/SK/UA 2019</p>
@@ -1095,7 +1161,7 @@
                 </div>
             </section>
 
-            <section id="distant-journey" class="section">
+            <section id="distant-journey" class="section disabled-section">
                 <h2 class="section-title">Die weite Reise</h2>
                 <div class="film">
                     <p class="film-year">Daleká cesta | CS 1949</p>
@@ -1112,7 +1178,7 @@
                 </div>
             </section>
 
-            <section id="wunder-von-purim" class="section">
+            <section id="wunder-von-purim" class="section disabled-section">
                 <h2 class="section-title">Das Wunder von Purim</h2>
                 <div class="film">
                     <p class="film-year">Cud Purymowy | PL 2000</p>
@@ -1129,15 +1195,18 @@
             </section>
 
             <section id="contact" class="section">
-                <h2 class="section-title">Kontakt</h2>
+                <h2 class="section-title" data-lang="de">Kontakt</h2>
+                <h2 class="section-title" data-lang="en">Contact</h2>
                 <div class="section-content">
-                    <p>Für weitere Informationen und Veranstaltungstermine kontaktieren Sie uns bitte unter <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color);">info@kaddish-kino.org</a>.</p>
+                    <p data-lang="de">Für weitere Informationen und Veranstaltungstermine kontaktieren Sie uns bitte unter <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color);">info@kaddish-kino.org</a>.</p>
+                    <p data-lang="en">For more information and event dates, please contact us at <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color);">info@kaddish-kino.org</a>.</p>
                 </div>
             </section>
 
             <!-- FOOTER -->
             <footer class="footer">
-                <p>&copy; 2025 Kino Kaddish | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+                <p data-lang="de">&copy; 2025 Kino Kaddish | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+                <p data-lang="en">&copy; 2025 Kino Kaddish | <a href="#">Imprint</a> | <a href="#">Privacy Policy</a></p>
             </footer>
         </div>
     </div>
@@ -1203,28 +1272,30 @@
         // Call once on page load
         window.addEventListener('load', updateActiveMenuItem);
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for navigation links (with disabled section check)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
+
+                // Check if the target section is disabled
+                if (targetElement && !targetElement.classList.contains('disabled-section')) {
                     // Calculate scroll position with adjustment for mobile menu
                     let scrollPos = targetElement.offsetTop;
-                    
+
                     // On mobile, scroll a bit higher to account for the fixed menu
                     if (window.innerWidth <= 768) {
                         scrollPos -= 20; // Small additional offset
                     }
-                    
+
                     window.scrollTo({
                         top: scrollPos,
                         behavior: 'smooth'
                     });
                 }
+                // If disabled, do nothing (link is already non-clickable via CSS)
             });
         });
         
@@ -1245,6 +1316,31 @@
                         filmStrip.scrollLeft = scrollLeft;
                     }, 100);
                 }
+            }
+        });
+
+        // Language switching functionality
+        function switchLanguage(lang) {
+            // Update body class
+            if (lang === 'en') {
+                document.body.classList.add('lang-en');
+            } else {
+                document.body.classList.remove('lang-en');
+            }
+
+            // Update button states
+            document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+            // Save preference
+            localStorage.setItem('preferred-language', lang);
+        }
+
+        // Load saved language preference
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferred-language');
+            if (savedLang === 'en') {
+                switchLanguage('en');
             }
         });
     </script>
