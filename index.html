@@ -587,8 +587,8 @@
         }
 
         .golem-people-column {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-rows: auto 1fr 1fr;
             gap: 1.5rem;
         }
 
@@ -605,9 +605,9 @@
             background-color: rgba(0, 0, 0, 0.3);
             border: 1px solid var(--separator-color);
             padding: 1.5rem;
-            min-height: 200px;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
         .person-name {
@@ -621,6 +621,7 @@
             font-size: 0.95rem;
             line-height: 1.6;
             text-align: justify;
+            flex: 1;
         }
 
         /* ---- GOLEM SUPPORTERS GRID ---- */
@@ -640,7 +641,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 200px;
+            height: 220px;
+            transition: background-color 0.5s ease, color 0.5s ease, transform 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--main-text-color);
+        }
+
+        .supporter-box:hover {
+            background-color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .supporter-box:hover .supporter-label,
+        .supporter-box:hover .supporter-name {
+            color: #000;
         }
 
         .supporter-label {
@@ -648,34 +663,37 @@
             color: var(--accent-color);
             margin-bottom: 1rem;
             font-weight: bold;
+            transition: color 0.5s ease;
         }
 
         .supporter-link {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-decoration: none;
-            color: var(--main-text-color);
-            transition: all 0.3s ease;
-        }
-
-        .supporter-link:hover {
-            transform: translateY(-3px);
+            width: 100%;
+            flex: 1;
+            justify-content: center;
         }
 
         .supporter-logo {
-            max-width: 150px;
-            max-height: 80px;
+            max-width: 180px;
+            max-height: 100px;
             width: auto;
             height: auto;
             object-fit: contain;
             margin-bottom: 1rem;
+            transition: filter 0.5s ease;
+        }
+
+        .supporter-box:hover .supporter-logo {
+            filter: brightness(0.2);
         }
 
         .supporter-name {
             font-size: 0.95rem;
             line-height: 1.4;
             text-align: center;
+            transition: color 0.5s ease;
         }
 
         /* ---- HERO SECTION ---- */
@@ -980,8 +998,14 @@
                 gap: 2rem;
             }
 
+            .golem-people-column {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
             .person-box {
-                min-height: auto;
+                height: auto;
             }
 
             /* Golem supporters grid - stack on mobile */
@@ -991,7 +1015,8 @@
             }
 
             .supporter-box {
-                min-height: auto;
+                height: auto;
+                min-height: 180px;
             }
 
             /* Responsive venue buttons */
@@ -1339,14 +1364,14 @@
 
                                 <p class="film-description">Das begleitende Panel reflektiert den Golem-Mythos im Spannungsfeld von jüdischer Kultur, filmischer Moderne und antisemitischen Zuschreibungen. Diskutiert werden die Bedeutung des Films für den fantastisch-expressionistischen Stummfilm, Darstellungen jüdischer Kultur sowie Fragen der historischen Sichtbarkeit jüdischer Kultur im deutschen Kino. Im Fokus steht dabei, wie mythische Figuren wie der Golem zwischen kultureller Selbstbeschreibung und gesellschaftlicher Projektion gelesen werden können. Zudem wird erörtert, inwiefern die zeitgenössische Live-Vertonung als musikalische Kommentierung neue Perspektiven auf den Film eröffnet und seine Themen für die Gegenwart aktualisiert. Ziel ist ein vielstimmiger Dialog zwischen Kunst, Erinnerung und Gegenwart.</p>
 
-                                <p class="film-description"><strong>Live-Vertonung.</strong> Die Aufführung erhält durch die Live-Vertonung von Robyn Schulkowsky (Percussion) sowie Andi und Hannes Teichmann (Elektronik) eine neue Dimension. Percussion, Soundobjekte und Elektronik verweben sich zu immersiven Klangräumen, die den Stummfilm ins Heute übersetzen. Der Golem wird zweimal gezeigt, um mehr Publikum zu erreichen.</p>
+                                <p class="film-description"><strong>Live-Vertonung.</strong> Die Aufführung erhält durch die Live-Vertonung von Robyn Schulkowsky (Percussion) sowie Andi und Hannes Teichmann (Elektronik) eine neue Dimension. Percussion, Soundobjekte und Elektronik verweben sich zu immersiven Klangräumen, die den Stummfilm ins Heute übersetzen. Diese Originalkomposition wird hier uraufgeführt.</p>
                             </div>
                             <div data-lang="en">
                                 <p class="film-description">The expressionist silent film tells the legend of the Prague Rabbi Löw, who creates a Golem from clay to protect his community. Symbolic visual worlds make it an emblem of hope and fear. As a key work of German-Jewish film history, it unfolds a field of tension between legend, modern aesthetics, and social interpretation.</p>
 
                                 <p class="film-description">The accompanying panel reflects on the Golem myth in the field of tension between Jewish culture, cinematic modernism, and antisemitic attributions. Topics include the significance of the film for fantastic-expressionist silent cinema, representations of Jewish culture, and questions of historical visibility of Jewish culture in German cinema. The focus is on how mythical figures like the Golem can be read between cultural self-description and social projection. Additionally, the discussion explores how the contemporary live soundtrack as musical commentary opens new perspectives on the film and updates its themes for the present. The goal is a polyphonic dialogue between art, memory, and the present.</p>
 
-                                <p class="film-description"><strong>Live Soundtrack.</strong> The screening receives a new dimension through live soundtrack by Robyn Schulkowsky (percussion) as well as Andi and Hannes Teichmann (electronics). Percussion, sound objects, and electronics weave together into immersive soundscapes that translate the silent film into the present. The Golem will be shown twice to reach more audiences.</p>
+                                <p class="film-description"><strong>Live Soundtrack.</strong> The screening receives a new dimension through live soundtrack by Robyn Schulkowsky (percussion) as well as Andi and Hannes Teichmann (electronics). Percussion, sound objects, and electronics weave together into immersive soundscapes that translate the silent film into the present. This original composition will have its world premiere here.</p>
                             </div>
                         </div>
                     </div>
@@ -1398,11 +1423,11 @@
                             <div class="person-box">
                                 <div data-lang="de">
                                     <p class="person-name">George Fejer</p>
-                                    <p class="person-bio">George Fejer ist Neuropsychologie-Forscher und Hauptkurator der Veranstaltungsreihe. Seine Arbeit befasst sich mit subjektiver Erfahrung und deren Untersuchung an der Schnittstelle von Bewusstseinsforschung und zeitbasierten Medien. Er ist Doktorand der Psychologie an der Universität Konstanz und Gastforscher am Max Planck Institute for Human Cognitive and Brain Sciences.</p>
+                                    <p class="person-bio">George Fejer ist Neuropsychologie-Forscher und Hauptkurator der Veranstaltungsreihe. Seine Arbeit befasst sich mit subjektiver Erfahrung und deren Untersuchung an der Schnittstelle von Bewusstseinsforschung und zeitbasierten Medien. Er ist Doktorand der Psychologie an der Universität Konstanz, Gastforscher am Max Planck Institute for Human Cognitive and Brain Sciences und <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Stipendiat des ELES</a>.</p>
                                 </div>
                                 <div data-lang="en">
                                     <p class="person-name">George Fejer</p>
-                                    <p class="person-bio">George Fejer is a neuropsychology researcher and main curator of the event series. His work focuses on subjective experience and its investigation at the intersection of consciousness research and time-based media. He is a doctoral candidate in psychology at the University of Konstanz and a visiting researcher at the Max Planck Institute for Human Cognitive and Brain Sciences.</p>
+                                    <p class="person-bio">George Fejer is a neuropsychology researcher and main curator of the event series. His work focuses on subjective experience and its investigation at the intersection of consciousness research and time-based media. He is a doctoral candidate in psychology at the University of Konstanz, a visiting researcher at the Max Planck Institute for Human Cognitive and Brain Sciences, and an <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">ELES Research Fellow</a>.</p>
                                 </div>
                             </div>
                         </div>
@@ -1410,35 +1435,35 @@
 
                     <!-- Supporters Grid -->
                     <div class="golem-supporters-grid">
-                        <div class="supporter-box">
+                        <a href="https://eles-studienwerk.de/" target="_blank" class="supporter-box">
                             <p class="supporter-label" data-lang="de">Event des</p>
                             <p class="supporter-label" data-lang="en">Event by</p>
-                            <a href="https://eles-studienwerk.de/" target="_blank" class="supporter-link">
+                            <div class="supporter-link">
                                 <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/ELES_Logo.jpg" alt="ELES Logo" class="supporter-logo">
                                 <p class="supporter-name" data-lang="de">Ernst Ludwig Ehrlich Studienwerk (ELES)</p>
                                 <p class="supporter-name" data-lang="en">Ernst Ludwig Ehrlich Studienwerk (ELES)</p>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
 
-                        <div class="supporter-box">
+                        <a href="https://www.ursula-lachnit-fixson-stiftung.de/die-stiftung" target="_blank" class="supporter-box">
                             <p class="supporter-label" data-lang="de">Zusätzlich gefördert von</p>
                             <p class="supporter-label" data-lang="en">Additionally supported by</p>
-                            <a href="https://www.ursula-lachnit-fixson-stiftung.de/die-stiftung" target="_blank" class="supporter-link">
+                            <div class="supporter-link">
                                 <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/Ursula-Lachnit-Fixson-Stiftung-logo.png" alt="Ursula Lachnit Fixson Stiftung Logo" class="supporter-logo">
                                 <p class="supporter-name" data-lang="de">Ursula Lachnit Fixson Stiftung</p>
                                 <p class="supporter-name" data-lang="en">Ursula Lachnit Fixson Foundation</p>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
 
-                        <div class="supporter-box">
+                        <a href="https://centrumjudaicum.de/" target="_blank" class="supporter-box">
                             <p class="supporter-label" data-lang="de">Mit Unterstützung von</p>
                             <p class="supporter-label" data-lang="en">With support from</p>
-                            <a href="https://centrumjudaicum.de/" target="_blank" class="supporter-link">
+                            <div class="supporter-link">
                                 <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logo_Stiftung_Neue_Synagoge_Berlin_Gold.png" alt="Centrum Judaicum Logo" class="supporter-logo">
                                 <p class="supporter-name" data-lang="de">Centrum Judaicum</p>
                                 <p class="supporter-name" data-lang="en">Centrum Judaicum</p>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </section>
