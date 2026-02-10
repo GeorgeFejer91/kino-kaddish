@@ -381,9 +381,26 @@
 
         /* ---- ABOUT SECTION ---- */
         .about {
-            max-width: 800px;
+            max-width: 100%;
             margin: 0 auto;
             text-align: justify;
+            columns: 2;
+            column-gap: 3rem;
+            line-height: 1.8;
+        }
+
+        .about p {
+            margin-bottom: 1.5rem;
+            break-inside: avoid;
+        }
+
+        .about p:first-child {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--highlight-color);
+            column-span: all;
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
         /* ---- FOOTER ---- */
@@ -425,6 +442,11 @@
             .film-image img {
                 width: 250px;
                 height: auto;
+            }
+
+            /* About section - single column on tablets */
+            .about {
+                columns: 1;
             }
         }
 
@@ -894,15 +916,10 @@
                 <h2 class="section-title">Über das Projekt</h2>
                 <div class="about">
                     <p>Wie erinnern wir, wenn die Orte selbst schweigen? Wenn Geschichte in Ruinen flackert, in beschädigten Zelluloidstreifen, in Stimmen, die niemand mehr erkennt?</p>
-                    <br>
                     <p><i>Kino Kaddish</i> ist eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann, und es als rituellen Raum zu begreifen, in dem Bilder nicht nur gesehen, sondern beschworen und wiedererlebt werden. Besonderes Augenmerk gilt dabei einer filmhistorischen Rückschau auf Werke, die vielen jungen Menschen heute kaum noch zugänglich sind — etwa weil es sich um frühe, oft stumme Filme handelt oder weil sie aus dem osteuropäischen und slawischen Kontext stammen.</p>
-                    <br>
                     <p>Geplant ist eine kuratierte Reihe ortsspezifischer Filmvorführungen bei denen ausgewählte Werke des jüdischen, osteuropäischen und experimentellen Kinos an historisch wie symbolisch aufgeladenen Orten neu kontextualisiert werden.</p>
-                    <br>
                     <p>Im Rahmen von Kino Kaddish sind Filmvorführungen an symbolisch aufgeladenen Orten in Berlin geplant, darunter Institutionen wie das Jüdische Museum, das Deutsch-Russische Museum Karlshorst, das silent green Kulturquartier oder das Centrum Judaicum.</p>
-                    <br>
                     <p>Alle Veranstaltungen werden durch eine begleitende Website unter <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color);">info@kaddish-kino.org</a> dokumentiert. Dort werden sowohl kuratorische Überlegungen zur Auswahl und Kontextualisierung der Filme als auch Reflexionen und Eindrücke aus dem Publikum festgehalten.</p>
-                    <br>
                     <p>Die Veranstaltungen stehen insbesondere Stipendiat*innen des Ernst Ludwig Ehrlich Studienwerks (ELES) offen, aus dessen Kontext die Antragstellung erfolgt. Darüber hinaus richten sie sich an ein breiteres Berliner Publikum — insbesondere an Menschen mit jüdischem Hintergrund oder Interesse an jüdischer Kultur im Spannungsfeld von vergessenem osteuropäischem Kino und zeitgenössischer Erinnerungspraxis.</p>
                 </div>
             </section>
