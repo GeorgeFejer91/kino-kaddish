@@ -362,12 +362,18 @@
         /* Special layout for Der Golem section - 35/65 split */
         #der-golem .film-content {
             gap: 2.5rem;
-            align-items: flex-start;
+            align-items: stretch;
+        }
+
+        .golem-poster-column {
+            flex: 0 0 35%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         #der-golem .golem-poster {
-            flex: 0 0 35%;
-            width: 35%;
+            width: 100%;
             height: auto;
             max-width: none;
         }
@@ -379,9 +385,34 @@
             max-height: none;
         }
 
-        #der-golem .film-details {
+        .golem-text-column {
             flex: 0 0 65%;
             max-width: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Anmelde Button */
+        .anmelde-button {
+            display: block;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border: 2px solid var(--highlight-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            cursor: pointer;
+        }
+
+        .anmelde-button:hover {
+            background-color: #fff;
+            color: #000;
         }
 
         .film-image {
@@ -545,6 +576,106 @@
         .venue-text {
             font-size: 1rem;
             letter-spacing: 1px;
+        }
+
+        /* ---- GOLEM PEOPLE GRID ---- */
+        .golem-people-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .golem-people-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .golem-people-title {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--highlight-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .person-box {
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--separator-color);
+            padding: 1.5rem;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .person-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            color: var(--highlight-color);
+        }
+
+        .person-bio {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* ---- GOLEM SUPPORTERS GRID ---- */
+        .golem-supporters-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .supporter-box {
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--highlight-color);
+            padding: 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .supporter-label {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .supporter-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--main-text-color);
+            transition: all 0.3s ease;
+        }
+
+        .supporter-link:hover {
+            transform: translateY(-3px);
+        }
+
+        .supporter-logo {
+            max-width: 150px;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .supporter-name {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            text-align: center;
         }
 
         /* ---- HERO SECTION ---- */
@@ -813,16 +944,54 @@
                 height: auto;
             }
 
-            /* Golem poster responsive sizing */
+            /* Golem poster responsive sizing - full width on mobile */
+            .golem-poster-column {
+                flex: 0 0 100%;
+                width: 100%;
+            }
+
             .golem-poster {
-                width: 421px;
-                height: 633px;
-                margin: 0 auto 1.5rem auto;
+                width: 100%;
+                height: auto;
+                margin: 0 auto 1rem auto;
             }
 
             .golem-svg {
-                max-width: 421px;
-                max-height: 633px;
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                max-height: none;
+            }
+
+            .golem-text-column {
+                flex: 0 0 100%;
+                width: 100%;
+            }
+
+            .anmelde-button {
+                width: 100%;
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            /* Golem people grid - stack on mobile */
+            .golem-people-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .person-box {
+                min-height: auto;
+            }
+
+            /* Golem supporters grid - stack on mobile */
+            .golem-supporters-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .supporter-box {
+                min-height: auto;
             }
 
             /* Responsive venue buttons */
@@ -1155,60 +1324,121 @@
                     <p class="film-year" data-lang="de" style="margin-top: 0.5rem; font-size: 0.95rem;">05.03.2026 | 18:45 - 21:30</p>
                     <p class="film-year" data-lang="en" style="margin-top: 0.5rem; font-size: 0.95rem;">05.03.2026 | 18:45 - 21:30</p>
                     <div class="film-content">
-                        <div class="film-image golem-poster">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/FilmPosters/golem_svg.svg" alt="Der Golem (1920)" class="golem-svg" id="golem-svg-object">
+                        <div class="golem-poster-column">
+                            <div class="film-image golem-poster">
+                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/FilmPosters/golem_svg.svg" alt="Der Golem (1920)" class="golem-svg" id="golem-svg-object">
+                            </div>
+                            <a href="#" class="anmelde-button" id="golem-anmelde-button">
+                                <span data-lang="de">Anmelden</span>
+                                <span data-lang="en">Register</span>
+                            </a>
                         </div>
-                        <div class="film-details">
+                        <div class="film-details golem-text-column">
                             <div data-lang="de">
-                                <p class="film-description"><strong>Synopsis.</strong> Der expressionistische Stummfilm erzählt die Legende des Prager Rabbis Löw, der einen Golem aus Ton erschafft, um seine Gemeinde zu schützen. Symbolträchtige Bildwelten machen ihn zum Sinnbild von Hoffnung und Angst. Als Schlüsselwerk deutsch-jüdischer Filmgeschichte entfaltet er ein Spannungsfeld zwischen Legende, moderner Ästhetik und gesellschaftlicher Deutung.</p>
+                                <p class="film-description">Der expressionistische Stummfilm erzählt die Legende des Prager Rabbis Löw, der einen Golem aus Ton erschafft, um seine Gemeinde zu schützen. Symbolträchtige Bildwelten machen ihn zum Sinnbild von Hoffnung und Angst. Als Schlüsselwerk deutsch-jüdischer Filmgeschichte entfaltet er ein Spannungsfeld zwischen Legende, moderner Ästhetik und gesellschaftlicher Deutung.</p>
+
+                                <p class="film-description">Das begleitende Panel reflektiert den Golem-Mythos im Spannungsfeld von jüdischer Kultur, filmischer Moderne und antisemitischen Zuschreibungen. Diskutiert werden die Bedeutung des Films für den fantastisch-expressionistischen Stummfilm, Darstellungen jüdischer Kultur sowie Fragen der historischen Sichtbarkeit jüdischer Kultur im deutschen Kino. Im Fokus steht dabei, wie mythische Figuren wie der Golem zwischen kultureller Selbstbeschreibung und gesellschaftlicher Projektion gelesen werden können. Zudem wird erörtert, inwiefern die zeitgenössische Live-Vertonung als musikalische Kommentierung neue Perspektiven auf den Film eröffnet und seine Themen für die Gegenwart aktualisiert. Ziel ist ein vielstimmiger Dialog zwischen Kunst, Erinnerung und Gegenwart.</p>
 
                                 <p class="film-description"><strong>Live-Vertonung.</strong> Die Aufführung erhält durch die Live-Vertonung von Robyn Schulkowsky (Percussion) sowie Andi und Hannes Teichmann (Elektronik) eine neue Dimension. Percussion, Soundobjekte und Elektronik verweben sich zu immersiven Klangräumen, die den Stummfilm ins Heute übersetzen. Der Golem wird zweimal gezeigt, um mehr Publikum zu erreichen.</p>
-
-                                <p class="film-description"><strong>Gesprächsrahmung.</strong> Das begleitende Panel reflektiert den Golem-Mythos im Spannungsfeld von jüdischer Kultur, filmischer Moderne und antisemitischen Zuschreibungen. Diskutiert werden die Bedeutung des Films für den fantastisch-expressionistischen Stummfilm, Darstellungen jüdischer Kultur sowie Fragen der historischen Sichtbarkeit jüdischer Kultur im deutschen Kino. Im Fokus steht dabei, wie mythische Figuren wie der Golem zwischen kultureller Selbstbeschreibung und gesellschaftlicher Projektion gelesen werden können. Zudem wird erörtert, inwiefern die zeitgenössische Live-Vertonung als musikalische Kommentierung neue Perspektiven auf den Film eröffnet und seine Themen für die Gegenwart aktualisiert. Ziel ist ein vielstimmiger Dialog zwischen Kunst, Erinnerung und Gegenwart.</p>
                             </div>
                             <div data-lang="en">
-                                <p class="film-description"><strong>Synopsis.</strong> The expressionist silent film tells the legend of the Prague Rabbi Löw, who creates a Golem from clay to protect his community. Symbolic visual worlds make it an emblem of hope and fear. As a key work of German-Jewish film history, it unfolds a field of tension between legend, modern aesthetics, and social interpretation.</p>
+                                <p class="film-description">The expressionist silent film tells the legend of the Prague Rabbi Löw, who creates a Golem from clay to protect his community. Symbolic visual worlds make it an emblem of hope and fear. As a key work of German-Jewish film history, it unfolds a field of tension between legend, modern aesthetics, and social interpretation.</p>
+
+                                <p class="film-description">The accompanying panel reflects on the Golem myth in the field of tension between Jewish culture, cinematic modernism, and antisemitic attributions. Topics include the significance of the film for fantastic-expressionist silent cinema, representations of Jewish culture, and questions of historical visibility of Jewish culture in German cinema. The focus is on how mythical figures like the Golem can be read between cultural self-description and social projection. Additionally, the discussion explores how the contemporary live soundtrack as musical commentary opens new perspectives on the film and updates its themes for the present. The goal is a polyphonic dialogue between art, memory, and the present.</p>
 
                                 <p class="film-description"><strong>Live Soundtrack.</strong> The screening receives a new dimension through live soundtrack by Robyn Schulkowsky (percussion) as well as Andi and Hannes Teichmann (electronics). Percussion, sound objects, and electronics weave together into immersive soundscapes that translate the silent film into the present. The Golem will be shown twice to reach more audiences.</p>
-
-                                <p class="film-description"><strong>Discussion Framework.</strong> The accompanying panel reflects on the Golem myth in the field of tension between Jewish culture, cinematic modernism, and antisemitic attributions. Topics include the significance of the film for fantastic-expressionist silent cinema, representations of Jewish culture, and questions of historical visibility of Jewish culture in German cinema. The focus is on how mythical figures like the Golem can be read between cultural self-description and social projection. Additionally, the discussion explores how the contemporary live soundtrack as musical commentary opens new perspectives on the film and updates its themes for the present. The goal is a polyphonic dialogue between art, memory, and the present.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="venue-info" style="margin-top: 1.5rem;">
-                        <strong data-lang="de">Sprecher:innen und Musiker:innen</strong>
-                        <strong data-lang="en">Speakers and Musicians</strong>
+                    <!-- Speakers and Musicians Grid -->
+                    <div class="golem-people-grid">
+                        <div class="golem-people-column">
+                            <h3 class="golem-people-title" data-lang="de">Musiker:innen</h3>
+                            <h3 class="golem-people-title" data-lang="en">Musicians</h3>
 
-                        <div data-lang="de">
-                            <p style="margin-top: 1rem;"><strong>Tirza Seene</strong><br>
-                            Tirza Seene ist Filmwissenschaftlerin und promoviert an der Filmuniversität Babelsberg Konrad Wolf zu dem Thema „Antisemitismus und Film". Ihre Forschungsschwerpunkte sind jüdische Erfahrung im Film, Filmgeschichte und Antisemitismus. Ihre Filmeinführung ordnet den "Golem" in der Weimarer Filmgeschichte ein, analysiert seine stereotypen Konstruktionen und verknüpft diese mit Diskursen um Jewishness im Film, Musik und Erinnerungspraxis.</p>
+                            <div class="person-box">
+                                <div data-lang="de">
+                                    <p class="person-name"><a href="https://www.udk-berlin.de/studium/klangkunstbuehne/dozentinnen/dozentinnen-past/2019/robyn-schulkowsky/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Robyn Schulkowsky</a></p>
+                                    <p class="person-bio">Weltweit prämierte Perkussionistin, Pionierin neuer Klangräume mit Ausrichtung auf Improvisation und interdisziplinäre Projekte. Ihre internationale Zusammenarbeit (u.a. Cage, Feldman, Dudamel) prägte die Perkussionslandschaft des 20./21. Jahrhunderts entscheidend. In der Live-Vertonung bringt sie experimentelle Virtuosität und musikalische Neugier ein.</p>
+                                </div>
+                                <div data-lang="en">
+                                    <p class="person-name"><a href="https://www.udk-berlin.de/studium/klangkunstbuehne/dozentinnen/dozentinnen-past/2019/robyn-schulkowsky/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Robyn Schulkowsky</a></p>
+                                    <p class="person-bio">Internationally acclaimed percussionist, pioneer of new sound spaces with focus on improvisation and interdisciplinary projects. Her international collaborations (including Cage, Feldman, Dudamel) decisively shaped the percussion landscape of the 20th/21st centuries. In the live soundtrack, she brings experimental virtuosity and musical curiosity.</p>
+                                </div>
+                            </div>
 
-                            <p style="margin-top: 1rem;"><strong><a href="https://www.udk-berlin.de/studium/klangkunstbuehne/dozentinnen/dozentinnen-past/2019/robyn-schulkowsky/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Robyn Schulkowsky</a></strong><br>
-                            Weltweit prämierte Perkussionistin, Pionierin neuer Klangräume mit Ausrichtung auf Improvisation und interdisziplinäre Projekte. Ihre internationale Zusammenarbeit (u.a. Cage, Feldman, Dudamel) prägte die Perkussionslandschaft des 20./21. Jahrhunderts entscheidend. In der Live-Vertonung bringt sie experimentelle Virtuosität und musikalische Neugier ein.</p>
-
-                            <p style="margin-top: 1rem;"><strong>Andi Teichmann & Hannes Teichmann</strong><br>
-                            Die Gebrüder Teichmann sind Musiker, Produzenten und Komponisten, bekannt für ihre Arbeit zwischen Clubkultur, experimenteller Elektronik und globalen Musiktraditionen. Mit internationalen Soundcamps und Projekten verbinden sie Klangexperimente, interkulturellen Austausch und kollektiven Dialog.</p>
+                            <div class="person-box">
+                                <div data-lang="de">
+                                    <p class="person-name">Andi Teichmann & Hannes Teichmann</p>
+                                    <p class="person-bio">Die Gebrüder Teichmann sind Musiker, Produzenten und Komponisten, bekannt für ihre Arbeit zwischen Clubkultur, experimenteller Elektronik und globalen Musiktraditionen. Mit internationalen Soundcamps und Projekten verbinden sie Klangexperimente, interkulturellen Austausch und kollektiven Dialog.</p>
+                                </div>
+                                <div data-lang="en">
+                                    <p class="person-name">Andi Teichmann & Hannes Teichmann</p>
+                                    <p class="person-bio">The Teichmann brothers are musicians, producers, and composers known for their work between club culture, experimental electronics, and global music traditions. Through international sound camps and projects, they connect sound experiments, intercultural exchange, and collective dialogue.</p>
+                                </div>
+                            </div>
                         </div>
 
-                        <div data-lang="en">
-                            <p style="margin-top: 1rem;"><strong>Tirza Seene</strong><br>
-                            Tirza Seene is a film scholar completing her doctorate at Film University Babelsberg Konrad Wolf on "Antisemitism and Film." Her research focuses on Jewish experience in film, film history, and antisemitism. Her film introduction situates "The Golem" in Weimar film history, analyzes its stereotypical constructions, and connects these with discourses on Jewishness in film, music, and memory practice.</p>
+                        <div class="golem-people-column">
+                            <h3 class="golem-people-title" data-lang="de">Sprecher:innen</h3>
+                            <h3 class="golem-people-title" data-lang="en">Speakers</h3>
 
-                            <p style="margin-top: 1rem;"><strong><a href="https://www.udk-berlin.de/studium/klangkunstbuehne/dozentinnen/dozentinnen-past/2019/robyn-schulkowsky/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Robyn Schulkowsky</a></strong><br>
-                            Internationally acclaimed percussionist, pioneer of new sound spaces with focus on improvisation and interdisciplinary projects. Her international collaborations (including Cage, Feldman, Dudamel) decisively shaped the percussion landscape of the 20th/21st centuries. In the live soundtrack, she brings experimental virtuosity and musical curiosity.</p>
+                            <div class="person-box">
+                                <div data-lang="de">
+                                    <p class="person-name">Tirza Seene</p>
+                                    <p class="person-bio">Tirza Seene ist Filmwissenschaftlerin und promoviert an der Filmuniversität Babelsberg Konrad Wolf zu dem Thema „Antisemitismus und Film". Ihre Forschungsschwerpunkte sind jüdische Erfahrung im Film, Filmgeschichte und Antisemitismus. Ihre Filmeinführung ordnet den "Golem" in der Weimarer Filmgeschichte ein, analysiert seine stereotypen Konstruktionen und verknüpft diese mit Diskursen um Jewishness im Film, Musik und Erinnerungspraxis.</p>
+                                </div>
+                                <div data-lang="en">
+                                    <p class="person-name">Tirza Seene</p>
+                                    <p class="person-bio">Tirza Seene is a film scholar completing her doctorate at Film University Babelsberg Konrad Wolf on "Antisemitism and Film." Her research focuses on Jewish experience in film, film history, and antisemitism. Her film introduction situates "The Golem" in Weimar film history, analyzes its stereotypical constructions, and connects these with discourses on Jewishness in film, music, and memory practice.</p>
+                                </div>
+                            </div>
 
-                            <p style="margin-top: 1rem;"><strong>Andi Teichmann & Hannes Teichmann</strong><br>
-                            The Teichmann brothers are musicians, producers, and composers known for their work between club culture, experimental electronics, and global music traditions. Through international sound camps and projects, they connect sound experiments, intercultural exchange, and collective dialogue.</p>
+                            <div class="person-box">
+                                <div data-lang="de">
+                                    <p class="person-name">George Fejer</p>
+                                    <p class="person-bio">George Fejer ist Neuropsychologie-Forscher und Hauptkurator der Veranstaltungsreihe. Seine Arbeit befasst sich mit subjektiver Erfahrung und deren Untersuchung an der Schnittstelle von Bewusstseinsforschung und zeitbasierten Medien. Er ist Doktorand der Psychologie an der Universität Konstanz und Gastforscher am Max Planck Institute for Human Cognitive and Brain Sciences.</p>
+                                </div>
+                                <div data-lang="en">
+                                    <p class="person-name">George Fejer</p>
+                                    <p class="person-bio">George Fejer is a neuropsychology researcher and main curator of the event series. His work focuses on subjective experience and its investigation at the intersection of consciousness research and time-based media. He is a doctoral candidate in psychology at the University of Konstanz and a visiting researcher at the Max Planck Institute for Human Cognitive and Brain Sciences.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="venue-info">
-                        <strong data-lang="de">Veranstaltungsort:</strong>
-                        <strong data-lang="en">Venue:</strong>
-                        <a href="https://centrumjudaicum.de/" target="_blank" class="venue-button">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logo_Stiftung_Neue_Synagoge_Berlin_Gold.png" alt="Centrum Judaicum Logo" class="venue-logo">
-                        </a>
+                    <!-- Supporters Grid -->
+                    <div class="golem-supporters-grid">
+                        <div class="supporter-box">
+                            <p class="supporter-label" data-lang="de">Event des</p>
+                            <p class="supporter-label" data-lang="en">Event by</p>
+                            <a href="https://eles-studienwerk.de/" target="_blank" class="supporter-link">
+                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/ELES_Logo.jpg" alt="ELES Logo" class="supporter-logo">
+                                <p class="supporter-name" data-lang="de">Ernst Ludwig Ehrlich Studienwerk (ELES)</p>
+                                <p class="supporter-name" data-lang="en">Ernst Ludwig Ehrlich Studienwerk (ELES)</p>
+                            </a>
+                        </div>
+
+                        <div class="supporter-box">
+                            <p class="supporter-label" data-lang="de">Zusätzlich gefördert von</p>
+                            <p class="supporter-label" data-lang="en">Additionally supported by</p>
+                            <a href="https://www.ursula-lachnit-fixson-stiftung.de/die-stiftung" target="_blank" class="supporter-link">
+                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/Ursula-Lachnit-Fixson-Stiftung-logo.png" alt="Ursula Lachnit Fixson Stiftung Logo" class="supporter-logo">
+                                <p class="supporter-name" data-lang="de">Ursula Lachnit Fixson Stiftung</p>
+                                <p class="supporter-name" data-lang="en">Ursula Lachnit Fixson Foundation</p>
+                            </a>
+                        </div>
+
+                        <div class="supporter-box">
+                            <p class="supporter-label" data-lang="de">Mit Unterstützung von</p>
+                            <p class="supporter-label" data-lang="en">With support from</p>
+                            <a href="https://centrumjudaicum.de/" target="_blank" class="supporter-link">
+                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logo_Stiftung_Neue_Synagoge_Berlin_Gold.png" alt="Centrum Judaicum Logo" class="supporter-logo">
+                                <p class="supporter-name" data-lang="de">Centrum Judaicum</p>
+                                <p class="supporter-name" data-lang="en">Centrum Judaicum</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
