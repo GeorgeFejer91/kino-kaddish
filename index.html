@@ -355,14 +355,29 @@
             align-items: flex-start;
         }
 
-        /* Special layout for Der Golem section - wider poster, narrower text */
+        /* Special layout for Der Golem section - equal width columns */
         #der-golem .film-content {
             gap: 3rem;
+            align-items: flex-start;
+        }
+
+        #der-golem .golem-poster {
+            flex: 1;
+            width: auto;
+            height: auto;
+            max-width: none;
+        }
+
+        #der-golem .golem-svg {
+            width: 100%;
+            height: auto;
+            max-width: none;
+            max-height: none;
         }
 
         #der-golem .film-details {
-            max-width: 60ch;
-            flex: 0 1 auto;
+            flex: 1;
+            max-width: none;
         }
 
         .film-image {
@@ -1132,8 +1147,8 @@
                     <p class="film-year" data-lang="en">The Golem: How He Came into the World (Paul Wegener, Germany 1920)</p>
                     <p class="film-year" data-lang="de">Live-Screening und Filmvertonung</p>
                     <p class="film-year" data-lang="en">Live Screening and Film Score</p>
-                    <p class="film-year" data-lang="de" style="margin-top: 0.5rem; font-size: 0.95rem;">📅 05.03.2026 | 18:45 - 21:30</p>
-                    <p class="film-year" data-lang="en" style="margin-top: 0.5rem; font-size: 0.95rem;">📅 05.03.2026 | 18:45 - 21:30</p>
+                    <p class="film-year" data-lang="de" style="margin-top: 0.5rem; font-size: 0.95rem;">05.03.2026 | 18:45 - 21:30</p>
+                    <p class="film-year" data-lang="en" style="margin-top: 0.5rem; font-size: 0.95rem;">05.03.2026 | 18:45 - 21:30</p>
                     <div class="film-content">
                         <div class="film-image golem-poster">
                             <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/FilmPosters/golem_svg.svg" alt="Der Golem (1920)" class="golem-svg" id="golem-svg-object">
