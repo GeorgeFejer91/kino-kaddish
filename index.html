@@ -415,6 +415,40 @@
             color: #000;
         }
 
+        /* Artist Attribution */
+        .artist-attribution {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .artist-attribution a {
+            color: var(--highlight-color);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .artist-attribution a:hover {
+            opacity: 0.7;
+        }
+
+        .social-icon {
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+            filter: invert(1);
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icon:hover {
+            opacity: 0.7;
+        }
+
         .film-image {
             width: 250px;
             max-width: 250px;
@@ -682,11 +716,6 @@
             height: auto;
             object-fit: contain;
             margin-bottom: 1rem;
-            transition: filter 0.5s ease;
-        }
-
-        .supporter-box:hover .supporter-logo {
-            filter: brightness(0.2);
         }
 
         .supporter-name {
@@ -1094,15 +1123,6 @@
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
-                        <a href="#about">Über das Projekt</a>
-                        <span class="sprocket-right-1"></span>
-                        <span class="sprocket-right-2"></span>
-                        <span class="sprocket-right-3"></span>
-                    </li>
-                    <li>
-                        <span class="sprocket-left-1"></span>
-                        <span class="sprocket-left-2"></span>
-                        <span class="sprocket-left-3"></span>
                         <a href="#der-golem">Der Golem</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
@@ -1113,6 +1133,15 @@
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
                         <a href="#come-and-see">Komm und sieh</a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
+                        <a href="#uber-uns">Über Uns</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
@@ -1189,15 +1218,6 @@
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
                     </li>
-                    <li>
-                        <span class="sprocket-left-1"></span>
-                        <span class="sprocket-left-2"></span>
-                        <span class="sprocket-left-3"></span>
-                        <a href="#contact">Kontakt</a>
-                        <span class="sprocket-right-1"></span>
-                        <span class="sprocket-right-2"></span>
-                        <span class="sprocket-right-3"></span>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -1216,13 +1236,6 @@
                     <li>
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
-                        <a href="#about">Über</a>
-                        <span class="sprocket-bottom-1"></span>
-                        <span class="sprocket-bottom-2"></span>
-                    </li>
-                    <li>
-                        <span class="sprocket-top-1"></span>
-                        <span class="sprocket-top-2"></span>
                         <a href="#der-golem">Der Golem</a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
@@ -1231,6 +1244,13 @@
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
                         <a href="#come-and-see">Komm und sieh</a>
+                        <span class="sprocket-bottom-1"></span>
+                        <span class="sprocket-bottom-2"></span>
+                    </li>
+                    <li>
+                        <span class="sprocket-top-1"></span>
+                        <span class="sprocket-top-2"></span>
+                        <a href="#uber-uns">Über Uns</a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
@@ -1290,13 +1310,6 @@
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
-                    <li>
-                        <span class="sprocket-top-1"></span>
-                        <span class="sprocket-top-2"></span>
-                        <a href="#contact">Kontakt</a>
-                        <span class="sprocket-bottom-1"></span>
-                        <span class="sprocket-bottom-2"></span>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -1309,26 +1322,8 @@
                 <h2 data-lang="de">Filmriss und Widerhall aus dem Osten</h2>
                 <h2 data-lang="en">Lost Frames and Echoes from the East</h2>
                 <div class="hero-text">
-                    <p data-lang="de">Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.</p>
-                    <p data-lang="en">A series of cinematic interventions, revivals, and site-specific gatherings — an attempt to bring cinema back to spaces where memory can become event.</p>
-                </div>
-            </section>
-
-            <!-- ABOUT SECTION -->
-            <section id="about" class="section">
-                <h2 class="section-title" data-lang="de">Über das Projekt</h2>
-                <h2 class="section-title" data-lang="en">About the Project</h2>
-                <div class="about">
-                    <div data-lang="de">
-                        <p>Wie erinnern wir, wenn die Orte selbst schweigen? Wenn Geschichte in Ruinen flackert, in beschädigten Zelluloidstreifen, in Stimmen, die niemand mehr erkennt?</p>
-                        <p><i>Kino Kaddish</i> ist eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen — ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann, und es als rituellen Raum zu begreifen, in dem Bilder nicht nur gesehen, sondern beschworen und wiedererlebt werden. Besonderes Augenmerk gilt dabei einer filmhistorischen Rückschau auf Werke, die vielen jungen Menschen heute kaum noch zugänglich sind — etwa weil es sich um frühe, oft stumme Filme handelt oder weil sie aus dem osteuropäischen und slawischen Kontext stammen.</p>
-                        <p>Geplant ist eine kuratierte Reihe ortsspezifischer Filmvorführungen bei denen ausgewählte Werke des jüdischen, osteuropäischen und experimentellen Kinos an historisch wie symbolisch aufgeladenen Orten neu kontextualisiert werden.</p>
-                    </div>
-                    <div data-lang="en">
-                        <p>How do we remember when the places themselves remain silent? When history flickers in ruins, in damaged celluloid strips, in voices no one recognizes anymore?</p>
-                        <p><i>Kino Kaddish</i> is a series of cinematic interventions, revivals, and site-specific gatherings — an attempt to bring cinema back to spaces where memory can become event, and to conceive of it as a ritual space in which images are not merely seen, but conjured and relived. Special attention is given to a film-historical retrospective on works that are hardly accessible to many young people today — whether because they are early, often silent films, or because they come from Eastern European and Slavic contexts.</p>
-                        <p>The plan is for a curated series of site-specific film screenings in which selected works of Jewish, Eastern European, and experimental cinema are recontextualized in historically and symbolically charged locations.</p>
-                    </div>
+                    <p data-lang="de">Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen: ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.</p>
+                    <p data-lang="en">A series of cinematic interventions, revivals, and site-specific gatherings: an attempt to bring cinema back to spaces where memory can become event.</p>
                 </div>
             </section>
 
@@ -1521,7 +1516,7 @@
                         </div>
                         <div class="film-details">
                             <p class="film-description">Józef reist in ein Sanatorium, um seinen sterbenden Vater zu besuchen, doch Raum und Zeit geraten außer Kontrolle. Erinnerungen, Kindheit und Traumwelten überlagern sich, sodass Vergangenheit, Fantasie und Gegenwart ineinanderfließen. Diese preisgekrönte Adaption literarischer Prosa schafft eine visuelle Sprache für jüdische Identität, kulturellen Verlust und fragmentiertes Gedächtnis.</p>
-                            <p class="film-description">Basierend auf Erzählungen entfaltet der Film ein visuell überwältigendes, traumlogisches Erinnerungsuniversum, in dem jüdische Kindheit, familiäre Fragmente und untergehende Welten ineinanderfließen. Ohne die Shoah direkt zu thematisieren, ist der Film durchdrungen von ihrer Abwesenheit — von dem Wissen, dass die poetisch aufgeladene jüdische Welt Galiziens wenige Jahre später ausgelöscht wurde. Der Film übersetzt diese Leerstelle in eine überbordende filmische Sprache aus Zerfall, Wiederkehr und zeitlicher Desorientierung.</p>
+                            <p class="film-description">Basierend auf Erzählungen entfaltet der Film ein visuell überwältigendes, traumlogisches Erinnerungsuniversum, in dem jüdische Kindheit, familiäre Fragmente und untergehende Welten ineinanderfließen. Ohne die Shoah direkt zu thematisieren, ist der Film durchdrungen von ihrer Abwesenheit, von dem Wissen, dass die poetisch aufgeladene jüdische Welt Galiziens wenige Jahre später ausgelöscht wurde. Der Film übersetzt diese Leerstelle in eine überbordende filmische Sprache aus Zerfall, Wiederkehr und zeitlicher Desorientierung.</p>
                             <p class="film-description"><strong>Gesprächsthemen:</strong> Wie wird literarische Prosa in filmische Allegorien von Geschichte und Erinnerung übersetzt? Die ästhetische Strategie des Films – Komposition, Licht, Farbe und Bildmetaphern – als Mittel, kollektive Traumata und kulturelle Transformation sichtbar zu machen. Wie literarische Imagination zu kollektiven Bildern wird und welche Rolle künstlerische Verarbeitung im Umgang mit Verlust, jüdischer Kultur und osteuropäischem Gedächtnis spielt.</p>
                         </div>
                     </div>
@@ -1572,6 +1567,26 @@
                                 <text x="1310" y="235" fill="black" font-size="36" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">HAUSEN</text>
                             </svg>
                         </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ÜBER UNS SECTION -->
+            <section id="uber-uns" class="section">
+                <h2 class="section-title" data-lang="de">Über Uns</h2>
+                <h2 class="section-title" data-lang="en">About Us</h2>
+                <div class="about">
+                    <div data-lang="de">
+                        <p>Wie erinnern wir, wenn die Orte selbst schweigen? Wenn Geschichte in Ruinen flackert, in beschädigten Zelluloidstreifen, in Stimmen, die niemand mehr erkennt?</p>
+                        <p><i>Kino Kaddish</i> ist eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen: ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann, und es als rituellen Raum zu begreifen, in dem Bilder nicht nur gesehen, sondern beschworen und wiedererlebt werden. Besonderes Augenmerk gilt dabei einer filmhistorischen Rückschau auf Werke, die vielen jungen Menschen heute kaum noch zugänglich sind, etwa weil es sich um frühe, oft stumme Filme handelt oder weil sie aus dem osteuropäischen und slawischen Kontext stammen.</p>
+                        <p>Geplant ist eine kuratierte Reihe ortsspezifischer Filmvorführungen bei denen ausgewählte Werke des jüdischen, osteuropäischen und experimentellen Kinos an historisch wie symbolisch aufgeladenen Orten neu kontextualisiert werden.</p>
+                        <p>Für weitere Informationen und Veranstaltungstermine kontaktieren Sie uns bitte unter <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color);">info@kaddish-kino.org</a>.</p>
+                    </div>
+                    <div data-lang="en">
+                        <p>How do we remember when the places themselves remain silent? When history flickers in ruins, in damaged celluloid strips, in voices no one recognizes anymore?</p>
+                        <p><i>Kino Kaddish</i> is a series of cinematic interventions, revivals, and site-specific gatherings: an attempt to bring cinema back to spaces where memory can become event, and to conceive of it as a ritual space in which images are not merely seen, but conjured and relived. Special attention is given to a film-historical retrospective on works that are hardly accessible to many young people today, whether because they are early, often silent films, or because they come from Eastern European and Slavic contexts.</p>
+                        <p>The plan is for a curated series of site-specific film screenings in which selected works of Jewish, Eastern European, and experimental cinema are recontextualized in historically and symbolically charged locations.</p>
+                        <p>For further information and event dates, please contact us at <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color);">info@kaddish-kino.org</a>.</p>
                     </div>
                 </div>
             </section>
@@ -1638,15 +1653,6 @@
                             <p class="film-description"><strong>Gesprächsthemen:</strong> Purim steht für Umkehr, Rettung und Humor als Strategie kollektiver Resilienz. Die Veranstaltung beleuchtet liturgische und kulturelle Dimensionen des Festes und hebt die philosophisch-ethische Bedeutung des jüdischen Witzes hervor – als Mittel zur Selbstverständigung, Distanzierung von Bedrohung und zur Stärkung des Gemeinschaftsgefühls. So endet die Reihe mit einem versöhnlichen Ausblick und einer musikalischen Feier: L'chaim!</p>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <section id="contact" class="section">
-                <h2 class="section-title" data-lang="de">Kontakt</h2>
-                <h2 class="section-title" data-lang="en">Contact</h2>
-                <div class="section-content">
-                    <p data-lang="de">Für weitere Informationen und Veranstaltungstermine kontaktieren Sie uns bitte unter <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color);">info@kaddish-kino.org</a>.</p>
-                    <p data-lang="en">For further information and event dates, please contact us at <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color);">info@kaddish-kino.org</a>.</p>
                 </div>
             </section>
 
