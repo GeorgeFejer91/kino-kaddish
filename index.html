@@ -462,15 +462,16 @@
         }
 
         .social-icon {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             vertical-align: middle;
-            filter: invert(1);
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            display: inline-block;
         }
 
         .social-icon:hover {
             opacity: 0.7;
+            transform: scale(1.1);
         }
 
         .film-image {
@@ -1378,14 +1379,13 @@
                                 <span data-lang="en">Artwork by</span>
                                 <a href="https://www.annafejer.art" target="_blank">Anna Fejer</a>
                                 <a href="https://www.annafejer.art" target="_blank" title="Website">
-                                    <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
-                                        <path d="M12 6v6l4 2"/>
+                                    <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
                                     </svg>
                                 </a>
                                 <a href="https://www.instagram.com/anna._.fejer/" target="_blank" title="Instagram">
-                                    <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/Instagram.svg" alt="Instagram" class="social-icon">
+                                    <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/Instagram.svg" alt="Instagram" class="social-icon instagram-icon">
                                 </a>
                             </div>
                             <a href="#" class="anmelde-button" id="golem-anmelde-button">
