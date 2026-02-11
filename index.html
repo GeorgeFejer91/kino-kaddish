@@ -40,13 +40,37 @@
             line-height: 1.6;
         }
 
-        /* Language switching */
+        /* Language switching with smooth transitions */
+        [data-lang="de"],
+        [data-lang="en"] {
+            transition: opacity 0.2s ease;
+        }
+
         body:not(.lang-en) [data-lang="en"] {
             display: none;
         }
 
         body.lang-en [data-lang="de"] {
             display: none;
+        }
+
+        /* Prevent layout shift when switching languages */
+        .section {
+            min-height: fit-content;
+        }
+
+        .film-description,
+        .person-bio,
+        .section-content p,
+        .about p {
+            margin-bottom: 1.2rem;
+        }
+
+        .film-description:last-child,
+        .person-bio:last-child,
+        .section-content p:last-child,
+        .about p:last-child {
+            margin-bottom: 0;
         }
 
         .container {
@@ -819,14 +843,23 @@
 
         /* ---- MOBILE MENU STYLES ---- */
         @media (max-width: 768px) {
+            /* Ensure language switcher stays fixed on mobile */
+            .lang-switcher {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                z-index: 2000; /* Higher than mobile menu */
+            }
+
             /* Remove desktop sidebar */
             .sidebar {
                 display: none;
             }
-            
+
             /* Position content correctly without sidebar margin */
             .content {
                 margin-left: 0;
+                padding-top: 60px; /* Space for fixed language switcher */
                 padding-bottom: var(--mobile-menu-height); /* Space for fixed menu */
             }
             
@@ -1342,6 +1375,21 @@
                             <div class="film-image golem-poster">
                                 <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/FilmPosters/golem_svg.svg" alt="Der Golem (1920)" class="golem-svg" id="golem-svg-object">
                             </div>
+                            <div class="artist-attribution">
+                                <span data-lang="de">Artwork von</span>
+                                <span data-lang="en">Artwork by</span>
+                                <a href="https://www.annafejer.art" target="_blank">Anna Fejer</a>
+                                <a href="https://www.annafejer.art" target="_blank" title="Website">
+                                    <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M12 6v6l4 2"/>
+                                    </svg>
+                                </a>
+                                <a href="https://www.instagram.com/anna._.fejer/" target="_blank" title="Instagram">
+                                    <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/Instagram.svg" alt="Instagram" class="social-icon">
+                                </a>
+                            </div>
                             <a href="#" class="anmelde-button" id="golem-anmelde-button">
                                 <span data-lang="de">Anmelden</span>
                                 <span data-lang="en">Register</span>
@@ -1789,11 +1837,20 @@
             localStorage.setItem('preferred-language', lang);
         }
 
-        // Load saved language preference
+        // Load saved language preference and initialize mobile film strip
         window.addEventListener('DOMContentLoaded', function() {
             const savedLang = localStorage.getItem('preferred-language');
             if (savedLang === 'en') {
                 switchLanguage('en');
+            }
+
+            // Scroll mobile film strip to the left (first film) on load
+            const mobileFilmStrip = document.querySelector('.mobile-film-strip');
+            if (mobileFilmStrip) {
+                // Set scroll position to 0 (leftmost position)
+                setTimeout(() => {
+                    mobileFilmStrip.scrollLeft = 0;
+                }, 100);
             }
         });
     </script>
