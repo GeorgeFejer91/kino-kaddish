@@ -777,6 +777,16 @@
             color: #000;
         }
 
+        /* Brandenburg logo: natural colors normally, invert on hover */
+        .supporter-logo.brandenburg-logo {
+            filter: none;
+            transition: filter 0.5s ease;
+        }
+
+        .supporter-box:hover .supporter-logo.brandenburg-logo {
+            filter: brightness(0);
+        }
+
         .supporter-label {
             font-size: 0.9rem;
             color: var(--accent-color);
@@ -1873,7 +1883,7 @@
                             <p class="supporter-label" data-lang="de">Mit Unterstützung von</p>
                             <p class="supporter-label" data-lang="en">With support from</p>
                             <div class="supporter-link">
-                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04-2026_Sachsenhausen/logo_BGS_Stiftung_Gedenkstaetten_RGB.svg" alt="Stiftung Brandenburgische Gedenkstätten" class="supporter-logo" style="filter: brightness(0) invert(1);">
+                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04-2026_Sachsenhausen/logo_BGS_Stiftung_Gedenkstaetten_RGB.svg" alt="Stiftung Brandenburgische Gedenkstätten" class="supporter-logo brandenburg-logo">
                                 <p class="supporter-name" data-lang="de">Stiftung Brandenburgische Gedenkstätten</p>
                                 <p class="supporter-name" data-lang="en">Brandenburg Memorials Foundation</p>
                             </div>
