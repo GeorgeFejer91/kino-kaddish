@@ -1918,6 +1918,36 @@
             localStorage.setItem('preferred-language', lang);
         }
 
+        // Handle URL hash navigation (e.g., #golem, #der-golem)
+        function handleHashNavigation() {
+            let hash = window.location.hash.substring(1); // Remove the # symbol
+
+            // If no hash but pathname contains a section name, use that
+            if (!hash) {
+                const pathname = window.location.pathname;
+                const pathParts = pathname.split('/').filter(part => part);
+                if (pathParts.length > 0) {
+                    hash = pathParts[pathParts.length - 1];
+                }
+            }
+
+            if (hash) {
+                // Normalize hash - handle both "golem" and "der-golem"
+                let targetId = hash;
+                if (hash === 'golem') {
+                    targetId = 'der-golem';
+                }
+
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    // Small delay to ensure page is fully loaded
+                    setTimeout(() => {
+                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300);
+                }
+            }
+        }
+
         // Load saved language preference and initialize mobile film strip
         window.addEventListener('DOMContentLoaded', function() {
             const savedLang = localStorage.getItem('preferred-language');
@@ -1933,7 +1963,13 @@
                     mobileFilmStrip.scrollLeft = 0;
                 }, 100);
             }
+
+            // Handle hash navigation on page load
+            handleHashNavigation();
         });
+
+        // Handle hash changes (when user clicks anchor links)
+        window.addEventListener('hashchange', handleHashNavigation);
     </script>
 </body>
 </html>
