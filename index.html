@@ -404,11 +404,13 @@
 
         /* Full-width credits line for Der Golem */
         .film-year.credits-line {
-            max-width: 100%;
-            width: 100%;
-            font-size: clamp(0.75rem, 1.5vw, 1rem);
-            white-space: nowrap;
-            overflow: visible;
+            max-width: 100% !important;
+            width: 100% !important;
+            font-size: clamp(0.7rem, 1.4vw, 1rem) !important;
+            white-space: normal !important;
+            overflow-wrap: break-word !important;
+            word-wrap: break-word !important;
+            line-height: 1.6 !important;
         }
 
         .film-content {
