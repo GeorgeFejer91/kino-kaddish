@@ -63,6 +63,7 @@
             background-color: var(--main-bg-color);
             color: var(--main-text-color);
             line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         /* Language switching with smooth transitions */
@@ -917,7 +918,7 @@
                 position: relative;
                 width: 100%;
                 height: 100%;
-                overflow-x: auto;
+                overflow-x: hidden; /* Disable horizontal scrolling */
                 overflow-y: hidden;
                 white-space: nowrap;
                 background-color: #0a0a0a;
@@ -943,6 +944,7 @@
                 padding: 0.5rem;
                 margin: 0;
                 height: 100%;
+                justify-content: flex-start; /* Keep items aligned to the left */
             }
             
             .mobile-nav li {
@@ -1512,8 +1514,8 @@
                     <p class="film-year" data-lang="en">The Golem: How He Came into the World (Paul Wegener, Germany 1920)</p>
                     <p class="film-year" data-lang="de">Stummfilmkonzert: Uraufführung einer Originalkomposition | <strong>05.03.2026 | 18:45 - 21:30</strong></p>
                     <p class="film-year" data-lang="en">Silent Film Concert: World Premiere of an Original Composition | <strong>05.03.2026 | 18:45 - 21:30</strong></p>
-                    <p class="film-year credits-line" data-lang="de">Event des <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerks e.V.</a> | Kuratiert von <strong>George Fejer</strong> & <strong>Zuri Maria Daiss</strong> | <span style="font-size: 0.85em;">Unterstützt von Iaroslav Bigun</span></p>
-                    <p class="film-year credits-line" data-lang="en">An event by <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerk e.V.</a> | Curated by <strong>George Fejer</strong> & <strong>Zuri Maria Daiss</strong> | <span style="font-size: 0.85em;">Supported by Iaroslav Bigun</span></p>
+                    <p class="film-year credits-line" data-lang="de">Event des <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerks e.V.</a> | Kuratiert von <strong>George Fejer</strong> | <span style="font-size: 0.85em;">Unterstützt von Iaroslav Bigun</span></p>
+                    <p class="film-year credits-line" data-lang="en">An event by <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerk e.V.</a> | Curated by <strong>George Fejer</strong> | <span style="font-size: 0.85em;">Supported by Iaroslav Bigun</span></p>
                     <div class="film-content">
                         <div class="golem-poster-column">
                             <div class="film-image golem-poster">
@@ -1906,24 +1908,8 @@
                 link.parentElement.classList.remove('active');
                 if (link.getAttribute('href') === `#${current}`) {
                     link.parentElement.classList.add('active');
-                    
-                    // Scroll the active item into view in the mobile menu
-                    if (window.innerWidth <= 768) {
-                        const filmStrip = document.querySelector('.mobile-film-strip');
-                        const activeItem = link.parentElement;
-                        
-                        // Calculate position to scroll to (center the active item)
-                        const itemLeft = activeItem.offsetLeft;
-                        const itemWidth = activeItem.offsetWidth;
-                        const containerWidth = filmStrip.offsetWidth;
-                        const scrollLeft = itemLeft - (containerWidth / 2) + (itemWidth / 2);
-                        
-                        // Smooth scroll to the active item
-                        filmStrip.scrollTo({
-                            left: scrollLeft,
-                            behavior: 'smooth'
-                        });
-                    }
+
+                    // No auto-scrolling on mobile - keep film strip at left position
                 }
             });
         }
@@ -1963,19 +1949,13 @@
         
         // Initialize elements on page load
         window.addEventListener('load', function() {
-            // Center the first active item in mobile view on page load
+            // Keep mobile film strip at left position (no centering)
             if (window.innerWidth <= 768) {
-                const activeItem = document.querySelector('.mobile-nav li.active');
-                if (activeItem) {
-                    const filmStrip = document.querySelector('.mobile-film-strip');
-                    const itemLeft = activeItem.offsetLeft;
-                    const itemWidth = activeItem.offsetWidth;
-                    const containerWidth = filmStrip.offsetWidth;
-                    const scrollLeft = itemLeft - (containerWidth / 2) + (itemWidth / 2);
-                    
-                    // Set scroll position with a slight delay to ensure elements are rendered
+                const filmStrip = document.querySelector('.mobile-film-strip');
+                if (filmStrip) {
+                    // Ensure scroll position stays at 0 (leftmost)
                     setTimeout(() => {
-                        filmStrip.scrollLeft = scrollLeft;
+                        filmStrip.scrollLeft = 0;
                     }, 100);
                 }
             }
