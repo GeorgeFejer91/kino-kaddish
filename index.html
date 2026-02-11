@@ -1190,7 +1190,8 @@
 
     <!-- Pretix Widget Scripts -->
     <link rel="stylesheet" type="text/css" href="https://pretix.eu/kino-kaddish/golem/widget/v1.css" crossorigin>
-    <script type="text/javascript" src="https://pretix.eu/widget/v1.en.js" async crossorigin></script>
+    <script type="text/javascript" src="https://pretix.eu/widget/v1.de.js" async crossorigin id="pretix-widget-de"></script>
+    <script type="text/javascript" src="https://pretix.eu/widget/v1.en.js" async crossorigin id="pretix-widget-en"></script>
 </head>
 <body>
     <!-- Language Switcher -->
@@ -1452,7 +1453,7 @@
                                     <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/Instagram.svg" alt="Instagram" class="social-icon instagram-icon">
                                 </a>
                             </div>
-                            <pretix-button event="https://pretix.eu/kino-kaddish/golem/" class="anmelde-button" id="golem-anmelde-button">
+                            <pretix-button event="https://pretix.eu/kino-kaddish/golem/" language="de" class="anmelde-button" id="golem-anmelde-button">
                                 <span data-lang="de">Anmelden</span>
                                 <span data-lang="en">Register</span>
                             </pretix-button>
@@ -1906,6 +1907,12 @@
             // Update button states
             document.getElementById('btn-de').classList.toggle('active', lang === 'de');
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+            // Update Pretix button language
+            const pretixButton = document.getElementById('golem-anmelde-button');
+            if (pretixButton) {
+                pretixButton.setAttribute('language', lang);
+            }
 
             // Save preference
             localStorage.setItem('preferred-language', lang);
