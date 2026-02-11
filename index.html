@@ -56,6 +56,8 @@
         /* ---- BASIC STYLING ---- */
         html {
             font-size: 18px; /* Increased base font size for larger default zoom */
+            overflow-x: hidden; /* Prevent horizontal scrolling on html */
+            max-width: 100vw; /* Limit width to viewport */
         }
 
         body {
@@ -64,6 +66,8 @@
             color: var(--main-text-color);
             line-height: 1.6;
             overflow-x: hidden; /* Prevent horizontal scrolling */
+            max-width: 100vw; /* Limit width to viewport */
+            position: relative; /* Establish positioning context */
         }
 
         /* Language switching with smooth transitions */
@@ -102,6 +106,8 @@
         .container {
             display: flex;
             min-height: 100vh;
+            max-width: 100vw; /* Prevent container from exceeding viewport width */
+            overflow-x: hidden; /* Prevent horizontal overflow */
         }
 
         /* ---- LANGUAGE SWITCHER ---- */
@@ -343,6 +349,9 @@
             flex: 1;
             margin-left: 250px;
             padding: 2rem 3rem;
+            max-width: 100%; /* Prevent content from exceeding container width */
+            overflow-x: hidden; /* Prevent horizontal overflow */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         .section {
@@ -351,6 +360,8 @@
             max-width: 1400px;
             margin-left: auto;
             margin-right: auto;
+            overflow-x: hidden; /* Prevent horizontal overflow */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         .section-title {
@@ -881,6 +892,12 @@
 
         /* ---- MOBILE MENU STYLES ---- */
         @media (max-width: 768px) {
+            /* Prevent any element from causing horizontal overflow */
+            * {
+                max-width: 100vw;
+                box-sizing: border-box;
+            }
+
             /* Ensure language switcher stays fixed on mobile */
             .lang-switcher {
                 position: fixed;
@@ -899,6 +916,22 @@
                 margin-left: 0;
                 padding-top: 60px; /* Space for fixed language switcher */
                 padding-bottom: var(--mobile-menu-height); /* Space for fixed menu */
+                padding-left: 1rem; /* Reduce horizontal padding on mobile */
+                padding-right: 1rem; /* Reduce horizontal padding on mobile */
+                width: 100vw; /* Full viewport width */
+                max-width: 100vw; /* Never exceed viewport width */
+                overflow-x: hidden; /* Prevent horizontal scrolling */
+                box-sizing: border-box; /* Include padding in width */
+            }
+
+            /* Ensure all sections fit within viewport on mobile */
+            .section {
+                width: 100%;
+                max-width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+                overflow-x: hidden;
+                box-sizing: border-box;
             }
             
             /* Mobile menu container */
