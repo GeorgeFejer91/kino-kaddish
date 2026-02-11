@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting... - Kino Kaddish</title>
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kino-kaddish.org/">
+    <meta property="og:site_name" content="Kino Kaddish">
+    <meta property="og:title" content="Kino Kaddish - Filmriss und Widerhall">
+    <meta property="og:description" content="Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen">
+    <meta property="og:image" content="https://kino-kaddish.org/images/FilmPosters/KinoKaddishDerGolemPoster.PNG">
+    <meta property="og:image:secure_url" content="https://kino-kaddish.org/images/FilmPosters/KinoKaddishDerGolemPoster.PNG">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kino Kaddish - Der Golem Poster">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://kino-kaddish.org/">
+    <meta name="twitter:title" content="Kino Kaddish - Filmriss und Widerhall">
+    <meta name="twitter:description" content="Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen">
+    <meta name="twitter:image" content="https://kino-kaddish.org/images/FilmPosters/KinoKaddishDerGolemPoster.PNG">
+    <meta name="twitter:image:alt" content="Kino Kaddish - Der Golem Poster">
+
+    <script>
+        // GitHub Pages 404 redirect to hash-based navigation
+        (function() {
+            var path = window.location.pathname;
+            var hash = window.location.hash;
+            
+            // Extract the section name from the path
+            var pathParts = path.split('/').filter(function(part) {
+                return part && part !== 'index.html' && part !== '404.html';
+            });
+            
+            if (pathParts.length > 0) {
+                var section = pathParts[pathParts.length - 1];
+                
+                // Redirect to the main page with hash
+                var baseUrl = window.location.origin;
+                var newUrl = baseUrl + '/#' + section;
+                
+                console.log('Redirecting from', path, 'to', newUrl);
+                window.location.replace(newUrl);
+            } else if (!hash) {
+                // No section found, redirect to home
+                window.location.replace(window.location.origin + '/');
+            }
+        })();
+    </script>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .message {
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        <h1>Redirecting...</h1>
+        <p>Taking you to Kino Kaddish</p>
+    </div>
+</body>
+</html>
+

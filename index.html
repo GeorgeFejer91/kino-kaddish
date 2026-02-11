@@ -4,6 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kino Kaddish - Filmriss und Widerhall</title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="Kino Kaddish: Filmriss und Widerhall - Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen">
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kino-kaddish.org/">
+    <meta property="og:site_name" content="Kino Kaddish">
+    <meta property="og:title" content="Kino Kaddish - Filmriss und Widerhall">
+    <meta property="og:description" content="Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen: ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.">
+    <meta property="og:image" content="https://kino-kaddish.org/images/FilmPosters/KinoKaddishDerGolemPoster.PNG">
+    <meta property="og:image:secure_url" content="https://kino-kaddish.org/images/FilmPosters/KinoKaddishDerGolemPoster.PNG">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kino Kaddish - Der Golem Poster">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://kino-kaddish.org/">
+    <meta name="twitter:title" content="Kino Kaddish - Filmriss und Widerhall">
+    <meta name="twitter:description" content="Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen: ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.">
+    <meta name="twitter:image" content="https://kino-kaddish.org/images/FilmPosters/KinoKaddishDerGolemPoster.PNG">
+    <meta name="twitter:image:alt" content="Kino Kaddish - Der Golem Poster">
+
     <style>
         /* ---- ROOT VARIABLES ---- */
         :root {
@@ -375,6 +400,15 @@
             font-size: 1rem;
             line-height: 1.5;
             max-width: 75ch;
+        }
+
+        /* Full-width credits line for Der Golem */
+        .film-year.credits-line {
+            max-width: 100%;
+            width: 100%;
+            font-size: clamp(0.75rem, 1.5vw, 1rem);
+            white-space: nowrap;
+            overflow: visible;
         }
 
         .film-content {
@@ -1476,8 +1510,8 @@
                     <p class="film-year" data-lang="en">The Golem: How He Came into the World (Paul Wegener, Germany 1920)</p>
                     <p class="film-year" data-lang="de">Stummfilmkonzert: Uraufführung einer Originalkomposition | <strong>05.03.2026 | 18:45 - 21:30</strong></p>
                     <p class="film-year" data-lang="en">Silent Film Concert: World Premiere of an Original Composition | <strong>05.03.2026 | 18:45 - 21:30</strong></p>
-                    <p class="film-year" data-lang="de">Ein Event des <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerks (ELES) e.V.</a> | Kuratiert von George Fejer & Zuri Maria Daiss | Mit Unterstützung von Iaroslav Bigun</p>
-                    <p class="film-year" data-lang="en">An event by <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerk (ELES) e.V.</a> | Curated by George Fejer & Zuri Maria Daiss | With support from Iaroslav Bigun</p>
+                    <p class="film-year credits-line" data-lang="de">Ein Event des <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerks (ELES) e.V.</a> | Kuratiert von George Fejer & Zuri Maria Daiss | Mit Unterstützung von Iaroslav Bigun</p>
+                    <p class="film-year credits-line" data-lang="en">An event by <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerk (ELES) e.V.</a> | Curated by George Fejer & Zuri Maria Daiss | With support from Iaroslav Bigun</p>
                     <div class="film-content">
                         <div class="golem-poster-column">
                             <div class="film-image golem-poster">
@@ -1995,10 +2029,9 @@
                     console.log('Found target section, scrolling to:', targetId);
                     // Delay to ensure page is fully loaded
                     setTimeout(() => {
-                        // Get the position of the target section
-                        const yOffset = -100; // Offset for any fixed headers
+                        // Scroll so the section title is at the very top
                         const element = targetSection;
-                        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        const y = element.getBoundingClientRect().top + window.pageYOffset;
 
                         window.scrollTo({
                             top: y,
@@ -2032,8 +2065,20 @@
                 }, 100);
             }
 
-            // Handle hash navigation on page load
-            handleHashNavigation();
+            // Handle hash navigation on page load - with delay to ensure rendering
+            setTimeout(() => {
+                handleHashNavigation();
+            }, 100);
+        });
+
+        // Also try on window load (after all resources loaded)
+        window.addEventListener('load', function() {
+            // Only run if there's a hash and we haven't scrolled yet
+            if (window.location.hash && window.pageYOffset === 0) {
+                setTimeout(() => {
+                    handleHashNavigation();
+                }, 200);
+            }
         });
 
         // Handle hash changes (when user clicks anchor links)
