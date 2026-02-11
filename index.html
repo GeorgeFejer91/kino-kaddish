@@ -1476,8 +1476,8 @@
                     <p class="film-year" data-lang="en">The Golem: How He Came into the World (Paul Wegener, Germany 1920)</p>
                     <p class="film-year" data-lang="de">Stummfilmkonzert: Uraufführung einer Originalkomposition | <strong>05.03.2026 | 18:45 - 21:30</strong></p>
                     <p class="film-year" data-lang="en">Silent Film Concert: World Premiere of an Original Composition | <strong>05.03.2026 | 18:45 - 21:30</strong></p>
-                    <p class="film-year" data-lang="de">Ein Event des <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerks (ELES) e.V.</a> | Kuratiert von George Fejer & Zuri Maria Daiss</p>
-                    <p class="film-year" data-lang="en">An event by <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerk (ELES) e.V.</a> | Curated by George Fejer & Zuri Maria Daiss</p>
+                    <p class="film-year" data-lang="de">Ein Event des <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerks (ELES) e.V.</a> | Kuratiert von George Fejer & Zuri Maria Daiss | Mit Unterstützung von Iaroslav Bigun</p>
+                    <p class="film-year" data-lang="en">An event by <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerk (ELES) e.V.</a> | Curated by George Fejer & Zuri Maria Daiss | With support from Iaroslav Bigun</p>
                     <div class="film-content">
                         <div class="golem-poster-column">
                             <div class="film-image golem-poster">
@@ -1975,7 +1975,7 @@
             // If no hash but pathname contains a section name, use that
             if (!hash) {
                 const pathname = window.location.pathname;
-                const pathParts = pathname.split('/').filter(part => part);
+                const pathParts = pathname.split('/').filter(part => part && part !== 'index.html');
                 if (pathParts.length > 0) {
                     hash = pathParts[pathParts.length - 1];
                 }
@@ -1988,25 +1988,31 @@
                     targetId = 'der-golem';
                 }
 
-                console.log('Attempting to navigate to:', targetId);
+                console.log('Hash navigation - Original hash:', hash, 'Target ID:', targetId);
                 const targetSection = document.getElementById(targetId);
 
                 if (targetSection) {
-                    console.log('Found target section, scrolling...');
-                    // Longer delay to ensure page is fully loaded
+                    console.log('Found target section, scrolling to:', targetId);
+                    // Delay to ensure page is fully loaded
                     setTimeout(() => {
-                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        // Also try setting window scroll position as backup
-                        const rect = targetSection.getBoundingClientRect();
-                        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                        // Get the position of the target section
+                        const yOffset = -100; // Offset for any fixed headers
+                        const element = targetSection;
+                        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
                         window.scrollTo({
-                            top: rect.top + scrollTop - 100, // 100px offset for header
+                            top: y,
                             behavior: 'smooth'
                         });
-                    }, 500);
+
+                        console.log('Scrolled to position:', y);
+                    }, 600);
                 } else {
                     console.log('Target section not found:', targetId);
+                    console.log('Available sections:', Array.from(document.querySelectorAll('section[id]')).map(s => s.id));
                 }
+            } else {
+                console.log('No hash or pathname found for navigation');
             }
         }
 
