@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ablaufplan | Kino Kaddish</title>
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <style>
+        :root {
+            --bg: #000;
+            --panel: #111;
+            --text: #f0f0f0;
+            --muted: #b3b3b3;
+            --line: #333;
+            --accent: #c0c0c0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.25rem 3rem;
+        }
+
+        h1 {
+            margin: 0 0 0.25rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 400;
+            letter-spacing: 0.03em;
+        }
+
+        h2 {
+            margin: 0 0 1.75rem;
+            font-size: clamp(1.1rem, 2.7vw, 1.4rem);
+            font-weight: 300;
+            color: var(--accent);
+        }
+
+        .meta {
+            margin-bottom: 1.5rem;
+            color: var(--muted);
+        }
+
+        .contacts {
+            margin: 0 0 1.5rem;
+            padding: 1rem;
+            border: 2px solid var(--accent);
+            background: #141414;
+        }
+
+        .contacts h3 {
+            margin: 0 0 0.65rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: #fff;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+
+        .contact-card {
+            border: 1px solid #4a4a4a;
+            background: #0b0b0b;
+            padding: 0.9rem;
+        }
+
+        .contact-name {
+            margin: 0 0 0.2rem;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #fff;
+        }
+
+        .contact-role {
+            margin: 0 0 0.6rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .contact-line {
+            margin: 0.2rem 0;
+            font-size: 1rem;
+        }
+
+        .contact-line strong {
+            color: var(--accent);
+        }
+
+        .slot {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--line);
+            background: var(--panel);
+            margin-bottom: 0.85rem;
+        }
+
+        .time {
+            margin: 0;
+            font-weight: 700;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .content {
+            margin: 0;
+        }
+
+        .content p {
+            margin: 0.15rem 0;
+        }
+
+        .checklist {
+            margin-top: 2rem;
+            padding: 1rem;
+            border: 1px solid var(--line);
+            background: #0b0b0b;
+        }
+
+        .checklist h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        ul {
+            margin: 0.25rem 0 0;
+            padding-left: 1.2rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .slot {
+                grid-template-columns: 1fr;
+            }
+
+            .time {
+                white-space: normal;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Laufplan f&uuml;r Kino Kaddish im Centrum Judaicum am 05. M&auml;rz</h1>
+        <h2>Wie der Golem auf die Leinwand kam</h2>
+        <p class="meta">Interne Planungsseite (nicht in Navigation verlinkt)</p>
+
+        <section class="contacts" aria-label="Ansprechpersonen">
+            <h3>Ansprechpersonen (wichtig)</h3>
+            <div class="contact-grid">
+                <article class="contact-card">
+                    <p class="contact-name">George Fejer</p>
+                    <p class="contact-role">Kino Kaddish / Orga</p>
+                    <p class="contact-line"><strong>Tel.:</strong> <a href="tel:+4915129442967">+49 1512 9442967</a></p>
+                    <p class="contact-line"><strong>E-Mail:</strong> <a href="mailto:george.fejer@uni-konstanz.de">george.fejer@uni-konstanz.de</a></p>
+                </article>
+                <article class="contact-card">
+                    <p class="contact-name">Henry Lucke</p>
+                    <p class="contact-role">Technische Assistenz Centrum Judaicum</p>
+                    <p class="contact-line"><strong>Tel.:</strong> <a href="tel:+493088028307">+49 (0)30 88 028 307</a></p>
+                    <p class="contact-line"><strong>E-Mail:</strong> <a href="mailto:h.lucke@centrumjudaicum.de">h.lucke@centrumjudaicum.de</a></p>
+                </article>
+            </div>
+        </section>
+
+        <section aria-label="Zeitplan">
+            <article class="slot">
+                <p class="time">11:00 Uhr</p>
+                <div class="content">
+                    <p>Anlieferung f&uuml;r Soundcheck startet</p>
+                    <p>Technischer Voraufbau (Audio/Instrumente)</p>
+                    <p>Soundchecks starten und laufen bis sp&auml;ter am Abend weiter (parallel zu Programmpunkten)</p>
+                </div>
+            </article>
+
+            <article class="slot">
+                <p class="time">15:00 Uhr</p>
+                <div class="content">
+                    <p>Ankunft Orga-Team</p>
+                    <p>Aufbau / letzte Abstimmungen</p>
+                    <p>Technik-Check</p>
+                    <p>Ablauf durchgehen - G&auml;steliste, Einlass mit Haus abstimmen (Imke/Konstantin?)</p>
+                </div>
+            </article>
+
+            <article class="slot">
+                <p class="time">16:00 - 18:00 Uhr</p>
+                <div class="content">
+                    <p>Internes ELES-Seminar (max. 20 TN)</p>
+                    <p>Begr&uuml;&szlig;ung Konstantin/Imke, Leitung: Tirza</p>
+                    <p>Parallel: laufende Soundchecks der Musiker*innen</p>
+                </div>
+            </article>
+
+            <article class="slot">
+                <p class="time">18:00 - 18:45 Uhr</p>
+                <div class="content">
+                    <p>Pause / &Uuml;bergang</p>
+                    <p>Seminar endet</p>
+                    <p>TN k&ouml;nnen eigenst&auml;ndig essen/trinken</p>
+                    <p>Orga-Team bereitet &ouml;ffentlichen Teil vor</p>
+                    <p>Einlass f&uuml;r &Ouml;ffentlichkeit ab ca. 18:30 Uhr sinnvoll?</p>
+                </div>
+            </article>
+
+            <article class="slot">
+                <p class="time">18:45 Uhr</p>
+                <div class="content">
+                    <p>Beginn &ouml;ffentliche Veranstaltung</p>
+                    <p>1. Begr&uuml;&szlig;ung (ca. 5 Min.) - George, formale Er&ouml;ffnung</p>
+                    <p>2. Kurze Worte ELES (2-3 Min.) - Imke</p>
+                    <p>3. Kontextualisierung des Films (max. 10 Min.) - Tirza</p>
+                </div>
+            </article>
+
+            <article class="slot">
+                <p class="time">19:05 Uhr</p>
+                <div class="content">
+                    <p>Film mit Live-Vertonung</p>
+                    <p>Filmende etwa 20:35 Uhr</p>
+                    <p>Anschlie&szlig;end: Q&amp;A</p>
+                    <p>Ende 21:15 - 21:30 Uhr</p>
+                </div>
+            </article>
+
+            <article class="slot">
+                <p class="time">ab 21:30 Uhr</p>
+                <div class="content">
+                    <p>Abbau startet (B&uuml;hne, Audio, Instrumente, Technik)</p>
+                    <p>R&uuml;ckbau / Material sortieren / Verladung</p>
+                    <p>Abschluss mit Haus und finale Abnahme der R&auml;ume</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="checklist" aria-label="Offene organisatorische Punkte">
+            <h3>Organisatorisch noch zu bedenken</h3>
+            <ul>
+                <li>Wer moderiert das Q&amp;A offiziell?</li>
+                <li>Wer schlie&szlig;t die Veranstaltung offiziell?</li>
+                <li>Spendenbox noch unklar.</li>
+            </ul>
+        </section>
+
+        <p style="margin-top: 1.5rem;">
+            <a href="/#golem">Zur&uuml;ck zur Hauptseite</a>
+        </p>
+    </main>
+</body>
+</html>
