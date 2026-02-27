@@ -77,6 +77,59 @@
             border: 1px solid #4a4a4a;
             background: #0b0b0b;
             padding: 0.9rem;
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            gap: 0.7rem;
+            align-items: start;
+        }
+
+        .contact-toggle {
+            border: 1px solid #4a4a4a;
+            background: #0b0b0b;
+        }
+
+        .contact-toggle summary {
+            list-style: none;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            gap: 0.7rem;
+            align-items: center;
+            padding: 0.9rem;
+        }
+
+        .contact-toggle summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .contact-toggle .contact-body {
+            padding: 0 0.9rem 0.9rem 0.9rem;
+            border-top: 1px solid #343434;
+            margin-top: -0.1rem;
+        }
+
+        .contact-icon {
+            width: 52px;
+            height: 52px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #5a5a5a;
+            border-radius: 8px;
+            background: #151515;
+            font-size: 1.6rem;
+            transform: rotate(90deg);
+            color: #fff;
+        }
+
+        .contact-body {
+            min-width: 0;
+        }
+
+        .contact-hint {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.92rem;
         }
 
         .contact-name {
@@ -99,6 +152,24 @@
 
         .contact-line strong {
             color: var(--accent);
+        }
+
+        .call-now {
+            display: inline-block;
+            margin-top: 0.45rem;
+            padding: 0.3rem 0.55rem;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 0.92rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .call-now:hover {
+            background: #2a2a2a;
+            text-decoration: none;
         }
 
         .slot {
@@ -178,17 +249,30 @@
         <section class="contacts" aria-label="Ansprechpersonen">
             <h3>Ansprechpersonen (wichtig)</h3>
             <div class="contact-grid">
+                <details class="contact-toggle" open>
+                    <summary>
+                        <div class="contact-icon" aria-hidden="true">&#9742;</div>
+                        <div>
+                            <p class="contact-name">George Fejer</p>
+                            <p class="contact-hint">Telefon-Icon klicken f&uuml;r Kontaktdaten</p>
+                        </div>
+                    </summary>
+                    <div class="contact-body">
+                        <p class="contact-name">George Fejer</p>
+                        <p class="contact-role">Kino Kaddish / Orga</p>
+                        <p class="contact-line"><strong>Tel.:</strong> <a href="tel:+4915129442967">+49 1512 9442967</a></p>
+                        <a class="call-now" href="tel:+4915129442967" aria-label="George Fejer direkt anrufen">Direkt anrufen</a>
+                        <p class="contact-line"><strong>E-Mail:</strong> <a href="mailto:george.fejer@uni-konstanz.de">george.fejer@uni-konstanz.de</a></p>
+                    </div>
+                </details>
                 <article class="contact-card">
-                    <p class="contact-name">George Fejer</p>
-                    <p class="contact-role">Kino Kaddish / Orga</p>
-                    <p class="contact-line"><strong>Tel.:</strong> <a href="tel:+4915129442967">+49 1512 9442967</a></p>
-                    <p class="contact-line"><strong>E-Mail:</strong> <a href="mailto:george.fejer@uni-konstanz.de">george.fejer@uni-konstanz.de</a></p>
-                </article>
-                <article class="contact-card">
-                    <p class="contact-name">Henry Lucke</p>
-                    <p class="contact-role">Technische Assistenz Centrum Judaicum</p>
-                    <p class="contact-line"><strong>Tel.:</strong> <a href="tel:+493088028307">+49 (0)30 88 028 307</a></p>
-                    <p class="contact-line"><strong>E-Mail:</strong> <a href="mailto:h.lucke@centrumjudaicum.de">h.lucke@centrumjudaicum.de</a></p>
+                    <div class="contact-icon" aria-hidden="true">&#9742;</div>
+                    <div class="contact-body">
+                        <p class="contact-name">Henry Lucke</p>
+                        <p class="contact-role">Technische Assistenz Centrum Judaicum</p>
+                        <p class="contact-line"><strong>Tel.:</strong> <a href="tel:+493088028307">+49 (0)30 88 028 307</a></p>
+                        <p class="contact-line"><strong>E-Mail:</strong> <a href="mailto:h.lucke@centrumjudaicum.de">h.lucke@centrumjudaicum.de</a></p>
+                    </div>
                 </article>
             </div>
         </section>
