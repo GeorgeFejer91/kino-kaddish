@@ -135,6 +135,20 @@
             margin-bottom: 0.85rem;
         }
 
+        .arrival-slot {
+            border-left: 4px solid var(--accent);
+            background: #161616;
+        }
+
+        .arrival-label {
+            margin: 0 0 0.3rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
         .time {
             margin: 0;
             font-weight: 700;
@@ -372,7 +386,10 @@
                 <li><a class="nav-link" href="#slot-0403-1400">14:00 Subwoofer</a></li>
                 <li><a class="nav-link" href="#slot-0403-1500">15:00 Teichmann Technik</a></li>
                 <li><a class="nav-link" href="#tag-0503">05.03 Veranstaltungstag</a></li>
-                <li><a class="nav-link" href="#slot-0503-1100">11:00 Aufbau</a></li>
+                <li><a class="nav-link" href="#slot-0503-1100">11:00 Ankunft Crew</a></li>
+                <li><a class="nav-link" href="#slot-0503-1500">15:00 ELES Orga</a></li>
+                <li><a class="nav-link" href="#slot-0503-1545">15:45 Seminar TN</a></li>
+                <li><a class="nav-link" href="#slot-0503-1830">18:30 Publikum</a></li>
                 <li><a class="nav-link" href="#slot-0503-1600">16:00 Seminar</a></li>
                 <li><a class="nav-link" href="#slot-0503-1845">18:45 Einf&uuml;hrung</a></li>
                 <li><a class="nav-link" href="#slot-0503-1905">19:05 Film</a></li>
@@ -432,22 +449,36 @@
         <section class="day" id="tag-0503" aria-label="Ablauf am 05.03.2026">
             <h3 class="day-title">Donnerstag, 05.03.2026: Seminar und Veranstaltung</h3>
 
-            <article class="slot" id="slot-0503-1100">
+            <article class="slot arrival-slot" id="slot-0503-1100">
                 <p class="time">11:00 Uhr</p>
                 <div class="content">
+                    <p class="arrival-label">Ankunft</p>
+                    <p><strong>K&uuml;nstler:</strong> Andi Teichmann, Hannes Teichmann, Roby Schulkowsky.</p>
+                    <p><strong>Videografie:</strong> Dmitrey Ekimow, Michael Tchijow, Judith Franz.</p>
+                    <p><strong>Hauptorganisation:</strong> George Fejer.</p>
                     <p>Soundcheck startet.</p>
                     <p>Videografie-Aufbau startet.</p>
                     <p>Technischer Voraufbau f&uuml;r Audio, Instrumente und Kamerasetup beginnt.</p>
                 </div>
             </article>
 
-            <article class="slot" id="slot-0503-1500">
+            <article class="slot arrival-slot" id="slot-0503-1500">
                 <p class="time">15:00 Uhr</p>
                 <div class="content">
-                    <p>Ankunft Orga-Team.</p>
+                    <p class="arrival-label">Ankunft</p>
+                    <p><strong>ELES-Orga:</strong> Imke Kummer, Konstantin Seidler, Tirza Seene.</p>
+                    <p>Ablaufdurchgang, G&auml;steliste und Einlassabstimmung mit dem Hausteam.</p>
                     <p>Aufbau und letzte Abstimmungen.</p>
                     <p>Technikcheck.</p>
-                    <p>Ablaufdurchgang, G&auml;steliste und Einlassabstimmung mit dem Hausteam.</p>
+                </div>
+            </article>
+
+            <article class="slot arrival-slot" id="slot-0503-1545">
+                <p class="time">15:45 Uhr</p>
+                <div class="content">
+                    <p class="arrival-label">Ankunft</p>
+                    <p><strong>ELES Stipendiat:innen:</strong> Seminarteilnehmende treffen ein.</p>
+                    <p>Check-in und Platzierung f&uuml;r den Seminarstart.</p>
                 </div>
             </article>
 
@@ -462,13 +493,20 @@
             </article>
 
             <article class="slot" id="slot-0503-1800">
-                <p class="time">18:00 - 18:45 Uhr</p>
+                <p class="time">18:00 - 18:30 Uhr</p>
                 <div class="content">
                     <p>Pause und &Uuml;bergang.</p>
                     <p>Seminar endet.</p>
                     <p>Teilnehmende nutzen die Pause f&uuml;r Essen und Getr&auml;nke.</p>
                     <p>Orga-Team bereitet den &ouml;ffentlichen Teil vor.</p>
-                    <p>Einlass f&uuml;r die &Ouml;ffentlichkeit ab 18:30 Uhr.</p>
+                </div>
+            </article>
+
+            <article class="slot arrival-slot" id="slot-0503-1830">
+                <p class="time">18:30 - 18:45 Uhr</p>
+                <div class="content">
+                    <p class="arrival-label">Ankunft</p>
+                    <p><strong>&Ouml;ffentlichkeit:</strong> Ankunft aller &ouml;ffentlichen G&auml;ste und Einlass.</p>
                 </div>
             </article>
 
@@ -506,6 +544,7 @@
             <ul>
                 <li>Der Ablauf ist als finale Version f&uuml;r das Team abgestimmt.</li>
                 <li>Soundcheck und Videografie-Aufbau laufen ab 11:00 Uhr kontinuierlich bis zum Veranstaltungsbeginn.</li>
+                <li>Alle Ankunftszeiten am 05.03.2026 sind explizit im Ablauf ausgewiesen.</li>
                 <li>Notfallkontakte sind &uuml;ber den seitlichen Button aufrufbar.</li>
             </ul>
         </section>
