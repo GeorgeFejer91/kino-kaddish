@@ -13,6 +13,7 @@
             --muted: #b3b3b3;
             --line: #333;
             --accent: #c0c0c0;
+            --nav-width: 250px;
         }
 
         * {
@@ -27,9 +28,68 @@
             line-height: 1.6;
         }
 
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .timeline-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: var(--nav-width);
+            overflow-y: auto;
+            padding: 1rem;
+            border-right: 1px solid var(--line);
+            background: #0d0d0d;
+            z-index: 100;
+        }
+
+        .timeline-nav h2 {
+            margin: 0 0 0.7rem;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .nav-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.38rem 0.52rem;
+            border: 1px solid #272727;
+            background: #141414;
+            color: var(--text);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            line-height: 1.35;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            text-decoration: none;
+            border-color: var(--accent);
+            background: #1d1d1d;
+            outline: none;
+        }
+
         main {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 0 auto 0 calc(var(--nav-width) + 1.2rem);
             padding: 2rem 1.25rem 3rem;
         }
 
@@ -52,124 +112,17 @@
             color: var(--muted);
         }
 
-        .contacts {
-            margin: 0 0 1.5rem;
-            padding: 1rem;
-            border: 2px solid var(--accent);
-            background: #141414;
+        .day {
+            margin-top: 2rem;
         }
 
-        .contacts h3 {
-            margin: 0 0 0.65rem;
-            font-size: 1.2rem;
+        .day-title {
+            margin: 0 0 0.9rem;
+            padding-bottom: 0.35rem;
+            border-bottom: 1px solid #4d4d4d;
+            font-size: 1.25rem;
             font-weight: 600;
-            letter-spacing: 0.01em;
             color: #fff;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-        }
-
-        .contact-card {
-            border: 1px solid #4a4a4a;
-            background: #0b0b0b;
-            padding: 0.9rem;
-            display: grid;
-            grid-template-columns: 52px 1fr;
-            gap: 0.7rem;
-            align-items: start;
-        }
-
-        .contact-toggle {
-            border: 1px solid #4a4a4a;
-            background: #0b0b0b;
-        }
-
-        .contact-toggle summary {
-            list-style: none;
-            cursor: pointer;
-            display: grid;
-            grid-template-columns: 52px 1fr;
-            gap: 0.7rem;
-            align-items: center;
-            padding: 0.9rem;
-        }
-
-        .contact-toggle summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .contact-toggle .contact-body {
-            padding: 0 0.9rem 0.9rem 0.9rem;
-            border-top: 1px solid #343434;
-            margin-top: -0.1rem;
-        }
-
-        .contact-icon {
-            width: 52px;
-            height: 52px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #5a5a5a;
-            border-radius: 8px;
-            background: #151515;
-            font-size: 1.6rem;
-            transform: rotate(90deg);
-            color: #fff;
-        }
-
-        .contact-body {
-            min-width: 0;
-        }
-
-        .contact-hint {
-            margin: 0;
-            color: var(--muted);
-            font-size: 0.92rem;
-        }
-
-        .contact-name {
-            margin: 0 0 0.2rem;
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: #fff;
-        }
-
-        .contact-role {
-            margin: 0 0 0.6rem;
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        .contact-line {
-            margin: 0.2rem 0;
-            font-size: 1rem;
-        }
-
-        .contact-line strong {
-            color: var(--accent);
-        }
-
-        .call-now {
-            display: inline-block;
-            margin-top: 0.45rem;
-            padding: 0.3rem 0.55rem;
-            border: 1px solid var(--accent);
-            border-radius: 6px;
-            background: #1a1a1a;
-            color: #fff;
-            font-size: 0.92rem;
-            font-weight: 600;
-            letter-spacing: 0.01em;
-        }
-
-        .call-now:hover {
-            background: #2a2a2a;
-            text-decoration: none;
         }
 
         .slot {
@@ -197,14 +150,14 @@
             margin: 0.15rem 0;
         }
 
-        .checklist {
+        .note-box {
             margin-top: 2rem;
             padding: 1rem;
             border: 1px solid var(--line);
             background: #0b0b0b;
         }
 
-        .checklist h3 {
+        .note-box h3 {
             margin-top: 0;
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
@@ -216,149 +169,396 @@
             padding-left: 1.2rem;
         }
 
-        a {
+        .back-link {
+            margin-top: 1.5rem;
+        }
+
+        .emergency-toggle {
+            position: fixed;
+            right: 0;
+            top: 36%;
+            z-index: 210;
+            padding: 0.7rem 0.6rem;
+            border: 1px solid var(--accent);
+            border-right: 0;
+            border-radius: 8px 0 0 8px;
+            background: #141414;
+            color: #fff;
+            font-size: 0.86rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            cursor: pointer;
+        }
+
+        .emergency-toggle:hover {
+            background: #212121;
+        }
+
+        .emergency-panel {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            width: min(360px, calc(100vw - 1.2rem));
+            max-height: calc(100vh - 2rem);
+            overflow-y: auto;
+            padding: 0.9rem;
+            border: 1px solid #4c4c4c;
+            background: #121212;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+            transform: translateX(115%);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.24s ease, opacity 0.24s ease;
+            z-index: 220;
+        }
+
+        body.emergency-open .emergency-panel {
+            transform: translateX(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .emergency-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .emergency-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .emergency-close {
+            border: 1px solid #4f4f4f;
+            background: #1c1c1c;
+            color: #fff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+            font-size: 0.84rem;
+            cursor: pointer;
+        }
+
+        .emergency-card {
+            border: 1px solid #3a3a3a;
+            background: #0b0b0b;
+            padding: 0.75rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .emergency-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-name {
+            margin: 0 0 0.2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .contact-role {
+            margin: 0 0 0.45rem;
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        .contact-line {
+            margin: 0.15rem 0;
+            font-size: 0.95rem;
+        }
+
+        .contact-line strong {
             color: var(--accent);
+        }
+
+        .call-now {
+            display: inline-block;
+            margin-top: 0.45rem;
+            padding: 0.32rem 0.58rem;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .call-now:hover {
+            background: #2a2a2a;
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
+        @media (max-width: 980px) {
+            .timeline-nav {
+                position: sticky;
+                top: 0;
+                bottom: auto;
+                width: 100%;
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+                padding: 0.7rem 0.8rem;
+                z-index: 130;
+            }
+
+            .timeline-nav h2 {
+                margin-bottom: 0.45rem;
+            }
+
+            .nav-list {
+                flex-direction: row;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 0.2rem;
+            }
+
+            .nav-link {
+                border-radius: 999px;
+                font-size: 0.86rem;
+                white-space: nowrap;
+            }
+
+            main {
+                margin-left: 0;
+                padding: 1.25rem 1rem 3rem;
+            }
         }
 
         @media (max-width: 700px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
             .slot {
                 grid-template-columns: 1fr;
+                gap: 0.55rem;
             }
 
             .time {
                 white-space: normal;
             }
+
+            .emergency-toggle {
+                right: 0.6rem;
+                top: auto;
+                bottom: 0.75rem;
+                writing-mode: horizontal-tb;
+                transform: none;
+                border-radius: 999px;
+                border-right: 1px solid var(--accent);
+                padding: 0.55rem 0.9rem;
+            }
+
+            .emergency-panel {
+                top: auto;
+                right: 0.5rem;
+                left: 0.5rem;
+                bottom: 3.8rem;
+                width: auto;
+                max-height: 74vh;
+            }
         }
     </style>
 </head>
 <body>
+    <aside class="timeline-nav" aria-label="Navigation f&uuml;r Ablaufplan">
+        <h2>Ablauf Navigation</h2>
+        <nav>
+            <ul class="nav-list">
+                <li><a class="nav-link" href="#tag-0403">04.03 Anlieferung</a></li>
+                <li><a class="nav-link" href="#slot-0403-1400">14:00 Subwoofer</a></li>
+                <li><a class="nav-link" href="#slot-0403-1500">15:00 Teichmann Technik</a></li>
+                <li><a class="nav-link" href="#tag-0503">05.03 Veranstaltungstag</a></li>
+                <li><a class="nav-link" href="#slot-0503-1100">11:00 Aufbau</a></li>
+                <li><a class="nav-link" href="#slot-0503-1600">16:00 Seminar</a></li>
+                <li><a class="nav-link" href="#slot-0503-1845">18:45 Einf&uuml;hrung</a></li>
+                <li><a class="nav-link" href="#slot-0503-1905">19:05 Film</a></li>
+                <li><a class="nav-link" href="#slot-0503-2130">21:30 Abbau</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <button type="button" class="emergency-toggle" id="emergencyToggle" aria-controls="emergencyPanel" aria-expanded="false">
+        Notfallkontakte
+    </button>
+    <aside class="emergency-panel" id="emergencyPanel" aria-label="Notfallkontakte" aria-hidden="true">
+        <div class="emergency-header">
+            <h3>Notfallkontakte</h3>
+            <button type="button" class="emergency-close" id="emergencyClose">Schliessen</button>
+        </div>
+        <article class="emergency-card">
+            <p class="contact-name">George Fejer</p>
+            <p class="contact-role">Kino Kaddish Orga</p>
+            <p class="contact-line"><strong>Telefon:</strong> <a href="tel:+4915129442967">+49 1512 9442967</a></p>
+            <p class="contact-line"><strong>E-Mail:</strong> <a href="mailto:george.fejer@uni-konstanz.de">george.fejer@uni-konstanz.de</a></p>
+            <a class="call-now" href="tel:+4915129442967" aria-label="George Fejer direkt anrufen">Direkt anrufen</a>
+        </article>
+        <article class="emergency-card">
+            <p class="contact-name">Henry Lucke</p>
+            <p class="contact-role">Technische Assistenz Centrum Judaicum</p>
+            <p class="contact-line"><strong>Telefon:</strong> <a href="tel:+493088028307">+49 30 88 028 307</a></p>
+            <p class="contact-line"><strong>E-Mail:</strong> <a href="mailto:h.lucke@centrumjudaicum.de">h.lucke@centrumjudaicum.de</a></p>
+        </article>
+    </aside>
+
     <main>
-        <h1>Laufplan f&uuml;r Kino Kaddish im Centrum Judaicum am 05. M&auml;rz</h1>
+        <h1>Verbindlicher Ablaufplan f&uuml;r Kino Kaddish im Centrum Judaicum</h1>
         <h2>Wie der Golem auf die Leinwand kam</h2>
-        <p class="meta">Interne Planungsseite (nicht in Navigation verlinkt)</p>
+        <p class="meta">Stand 03.03.2026. Interne Planungsseite ohne Navigationseintrag.</p>
 
-        <section class="contacts" aria-label="Ansprechpersonen">
-            <h3>Ansprechpersonen (wichtig)</h3>
-            <div class="contact-grid">
-                <details class="contact-toggle" open>
-                    <summary>
-                        <div class="contact-icon" aria-hidden="true">&#9742;</div>
-                        <div>
-                            <p class="contact-name">George Fejer</p>
-                            <p class="contact-hint">Telefon-Icon klicken f&uuml;r Kontaktdaten</p>
-                        </div>
-                    </summary>
-                    <div class="contact-body">
-                        <p class="contact-name">George Fejer</p>
-                        <p class="contact-role">Kino Kaddish / Orga</p>
-                        <p class="contact-line"><strong>Tel.:</strong> <a href="tel:+4915129442967">+49 1512 9442967</a></p>
-                        <a class="call-now" href="tel:+4915129442967" aria-label="George Fejer direkt anrufen">Direkt anrufen</a>
-                        <p class="contact-line"><strong>E-Mail:</strong> <a href="mailto:george.fejer@uni-konstanz.de">george.fejer@uni-konstanz.de</a></p>
-                    </div>
-                </details>
-                <article class="contact-card">
-                    <div class="contact-icon" aria-hidden="true">&#9742;</div>
-                    <div class="contact-body">
-                        <p class="contact-name">Henry Lucke</p>
-                        <p class="contact-role">Technische Assistenz Centrum Judaicum</p>
-                        <p class="contact-line"><strong>Tel.:</strong> <a href="tel:+493088028307">+49 (0)30 88 028 307</a></p>
-                        <p class="contact-line"><strong>E-Mail:</strong> <a href="mailto:h.lucke@centrumjudaicum.de">h.lucke@centrumjudaicum.de</a></p>
-                    </div>
-                </article>
-            </div>
-        </section>
+        <section class="day" id="tag-0403" aria-label="Ablauf am 04.03.2026">
+            <h3 class="day-title">Mittwoch, 04.03.2026: Anlieferung</h3>
 
-        <section aria-label="Zeitplan">
-            <article class="slot">
-                <p class="time">11:00 Uhr</p>
+            <article class="slot" id="slot-0403-1400">
+                <p class="time">14:00 Uhr</p>
                 <div class="content">
-                    <p>Anlieferung f&uuml;r Soundcheck startet</p>
-                    <p>Technischer Voraufbau (Audio/Instrumente)</p>
-                    <p>Soundchecks starten und laufen bis sp&auml;ter am Abend weiter (parallel zu Programmpunkten)</p>
+                    <p>Dmitrey Ekimow, Videograf, &uuml;bernimmt die Subwoofer.</p>
+                    <p>Transport und Anlieferung der Subwoofer im Centrum Judaicum sind abgeschlossen.</p>
                 </div>
             </article>
 
-            <article class="slot">
+            <article class="slot" id="slot-0403-1500">
                 <p class="time">15:00 Uhr</p>
                 <div class="content">
-                    <p>Ankunft Orga-Team</p>
-                    <p>Aufbau / letzte Abstimmungen</p>
-                    <p>Technik-Check</p>
-                    <p>Ablauf durchgehen - G&auml;steliste, Einlass mit Haus abstimmen (Imke/Konstantin?)</p>
-                </div>
-            </article>
-
-            <article class="slot">
-                <p class="time">16:00 - 18:00 Uhr</p>
-                <div class="content">
-                    <p>Internes ELES-Seminar (max. 20 TN)</p>
-                    <p>Begr&uuml;&szlig;ung Konstantin/Imke, Leitung: Tirza</p>
-                    <p>Parallel: laufende Soundchecks der Musiker*innen</p>
-                </div>
-            </article>
-
-            <article class="slot">
-                <p class="time">18:00 - 18:45 Uhr</p>
-                <div class="content">
-                    <p>Pause / &Uuml;bergang</p>
-                    <p>Seminar endet</p>
-                    <p>TN k&ouml;nnen eigenst&auml;ndig essen/trinken</p>
-                    <p>Orga-Team bereitet &ouml;ffentlichen Teil vor</p>
-                    <p>Einlass f&uuml;r &Ouml;ffentlichkeit ab ca. 18:30 Uhr sinnvoll?</p>
-                </div>
-            </article>
-
-            <article class="slot">
-                <p class="time">18:45 Uhr</p>
-                <div class="content">
-                    <p>Beginn &ouml;ffentliche Veranstaltung</p>
-                    <p>1. Begr&uuml;&szlig;ung (ca. 5 Min.) - George, formale Er&ouml;ffnung</p>
-                    <p>2. Kurze Worte ELES (2-3 Min.) - Imke</p>
-                    <p>3. Kontextualisierung des Films (max. 10 Min.) - Tirza</p>
-                </div>
-            </article>
-
-            <article class="slot">
-                <p class="time">19:05 Uhr</p>
-                <div class="content">
-                    <p>Film mit Live-Vertonung</p>
-                    <p>Filmende etwa 20:35 Uhr</p>
-                    <p>Anschlie&szlig;end: Q&amp;A</p>
-                    <p>Ende 21:15 - 21:30 Uhr</p>
-                </div>
-            </article>
-
-            <article class="slot">
-                <p class="time">ab 21:30 Uhr</p>
-                <div class="content">
-                    <p>Abbau startet (B&uuml;hne, Audio, Instrumente, Technik)</p>
-                    <p>R&uuml;ckbau / Material sortieren / Verladung</p>
-                    <p>Abschluss mit Haus und finale Abnahme der R&auml;ume</p>
+                    <p>Anlieferung des Equipments von Andi und Hannes Teichmann im Centrum Judaicum ist abgeschlossen.</p>
+                    <p>Das Material ist f&uuml;r den Aufbau am Folgetag bereitgestellt.</p>
                 </div>
             </article>
         </section>
 
-        <section class="checklist" aria-label="Offene organisatorische Punkte">
-            <h3>Organisatorisch noch zu bedenken</h3>
+        <section class="day" id="tag-0503" aria-label="Ablauf am 05.03.2026">
+            <h3 class="day-title">Donnerstag, 05.03.2026: Seminar und Veranstaltung</h3>
+
+            <article class="slot" id="slot-0503-1100">
+                <p class="time">11:00 Uhr</p>
+                <div class="content">
+                    <p>Soundcheck startet.</p>
+                    <p>Videografie-Aufbau startet.</p>
+                    <p>Technischer Voraufbau f&uuml;r Audio, Instrumente und Kamerasetup beginnt.</p>
+                </div>
+            </article>
+
+            <article class="slot" id="slot-0503-1500">
+                <p class="time">15:00 Uhr</p>
+                <div class="content">
+                    <p>Ankunft Orga-Team.</p>
+                    <p>Aufbau und letzte Abstimmungen.</p>
+                    <p>Technikcheck.</p>
+                    <p>Ablaufdurchgang, G&auml;steliste und Einlassabstimmung mit dem Hausteam.</p>
+                </div>
+            </article>
+
+            <article class="slot" id="slot-0503-1600">
+                <p class="time">16:00 - 18:00 Uhr</p>
+                <div class="content">
+                    <p>Internes ELES-Seminar mit bis zu 20 Teilnehmenden.</p>
+                    <p>Begr&uuml;&szlig;ung durch Konstantin und Imke.</p>
+                    <p>Leitung durch Tirza Seene.</p>
+                    <p>Parallel laufender Soundcheck der Musikerinnen und Musiker.</p>
+                </div>
+            </article>
+
+            <article class="slot" id="slot-0503-1800">
+                <p class="time">18:00 - 18:45 Uhr</p>
+                <div class="content">
+                    <p>Pause und &Uuml;bergang.</p>
+                    <p>Seminar endet.</p>
+                    <p>Teilnehmende nutzen die Pause f&uuml;r Essen und Getr&auml;nke.</p>
+                    <p>Orga-Team bereitet den &ouml;ffentlichen Teil vor.</p>
+                    <p>Einlass f&uuml;r die &Ouml;ffentlichkeit ab 18:30 Uhr.</p>
+                </div>
+            </article>
+
+            <article class="slot" id="slot-0503-1845">
+                <p class="time">18:45 Uhr</p>
+                <div class="content">
+                    <p>Beginn der &ouml;ffentlichen Veranstaltung.</p>
+                    <p>George Fejer h&auml;lt die Einf&uuml;hrung und formale Er&ouml;ffnung mit 5 Minuten.</p>
+                    <p>Tirza Seene h&auml;lt die Filmeinf&uuml;hrung mit 15 Minuten.</p>
+                </div>
+            </article>
+
+            <article class="slot" id="slot-0503-1905">
+                <p class="time">19:05 Uhr</p>
+                <div class="content">
+                    <p>Film mit Live-Vertonung startet.</p>
+                    <p>Filmende gegen 20:35 Uhr.</p>
+                    <p>Anschlie&szlig;end findet ein Q&amp;A statt.</p>
+                    <p>Veranstaltungsende zwischen 21:15 Uhr und 21:30 Uhr.</p>
+                </div>
+            </article>
+
+            <article class="slot" id="slot-0503-2130">
+                <p class="time">ab 21:30 Uhr</p>
+                <div class="content">
+                    <p>Abbau von B&uuml;hne, Audio, Instrumenten und Technik startet.</p>
+                    <p>R&uuml;ckbau, Materialsichtung und Verladung laufen.</p>
+                    <p>Abschluss mit dem Haus und finale Abnahme der R&auml;ume.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="note-box" aria-label="Verbindliche Hinweise">
+            <h3>Verbindliche Hinweise</h3>
             <ul>
-                <li>Wer moderiert das Q&amp;A offiziell?</li>
-                <li>Wer schlie&szlig;t die Veranstaltung offiziell?</li>
-                <li>Spendenbox noch unklar.</li>
+                <li>Der Ablauf ist als finale Version f&uuml;r das Team abgestimmt.</li>
+                <li>Soundcheck und Videografie-Aufbau laufen ab 11:00 Uhr kontinuierlich bis zum Veranstaltungsbeginn.</li>
+                <li>Notfallkontakte sind &uuml;ber den seitlichen Button aufrufbar.</li>
             </ul>
         </section>
 
-        <p style="margin-top: 1.5rem;">
+        <p class="back-link">
             <a href="/#golem">Zur&uuml;ck zur Hauptseite</a>
         </p>
     </main>
+
+    <script>
+        (function () {
+            var body = document.body;
+            var toggle = document.getElementById("emergencyToggle");
+            var panel = document.getElementById("emergencyPanel");
+            var closeButton = document.getElementById("emergencyClose");
+
+            if (!toggle || !panel || !closeButton) {
+                return;
+            }
+
+            function setEmergencyState(open) {
+                body.classList.toggle("emergency-open", open);
+                toggle.setAttribute("aria-expanded", String(open));
+                panel.setAttribute("aria-hidden", String(!open));
+            }
+
+            toggle.addEventListener("click", function () {
+                setEmergencyState(!body.classList.contains("emergency-open"));
+            });
+
+            closeButton.addEventListener("click", function () {
+                setEmergencyState(false);
+                toggle.focus();
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    setEmergencyState(false);
+                }
+            });
+
+            document.addEventListener("click", function (event) {
+                if (!body.classList.contains("emergency-open")) {
+                    return;
+                }
+
+                if (panel.contains(event.target) || toggle.contains(event.target)) {
+                    return;
+                }
+
+                setEmergencyState(false);
+            });
+        })();
+    </script>
 </body>
 </html>
