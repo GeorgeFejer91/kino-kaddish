@@ -149,6 +149,64 @@
             color: var(--accent);
         }
 
+        .arrival-group {
+            margin: 0.18rem 0;
+            padding: 0.22rem 0.5rem;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .arrival-group strong {
+            font-weight: 700;
+        }
+
+        .group-artists {
+            background: rgba(156, 206, 232, 0.14);
+            border-color: rgba(156, 206, 232, 0.35);
+        }
+
+        .group-videography {
+            background: rgba(170, 218, 198, 0.14);
+            border-color: rgba(170, 218, 198, 0.35);
+        }
+
+        .group-main-organizer {
+            background: rgba(244, 215, 160, 0.14);
+            border-color: rgba(244, 215, 160, 0.35);
+        }
+
+        .group-eles-orga {
+            background: rgba(238, 226, 182, 0.14);
+            border-color: rgba(238, 226, 182, 0.35);
+        }
+
+        .group-fellows {
+            background: rgba(198, 210, 236, 0.14);
+            border-color: rgba(198, 210, 236, 0.35);
+        }
+
+        .group-public {
+            background: rgba(220, 220, 220, 0.1);
+            border-color: rgba(220, 220, 220, 0.3);
+        }
+
+        .arrival-slot.arrival-crew {
+            border-left-color: rgba(174, 214, 232, 0.85);
+        }
+
+        .arrival-slot.arrival-eles {
+            border-left-color: rgba(238, 226, 182, 0.85);
+        }
+
+        .arrival-slot.arrival-fellows {
+            border-left-color: rgba(198, 210, 236, 0.85);
+        }
+
+        .arrival-slot.arrival-public {
+            border-left-color: rgba(220, 220, 220, 0.75);
+        }
+
         .time {
             margin: 0;
             font-weight: 700;
@@ -435,35 +493,35 @@
         <section class="day" id="tag-0503" aria-label="Ablauf am 05.03.2026">
             <h3 class="day-title">Donnerstag, 05.03.2026: Seminar und Veranstaltung</h3>
 
-            <article class="slot arrival-slot" id="slot-0503-1100">
+            <article class="slot arrival-slot arrival-crew" id="slot-0503-1100">
                 <p class="time">11:00 Uhr</p>
                 <div class="content">
                     <p class="arrival-label">Ankunft</p>
-                    <p><strong>K&uuml;nstler:</strong> Andi Teichmann, Hannes Teichmann, Roby Schulkowsky.</p>
-                    <p><strong>Videografie:</strong> Dmitrey Ekimow, Michael Tchijow, Judith Franz.</p>
-                    <p><strong>Hauptorganisation:</strong> George Fejer.</p>
+                    <p class="arrival-group group-artists"><strong>K&uuml;nstler:</strong> Andi Teichmann, Hannes Teichmann, Roby Schulkowsky.</p>
+                    <p class="arrival-group group-videography"><strong>Videografie:</strong> Dmitrey Ekimow, Michael Tchijow, Judith Franz.</p>
+                    <p class="arrival-group group-main-organizer"><strong>Hauptorganisation:</strong> George Fejer.</p>
                     <p>Soundcheck startet.</p>
                     <p>Videografie-Aufbau startet.</p>
                     <p>Technischer Voraufbau f&uuml;r Audio, Instrumente und Kamerasetup beginnt.</p>
                 </div>
             </article>
 
-            <article class="slot arrival-slot" id="slot-0503-1500">
+            <article class="slot arrival-slot arrival-eles" id="slot-0503-1500">
                 <p class="time">15:00 Uhr</p>
                 <div class="content">
                     <p class="arrival-label">Ankunft</p>
-                    <p><strong>ELES-Orga:</strong> Imke Kummer, Konstantin Seidler, Tirza Seene.</p>
+                    <p class="arrival-group group-eles-orga"><strong>ELES-Orga:</strong> Imke Kummer, Konstantin Seidler, Tirza Seene.</p>
                     <p>Ablaufdurchgang, G&auml;steliste und Einlassabstimmung mit dem Hausteam.</p>
                     <p>Aufbau und letzte Abstimmungen.</p>
                     <p>Technikcheck.</p>
                 </div>
             </article>
 
-            <article class="slot arrival-slot" id="slot-0503-1545">
+            <article class="slot arrival-slot arrival-fellows" id="slot-0503-1545">
                 <p class="time">15:45 Uhr</p>
                 <div class="content">
                     <p class="arrival-label">Ankunft</p>
-                    <p><strong>ELES Stipendiat:innen:</strong> Seminarteilnehmende treffen ein.</p>
+                    <p class="arrival-group group-fellows"><strong>ELES Stipendiat:innen:</strong> Seminarteilnehmende treffen ein.</p>
                     <p>Check-in und Platzierung f&uuml;r den Seminarstart.</p>
                 </div>
             </article>
@@ -488,11 +546,11 @@
                 </div>
             </article>
 
-            <article class="slot arrival-slot" id="slot-0503-1830">
+            <article class="slot arrival-slot arrival-public" id="slot-0503-1830">
                 <p class="time">18:30 - 18:45 Uhr</p>
                 <div class="content">
                     <p class="arrival-label">Ankunft</p>
-                    <p><strong>&Ouml;ffentlichkeit:</strong> Ankunft aller &ouml;ffentlichen G&auml;ste und Einlass.</p>
+                    <p class="arrival-group group-public"><strong>&Ouml;ffentlichkeit:</strong> Ankunft aller &ouml;ffentlichen G&auml;ste und Einlass.</p>
                 </div>
             </article>
 
