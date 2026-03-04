@@ -204,6 +204,43 @@
             margin: 0.15rem 0;
         }
 
+        .parallel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.2rem;
+        }
+
+        .parallel-box {
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 0.65rem 0.7rem;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .parallel-title {
+            margin: 0 0 0.25rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .parallel-box p {
+            margin: 0.14rem 0;
+        }
+
+        .parallel-lunch {
+            background: rgba(244, 215, 160, 0.11);
+            border-color: rgba(244, 215, 160, 0.3);
+        }
+
+        .parallel-videography {
+            background: rgba(156, 206, 232, 0.11);
+            border-color: rgba(156, 206, 232, 0.3);
+        }
+
         ul {
             margin: 0.25rem 0 0;
             padding-left: 1.2rem;
@@ -377,6 +414,10 @@
                 gap: 0.55rem;
             }
 
+            .parallel-grid {
+                grid-template-columns: 1fr;
+            }
+
             .time {
                 white-space: normal;
             }
@@ -410,7 +451,7 @@
             <ul class="nav-list">
                 <li><a class="nav-link" href="#tag-0503">05.03 Veranstaltungstag</a></li>
                 <li><a class="nav-link" href="#slot-0503-1100">11:00 Ankunft und Aufbau</a></li>
-                <li><a class="nav-link" href="#slot-0503-1300">13:00 Lunch</a></li>
+                <li><a class="nav-link" href="#slot-0503-1300">13:00 Lunch + Video Setup</a></li>
                 <li><a class="nav-link" href="#slot-0503-1500">15:00 Durchlaufprobe</a></li>
                 <li><a class="nav-link" href="#slot-0503-1830">18:30 Publikum</a></li>
                 <li><a class="nav-link" href="#slot-0503-1845">18:45 Einf&uuml;hrung</a></li>
@@ -465,7 +506,17 @@
             <article class="slot" id="slot-0503-1300">
                 <p class="time">13:00 - 14:00 Uhr</p>
                 <div class="content">
-                    <p>Lunch.</p>
+                    <div class="parallel-grid" aria-label="Parallel laufende Programmpunkte">
+                        <article class="parallel-box parallel-lunch">
+                            <p class="parallel-title">Parallel A</p>
+                            <p>Lunch.</p>
+                        </article>
+                        <article class="parallel-box parallel-videography">
+                            <p class="parallel-title">Parallel B</p>
+                            <p>Videografie-Setup startet.</p>
+                            <p><strong>Videograf:innen:</strong> Dimitrey Ekimov, Michael Tschijow, Judith Franz.</p>
+                        </article>
+                    </div>
                 </div>
             </article>
 
