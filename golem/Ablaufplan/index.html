@@ -282,15 +282,13 @@
         }
 
         .timeline-scroll {
-            overflow-x: auto;
-            padding-bottom: 0.2rem;
-            scrollbar-width: thin;
-            scrollbar-color: #3a3a3a #121212;
+            overflow-x: hidden;
+            padding-bottom: 0;
         }
 
         .timeline-canvas {
             position: relative;
-            min-width: 720px;
+            min-width: 0;
             width: 100%;
         }
 
@@ -317,8 +315,8 @@
             position: relative;
             z-index: 2;
             display: grid;
-            grid-template-columns: repeat(3, minmax(220px, 1fr));
-            gap: 0.75rem;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.6rem;
         }
 
         .parallel-track {
@@ -370,7 +368,7 @@
             padding: 0.45rem 0.52rem;
             background: rgba(14, 14, 14, 0.9);
             overflow: auto;
-            font-size: 0.86rem;
+            font-size: 0.84rem;
             line-height: 1.35;
         }
 
@@ -409,7 +407,7 @@
             border-radius: 8px;
             padding: 0.38rem 0.55rem;
             background: rgba(170, 218, 198, 0.16);
-            font-size: 0.83rem;
+            font-size: 0.82rem;
             line-height: 1.28;
             color: #edf6ef;
             pointer-events: none;
@@ -602,6 +600,40 @@
                 margin-left: 0;
                 padding: 1.25rem 1rem 3rem;
             }
+
+            .parallel-timeline {
+                --timeline-height: 365px;
+                --lane-offset: 1.85rem;
+                grid-template-columns: 52px 1fr;
+                gap: 0.5rem;
+            }
+
+            .parallel-tracks {
+                gap: 0.45rem;
+            }
+
+            .parallel-title {
+                font-size: 0.78rem;
+            }
+
+            .track-event {
+                left: 0.28rem;
+                right: 0.28rem;
+                padding: 0.34rem 0.4rem;
+                font-size: 0.74rem;
+            }
+
+            .arrival-marker {
+                left: 0.3rem;
+                right: 0.3rem;
+                padding: 0.18rem 0.32rem;
+                font-size: 0.66rem;
+            }
+
+            .shared-event {
+                font-size: 0.72rem;
+                padding: 0.3rem 0.42rem;
+            }
         }
 
         @media (max-width: 700px) {
@@ -617,8 +649,13 @@
                 --lane-offset: 1.8rem;
             }
 
-            .timeline-canvas {
-                min-width: 680px;
+            .parallel-tracks {
+                grid-template-columns: 1fr;
+                gap: 0.55rem;
+            }
+
+            .timeline-axis {
+                width: 50px;
             }
 
             .time {
