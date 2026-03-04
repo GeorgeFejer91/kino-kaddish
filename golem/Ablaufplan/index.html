@@ -59,6 +59,47 @@
             text-transform: uppercase;
         }
 
+        .timeline-nav h3 {
+            margin: 0 0 0.5rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .time-ruler {
+            margin-bottom: 0.9rem;
+            padding: 0.55rem;
+            border: 1px solid #242424;
+            border-radius: 8px;
+            background: #101010;
+        }
+
+        .time-ruler-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.22rem;
+            font-size: 0.72rem;
+            line-height: 1.3;
+            color: var(--muted);
+        }
+
+        .time-ruler-list li {
+            padding: 0.08rem 0.2rem;
+            border-radius: 5px;
+            border: 1px solid transparent;
+        }
+
+        .time-ruler-list li:nth-child(odd) {
+            color: #d7d7d7;
+            border-color: #1f1f1f;
+            background: #131313;
+        }
+
         .nav-list {
             list-style: none;
             margin: 0;
@@ -214,22 +255,80 @@
             margin: 0.15rem 0;
         }
 
-        .parallel-grid {
+        .parallel-timeline {
+            --timeline-minutes: 240;
+            --timeline-height: 390px;
+            --lane-offset: 1.95rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 0.75rem;
-            margin-top: 0.2rem;
+            grid-template-columns: 64px 1fr;
+            gap: 0.7rem;
+            margin-top: 0.15rem;
         }
 
-        .parallel-box {
-            border: 1px solid #444;
-            border-radius: 8px;
-            padding: 0.65rem 0.7rem;
-            background: rgba(255, 255, 255, 0.03);
+        .timeline-axis {
+            position: relative;
+            height: calc(var(--timeline-height) + var(--lane-offset));
+        }
+
+        .axis-label {
+            position: absolute;
+            left: 0;
+            top: calc(var(--lane-offset) + (var(--tick-min) / var(--timeline-minutes)) * var(--timeline-height));
+            transform: translateY(-50%);
+            font-size: 0.73rem;
+            color: var(--muted);
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+        }
+
+        .timeline-scroll {
+            overflow-x: auto;
+            padding-bottom: 0.2rem;
+            scrollbar-width: thin;
+            scrollbar-color: #3a3a3a #121212;
+        }
+
+        .timeline-canvas {
+            position: relative;
+            min-width: 720px;
+            width: 100%;
+        }
+
+        .timeline-ticks {
+            position: absolute;
+            top: var(--lane-offset);
+            left: 0;
+            right: 0;
+            height: var(--timeline-height);
+            border-top: 1px solid rgba(192, 192, 192, 0.34);
+            border-bottom: 1px solid rgba(192, 192, 192, 0.34);
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent 0,
+                transparent calc(12.5% - 1px),
+                rgba(192, 192, 192, 0.2) calc(12.5% - 1px),
+                rgba(192, 192, 192, 0.2) 12.5%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .parallel-tracks {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(220px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .parallel-track {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
         }
 
         .parallel-title {
-            margin: 0 0 0.25rem;
+            margin: 0;
             font-size: 0.82rem;
             font-weight: 700;
             letter-spacing: 0.06em;
@@ -237,18 +336,87 @@
             color: var(--muted);
         }
 
-        .parallel-box p {
-            margin: 0.14rem 0;
+        .track-lane {
+            position: relative;
+            height: var(--timeline-height);
+            border: 1px solid #3f3f3f;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            overflow: hidden;
         }
 
-        .parallel-videography {
-            background: rgba(156, 206, 232, 0.11);
+        .track-a .track-lane {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .track-b .track-lane {
+            background: rgba(156, 206, 232, 0.09);
             border-color: rgba(156, 206, 232, 0.3);
         }
 
-        .parallel-seminar {
-            background: rgba(194, 208, 226, 0.11);
+        .track-c .track-lane {
+            background: rgba(194, 208, 226, 0.09);
             border-color: rgba(194, 208, 226, 0.3);
+        }
+
+        .track-event {
+            position: absolute;
+            left: 0.42rem;
+            right: 0.42rem;
+            top: calc((var(--start-min) / var(--timeline-minutes)) * 100%);
+            height: calc(((var(--end-min) - var(--start-min)) / var(--timeline-minutes)) * 100%);
+            border: 1px solid #4f4f4f;
+            border-radius: 8px;
+            padding: 0.45rem 0.52rem;
+            background: rgba(14, 14, 14, 0.9);
+            overflow: auto;
+            font-size: 0.86rem;
+            line-height: 1.35;
+        }
+
+        .track-event p {
+            margin: 0.16rem 0;
+        }
+
+        .track-event .arrival-group {
+            margin: 0.12rem 0;
+        }
+
+        .arrival-marker {
+            position: absolute;
+            left: 0.55rem;
+            right: 0.55rem;
+            top: calc((var(--start-min) / var(--timeline-minutes)) * 100%);
+            transform: translateY(-50%);
+            padding: 0.24rem 0.45rem;
+            border: 1px solid rgba(194, 208, 226, 0.46);
+            border-radius: 999px;
+            background: rgba(194, 208, 226, 0.25);
+            font-size: 0.76rem;
+            line-height: 1.22;
+            color: #f2f2f2;
+            font-weight: 600;
+        }
+
+        .shared-event {
+            position: absolute;
+            top: calc(var(--lane-offset) + (var(--start-min) / var(--timeline-minutes)) * var(--timeline-height));
+            height: calc(((var(--end-min) - var(--start-min)) / var(--timeline-minutes)) * var(--timeline-height));
+            left: 0;
+            right: 0;
+            z-index: 1;
+            border: 1px dashed rgba(170, 218, 198, 0.6);
+            border-radius: 8px;
+            padding: 0.38rem 0.55rem;
+            background: rgba(170, 218, 198, 0.16);
+            font-size: 0.83rem;
+            line-height: 1.28;
+            color: #edf6ef;
+            pointer-events: none;
+        }
+
+        .shared-event strong {
+            color: #fff;
         }
 
         ul {
@@ -399,6 +567,24 @@
                 margin-bottom: 0.45rem;
             }
 
+            .time-ruler {
+                margin-bottom: 0.65rem;
+                padding: 0.45rem 0.5rem;
+            }
+
+            .time-ruler-list {
+                display: flex;
+                gap: 0.35rem;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 0.15rem;
+            }
+
+            .time-ruler-list li {
+                flex: 0 0 auto;
+                padding: 0.18rem 0.46rem;
+            }
+
             .nav-list {
                 flex-direction: row;
                 overflow-x: auto;
@@ -424,8 +610,15 @@
                 gap: 0.55rem;
             }
 
-            .parallel-grid {
-                grid-template-columns: 1fr;
+            .parallel-timeline {
+                grid-template-columns: 56px 1fr;
+                gap: 0.55rem;
+                --timeline-height: 360px;
+                --lane-offset: 1.8rem;
+            }
+
+            .timeline-canvas {
+                min-width: 680px;
             }
 
             .time {
@@ -457,12 +650,40 @@
 <body>
     <aside class="timeline-nav" aria-label="Navigation f&uuml;r Ablaufplan">
         <h2>Ablauf Navigation</h2>
+        <section class="time-ruler" aria-label="Allgemeines Zeitraster">
+            <h3>Zeitraster</h3>
+            <ol class="time-ruler-list">
+                <li>11:00</li>
+                <li>11:30</li>
+                <li>12:00</li>
+                <li>12:30</li>
+                <li>13:00</li>
+                <li>13:30</li>
+                <li>14:00</li>
+                <li>14:30</li>
+                <li>15:00</li>
+                <li>15:30</li>
+                <li>16:00</li>
+                <li>16:30</li>
+                <li>17:00</li>
+                <li>17:30</li>
+                <li>18:00</li>
+                <li>18:30</li>
+                <li>19:00</li>
+                <li>19:30</li>
+                <li>20:00</li>
+                <li>20:30</li>
+                <li>21:00</li>
+                <li>21:30</li>
+                <li>22:00</li>
+            </ol>
+        </section>
         <nav>
             <ul class="nav-list">
                 <li><a class="nav-link" href="#tag-0503">05.03 Veranstaltungstag</a></li>
                 <li><a class="nav-link" href="#slot-0503-1100">11:00-13:00 Ankunft/Aufbau</a></li>
                 <li><a class="nav-link" href="#slot-0503-1300">13:00-14:30 Mittagessen</a></li>
-                <li><a class="nav-link" href="#slot-0503-1430">14:30-17:00 Generalprobe/Video/Seminar</a></li>
+                <li><a class="nav-link" href="#slot-0503-1430">14:30-18:30 Parallelblock</a></li>
                 <li><a class="nav-link" href="#slot-0503-1830">18:30 Publikum</a></li>
                 <li><a class="nav-link" href="#slot-0503-1905">19:05 Er&ouml;ffnung und Einf&uuml;hrung</a></li>
                 <li><a class="nav-link" href="#slot-0503-1930">19:30 Konzert</a></li>
@@ -519,35 +740,63 @@
             </article>
 
             <article class="slot" id="slot-0503-1430">
-                <p class="time">14:30 - 17:00 Uhr</p>
+                <p class="time">14:30 - 18:30 Uhr</p>
                 <div class="content">
-                    <div class="parallel-grid" aria-label="Parallel laufende Programmpunkte">
-                        <article class="parallel-box">
-                            <p class="parallel-title">Parallel A</p>
-                            <p>Generalprobe.</p>
-                            <p>Andi Teichmann, Hannes Teichmann und Roby Schulkowsky spielen das gesamte Set durch.</p>
-                        </article>
-                        <article class="parallel-box parallel-videography">
-                            <p class="parallel-title">Parallel B</p>
-                            <p class="arrival-group group-production"><strong>Ankunft:</strong> Videographie-Aufbau.</p>
-                            <p class="arrival-group group-videographers"><strong>Videograf:innen:</strong> Dimitrey Ekimov, Michael Tschijow, Judith Franz.</p>
-                        </article>
-                        <article class="parallel-box parallel-seminar">
-                            <p class="parallel-title">Parallel C</p>
-                            <p class="arrival-group group-seminar"><strong>ELES-Stipendiatinnen-Seminar</strong></p>
-                            <p><strong>Ort:</strong> Seminarraum.</p>
-                            <p>Leitung: Tirza Seene.</p>
-                            <p>Mit Imke Kummer und Konstantin Seidler.</p>
-                        </article>
+                    <div class="parallel-timeline" aria-label="Parallel laufende Programmpunkte mit Zeitachse">
+                        <div class="timeline-axis" aria-hidden="true">
+                            <span class="axis-label" style="--tick-min:0;">14:30</span>
+                            <span class="axis-label" style="--tick-min:30;">15:00</span>
+                            <span class="axis-label" style="--tick-min:60;">15:30</span>
+                            <span class="axis-label" style="--tick-min:90;">16:00</span>
+                            <span class="axis-label" style="--tick-min:120;">16:30</span>
+                            <span class="axis-label" style="--tick-min:150;">17:00</span>
+                            <span class="axis-label" style="--tick-min:180;">17:30</span>
+                            <span class="axis-label" style="--tick-min:210;">18:00</span>
+                            <span class="axis-label" style="--tick-min:240;">18:30</span>
+                        </div>
+                        <div class="timeline-scroll">
+                            <div class="timeline-canvas">
+                                <div class="timeline-ticks" aria-hidden="true"></div>
+                                <div class="parallel-tracks">
+                                    <article class="parallel-track track-a">
+                                        <p class="parallel-title">Parallel A</p>
+                                        <div class="track-lane">
+                                            <article class="track-event" style="--start-min:0; --end-min:150;">
+                                                <p><strong>14:30 - 17:00:</strong> Generalprobe.</p>
+                                                <p>Andi Teichmann, Hannes Teichmann und Roby Schulkowsky spielen das gesamte Set durch.</p>
+                                            </article>
+                                        </div>
+                                    </article>
+                                    <article class="parallel-track track-b">
+                                        <p class="parallel-title">Parallel B</p>
+                                        <div class="track-lane">
+                                            <article class="track-event" style="--start-min:0; --end-min:150;">
+                                                <p class="arrival-group group-production"><strong>Ankunft:</strong> Videographie-Aufbau.</p>
+                                                <p class="arrival-group group-videographers"><strong>Videograf:innen:</strong> Dimitrey Ekimov, Michael Tschijow, Judith Franz.</p>
+                                            </article>
+                                        </div>
+                                    </article>
+                                    <article class="parallel-track track-c">
+                                        <p class="parallel-title">Parallel C</p>
+                                        <div class="track-lane">
+                                            <div class="arrival-marker" style="--start-min:30;">
+                                                15:00 Ankunft: Imke Kummer, Konstantin Seidler
+                                            </div>
+                                            <article class="track-event" style="--start-min:90; --end-min:210;">
+                                                <p class="arrival-group group-seminar"><strong>ELES-Stipendiatinnen-Seminar</strong></p>
+                                                <p><strong>16:00 - 18:00</strong> im Seminarraum.</p>
+                                                <p>Leitung: Tirza Seene.</p>
+                                                <p>Mit Imke Kummer und Konstantin Seidler.</p>
+                                            </article>
+                                        </div>
+                                    </article>
+                                </div>
+                                <article class="shared-event" style="--start-min:150; --end-min:240;">
+                                    <strong>17:00 - 18:30:</strong> Finaler Technikcheck und B&uuml;hnenreset (shared, alle Bereiche).
+                                </article>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </article>
-
-            <article class="slot" id="slot-0503-1700">
-                <p class="time">17:00 - 18:30 Uhr</p>
-                <div class="content">
-                    <p>Finaler Technikcheck und B&uuml;hnenreset.</p>
-                    <p>Orga-Team bereitet den &ouml;ffentlichen Teil vor.</p>
                 </div>
             </article>
 
