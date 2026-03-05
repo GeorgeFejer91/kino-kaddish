@@ -114,6 +114,7 @@
         .pdf-frame {
             width: 100%;
             min-height: 720px;
+            height: min(78vh, 900px);
             border: 1px solid #262626;
             border-radius: 8px;
             background: #0b0b0b;
@@ -152,6 +153,7 @@
             gap: 0.4rem;
             max-height: 760px;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             padding-right: 0.25rem;
         }
 
@@ -183,7 +185,15 @@
             }
 
             .pdf-frame {
-                min-height: 620px;
+                min-height: 520px;
+                height: 72vh;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pdf-frame {
+                min-height: 460px;
+                height: 70vh;
             }
         }
     </style>
@@ -200,14 +210,6 @@
         </div>
 
         <div class="layout">
-            <section class="card" aria-label="Eingebettetes PDF">
-                <h3 class="card-title">PDF Teilnehmerliste</h3>
-                <object class="pdf-frame" data="./teilnehmerliste.pdf" type="application/pdf" aria-label="PDF Teilnehmerliste">
-                    <iframe class="pdf-frame" src="./teilnehmerliste.pdf" title="PDF Teilnehmerliste"></iframe>
-                </object>
-                <p class="pdf-fallback">Falls das PDF nicht eingebettet wird, nutze "PDF in neuem Tab &ouml;ffnen".</p>
-            </section>
-
             <section class="card" aria-label="Digitale Teilnehmerliste">
                 <h3 class="card-title">Digitale Checkliste</h3>
                 <div class="list-toolbar">
@@ -215,6 +217,12 @@
                     <button id="clearChecks" type="button">Alle Haken entfernen</button>
                 </div>
                 <ul id="guestList" class="guest-list"></ul>
+            </section>
+
+            <section class="card" aria-label="Eingebettetes PDF">
+                <h3 class="card-title">PDF Teilnehmerliste</h3>
+                <iframe class="pdf-frame" src="./teilnehmerliste.pdf" title="PDF Teilnehmerliste" loading="lazy"></iframe>
+                <p class="pdf-fallback">Falls iPhone/Safari das PDF nicht im Frame zeigt, nutze "PDF in neuem Tab &ouml;ffnen".</p>
             </section>
         </div>
     </main>
