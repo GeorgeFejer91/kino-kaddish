@@ -173,6 +173,26 @@
             color: var(--accent-color);
         }
 
+        .nav-menu li.past-event,
+        .mobile-nav li.past-event {
+            opacity: 0.7;
+        }
+
+        .nav-menu li.past-event a,
+        .mobile-nav li.past-event a {
+            color: var(--main-text-color);
+        }
+
+        .nav-status {
+            display: block;
+            margin-top: 0.2rem;
+            font-size: 0.58rem;
+            letter-spacing: 0.08em;
+            line-height: 1.1;
+            text-transform: uppercase;
+            color: #b7a37b;
+        }
+
         /* Hide disabled film sections */
         section.disabled-section {
             display: none;
@@ -1357,17 +1377,20 @@
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
-                        <a href="#der-golem">Der Golem</a>
+                        <a href="#kommissarin">Die Kommissarin</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
                     </li>
-                    <li>
+                    <li class="past-event">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
-                        <a href="#come-and-see" data-lang="de">Komm und sieh</a>
-                        <a href="#come-and-see" data-lang="en">Come and See</a>
+                        <a href="#der-golem">
+                            Der Golem
+                            <span class="nav-status" data-lang="de">Bereits gezeigt</span>
+                            <span class="nav-status" data-lang="en">Past event</span>
+                        </a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
@@ -1386,6 +1409,16 @@
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <a href="#come-and-see" data-lang="de">Komm und sieh</a>
+                        <a href="#come-and-see" data-lang="en">Come and See</a>
+                        <span class="sprocket-right-1"></span>
+                        <span class="sprocket-right-2"></span>
+                        <span class="sprocket-right-3"></span>
+                    </li>
+                    <li class="disabled">
+                        <span class="sprocket-left-1"></span>
+                        <span class="sprocket-left-2"></span>
+                        <span class="sprocket-left-3"></span>
                         <a href="#korczak">Korczak</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
@@ -1396,15 +1429,6 @@
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
                         <a href="#passagierin">Die Passagierin</a>
-                        <span class="sprocket-right-1"></span>
-                        <span class="sprocket-right-2"></span>
-                        <span class="sprocket-right-3"></span>
-                    </li>
-                    <li class="disabled">
-                        <span class="sprocket-left-1"></span>
-                        <span class="sprocket-left-2"></span>
-                        <span class="sprocket-left-3"></span>
-                        <a href="#kommissarin">Die Kommissarin</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
@@ -1472,15 +1496,18 @@
                     <li>
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
-                        <a href="#der-golem">Der Golem</a>
+                        <a href="#kommissarin">Kommissarin</a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
-                    <li>
+                    <li class="past-event">
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
-                        <a href="#come-and-see" data-lang="de">Komm und sieh</a>
-                        <a href="#come-and-see" data-lang="en">Come and See</a>
+                        <a href="#der-golem">
+                            Der Golem
+                            <span class="nav-status" data-lang="de">Bereits gezeigt</span>
+                            <span class="nav-status" data-lang="en">Past event</span>
+                        </a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
@@ -1495,6 +1522,14 @@
                     <li class="disabled">
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
+                        <a href="#come-and-see" data-lang="de">Komm und sieh</a>
+                        <a href="#come-and-see" data-lang="en">Come and See</a>
+                        <span class="sprocket-bottom-1"></span>
+                        <span class="sprocket-bottom-2"></span>
+                    </li>
+                    <li class="disabled">
+                        <span class="sprocket-top-1"></span>
+                        <span class="sprocket-top-2"></span>
                         <a href="#korczak">Korczak</a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
@@ -1503,13 +1538,6 @@
                         <span class="sprocket-top-1"></span>
                         <span class="sprocket-top-2"></span>
                         <a href="#passagierin">Passagierin</a>
-                        <span class="sprocket-bottom-1"></span>
-                        <span class="sprocket-bottom-2"></span>
-                    </li>
-                    <li class="disabled">
-                        <span class="sprocket-top-1"></span>
-                        <span class="sprocket-top-2"></span>
-                        <a href="#kommissarin">Kommissarin</a>
                         <span class="sprocket-bottom-1"></span>
                         <span class="sprocket-bottom-2"></span>
                     </li>
@@ -1566,13 +1594,30 @@
             </section>
 
             <!-- FILM SECTIONS -->
+            <section id="kommissarin" class="section">
+                <h2 class="section-title">Die Kommissarin</h2>
+                <div class="film">
+                    <p class="film-year">Комиссар | SU 1967/1987</p>
+                    <div class="film-content">
+                        <div class="film-image">
+                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/kommissarin.jpg" alt="Die Kommissarin (1967)">
+                        </div>
+                        <div class="film-details">
+                            <p class="film-description">Die Kommissarin basiert auf einer Erzählung und spielt in Berditschew, einem der wichtigsten jüdischen Zentren des ehemaligen Russischen Kaiserreichs. Der Film erinnert an die Pogrome gegen jüdische Gemeinden während des Bürgerkriegs und verweist zugleich symbolisch auf die Verfolgungen des Holocaust. Vor dem Hintergrund des Bürgerkriegs in einer Provinzstadt kreuzen sich die Schicksale einer Kommissarin und einer jüdischen Familie, die sie bei sich aufnimmt. Diese erzwungene Episode eines friedlichen Lebens wird zu einer subtilen und ergreifenden Reflexion über das Aufeinandertreffen von Persönlichem und Historischem, über Mutterschaft, Verletzlichkeit und die Zerbrechlichkeit der menschlichen Existenz.</p>
+                            <p class="film-description">Wegen seiner Thematik blieb der Film fast 20 Jahre verboten – ein eindringliches Beispiel für das Verschweigen jüdischer Geschichte in der Sowjetunion.</p>
+                            <p class="film-description"><strong>Gesprächsthemen:</strong> Das Spannungsfeld von Zensur, Erinnerung und filmischer Darstellung jüdischer Lebenswelten. Wie wurden trotz staatlicher Kontrolle mit Allegorien und Figurenzeichnung Gegen-Narrationen zur offiziellen Geschichtsdeutung entworfen? Die Bedeutung jüdischer Alltagskultur als Träger historischer Erinnerung und wie „verbotene Stimmen" unser heutiges Verständnis von Erinnerungspolitik und filmischer Zeugenschaft prägen.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="der-golem" class="section">
                 <h2 class="section-title">Der Golem</h2>
                 <div class="film">
                     <p class="film-year" data-lang="de">Der Golem, wie er in die Welt kam (Paul Wegener, D 1920)</p>
                     <p class="film-year" data-lang="en">The Golem: How He Came into the World (Paul Wegener, Germany 1920)</p>
-                    <p class="film-year" data-lang="de">Stummfilmkonzert: Uraufführung einer Originalkomposition | <strong>05.03.2026 | 18:45 - 21:30</strong></p>
-                    <p class="film-year" data-lang="en">Silent Film Concert: World Premiere of an Original Composition | <strong>05.03.2026 | 18:45 - 21:30</strong></p>
+                    <p class="film-year" data-lang="de">Stummfilmkonzert: Uraufführung einer Originalkomposition | <strong>05.03.2026 | 18:45 - 21:30 | Bereits stattgefunden</strong></p>
+                    <p class="film-year" data-lang="en">Silent Film Concert: World Premiere of an Original Composition | <strong>05.03.2026 | 18:45 - 21:30 | Past event</strong></p>
                     <p class="film-year credits-line" data-lang="de">Event des <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerks e.V.</a> | Kuratiert von <strong>George Fejer</strong> | <span style="font-size: 0.85em;">Unterstützt von Iaroslav Bigun</span></p>
                     <p class="film-year credits-line" data-lang="en">An event by <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerk e.V.</a> | Curated by <strong>George Fejer</strong> | <span style="font-size: 0.85em;">Supported by Iaroslav Bigun</span></p>
                     <p class="film-year credits-line" data-lang="de">Gastgeber und Unterstützung: <a href="https://centrumjudaicum.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Stiftung Neue Synagoge Berlin – Centrum Judaicum</a></p>
@@ -1761,23 +1806,6 @@
                 </div>
             </section>
 
-            <section id="kommissarin" class="section disabled-section">
-                <h2 class="section-title">Die Kommissarin</h2>
-                <div class="film">
-                    <p class="film-year">Комиссар | SU 1967/1987</p>
-                    <div class="film-content">
-                        <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/kommissarin.jpg" alt="Die Kommissarin (1967)">
-                        </div>
-                        <div class="film-details">
-                            <p class="film-description">Die Kommissarin basiert auf einer Erzählung und spielt in Berditschew, einem der wichtigsten jüdischen Zentren des ehemaligen Russischen Kaiserreichs. Der Film erinnert an die Pogrome gegen jüdische Gemeinden während des Bürgerkriegs und verweist zugleich symbolisch auf die Verfolgungen des Holocaust. Vor dem Hintergrund des Bürgerkriegs in einer Provinzstadt kreuzen sich die Schicksale einer Kommissarin und einer jüdischen Familie, die sie bei sich aufnimmt. Diese erzwungene Episode eines friedlichen Lebens wird zu einer subtilen und ergreifenden Reflexion über das Aufeinandertreffen von Persönlichem und Historischem, über Mutterschaft, Verletzlichkeit und die Zerbrechlichkeit der menschlichen Existenz.</p>
-                            <p class="film-description">Wegen seiner Thematik blieb der Film fast 20 Jahre verboten – ein eindringliches Beispiel für das Verschweigen jüdischer Geschichte in der Sowjetunion.</p>
-                            <p class="film-description"><strong>Gesprächsthemen:</strong> Das Spannungsfeld von Zensur, Erinnerung und filmischer Darstellung jüdischer Lebenswelten. Wie wurden trotz staatlicher Kontrolle mit Allegorien und Figurenzeichnung Gegen-Narrationen zur offiziellen Geschichtsdeutung entworfen? Die Bedeutung jüdischer Alltagskultur als Träger historischer Erinnerung und wie „verbotene Stimmen" unser heutiges Verständnis von Erinnerungspolitik und filmischer Zeugenschaft prägen.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section id="sanatorium" class="section disabled-section">
                 <h2 class="section-title">Sanatorium zur Sanduhr</h2>
                 <div class="film">
@@ -1795,7 +1823,7 @@
                 </div>
             </section>
 
-            <section id="come-and-see" class="section">
+            <section id="come-and-see" class="section disabled-section">
                 <h2 class="section-title" data-lang="de">Komm und sieh</h2>
                 <h2 class="section-title" data-lang="en">Come and See</h2>
                 <div class="film">
