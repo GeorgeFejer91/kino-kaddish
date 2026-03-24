@@ -646,20 +646,20 @@
 
         .kommissarin-poster-glow {
             inset: -10%;
-            opacity: calc(var(--poster-reveal-opacity) * 0.42);
+            opacity: calc(var(--poster-reveal-opacity) * 0.32);
             background:
                 radial-gradient(
-                    circle calc(var(--poster-reveal-radius) * 1.06) at calc(var(--poster-reveal-x) - (var(--poster-reveal-offset-x) * 0.22)) calc(var(--poster-reveal-y) - (var(--poster-reveal-offset-y) * 0.18)),
-                    rgba(255, 168, 132, 0.18) 0%,
-                    rgba(214, 103, 76, 0.08) 42%,
-                    rgba(0, 0, 0, 0) 74%
+                    circle calc(var(--poster-reveal-radius) * 1.12) at calc(var(--poster-reveal-x) - (var(--poster-reveal-offset-x) * 0.18)) calc(var(--poster-reveal-y) - (var(--poster-reveal-offset-y) * 0.14)),
+                    rgba(255, 168, 132, 0.14) 0%,
+                    rgba(214, 103, 76, 0.07) 46%,
+                    rgba(0, 0, 0, 0) 82%
                 ),
                 radial-gradient(
-                    circle calc(var(--poster-reveal-radius) * 0.74) at calc(var(--poster-reveal-x) + (var(--poster-reveal-offset-x) * 0.42)) calc(var(--poster-reveal-y) + (var(--poster-reveal-offset-y) * 0.34)),
-                    rgba(255, 196, 156, 0.10) 0%,
-                    rgba(0, 0, 0, 0) 72%
+                    circle calc(var(--poster-reveal-radius) * 0.82) at calc(var(--poster-reveal-x) + (var(--poster-reveal-offset-x) * 0.28)) calc(var(--poster-reveal-y) + (var(--poster-reveal-offset-y) * 0.24)),
+                    rgba(255, 196, 156, 0.06) 0%,
+                    rgba(0, 0, 0, 0) 78%
                 );
-            filter: blur(18px);
+            filter: blur(24px);
             transition: opacity 0.16s linear;
             z-index: 1;
         }
@@ -706,18 +706,20 @@
                 clip-path: circle(calc(var(--poster-reveal-radius) * 1.08) at var(--poster-reveal-x) var(--poster-reveal-y));
                 -webkit-mask-image: radial-gradient(
                     circle calc(var(--poster-reveal-radius) * 1.04) at var(--poster-reveal-x) var(--poster-reveal-y),
-                    rgba(0, 0, 0, 1) 0%,
-                    rgba(0, 0, 0, 1) 24%,
-                    rgba(0, 0, 0, 0.82) 56%,
-                    rgba(0, 0, 0, 0.28) 84%,
+                    rgba(0, 0, 0, 0.96) 0%,
+                    rgba(0, 0, 0, 0.92) 16%,
+                    rgba(0, 0, 0, 0.78) 42%,
+                    rgba(0, 0, 0, 0.42) 72%,
+                    rgba(0, 0, 0, 0.12) 90%,
                     rgba(0, 0, 0, 0) 100%
                 );
                 mask-image: radial-gradient(
                     circle calc(var(--poster-reveal-radius) * 1.04) at var(--poster-reveal-x) var(--poster-reveal-y),
-                    rgba(0, 0, 0, 1) 0%,
-                    rgba(0, 0, 0, 1) 24%,
-                    rgba(0, 0, 0, 0.82) 56%,
-                    rgba(0, 0, 0, 0.28) 84%,
+                    rgba(0, 0, 0, 0.96) 0%,
+                    rgba(0, 0, 0, 0.92) 16%,
+                    rgba(0, 0, 0, 0.78) 42%,
+                    rgba(0, 0, 0, 0.42) 72%,
+                    rgba(0, 0, 0, 0.12) 90%,
                     rgba(0, 0, 0, 0) 100%
                 );
                 -webkit-mask-repeat: no-repeat;
@@ -734,16 +736,16 @@
                 clip-path: none;
                 -webkit-mask-image: radial-gradient(
                     circle calc(var(--poster-reveal-radius) * 0.76) at calc(var(--poster-reveal-x) - (var(--poster-reveal-offset-x) * 0.58)) calc(var(--poster-reveal-y) - (var(--poster-reveal-offset-y) * 0.44)),
-                    rgba(0, 0, 0, 0.96) 0%,
-                    rgba(0, 0, 0, 0.92) 44%,
-                    rgba(0, 0, 0, 0.22) 82%,
+                    rgba(0, 0, 0, 0.92) 0%,
+                    rgba(0, 0, 0, 0.84) 34%,
+                    rgba(0, 0, 0, 0.18) 80%,
                     rgba(0, 0, 0, 0) 100%
                 );
                 mask-image: radial-gradient(
                     circle calc(var(--poster-reveal-radius) * 0.76) at calc(var(--poster-reveal-x) - (var(--poster-reveal-offset-x) * 0.58)) calc(var(--poster-reveal-y) - (var(--poster-reveal-offset-y) * 0.44)),
-                    rgba(0, 0, 0, 0.96) 0%,
-                    rgba(0, 0, 0, 0.92) 44%,
-                    rgba(0, 0, 0, 0.22) 82%,
+                    rgba(0, 0, 0, 0.92) 0%,
+                    rgba(0, 0, 0, 0.84) 34%,
+                    rgba(0, 0, 0, 0.18) 80%,
                     rgba(0, 0, 0, 0) 100%
                 );
             }
@@ -752,16 +754,16 @@
                 clip-path: none;
                 -webkit-mask-image: radial-gradient(
                     circle calc(var(--poster-reveal-radius) * 0.48) at calc(var(--poster-reveal-x) + (var(--poster-reveal-offset-x) * 0.68)) calc(var(--poster-reveal-y) + (var(--poster-reveal-offset-y) * 0.52)),
-                    rgba(0, 0, 0, 0.92) 0%,
-                    rgba(0, 0, 0, 0.88) 40%,
-                    rgba(0, 0, 0, 0.14) 78%,
+                    rgba(0, 0, 0, 0.88) 0%,
+                    rgba(0, 0, 0, 0.72) 32%,
+                    rgba(0, 0, 0, 0.10) 74%,
                     rgba(0, 0, 0, 0) 100%
                 );
                 mask-image: radial-gradient(
                     circle calc(var(--poster-reveal-radius) * 0.48) at calc(var(--poster-reveal-x) + (var(--poster-reveal-offset-x) * 0.68)) calc(var(--poster-reveal-y) + (var(--poster-reveal-offset-y) * 0.52)),
-                    rgba(0, 0, 0, 0.92) 0%,
-                    rgba(0, 0, 0, 0.88) 40%,
-                    rgba(0, 0, 0, 0.14) 78%,
+                    rgba(0, 0, 0, 0.88) 0%,
+                    rgba(0, 0, 0, 0.72) 32%,
+                    rgba(0, 0, 0, 0.10) 74%,
                     rgba(0, 0, 0, 0) 100%
                 );
             }
@@ -3349,6 +3351,7 @@
         const kommissarinPosterSupportsClipPath = typeof CSS !== 'undefined' &&
             CSS.supports('clip-path', 'circle(120px at 50% 50%)');
         const kommissarinPointerRadius = 240;
+        const kommissarinPosterVicinityRadius = 170;
         let kommissarinPointerFrame = null;
         let kommissarinPendingPoint = null;
         let kommissarinPosterFrame = null;
@@ -3390,13 +3393,12 @@
                 return;
             }
 
-            const ease = 0.16;
-            const opacityEase = 0.12;
-            const offsetEase = 0.11;
-            const radiusEase = 0.15;
+            const opacityEase = 0.075;
+            const offsetEase = 0.08;
+            const radiusEase = 0.085;
 
-            kommissarinPosterState.currentX += (kommissarinPosterState.targetX - kommissarinPosterState.currentX) * ease;
-            kommissarinPosterState.currentY += (kommissarinPosterState.targetY - kommissarinPosterState.currentY) * ease;
+            kommissarinPosterState.currentX += (kommissarinPosterState.targetX - kommissarinPosterState.currentX) * 0.11;
+            kommissarinPosterState.currentY += (kommissarinPosterState.targetY - kommissarinPosterState.currentY) * 0.11;
             kommissarinPosterState.currentRadius += (kommissarinPosterState.targetRadius - kommissarinPosterState.currentRadius) * radiusEase;
             kommissarinPosterState.currentOpacity += (kommissarinPosterState.targetOpacity - kommissarinPosterState.currentOpacity) * opacityEase;
             kommissarinPosterState.currentOffsetX += (kommissarinPosterState.targetOffsetX - kommissarinPosterState.currentOffsetX) * offsetEase;
@@ -3424,23 +3426,43 @@
             }
         }
 
-        function queueKommissarinPosterPointer(event) {
+        function setKommissarinPosterTarget(clientX, clientY) {
             if (!canUseKommissarinPosterPointer()) {
                 return;
             }
 
             const posterRect = kommissarinPoster.getBoundingClientRect();
-            const nextX = event.clientX - posterRect.left;
-            const nextY = event.clientY - posterRect.top;
+            const distanceToPoster = kommissarinDistanceToRect(clientX, clientY, posterRect);
+
+            if (distanceToPoster > kommissarinPosterVicinityRadius) {
+                kommissarinPosterState.targetOpacity = 0;
+                kommissarinPosterState.targetRadius = 0;
+                kommissarinPosterState.targetOffsetX = 0;
+                kommissarinPosterState.targetOffsetY = 0;
+                return;
+            }
+
+            const nextX = clientX - posterRect.left;
+            const nextY = clientY - posterRect.top;
             const deltaX = nextX - kommissarinPosterState.targetX;
             const deltaY = nextY - kommissarinPosterState.targetY;
+            const proximity = 1 - (distanceToPoster / kommissarinPosterVicinityRadius);
+            const organicStrength = Math.pow(Math.max(0, proximity), 1.9);
 
             kommissarinPosterState.targetX = nextX;
             kommissarinPosterState.targetY = nextY;
-            kommissarinPosterState.targetRadius = 214;
-            kommissarinPosterState.targetOpacity = 1;
-            kommissarinPosterState.targetOffsetX = Math.max(-34, Math.min(34, deltaX * 0.72));
-            kommissarinPosterState.targetOffsetY = Math.max(-28, Math.min(28, deltaY * 0.62));
+            kommissarinPosterState.targetRadius = 34 + (organicStrength * 154);
+            kommissarinPosterState.targetOpacity = 0.06 + (organicStrength * 0.76);
+            kommissarinPosterState.targetOffsetX = Math.max(-22, Math.min(22, deltaX * 0.38 * organicStrength));
+            kommissarinPosterState.targetOffsetY = Math.max(-18, Math.min(18, deltaY * 0.34 * organicStrength));
+        }
+
+        function queueKommissarinPosterPointer(event) {
+            if (!canUseKommissarinPosterPointer()) {
+                return;
+            }
+
+            setKommissarinPosterTarget(event.clientX, event.clientY);
 
             if (kommissarinPosterFrame !== null) {
                 return;
@@ -3564,9 +3586,10 @@
             }
 
             if (kommissarinPoster && kommissarinPosterReveal) {
+                kommissarinSection.addEventListener('pointermove', queueKommissarinPosterPointer);
+                kommissarinSection.addEventListener('pointerleave', resetKommissarinPosterPointer);
                 kommissarinPoster.addEventListener('pointerenter', queueKommissarinPosterPointer);
                 kommissarinPoster.addEventListener('pointermove', queueKommissarinPosterPointer);
-                kommissarinPoster.addEventListener('pointerleave', resetKommissarinPosterPointer);
             }
 
             kommissarinSection.addEventListener('mousemove', queueKommissarinPointer);
