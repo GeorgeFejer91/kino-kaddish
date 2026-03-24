@@ -564,7 +564,7 @@
             align-items: flex-start;
         }
 
-        .film-image img {
+        .film-image img:not(.kommissarin-poster-base) {
             width: 250px;
             height: auto;
             opacity: 0.9;
@@ -573,7 +573,7 @@
             object-fit: contain;
         }
 
-        .film-image img:hover {
+        .film-image img:not(.kommissarin-poster-base):hover {
             opacity: 1;
         }
 
@@ -622,9 +622,17 @@
             max-width: 360px;
             margin: 0;
             position: relative;
+            display: block;
             overflow: hidden;
             isolation: isolate;
+            aspect-ratio: 2 / 3;
             background: #090909;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            --poster-image: none;
+            --poster-reveal-x: 50%;
+            --poster-reveal-y: 50%;
+            --poster-reveal-radius: 0px;
+            --poster-reveal-opacity: 0;
         }
 
         .kommissarin-poster-glow,
@@ -632,34 +640,120 @@
             position: absolute;
             inset: 0;
             pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.18s linear;
         }
 
         .kommissarin-poster-glow {
-            inset: -8%;
-            mix-blend-mode: screen;
+            inset: -10%;
+            opacity: calc(var(--poster-reveal-opacity) * 0.42);
+            background: radial-gradient(
+                circle calc(var(--poster-reveal-radius) * 1.12) at var(--poster-reveal-x) var(--poster-reveal-y),
+                rgba(255, 168, 132, 0.24) 0%,
+                rgba(214, 103, 76, 0.12) 38%,
+                rgba(0, 0, 0, 0) 72%
+            );
             filter: blur(18px);
+            transition: opacity 0.16s linear;
             z-index: 1;
         }
 
         .kommissarin-poster-reveal {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+            opacity: var(--poster-reveal-opacity);
+            background-image: var(--poster-image);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            clip-path: circle(var(--poster-reveal-radius) at var(--poster-reveal-x) var(--poster-reveal-y));
             filter: saturate(1.18) contrast(1.04) brightness(1.02);
+            transition: opacity 0.16s linear, clip-path 0.18s ease-out;
             z-index: 2;
+        }
+
+        @supports ((mask-image: radial-gradient(circle at center, #000 0%, transparent 100%)) or (-webkit-mask-image: radial-gradient(circle at center, #000 0%, transparent 100%))) {
+            .kommissarin-poster-reveal {
+                clip-path: circle(calc(var(--poster-reveal-radius) * 1.08) at var(--poster-reveal-x) var(--poster-reveal-y));
+                -webkit-mask-image: radial-gradient(
+                    circle calc(var(--poster-reveal-radius) * 1.04) at var(--poster-reveal-x) var(--poster-reveal-y),
+                    rgba(0, 0, 0, 1) 0%,
+                    rgba(0, 0, 0, 1) 24%,
+                    rgba(0, 0, 0, 0.82) 56%,
+                    rgba(0, 0, 0, 0.28) 84%,
+                    rgba(0, 0, 0, 0) 100%
+                );
+                mask-image: radial-gradient(
+                    circle calc(var(--poster-reveal-radius) * 1.04) at var(--poster-reveal-x) var(--poster-reveal-y),
+                    rgba(0, 0, 0, 1) 0%,
+                    rgba(0, 0, 0, 1) 24%,
+                    rgba(0, 0, 0, 0.82) 56%,
+                    rgba(0, 0, 0, 0.28) 84%,
+                    rgba(0, 0, 0, 0) 100%
+                );
+                -webkit-mask-repeat: no-repeat;
+                mask-repeat: no-repeat;
+            }
+        }
+
+        .kommissarin-poster--simple-reveal .kommissarin-poster-glow {
+            display: none;
+        }
+
+        .kommissarin-poster--simple-reveal .kommissarin-poster-reveal {
+            clip-path: none;
+            -webkit-mask-image: none;
+            mask-image: none;
+            opacity: calc(var(--poster-reveal-opacity) * 0.56);
         }
 
         .kommissarin-poster-base {
             width: 100%;
-            max-width: none;
+            height: 100%;
             display: block;
             opacity: 1;
             filter: grayscale(58%) saturate(0.52) contrast(0.98) brightness(0.96);
-            transition: opacity 0.16s linear;
+            transition: filter 0.18s linear, opacity 0.18s linear;
             position: relative;
             z-index: 0;
+            object-fit: cover;
+            box-shadow: none;
+        }
+
+        @keyframes kommissarinPosterBreathe {
+            0%,
+            100% {
+                opacity: 0.14;
+            }
+            50% {
+                opacity: 0.54;
+            }
+        }
+
+        @media (hover: none), (pointer: coarse) {
+            .kommissarin-poster-glow {
+                display: none;
+            }
+
+            .kommissarin-poster-reveal {
+                opacity: 0.26;
+                clip-path: none;
+                -webkit-mask-image: none;
+                mask-image: none;
+                animation: kommissarinPosterBreathe 4s ease-in-out infinite;
+                transition: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .kommissarin-poster-glow {
+                display: none;
+            }
+
+            .kommissarin-poster-reveal {
+                opacity: 0 !important;
+                clip-path: none;
+                -webkit-mask-image: none;
+                mask-image: none;
+                animation: none !important;
+                transition: none !important;
+            }
         }
 
         #kommissarin .kommissarin-proximity-media {
@@ -1374,7 +1468,7 @@
                 font-size: clamp(0.92rem, 1.9vw, 1.05rem);
             }
             
-            .film-image img {
+            .film-image img:not(.kommissarin-poster-base) {
                 width: 250px;
                 height: auto;
             }
@@ -1613,7 +1707,7 @@
                 padding-top: 1rem;
             }
             
-            .film-image img {
+            .film-image img:not(.kommissarin-poster-base) {
                 width: 250px;
                 height: auto;
             }
@@ -2237,10 +2331,10 @@
                     <p class="film-year kommissarin-meta-line" data-lang="en"><span class="kommissarin-meta-primary">The Commissar (Комиссар) | USSR 1967/1987 | Screening and discussion |</span> <strong class="kommissarin-meta-emphasis">19 April 2026 | Museum Berlin-Karlshorst</strong></p>
                     <div class="film-content">
                         <div class="kommissarin-side-column">
-                            <div class="film-image kommissarin-poster">
+                            <div class="film-image kommissarin-poster" style="--poster-image: url('19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png');">
                                 <img class="kommissarin-poster-base" src="19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png" alt="Die Kommissarin (1967)">
                                 <div class="kommissarin-poster-glow" aria-hidden="true"></div>
-                                <img class="kommissarin-poster-reveal" src="19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png" alt="" aria-hidden="true">
+                                <div class="kommissarin-poster-reveal" aria-hidden="true"></div>
                             </div>
                             <div class="kommissarin-quick-actions">
                                 <a class="kommissarin-jump-button kommissarin-proximity-accent" href="#kommissarin-anmeldung">
@@ -3108,10 +3202,7 @@
         const kommissarinPoster = kommissarinSection
             ? kommissarinSection.querySelector('.kommissarin-poster')
             : null;
-        const kommissarinPosterBaseImage = kommissarinPoster
-            ? kommissarinPoster.querySelector('.kommissarin-poster-base')
-            : null;
-        const kommissarinPosterRevealImage = kommissarinPoster
+        const kommissarinPosterReveal = kommissarinPoster
             ? kommissarinPoster.querySelector('.kommissarin-poster-reveal')
             : null;
         const kommissarinPosterGlow = kommissarinPoster
@@ -3126,42 +3217,85 @@
             ))
             : [];
         const kommissarinPointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+        const kommissarinReducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const kommissarinPosterSupportsMask = typeof CSS !== 'undefined' && (
+            CSS.supports('mask-image', 'radial-gradient(circle at center, #000 0%, transparent 100%)') ||
+            CSS.supports('-webkit-mask-image', 'radial-gradient(circle at center, #000 0%, transparent 100%)')
+        );
+        const kommissarinPosterSupportsClipPath = typeof CSS !== 'undefined' &&
+            CSS.supports('clip-path', 'circle(120px at 50% 50%)');
         const kommissarinPointerRadius = 240;
         let kommissarinPointerFrame = null;
         let kommissarinPendingPoint = null;
+        let kommissarinPosterFrame = null;
+        let kommissarinPosterPendingPoint = null;
 
-        function updateKommissarinPosterPointer(clientX, clientY) {
-            if (!kommissarinPoster || !kommissarinPosterRevealImage || !kommissarinPosterGlow || !kommissarinPointerQuery.matches) {
+        function canUseKommissarinPosterPointer() {
+            return Boolean(
+                kommissarinPoster &&
+                kommissarinPosterReveal &&
+                kommissarinPosterGlow &&
+                kommissarinPointerQuery.matches &&
+                !kommissarinReducedMotionQuery.matches
+            );
+        }
+
+        function renderKommissarinPosterPointer(clientX, clientY) {
+            if (!canUseKommissarinPosterPointer()) {
                 return;
             }
 
             const posterRect = kommissarinPoster.getBoundingClientRect();
             const cursorX = clientX - posterRect.left;
             const cursorY = clientY - posterRect.top;
-            const revealRadius = 220;
-            const revealMask = `radial-gradient(circle ${revealRadius}px at ${cursorX}px ${cursorY}px, rgba(0, 0, 0, 1) 0px, rgba(0, 0, 0, 0.98) 38px, rgba(0, 0, 0, 0.86) 96px, rgba(0, 0, 0, 0.46) 156px, rgba(0, 0, 0, 0.12) 204px, rgba(0, 0, 0, 0) 100%)`;
-            const glowRadius = 248;
 
-            kommissarinPosterRevealImage.style.opacity = '1';
-            kommissarinPosterRevealImage.style.clipPath = `circle(${revealRadius}px at ${cursorX}px ${cursorY}px)`;
-            kommissarinPosterRevealImage.style.webkitMaskImage = revealMask;
-            kommissarinPosterRevealImage.style.maskImage = revealMask;
-
-            kommissarinPosterGlow.style.opacity = '1';
-            kommissarinPosterGlow.style.background = `radial-gradient(circle ${glowRadius}px at ${cursorX}px ${cursorY}px, rgba(255, 154, 122, 0.44) 0px, rgba(225, 98, 74, 0.22) 84px, rgba(148, 62, 49, 0.10) 154px, rgba(0, 0, 0, 0) 100%)`;
+            kommissarinPoster.style.setProperty('--poster-reveal-x', `${cursorX}px`);
+            kommissarinPoster.style.setProperty('--poster-reveal-y', `${cursorY}px`);
+            kommissarinPoster.style.setProperty('--poster-reveal-radius', '218px');
+            kommissarinPoster.style.setProperty('--poster-reveal-opacity', '1');
         }
 
-        function resetKommissarinPosterPointer() {
-            if (!kommissarinPosterRevealImage || !kommissarinPosterGlow) {
+        function queueKommissarinPosterPointer(event) {
+            if (!canUseKommissarinPosterPointer()) {
                 return;
             }
 
-            kommissarinPosterRevealImage.style.opacity = '0';
-            kommissarinPosterRevealImage.style.clipPath = 'none';
-            kommissarinPosterRevealImage.style.webkitMaskImage = 'none';
-            kommissarinPosterRevealImage.style.maskImage = 'none';
-            kommissarinPosterGlow.style.opacity = '0';
-            kommissarinPosterGlow.style.background = 'none';
+            kommissarinPosterPendingPoint = {
+                x: event.clientX,
+                y: event.clientY
+            };
+
+            if (kommissarinPosterFrame !== null) {
+                return;
+            }
+
+            kommissarinPosterFrame = window.requestAnimationFrame(() => {
+                kommissarinPosterFrame = null;
+                if (!kommissarinPosterPendingPoint) {
+                    return;
+                }
+
+                renderKommissarinPosterPointer(
+                    kommissarinPosterPendingPoint.x,
+                    kommissarinPosterPendingPoint.y
+                );
+            });
+        }
+
+        function resetKommissarinPosterPointer() {
+            if (!kommissarinPoster) {
+                return;
+            }
+
+            kommissarinPosterPendingPoint = null;
+
+            if (kommissarinPosterFrame !== null) {
+                window.cancelAnimationFrame(kommissarinPosterFrame);
+                kommissarinPosterFrame = null;
+            }
+
+            kommissarinPoster.style.setProperty('--poster-reveal-opacity', '0');
+            kommissarinPoster.style.setProperty('--poster-reveal-radius', '0px');
         }
 
         function kommissarinDistanceToRect(x, y, rect) {
@@ -3257,12 +3391,14 @@
         }
 
         if (kommissarinSection) {
-            if (kommissarinPoster && kommissarinPosterBaseImage && kommissarinPosterRevealImage) {
-                kommissarinPosterRevealImage.src = kommissarinPosterBaseImage.currentSrc || kommissarinPosterBaseImage.src;
-                kommissarinPoster.addEventListener('mousemove', (event) => {
-                    updateKommissarinPosterPointer(event.clientX, event.clientY);
-                });
-                kommissarinPoster.addEventListener('mouseleave', resetKommissarinPosterPointer);
+            if (kommissarinPoster && !kommissarinPosterSupportsMask && !kommissarinPosterSupportsClipPath) {
+                kommissarinPoster.classList.add('kommissarin-poster--simple-reveal');
+            }
+
+            if (kommissarinPoster && kommissarinPosterReveal) {
+                kommissarinPoster.addEventListener('pointerenter', queueKommissarinPosterPointer);
+                kommissarinPoster.addEventListener('pointermove', queueKommissarinPosterPointer);
+                kommissarinPoster.addEventListener('pointerleave', resetKommissarinPosterPointer);
             }
 
             kommissarinSection.addEventListener('mousemove', queueKommissarinPointer);
@@ -3281,6 +3417,12 @@
                         resetKommissarinPosterPointer();
                     }
                 });
+            }
+
+            if (typeof kommissarinReducedMotionQuery.addEventListener === 'function') {
+                kommissarinReducedMotionQuery.addEventListener('change', resetKommissarinPosterPointer);
+            } else if (typeof kommissarinReducedMotionQuery.addListener === 'function') {
+                kommissarinReducedMotionQuery.addListener(resetKommissarinPosterPointer);
             }
         }
     </script>
