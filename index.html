@@ -595,6 +595,39 @@
             width: 100%;
             max-width: none;
             display: block;
+            opacity: 1;
+            filter: grayscale(100%) contrast(1.04);
+            transition: filter 0.22s ease, opacity 0.22s ease;
+        }
+
+        @keyframes kommissarinPosterPulse {
+            0% {
+                filter: grayscale(100%) contrast(1.04);
+            }
+            50% {
+                filter: grayscale(0%) contrast(1);
+            }
+            100% {
+                filter: grayscale(100%) contrast(1.04);
+            }
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .kommissarin-poster img:hover {
+                filter: grayscale(0%) contrast(1);
+            }
+        }
+
+        @media (hover: none) {
+            .kommissarin-poster img {
+                animation: kommissarinPosterPulse 4s ease-in-out infinite;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .kommissarin-poster img {
+                animation: none !important;
+            }
         }
 
         #kommissarin .film-content {
