@@ -619,6 +619,37 @@
             width: 100%;
             max-width: 360px;
             margin: 0;
+            position: relative;
+            overflow: hidden;
+            --poster-cursor-x: 50%;
+            --poster-cursor-y: 50%;
+            --poster-hover-opacity: 0;
+            --poster-image: none;
+        }
+
+        .kommissarin-poster::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: var(--poster-image);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: var(--poster-hover-opacity);
+            transition: opacity 0.14s linear;
+            -webkit-mask-image: radial-gradient(
+                circle 130px at var(--poster-cursor-x) var(--poster-cursor-y),
+                rgba(0, 0, 0, 1) 0%,
+                rgba(0, 0, 0, 0.96) 44%,
+                rgba(0, 0, 0, 0) 80%
+            );
+            mask-image: radial-gradient(
+                circle 130px at var(--poster-cursor-x) var(--poster-cursor-y),
+                rgba(0, 0, 0, 1) 0%,
+                rgba(0, 0, 0, 0.96) 44%,
+                rgba(0, 0, 0, 0) 80%
+            );
         }
 
         .kommissarin-poster img {
@@ -626,7 +657,7 @@
             max-width: none;
             display: block;
             opacity: 1;
-            filter: none;
+            filter: grayscale(40%) saturate(0.78) contrast(1.01);
             transition: opacity 0.16s linear;
         }
 
@@ -3071,6 +3102,12 @@
         window.addEventListener('hashchange', handleHashNavigation);
 
         const kommissarinSection = document.getElementById('kommissarin');
+        const kommissarinPoster = kommissarinSection
+            ? kommissarinSection.querySelector('.kommissarin-poster')
+            : null;
+        const kommissarinPosterImage = kommissarinPoster
+            ? kommissarinPoster.querySelector('img')
+            : null;
         const kommissarinPointerMedia = kommissarinSection
             ? Array.from(kommissarinSection.querySelectorAll('.kommissarin-proximity-media'))
             : [];
@@ -3083,6 +3120,25 @@
         const kommissarinPointerRadius = 240;
         let kommissarinPointerFrame = null;
         let kommissarinPendingPoint = null;
+
+        function updateKommissarinPosterPointer(clientX, clientY) {
+            if (!kommissarinPoster || !kommissarinPointerQuery.matches) {
+                return;
+            }
+
+            const posterRect = kommissarinPoster.getBoundingClientRect();
+            kommissarinPoster.style.setProperty('--poster-cursor-x', `${clientX - posterRect.left}px`);
+            kommissarinPoster.style.setProperty('--poster-cursor-y', `${clientY - posterRect.top}px`);
+            kommissarinPoster.style.setProperty('--poster-hover-opacity', '1');
+        }
+
+        function resetKommissarinPosterPointer() {
+            if (!kommissarinPoster) {
+                return;
+            }
+
+            kommissarinPoster.style.setProperty('--poster-hover-opacity', '0');
+        }
 
         function kommissarinDistanceToRect(x, y, rect) {
             const dx = Math.max(rect.left - x, 0, x - rect.right);
@@ -3177,18 +3233,28 @@
         }
 
         if (kommissarinSection) {
+            if (kommissarinPoster && kommissarinPosterImage) {
+                kommissarinPoster.style.setProperty('--poster-image', `url("${kommissarinPosterImage.currentSrc || kommissarinPosterImage.src}")`);
+                kommissarinPoster.addEventListener('mousemove', (event) => {
+                    updateKommissarinPosterPointer(event.clientX, event.clientY);
+                });
+                kommissarinPoster.addEventListener('mouseleave', resetKommissarinPosterPointer);
+            }
+
             kommissarinSection.addEventListener('mousemove', queueKommissarinPointer);
             kommissarinSection.addEventListener('mouseleave', resetKommissarinPointer);
             if (typeof kommissarinPointerQuery.addEventListener === 'function') {
                 kommissarinPointerQuery.addEventListener('change', (event) => {
                     if (!event.matches) {
                         resetKommissarinPointer();
+                        resetKommissarinPosterPointer();
                     }
                 });
             } else if (typeof kommissarinPointerQuery.addListener === 'function') {
                 kommissarinPointerQuery.addListener((event) => {
                     if (!event.matches) {
                         resetKommissarinPointer();
+                        resetKommissarinPosterPointer();
                     }
                 });
             }
