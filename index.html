@@ -715,7 +715,8 @@
         }
 
         .kommissarin-venue-info {
-            max-width: 780px;
+            max-width: none;
+            width: 100%;
         }
 
         .venue-button {
@@ -755,8 +756,8 @@
 
         .kommissarin-venue-box {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) 200px;
-            gap: 1.25rem;
+            grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.95fr);
+            gap: 1.65rem;
             align-items: start;
             margin-top: 1rem;
             width: 100%;
@@ -820,13 +821,15 @@
             display: grid;
             gap: 1.5rem;
             margin-top: 1.75rem;
-            max-width: 780px;
+            max-width: none;
+            width: 100%;
         }
 
         .schedule-box {
             background-color: rgba(0, 0, 0, 0.3);
             border: 1px solid var(--separator-color);
             padding: 1.25rem;
+            width: 100%;
         }
 
         .schedule-grid {
@@ -1651,9 +1654,10 @@
         }
 
         .kommissarin-registration-box {
-            max-width: 780px;
+            max-width: none;
+            width: 100%;
             margin-top: 2rem;
-            padding: 1.25rem;
+            padding: 1.5rem;
             scroll-margin-top: 100px;
         }
 
@@ -1687,10 +1691,10 @@
 
         .kommissarin-registration-actions {
             display: grid;
-            grid-template-columns: minmax(220px, 290px) 1fr;
-            gap: 1.25rem;
-            align-items: start;
-            margin-top: 1rem;
+            grid-template-columns: minmax(300px, 390px) minmax(0, 1fr);
+            gap: 1.5rem;
+            align-items: stretch;
+            margin-top: 1.2rem;
         }
 
         .kommissarin-registration-disclaimer {
@@ -1698,7 +1702,7 @@
             line-height: 1.65;
             color: rgba(255, 255, 255, 0.88);
             border-left: 1px solid var(--separator-color);
-            padding-left: 1rem;
+            padding: 0.2rem 0 0.2rem 1.15rem;
         }
 
         .event-section-divider {
@@ -1775,6 +1779,36 @@
             background-image: none !important;
             color: #000 !important;
             border-color: #c0c0c0 !important;
+        }
+
+        #kommissarin-anmelde-button {
+            align-self: stretch;
+        }
+
+        #kommissarin-anmelde-button button,
+        #kommissarin-anmelde-button a {
+            min-height: 78px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 1rem 1.4rem !important;
+            background-color: rgba(255, 255, 255, 0.04) !important;
+            background: rgba(255, 255, 255, 0.04) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.38) !important;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04) !important;
+            font-size: 0.98rem !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.12em !important;
+            line-height: 1.3 !important;
+        }
+
+        #kommissarin-anmelde-button button:hover,
+        #kommissarin-anmelde-button a:hover {
+            background-color: rgba(255, 255, 255, 0.94) !important;
+            background: rgba(255, 255, 255, 0.94) !important;
+            color: #000 !important;
+            border-color: rgba(255, 255, 255, 0.94) !important;
         }
 
         /* Override any inline styles and nested elements */
