@@ -626,7 +626,8 @@
             max-width: none;
             display: block;
             opacity: 1;
-            transition: filter 0.16s linear, opacity 0.16s linear;
+            filter: none;
+            transition: opacity 0.16s linear;
         }
 
         #kommissarin .kommissarin-proximity-media {
@@ -640,30 +641,6 @@
         #kommissarin .speaker-card a,
         #kommissarin .kommissarin-venue-copy a {
             --proximity-strength: 0;
-        }
-
-        @keyframes kommissarinPosterPulse {
-            0% {
-                filter: grayscale(100%) contrast(1.04);
-            }
-            50% {
-                filter: grayscale(0%) contrast(1);
-            }
-            100% {
-                filter: grayscale(100%) contrast(1.04);
-            }
-        }
-
-        @media (hover: none) {
-            .kommissarin-poster img {
-                animation: kommissarinPosterPulse 4s ease-in-out infinite;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .kommissarin-poster img {
-                animation: none !important;
-            }
         }
 
         #kommissarin .film-content {
@@ -2229,7 +2206,7 @@
                     <div class="film-content">
                         <div class="kommissarin-side-column">
                             <div class="film-image kommissarin-poster">
-                                <img src="19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png" alt="Die Kommissarin (1967)" class="kommissarin-proximity-media">
+                                <img src="19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png" alt="Die Kommissarin (1967)">
                             </div>
                             <div class="kommissarin-quick-actions">
                                 <a class="kommissarin-jump-button kommissarin-proximity-accent" href="#kommissarin-anmeldung">
