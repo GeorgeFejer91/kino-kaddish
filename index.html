@@ -577,31 +577,36 @@
             opacity: 1;
         }
 
-        .kommissarin-poster {
-            float: right;
-            width: min(360px, 42%);
+        .kommissarin-side-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
             max-width: 360px;
-            margin: 0 0 1.5rem 2rem;
+        }
+
+        .kommissarin-poster {
+            width: 100%;
+            max-width: 360px;
+            margin: 0;
         }
 
         .kommissarin-poster img {
             width: 100%;
-            max-width: 360px;
+            max-width: none;
             display: block;
         }
 
         #kommissarin .film-content {
-            display: block;
-        }
-
-        #kommissarin .film-content::after {
-            content: "";
-            display: block;
-            clear: both;
+            display: grid;
+            grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+            gap: 2rem;
+            align-items: start;
         }
 
         #kommissarin .film-details {
             max-width: none;
+            min-width: 0;
         }
 
         /* Golem SVG Animation */
@@ -1133,16 +1138,23 @@
                 margin: 0 auto 1.5rem auto;
             }
 
-            .kommissarin-poster {
-                float: none;
-                width: min(320px, 100%);
+            #kommissarin .film-content {
+                grid-template-columns: 1fr;
+            }
+
+            .kommissarin-side-column {
                 max-width: 320px;
                 margin: 0 auto 1.5rem auto;
+            }
+
+            .kommissarin-poster {
+                max-width: 320px;
             }
 
             .kommissarin-quick-actions {
                 position: static;
                 justify-content: stretch;
+                margin: 0;
             }
 
             .kommissarin-jump-button {
@@ -1367,16 +1379,23 @@
                 margin: 0 auto 1.5rem auto;
             }
 
-            .kommissarin-poster {
-                float: none;
-                width: min(320px, 100%);
+            #kommissarin .film-content {
+                grid-template-columns: 1fr;
+            }
+
+            .kommissarin-side-column {
                 max-width: 320px;
                 margin: 0 auto 1.5rem auto;
+            }
+
+            .kommissarin-poster {
+                max-width: 320px;
             }
 
             .kommissarin-quick-actions {
                 position: static;
                 justify-content: stretch;
+                margin: 0;
             }
 
             .kommissarin-jump-button {
@@ -1543,18 +1562,16 @@
         }
 
         .kommissarin-quick-actions {
-            position: sticky;
-            top: 90px;
-            z-index: 20;
             display: flex;
-            justify-content: flex-end;
-            margin: 0.75rem 0 1.5rem;
+            justify-content: stretch;
+            margin: 0;
         }
 
         .kommissarin-jump-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            width: 100%;
             padding: 0.9rem 1.25rem;
             background-color: rgba(0, 0, 0, 0.88);
             border: 2px solid var(--highlight-color);
@@ -1958,15 +1975,17 @@
                 <div class="film">
                     <p class="film-year" data-lang="de">Комиссар | SU 1967/1987 | Filmvorführung mit Gespräch | <strong>19.04.2026 | Museum Berlin-Karlshorst</strong></p>
                     <p class="film-year" data-lang="en">The Commissar (Комиссар) | USSR 1967/1987 | Screening and discussion | <strong>19 April 2026 | Museum Berlin-Karlshorst</strong></p>
-                    <div class="kommissarin-quick-actions">
-                        <a class="kommissarin-jump-button" href="#kommissarin-anmeldung">
-                            <span data-lang="de">Zur Anmeldung</span>
-                            <span data-lang="en">Go to Registration</span>
-                        </a>
-                    </div>
                     <div class="film-content">
-                        <div class="film-image kommissarin-poster">
-                            <img src="19-04_Karlshorst/Filmplakat/Kommissarin_plakat.png" alt="Die Kommissarin (1967)">
+                        <div class="kommissarin-side-column">
+                            <div class="film-image kommissarin-poster">
+                                <img src="19-04_Karlshorst/Filmplakat/Kommissarin_plakat.png" alt="Die Kommissarin (1967)">
+                            </div>
+                            <div class="kommissarin-quick-actions">
+                                <a class="kommissarin-jump-button" href="#kommissarin-anmeldung">
+                                    <span data-lang="de">Zur Anmeldung</span>
+                                    <span data-lang="en">Go to Registration</span>
+                                </a>
+                            </div>
                         </div>
                         <div class="film-details">
                             <div data-lang="de">
@@ -1987,7 +2006,7 @@
                     <div class="speaker-bio-grid">
                         <div class="person-box speaker-card">
                             <div class="speaker-photo-frame">
-                                <img src="19-04_Karlshorst/profile_images/IrinaScherbakowa.jpg" alt="Portrait of Dr. Irina Scherbakowa" class="speaker-photo">
+                                <img src="19-04_Karlshorst/profile_images/IrinaScherbakowa_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="speaker-photo">
                             </div>
                             <div data-lang="de">
                                 <p class="person-name"><a href="https://www.zfl-berlin.org/person/scherbakowa.html" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dr. Irina Scherbakowa</a></p>
@@ -2003,7 +2022,7 @@
 
                         <div class="person-box speaker-card">
                             <div class="speaker-photo-frame">
-                                <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata.jpg" alt="Portrait of Prof. Dr. Viktoriya Sukovata" class="speaker-photo">
+                                <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Prof. Dr. Viktoriya Sukovata" class="speaker-photo">
                             </div>
                             <div data-lang="de">
                                 <p class="person-name"><a href="https://www.dubnow.de/person/prof-dr-victoryia-a-sukovata" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Prof. Dr. Viktoriya Sukovata</a></p>
