@@ -578,13 +578,30 @@
         }
 
         .kommissarin-poster {
-            width: min(320px, 100%);
-            max-width: 320px;
+            float: right;
+            width: min(360px, 42%);
+            max-width: 360px;
+            margin: 0 0 1.5rem 2rem;
         }
 
         .kommissarin-poster img {
             width: 100%;
-            max-width: 320px;
+            max-width: 360px;
+            display: block;
+        }
+
+        #kommissarin .film-content {
+            display: block;
+        }
+
+        #kommissarin .film-content::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        #kommissarin .film-details {
+            max-width: none;
         }
 
         /* Golem SVG Animation */
@@ -1115,6 +1132,33 @@
             .film-image {
                 margin: 0 auto 1.5rem auto;
             }
+
+            .kommissarin-poster {
+                float: none;
+                width: min(320px, 100%);
+                max-width: 320px;
+                margin: 0 auto 1.5rem auto;
+            }
+
+            .kommissarin-quick-actions {
+                position: static;
+                justify-content: stretch;
+            }
+
+            .kommissarin-jump-button {
+                width: 100%;
+            }
+
+            .kommissarin-registration-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .kommissarin-registration-disclaimer {
+                border-left: 0;
+                border-top: 1px solid var(--separator-color);
+                padding-left: 0;
+                padding-top: 1rem;
+            }
             
             .film-image img {
                 width: 250px;
@@ -1322,6 +1366,33 @@
             .film-image {
                 margin: 0 auto 1.5rem auto;
             }
+
+            .kommissarin-poster {
+                float: none;
+                width: min(320px, 100%);
+                max-width: 320px;
+                margin: 0 auto 1.5rem auto;
+            }
+
+            .kommissarin-quick-actions {
+                position: static;
+                justify-content: stretch;
+            }
+
+            .kommissarin-jump-button {
+                width: 100%;
+            }
+
+            .kommissarin-registration-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .kommissarin-registration-disclaimer {
+                border-left: 0;
+                border-top: 1px solid var(--separator-color);
+                padding-left: 0;
+                padding-top: 1rem;
+            }
             
             .film-image img {
                 width: 250px;
@@ -1464,27 +1535,71 @@
             border-radius: 5px;
         }
 
-        .kommissarin-widget-box {
+        .kommissarin-registration-box {
             max-width: 780px;
-            margin: 0;
+            margin-top: 2rem;
             padding: 1.25rem;
+            scroll-margin-top: 100px;
         }
 
-        .kommissarin-widget-box pretix-widget {
-            display: block;
+        .kommissarin-quick-actions {
+            position: sticky;
+            top: 90px;
+            z-index: 20;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0.75rem 0 1.5rem;
+        }
+
+        .kommissarin-jump-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.9rem 1.25rem;
+            background-color: rgba(0, 0, 0, 0.88);
+            border: 2px solid var(--highlight-color);
+            color: var(--main-text-color);
+            text-decoration: none;
+            letter-spacing: 0.06em;
+            font-size: 0.92rem;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        .kommissarin-jump-button:hover {
+            background-color: #fff;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        .kommissarin-registration-actions {
+            display: grid;
+            grid-template-columns: minmax(220px, 290px) 1fr;
+            gap: 1.25rem;
+            align-items: start;
             margin-top: 1rem;
         }
 
-        .pretix-widget-fallback {
-            margin-top: 1rem;
+        .kommissarin-registration-disclaimer {
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.65;
             color: rgba(255, 255, 255, 0.88);
+            border-left: 1px solid var(--separator-color);
+            padding-left: 1rem;
         }
 
-        /* Override Pretix default colors to match your theme */
-        .pretix-widget * {
-            font-family: 'Roboto', 'Helvetica Neue', sans-serif !important;
+        .event-section-divider {
+            width: 100%;
+            height: 1px;
+            margin: 4rem auto 0;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.55) 12%,
+                rgba(255, 255, 255, 0.9) 50%,
+                rgba(255, 255, 255, 0.55) 88%,
+                rgba(255, 255, 255, 0) 100%
+            );
         }
 
         /* Force Pretix button to match Anmelde button style - ULTRA AGGRESSIVE */
@@ -1502,6 +1617,8 @@
         pretix-button .pretix-button,
         #golem-anmelde-button button,
         #golem-anmelde-button a,
+        #kommissarin-anmelde-button button,
+        #kommissarin-anmelde-button a,
         .anmelde-button button,
         .anmelde-button a {
             display: block !important;
@@ -1536,6 +1653,8 @@
         pretix-button .pretix-button:hover,
         #golem-anmelde-button button:hover,
         #golem-anmelde-button a:hover,
+        #kommissarin-anmelde-button button:hover,
+        #kommissarin-anmelde-button a:hover,
         .anmelde-button button:hover,
         .anmelde-button a:hover {
             background-color: #fff !important;
@@ -1547,7 +1666,8 @@
 
         /* Override any inline styles and nested elements */
         pretix-button *,
-        #golem-anmelde-button * {
+        #golem-anmelde-button *,
+        #kommissarin-anmelde-button * {
             font-family: 'Roboto', 'Helvetica Neue', sans-serif !important;
         }
 
@@ -1557,30 +1677,13 @@
             display: none !important;
         }
 
-        /* Style the widget buttons inside modal to match your Anmelde button */
-        .pretix-widget button,
-        .pretix-widget .btn-primary {
-            background-color: #000 !important;
-            color: #fff !important;
-            border: 2px solid var(--highlight-color) !important;
-            transition: background-color 0.5s ease, color 0.5s ease !important;
-            letter-spacing: 1px !important;
-            font-weight: bold !important;
-        }
-
-        .pretix-widget button:hover,
-        .pretix-widget .btn-primary:hover {
-            background-color: #fff !important;
-            color: #000 !important;
-        }
     </style>
 
     <!-- Pretix Widget Scripts -->
     <link rel="stylesheet" type="text/css" href="https://pretix.eu/kino-kaddish/golem/widget/v1.css" crossorigin>
-    <link rel="stylesheet" type="text/css" href="https://pretix.eu/kino-kaddish/kommissarin/widget/v2.css" crossorigin>
+    <link rel="stylesheet" type="text/css" href="https://pretix.eu/kino-kaddish/kommissarin/widget/v1.css" crossorigin>
     <script type="text/javascript" src="https://pretix.eu/widget/v1.de.js" async crossorigin id="pretix-widget-de"></script>
     <script type="text/javascript" src="https://pretix.eu/widget/v1.en.js" async crossorigin id="pretix-widget-en"></script>
-    <script type="text/javascript" src="https://pretix.eu/widget/v2.en.js" async crossorigin id="pretix-widget-v2-en"></script>
 </head>
 <body>
     <!-- Language Switcher -->
@@ -1853,19 +1956,17 @@
                 <h2 class="section-title" data-lang="de">Die Kommissarin</h2>
                 <h2 class="section-title" data-lang="en">The Commissar</h2>
                 <div class="film">
-                    <p class="film-year" data-lang="de">Комиссар | SU 1967/1987</p>
-                    <p class="film-year" data-lang="en">The Commissar (Комиссар) | USSR 1967/1987</p>
-                    <p class="film-year" data-lang="de">Filmvorführung mit Gespräch | <strong>19.04.2026 | Museum Berlin-Karlshorst</strong></p>
-                    <p class="film-year" data-lang="en">Screening and discussion | <strong>19 April 2026 | Museum Berlin-Karlshorst</strong></p>
-                    <p class="film-year credits-line" data-lang="de">Veranstaltungsort: <strong>Museum Berlin-Karlshorst</strong> | Zwieseler Str. 4, 10318 Berlin</p>
-                    <p class="film-year credits-line" data-lang="en">Venue: <strong>Museum Berlin-Karlshorst</strong> | Zwieseler Str. 4, 10318 Berlin</p>
-                    <p class="film-year credits-line" data-lang="de">Organisiert und gefördert durch <a href="https://eles-studienwerk.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerk (ELES)</a></p>
-                    <p class="film-year credits-line" data-lang="en">Organized and funded by <a href="https://eles-studienwerk.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerk (ELES)</a></p>
-                    <p class="film-year credits-line" data-lang="de">Kuratiert von <strong>George Fejer</strong> und <strong>Jaroslav Begun</strong></p>
-                    <p class="film-year credits-line" data-lang="en">Curated by <strong>George Fejer</strong> and <strong>Jaroslav Begun</strong></p>
+                    <p class="film-year" data-lang="de">Комиссар | SU 1967/1987 | Filmvorführung mit Gespräch | <strong>19.04.2026 | Museum Berlin-Karlshorst</strong></p>
+                    <p class="film-year" data-lang="en">The Commissar (Комиссар) | USSR 1967/1987 | Screening and discussion | <strong>19 April 2026 | Museum Berlin-Karlshorst</strong></p>
+                    <div class="kommissarin-quick-actions">
+                        <a class="kommissarin-jump-button" href="#kommissarin-anmeldung">
+                            <span data-lang="de">Zur Anmeldung</span>
+                            <span data-lang="en">Go to Registration</span>
+                        </a>
+                    </div>
                     <div class="film-content">
                         <div class="film-image kommissarin-poster">
-                            <img src="19-04_Karlshorst/Filmplakat/blank_instagram_1080x1350.png" alt="Die Kommissarin (1967)">
+                            <img src="19-04_Karlshorst/Filmplakat/Kommissarin_plakat.png" alt="Die Kommissarin (1967)">
                         </div>
                         <div class="film-details">
                             <div data-lang="de">
@@ -1881,40 +1982,38 @@
                         </div>
                     </div>
 
-                    <div class="venue-info kommissarin-venue-info">
-                        <h3 class="golem-people-title" data-lang="de">Veranstaltungsort</h3>
-                        <h3 class="golem-people-title" data-lang="en">Venue</h3>
-                        <div class="venue-card kommissarin-venue-box">
-                            <div class="kommissarin-venue-copy">
-                                <div data-lang="de">
-                                    <p class="person-bio">Museum Berlin-Karlshorst, der historische Ort der deutschen Kapitulation von 1945, ist für <em>Die Kommissarin</em> besonders sprechend. Die Filmvorführung verbindet die Darstellung von Bürgerkrieg, jüdischer Verletzlichkeit und sowjetischer Erinnerung mit einem Raum, in dem deutsche, sowjetische und europäische Gewaltgeschichte materiell aufeinandertreffen.</p>
-                                    <p class="venue-meta"><strong>Adresse:</strong> Zwieseler Str. 4, 10318 Berlin</p>
-                                    <p class="venue-meta"><strong>Anfahrt:</strong> S3 bis Karlshorst, dann Bus 296 bis Museum Berlin-Karlshorst.</p>
-                                    <div class="venue-actions">
-                                        <a class="venue-button" href="https://www.google.com/maps/search/?api=1&query=Museum+Berlin-Karlshorst,+Zwieseler+Str.+4,+10318+Berlin" target="_blank" rel="noopener noreferrer">
-                                            <span class="venue-text">Google Maps</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div data-lang="en">
-                                    <p class="person-bio">Museum Berlin-Karlshorst, the historic site of Germany’s 1945 surrender, is an especially resonant venue for <em>The Commissar</em>. The screening connects the film’s depiction of civil war, Jewish vulnerability, and Soviet memory with a site where German, Soviet, and broader European histories of violence materially intersect.</p>
-                                    <p class="venue-meta"><strong>Address:</strong> Zwieseler Str. 4, 10318 Berlin</p>
-                                    <p class="venue-meta"><strong>Getting there:</strong> S3 to Karlshorst, then bus 296 to Museum Berlin-Karlshorst.</p>
-                                    <div class="venue-actions">
-                                        <a class="venue-button" href="https://www.google.com/maps/search/?api=1&query=Museum+Berlin-Karlshorst,+Zwieseler+Str.+4,+10318+Berlin" target="_blank" rel="noopener noreferrer">
-                                            <span class="venue-text">Google Maps</span>
-                                        </a>
-                                    </div>
-                                </div>
+                    <h3 class="golem-people-title" data-lang="de">Gesprächspartnerinnen</h3>
+                    <h3 class="golem-people-title" data-lang="en">Speakers</h3>
+                    <div class="speaker-bio-grid">
+                        <div class="person-box speaker-card">
+                            <div class="speaker-photo-frame">
+                                <img src="19-04_Karlshorst/profile_images/IrinaScherbakowa.jpg" alt="Portrait of Dr. Irina Scherbakowa" class="speaker-photo">
                             </div>
-                            <div class="venue-map">
-                                <iframe
-                                    src="https://www.google.com/maps?q=Museum+Berlin-Karlshorst,+Zwieseler+Str.+4,+10318+Berlin&output=embed"
-                                    title="Map of Museum Berlin-Karlshorst"
-                                    loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"
-                                    allowfullscreen>
-                                </iframe>
+                            <div data-lang="de">
+                                <p class="person-name"><a href="https://www.zfl-berlin.org/person/scherbakowa.html" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dr. Irina Scherbakowa</a></p>
+                                <p class="speaker-role">Historikerin, Publizistin und Mitbegründerin von MEMORIAL</p>
+                                <p class="person-bio">Irina Scherbakowa ist Germanistin, Historikerin, Publizistin und Übersetzerin, Ehrenmitglied des <a href="https://www.zfl-berlin.org/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Leibniz-Zentrums für Literatur- und Kulturforschung Berlin</a> und Mitbegründerin von <a href="https://www.memorial.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">MEMORIAL</a>, der 2022 mit dem Friedensnobelpreis ausgezeichneten Gesellschaft. Seit den späten 1970er Jahren arbeitet sie mit Oral-History-Zeugnissen von Opfern des Stalinismus und forscht zu Gulag, kulturellem Gedächtnis und Erinnerungspolitik; in Karlshorst wird sie Aleksandr Askoldovs Biografie aus der Perspektive ihrer eigenen Arbeit zu Stalinismus, verdrängter Gewaltgeschichte und sowjetischer Erinnerung kontextualisieren.</p>
+                            </div>
+                            <div data-lang="en">
+                                <p class="person-name"><a href="https://www.zfl-berlin.org/person/scherbakowa.html" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dr. Irina Scherbakowa</a></p>
+                                <p class="speaker-role">Historian, publicist, and co-founder of MEMORIAL</p>
+                                <p class="person-bio">Irina Scherbakowa is a Germanist, historian, publicist, and translator, an honorary member of the <a href="https://www.zfl-berlin.org/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Leibniz Centre for Literary and Cultural Research Berlin</a>, and a co-founder of <a href="https://www.memorial.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">MEMORIAL</a>, the society awarded the 2022 Nobel Peace Prize. Since the late 1970s, she has worked with oral-history testimonies of victims of Stalinism and researched the Gulag, cultural memory, and the politics of remembrance; in Karlshorst, she will contextualize Aleksandr Askoldov’s biography through her own work on Stalinism, suppressed violence, and Soviet memory.</p>
+                            </div>
+                        </div>
+
+                        <div class="person-box speaker-card">
+                            <div class="speaker-photo-frame">
+                                <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata.jpg" alt="Portrait of Prof. Dr. Viktoriya Sukovata" class="speaker-photo">
+                            </div>
+                            <div data-lang="de">
+                                <p class="person-name"><a href="https://www.dubnow.de/person/prof-dr-victoryia-a-sukovata" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Prof. Dr. Viktoriya Sukovata</a></p>
+                                <p class="speaker-role">Professorin für Kulturtheorie | Dubnow-Institut Leipzig</p>
+                                <p class="person-bio">Viktoriya Sukovata ist seit 2012 Professorin an der <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">V. N. Karazin Nationalen Universität Charkiw</a> und seit 2022 wissenschaftliche Mitarbeiterin am <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dubnow-Institut Leipzig</a>; seit 2024 forscht sie dort mit einem Walter-Benjamin-Fellowship der DFG. Ihr Projekt untersucht Holocaust-Wahrnehmungen in Film und Literatur und die Veränderungen jüdisch-sowjetischer Holocaust-Erinnerung in der Ukraine seit 1945; in Karlshorst stellt sie unveröffentlichte Arbeiten aus ihrer Forschung zur Entstehungsgeschichte von <em>Die Kommissarin</em> vor und richtet den Blick auf Zensur, Pogromgewalt und jüdische Sichtbarkeit im sowjetischen Kino.</p>
+                            </div>
+                            <div data-lang="en">
+                                <p class="person-name"><a href="https://www.dubnow.de/person/prof-dr-victoryia-a-sukovata" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Prof. Dr. Viktoriya Sukovata</a></p>
+                                <p class="speaker-role">Professor of Cultural Theory | Dubnow Institute Leipzig</p>
+                                <p class="person-bio">Viktoriya Sukovata has been a professor at <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">V. N. Karazin Kharkiv National University</a> since 2012 and has worked at the <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dubnow Institute Leipzig</a> since 2022, where she has held a Walter Benjamin Fellowship funded by the German Research Foundation since 2024. Her current project examines Holocaust perceptions in film and literature and the changing forms of Jewish-Soviet Holocaust memory in Ukraine since 1945; in Karlshorst, she will present unpublished work from her research on the production history of <em>The Commissar</em> and focus on censorship, pogrom violence, and Jewish visibility in Soviet cinema.</p>
                             </div>
                         </div>
                     </div>
@@ -1964,57 +2063,63 @@
                                 <div class="schedule-item">Q&amp;A discussion</div>
                             </div>
                         </div>
-                        <div class="pretix-widget-wrapper kommissarin-widget-box">
-                            <h3 class="golem-people-title" data-lang="de">Tickets</h3>
-                            <h3 class="golem-people-title" data-lang="en">Tickets</h3>
-                            <p class="venue-meta" data-lang="de">Tickets konnen hier direkt uber Pretix gebucht werden.</p>
-                            <p class="venue-meta" data-lang="en">Tickets can be booked directly here via Pretix.</p>
-                            <pretix-widget event="https://pretix.eu/kino-kaddish/kommissarin/"></pretix-widget>
-                            <noscript>
-                                <div class="pretix-widget-fallback">
-                                    <span data-lang="de">JavaScript ist deaktiviert. Direkt zum Ticketshop: </span>
-                                    <span data-lang="en">JavaScript is disabled. Direct ticket shop: </span>
-                                    <a target="_blank" rel="noopener noreferrer" href="https://pretix.eu/kino-kaddish/kommissarin/">pretix.eu/kino-kaddish/kommissarin/</a>
+                    </div>
+
+                    <div class="venue-info kommissarin-venue-info">
+                        <h3 class="golem-people-title" data-lang="de">Veranstaltungsort</h3>
+                        <h3 class="golem-people-title" data-lang="en">Venue</h3>
+                        <div class="venue-card kommissarin-venue-box">
+                            <div class="kommissarin-venue-copy">
+                                <div data-lang="de">
+                                    <p class="person-bio">Museum Berlin-Karlshorst, der historische Ort der deutschen Kapitulation von 1945, ist für <em>Die Kommissarin</em> besonders sprechend. Die Filmvorführung verbindet die Darstellung von Bürgerkrieg, jüdischer Verletzlichkeit und sowjetischer Erinnerung mit einem Raum, in dem deutsche, sowjetische und europäische Gewaltgeschichte materiell aufeinandertreffen.</p>
+                                    <p class="venue-meta"><strong>Adresse:</strong> Zwieseler Str. 4, 10318 Berlin</p>
+                                    <p class="venue-meta"><strong>Anfahrt:</strong> S3 bis Karlshorst, dann Bus 296 bis Museum Berlin-Karlshorst.</p>
+                                    <div class="venue-actions">
+                                        <a class="venue-button" href="https://www.google.com/maps/search/?api=1&query=Museum+Berlin-Karlshorst,+Zwieseler+Str.+4,+10318+Berlin" target="_blank" rel="noopener noreferrer">
+                                            <span class="venue-text">Google Maps</span>
+                                        </a>
+                                    </div>
                                 </div>
-                            </noscript>
-                        </div>
-                    </div>
-
-                    <h3 class="golem-people-title" data-lang="de">Gesprächspartnerinnen</h3>
-                    <h3 class="golem-people-title" data-lang="en">Speakers</h3>
-                    <div class="speaker-bio-grid">
-                        <div class="person-box speaker-card">
-                            <div class="speaker-photo-frame">
-                                <img src="19-04_Karlshorst/profile_images/IrinaScherbakowa.jpg" alt="Portrait of Dr. Irina Scherbakowa" class="speaker-photo">
+                                <div data-lang="en">
+                                    <p class="person-bio">Museum Berlin-Karlshorst, the historic site of Germany’s 1945 surrender, is an especially resonant venue for <em>The Commissar</em>. The screening connects the film’s depiction of civil war, Jewish vulnerability, and Soviet memory with a site where German, Soviet, and broader European histories of violence materially intersect.</p>
+                                    <p class="venue-meta"><strong>Address:</strong> Zwieseler Str. 4, 10318 Berlin</p>
+                                    <p class="venue-meta"><strong>Getting there:</strong> S3 to Karlshorst, then bus 296 to Museum Berlin-Karlshorst.</p>
+                                    <div class="venue-actions">
+                                        <a class="venue-button" href="https://www.google.com/maps/search/?api=1&query=Museum+Berlin-Karlshorst,+Zwieseler+Str.+4,+10318+Berlin" target="_blank" rel="noopener noreferrer">
+                                            <span class="venue-text">Google Maps</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div data-lang="de">
-                                <p class="person-name"><a href="https://www.zfl-berlin.org/person/scherbakowa.html" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dr. Irina Scherbakowa</a></p>
-                                <p class="speaker-role">Historikerin, Publizistin und Mitbegründerin von MEMORIAL</p>
-                                <p class="person-bio">Irina Scherbakowa ist Germanistin, Historikerin, Publizistin und Übersetzerin, Ehrenmitglied des <a href="https://www.zfl-berlin.org/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Leibniz-Zentrums für Literatur- und Kulturforschung Berlin</a> und Mitbegründerin von <a href="https://www.memorial.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">MEMORIAL</a>, der 2022 mit dem Friedensnobelpreis ausgezeichneten Gesellschaft. Seit den späten 1970er Jahren arbeitet sie mit Oral-History-Zeugnissen von Opfern des Stalinismus und forscht zu Gulag, kulturellem Gedächtnis und Erinnerungspolitik; in Karlshorst wird sie Aleksandr Askoldovs Biografie aus der Perspektive ihrer eigenen Arbeit zu Stalinismus, verdrängter Gewaltgeschichte und sowjetischer Erinnerung kontextualisieren.</p>
-                            </div>
-                            <div data-lang="en">
-                                <p class="person-name"><a href="https://www.zfl-berlin.org/person/scherbakowa.html" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dr. Irina Scherbakowa</a></p>
-                                <p class="speaker-role">Historian, publicist, and co-founder of MEMORIAL</p>
-                                <p class="person-bio">Irina Scherbakowa is a Germanist, historian, publicist, and translator, an honorary member of the <a href="https://www.zfl-berlin.org/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Leibniz Centre for Literary and Cultural Research Berlin</a>, and a co-founder of <a href="https://www.memorial.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">MEMORIAL</a>, the society awarded the 2022 Nobel Peace Prize. Since the late 1970s, she has worked with oral-history testimonies of victims of Stalinism and researched the Gulag, cultural memory, and the politics of remembrance; in Karlshorst, she will contextualize Aleksandr Askoldov’s biography through her own work on Stalinism, suppressed violence, and Soviet memory.</p>
-                            </div>
-                        </div>
-
-                        <div class="person-box speaker-card">
-                            <div class="speaker-photo-frame">
-                                <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata.jpg" alt="Portrait of Prof. Dr. Viktoriya Sukovata" class="speaker-photo">
-                            </div>
-                            <div data-lang="de">
-                                <p class="person-name"><a href="https://www.dubnow.de/person/prof-dr-victoryia-a-sukovata" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Prof. Dr. Viktoriya Sukovata</a></p>
-                                <p class="speaker-role">Professorin für Kulturtheorie | Dubnow-Institut Leipzig</p>
-                                <p class="person-bio">Viktoriya Sukovata ist seit 2012 Professorin an der <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">V. N. Karazin Nationalen Universität Charkiw</a> und seit 2022 wissenschaftliche Mitarbeiterin am <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dubnow-Institut Leipzig</a>; seit 2024 forscht sie dort mit einem Walter-Benjamin-Fellowship der DFG. Ihr Projekt untersucht Holocaust-Wahrnehmungen in Film und Literatur und die Veränderungen jüdisch-sowjetischer Holocaust-Erinnerung in der Ukraine seit 1945; in Karlshorst stellt sie unveröffentlichte Arbeiten aus ihrer Forschung zur Entstehungsgeschichte von <em>Die Kommissarin</em> vor und richtet den Blick auf Zensur, Pogromgewalt und jüdische Sichtbarkeit im sowjetischen Kino.</p>
-                            </div>
-                            <div data-lang="en">
-                                <p class="person-name"><a href="https://www.dubnow.de/person/prof-dr-victoryia-a-sukovata" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Prof. Dr. Viktoriya Sukovata</a></p>
-                                <p class="speaker-role">Professor of Cultural Theory | Dubnow Institute Leipzig</p>
-                                <p class="person-bio">Viktoriya Sukovata has been a professor at <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">V. N. Karazin Kharkiv National University</a> since 2012 and has worked at the <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dubnow Institute Leipzig</a> since 2022, where she has held a Walter Benjamin Fellowship funded by the German Research Foundation since 2024. Her current project examines Holocaust perceptions in film and literature and the changing forms of Jewish-Soviet Holocaust memory in Ukraine since 1945; in Karlshorst, she will present unpublished work from her research on the production history of <em>The Commissar</em> and focus on censorship, pogrom violence, and Jewish visibility in Soviet cinema.</p>
+                            <div class="venue-map">
+                                <iframe
+                                    src="https://www.google.com/maps?q=Museum+Berlin-Karlshorst,+Zwieseler+Str.+4,+10318+Berlin&output=embed"
+                                    title="Map of Museum Berlin-Karlshorst"
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    allowfullscreen>
+                                </iframe>
                             </div>
                         </div>
                     </div>
+
+                    <div class="venue-card kommissarin-registration-box" id="kommissarin-anmeldung">
+                        <h3 class="golem-people-title" data-lang="de">Anmeldung</h3>
+                        <h3 class="golem-people-title" data-lang="en">Registration</h3>
+                        <p class="venue-meta" data-lang="de">Die Anmeldung läuft über Pretix.</p>
+                        <p class="venue-meta" data-lang="en">Registration is handled through Pretix.</p>
+                        <div class="kommissarin-registration-actions">
+                            <pretix-button event="https://pretix.eu/kino-kaddish/kommissarin/" language="de" class="anmelde-button" id="kommissarin-anmelde-button">
+                                <span data-lang="de">Anmelden</span>
+                                <span data-lang="en">Register</span>
+                            </pretix-button>
+                            <div>
+                                <p class="kommissarin-registration-disclaimer" data-lang="de">Bitte nur ernst gemeinte Anmeldungen: Die Veranstaltung umfasst auch Catering. Wer trotz Anmeldung nicht erscheint, nimmt anderen einen Platz weg und verursacht uns zusätzliche Kosten.</p>
+                                <p class="kommissarin-registration-disclaimer" data-lang="en">Please register only if you genuinely plan to attend: the event includes catering, so no-shows take a place from someone else and also create extra costs for us.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event-section-divider" aria-hidden="true"></div>
                 </div>
             </section>
 
@@ -2633,10 +2738,9 @@
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
             // Update Pretix button language
-            const pretixButton = document.getElementById('golem-anmelde-button');
-            if (pretixButton) {
+            document.querySelectorAll('#golem-anmelde-button, #kommissarin-anmelde-button').forEach((pretixButton) => {
                 pretixButton.setAttribute('language', lang);
-            }
+            });
 
             // Save preference
             localStorage.setItem('preferred-language', lang);
