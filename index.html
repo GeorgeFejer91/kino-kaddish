@@ -996,6 +996,24 @@
             color: rgba(255, 255, 255, 0.78);
         }
 
+        #kommissarin .kommissarin-meta-line {
+            width: 100%;
+            max-width: none;
+            font-size: clamp(0.96rem, 1.18vw, 1.18rem);
+            line-height: 1.42;
+            letter-spacing: 0.005em;
+            text-wrap: pretty;
+        }
+
+        #kommissarin .kommissarin-meta-primary,
+        #kommissarin .kommissarin-meta-emphasis {
+            display: inline;
+        }
+
+        #kommissarin .kommissarin-meta-emphasis {
+            font-weight: 600;
+        }
+
         #kommissarin .film-description {
             text-align: left;
             line-height: 1.78;
@@ -1339,6 +1357,10 @@
                 border-top: 1px solid var(--separator-color);
                 padding-left: 0;
                 padding-top: 1rem;
+            }
+
+            #kommissarin .kommissarin-meta-line {
+                font-size: clamp(0.92rem, 1.9vw, 1.05rem);
             }
             
             .film-image img {
@@ -1698,6 +1720,18 @@
             
             .venue-logo {
                 height: 50px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #kommissarin .kommissarin-meta-line {
+                font-size: clamp(0.84rem, 3.25vw, 0.98rem);
+                line-height: 1.48;
+            }
+
+            #kommissarin .kommissarin-meta-emphasis {
+                display: block;
+                margin-top: 0.12rem;
             }
         }
 
@@ -2190,8 +2224,8 @@
                 <h2 class="section-title" data-lang="de">Die Kommissarin</h2>
                 <h2 class="section-title" data-lang="en">The Commissar</h2>
                 <div class="film">
-                    <p class="film-year" data-lang="de">Комиссар | SU 1967/1987 | Filmvorführung mit Gespräch | <strong>19.04.2026 | Museum Berlin-Karlshorst</strong></p>
-                    <p class="film-year" data-lang="en">The Commissar (Комиссар) | USSR 1967/1987 | Screening and discussion | <strong>19 April 2026 | Museum Berlin-Karlshorst</strong></p>
+                    <p class="film-year kommissarin-meta-line" data-lang="de"><span class="kommissarin-meta-primary">Комиссар | SU 1967/1987 | Filmvorführung mit Gespräch |</span> <strong class="kommissarin-meta-emphasis">19.04.2026 | Museum Berlin-Karlshorst</strong></p>
+                    <p class="film-year kommissarin-meta-line" data-lang="en"><span class="kommissarin-meta-primary">The Commissar (Комиссар) | USSR 1967/1987 | Screening and discussion |</span> <strong class="kommissarin-meta-emphasis">19 April 2026 | Museum Berlin-Karlshorst</strong></p>
                     <div class="film-content">
                         <div class="kommissarin-side-column">
                             <div class="film-image kommissarin-poster">
