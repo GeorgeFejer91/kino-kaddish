@@ -577,6 +577,16 @@
             opacity: 1;
         }
 
+        .kommissarin-poster {
+            width: min(320px, 100%);
+            max-width: 320px;
+        }
+
+        .kommissarin-poster img {
+            width: 100%;
+            max-width: 320px;
+        }
+
         /* Golem SVG Animation */
         .golem-svg {
             width: 100%;
@@ -1454,6 +1464,24 @@
             border-radius: 5px;
         }
 
+        .kommissarin-widget-box {
+            max-width: 780px;
+            margin: 0;
+            padding: 1.25rem;
+        }
+
+        .kommissarin-widget-box pretix-widget {
+            display: block;
+            margin-top: 1rem;
+        }
+
+        .pretix-widget-fallback {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.88);
+        }
+
         /* Override Pretix default colors to match your theme */
         .pretix-widget * {
             font-family: 'Roboto', 'Helvetica Neue', sans-serif !important;
@@ -1549,8 +1577,10 @@
 
     <!-- Pretix Widget Scripts -->
     <link rel="stylesheet" type="text/css" href="https://pretix.eu/kino-kaddish/golem/widget/v1.css" crossorigin>
+    <link rel="stylesheet" type="text/css" href="https://pretix.eu/kino-kaddish/kommissarin/widget/v2.css" crossorigin>
     <script type="text/javascript" src="https://pretix.eu/widget/v1.de.js" async crossorigin id="pretix-widget-de"></script>
     <script type="text/javascript" src="https://pretix.eu/widget/v1.en.js" async crossorigin id="pretix-widget-en"></script>
+    <script type="text/javascript" src="https://pretix.eu/widget/v2.en.js" async crossorigin id="pretix-widget-v2-en"></script>
 </head>
 <body>
     <!-- Language Switcher -->
@@ -1834,19 +1864,19 @@
                     <p class="film-year credits-line" data-lang="de">Kuratiert von <strong>George Fejer</strong> und <strong>Jaroslav Begun</strong></p>
                     <p class="film-year credits-line" data-lang="en">Curated by <strong>George Fejer</strong> and <strong>Jaroslav Begun</strong></p>
                     <div class="film-content">
-                        <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/kommissarin.jpg" alt="Die Kommissarin (1967)">
+                        <div class="film-image kommissarin-poster">
+                            <img src="19-04_Karlshorst/Filmplakat/blank_instagram_1080x1350.png" alt="Die Kommissarin (1967)">
                         </div>
                         <div class="film-details">
                             <div data-lang="de">
                                 <p class="film-description">Die Kommissarin basiert auf einer Erzählung und spielt in Berditschew, einem der wichtigsten jüdischen Zentren des ehemaligen Russischen Kaiserreichs. Der Film erinnert an die Pogrome gegen jüdische Gemeinden während des Bürgerkriegs und verweist zugleich symbolisch auf die Verfolgungen des Holocaust. Vor dem Hintergrund des Bürgerkriegs in einer Provinzstadt kreuzen sich die Schicksale einer Kommissarin und einer jüdischen Familie, die sie bei sich aufnimmt. Diese erzwungene Episode eines friedlichen Lebens wird zu einer subtilen und ergreifenden Reflexion über das Aufeinandertreffen von Persönlichem und Historischem, über Mutterschaft, Verletzlichkeit und die Zerbrechlichkeit der menschlichen Existenz.</p>
                                 <p class="film-description">Wegen seiner Thematik blieb der Film fast 20 Jahre verboten – ein eindringliches Beispiel für das Verschweigen jüdischer Geschichte in der Sowjetunion.</p>
-                                <p class="film-description"><strong>Gesprächsthemen:</strong> Das Spannungsfeld von Zensur, Erinnerung und filmischer Darstellung jüdischer Lebenswelten. Wie wurden trotz staatlicher Kontrolle mit Allegorien und Figurenzeichnung Gegen-Narrationen zur offiziellen Geschichtsdeutung entworfen? Die Bedeutung jüdischer Alltagskultur als Träger historischer Erinnerung und wie „verbotene Stimmen" unser heutiges Verständnis von Erinnerungspolitik und filmischer Zeugenschaft prägen.</p>
+                                <p class="film-description"><strong>Gespräch:</strong> Im anschließenden Gespräch kontextualisiert Irina Scherbakowa Aleksandr Askoldovs Biografie aus ihrer eigenen Arbeit zu Stalinismus, Erinnerungspolitik und verdrängter Gewaltgeschichte. Viktoriya Sukovata stellt unveröffentlichte Überlegungen aus ihrer Forschung zur Entstehungsgeschichte des Films vor und fragt, wie Zensur, Pogromgewalt und jüdische Sichtbarkeit im sowjetischen Kino verhandelt wurden.</p>
                             </div>
                             <div data-lang="en">
                                 <p class="film-description"><em>The Commissar</em> is based on a short story and set in Berdychiv, one of the most important Jewish centers of the former Russian Empire. The film recalls the pogroms against Jewish communities during the Civil War while also symbolically alluding to the persecutions of the Holocaust. Against the backdrop of civil war in a provincial town, the paths of a female commissar and a Jewish family who take her in intersect. This enforced episode of peaceful domestic life becomes a subtle and moving reflection on the encounter between the personal and the historical, on motherhood, vulnerability, and the fragility of human existence.</p>
                                 <p class="film-description">Because of its subject matter, the film remained banned for almost twenty years - a striking example of the suppression of Jewish history in the Soviet Union.</p>
-                                <p class="film-description"><strong>Discussion topics:</strong> The tension between censorship, memory, and cinematic representations of Jewish lifeworlds. How were counter-narratives to official historical interpretation developed through allegory and characterization despite state control? The significance of everyday Jewish culture as a carrier of historical memory, and how "forbidden voices" continue to shape our understanding of memory politics and cinematic witnessing.</p>
+                                <p class="film-description"><strong>Discussion:</strong> In the conversation after the screening, Irina Scherbakowa will contextualize Aleksandr Askoldov’s biography through her own work on Stalinism, memory politics, and suppressed histories of violence. Viktoriya Sukovata will present unpublished work from her research on the film’s production history and discuss how censorship, pogrom violence, and Jewish visibility were negotiated in Soviet cinema.</p>
                             </div>
                         </div>
                     </div>
@@ -1857,7 +1887,7 @@
                         <div class="venue-card kommissarin-venue-box">
                             <div class="kommissarin-venue-copy">
                                 <div data-lang="de">
-                                    <p class="person-bio">Museum Berlin-Karlshorst, der historische Ort der deutschen Kapitulation von 1945, bildet mit seinem Fokus auf Krieg und Besatzung in Osteuropa den Rahmen für die Vorführung und das anschließende Gespräch.</p>
+                                    <p class="person-bio">Museum Berlin-Karlshorst, der historische Ort der deutschen Kapitulation von 1945, ist für <em>Die Kommissarin</em> besonders sprechend. Die Filmvorführung verbindet die Darstellung von Bürgerkrieg, jüdischer Verletzlichkeit und sowjetischer Erinnerung mit einem Raum, in dem deutsche, sowjetische und europäische Gewaltgeschichte materiell aufeinandertreffen.</p>
                                     <p class="venue-meta"><strong>Adresse:</strong> Zwieseler Str. 4, 10318 Berlin</p>
                                     <p class="venue-meta"><strong>Anfahrt:</strong> S3 bis Karlshorst, dann Bus 296 bis Museum Berlin-Karlshorst.</p>
                                     <div class="venue-actions">
@@ -1867,7 +1897,7 @@
                                     </div>
                                 </div>
                                 <div data-lang="en">
-                                    <p class="person-bio">Museum Berlin-Karlshorst, the historic site of Germany’s 1945 surrender, offers a fitting setting for this screening with its focus on war and occupation in Eastern Europe.</p>
+                                    <p class="person-bio">Museum Berlin-Karlshorst, the historic site of Germany’s 1945 surrender, is an especially resonant venue for <em>The Commissar</em>. The screening connects the film’s depiction of civil war, Jewish vulnerability, and Soviet memory with a site where German, Soviet, and broader European histories of violence materially intersect.</p>
                                     <p class="venue-meta"><strong>Address:</strong> Zwieseler Str. 4, 10318 Berlin</p>
                                     <p class="venue-meta"><strong>Getting there:</strong> S3 to Karlshorst, then bus 296 to Museum Berlin-Karlshorst.</p>
                                     <div class="venue-actions">
@@ -1894,39 +1924,55 @@
                             <h3 class="golem-people-title" data-lang="de">Ablauf</h3>
                             <h3 class="golem-people-title" data-lang="en">Schedule</h3>
                             <div class="schedule-grid" data-lang="de">
-                                <div class="schedule-time">14:30-14:45</div>
-                                <div class="schedule-item">Ankommen und Begrüßung</div>
-                                <div class="schedule-time">14:45-16:00</div>
-                                <div class="schedule-item">Thematische Führung durch das Museum</div>
-                                <div class="schedule-time">16:00-16:20</div>
-                                <div class="schedule-item">Einführung zum Film</div>
-                                <div class="schedule-time">16:20-18:04</div>
-                                <div class="schedule-item">Filmvorführung: <em>Die Kommissarin</em> (104 Min.)</div>
-                                <div class="schedule-time">18:04-19:00</div>
-                                <div class="schedule-item">Podiumsgespräch mit Irina Scherbakowa und Viktoriya Sukovata</div>
-                                <div class="schedule-time">19:00-19:30</div>
-                                <div class="schedule-item">Offener Ausklang</div>
+                                <div class="schedule-time">11:45-12:00</div>
+                                <div class="schedule-item">Begrüßung</div>
+                                <div class="schedule-time">12:00-13:00</div>
+                                <div class="schedule-item">Führung durch Karlshorst</div>
+                                <div class="schedule-time">14:00-14:30</div>
+                                <div class="schedule-item">Vortrag von Irina Scherbakowa</div>
+                                <div class="schedule-time">14:30-14:35</div>
+                                <div class="schedule-item">Kurze Pause</div>
+                                <div class="schedule-time">14:35-15:05</div>
+                                <div class="schedule-item">Vortrag von Viktoriya Sukovata</div>
+                                <div class="schedule-time">15:05-15:15</div>
+                                <div class="schedule-item">Pause</div>
+                                <div class="schedule-time">15:15-17:15</div>
+                                <div class="schedule-item">Filmvorführung: <em>Die Kommissarin</em></div>
+                                <div class="schedule-time">17:15-18:00</div>
+                                <div class="schedule-item">Fragerunde und Gespräch</div>
                             </div>
                             <div class="schedule-grid" data-lang="en">
-                                <div class="schedule-time">14:30-14:45</div>
+                                <div class="schedule-time">11:45-12:00</div>
                                 <div class="schedule-item">Arrival and welcome</div>
-                                <div class="schedule-time">14:45-16:00</div>
-                                <div class="schedule-item">Thematic museum tour</div>
-                                <div class="schedule-time">16:00-16:20</div>
-                                <div class="schedule-item">Introduction to the film</div>
-                                <div class="schedule-time">16:20-18:04</div>
-                                <div class="schedule-item">Screening: <em>The Commissar</em> (104 min)</div>
-                                <div class="schedule-time">18:04-19:00</div>
-                                <div class="schedule-item">Conversation with Irina Scherbakowa and Viktoriya Sukovata</div>
-                                <div class="schedule-time">19:00-19:30</div>
-                                <div class="schedule-item">Informal close</div>
+                                <div class="schedule-time">12:00-13:00</div>
+                                <div class="schedule-item">Guided tour of Karlshorst</div>
+                                <div class="schedule-time">14:00-14:30</div>
+                                <div class="schedule-item">Presentation by Irina Scherbakowa</div>
+                                <div class="schedule-time">14:30-14:35</div>
+                                <div class="schedule-item">Short break</div>
+                                <div class="schedule-time">14:35-15:05</div>
+                                <div class="schedule-item">Presentation by Viktoriya Sukovata</div>
+                                <div class="schedule-time">15:05-15:15</div>
+                                <div class="schedule-item">Break</div>
+                                <div class="schedule-time">15:15-17:15</div>
+                                <div class="schedule-item">Screening: <em>The Commissar</em></div>
+                                <div class="schedule-time">17:15-18:00</div>
+                                <div class="schedule-item">Q&amp;A discussion</div>
                             </div>
-                            <p class="venue-meta" data-lang="de"><strong>Anmeldung:</strong> per E-Mail an <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color); text-decoration: none;">info@kaddish-kino.org</a></p>
-                            <p class="venue-meta" data-lang="en"><strong>Registration:</strong> by email via <a href="mailto:info@kaddish-kino.org" style="color: var(--highlight-color); text-decoration: none;">info@kaddish-kino.org</a></p>
-                            <a class="anmelde-button kommissarin-register" href="mailto:info@kaddish-kino.org?subject=Registration%20%2F%20Anmeldung%3A%20Die%20Kommissarin%20-%2019.04.2026&body=Name%3A%0ANumber%20of%20seats%20%2F%20Anzahl%20Pl%C3%A4tze%3A%0A">
-                                <span data-lang="de">Anmelden</span>
-                                <span data-lang="en">Register</span>
-                            </a>
+                        </div>
+                        <div class="pretix-widget-wrapper kommissarin-widget-box">
+                            <h3 class="golem-people-title" data-lang="de">Tickets</h3>
+                            <h3 class="golem-people-title" data-lang="en">Tickets</h3>
+                            <p class="venue-meta" data-lang="de">Tickets konnen hier direkt uber Pretix gebucht werden.</p>
+                            <p class="venue-meta" data-lang="en">Tickets can be booked directly here via Pretix.</p>
+                            <pretix-widget event="https://pretix.eu/kino-kaddish/kommissarin/"></pretix-widget>
+                            <noscript>
+                                <div class="pretix-widget-fallback">
+                                    <span data-lang="de">JavaScript ist deaktiviert. Direkt zum Ticketshop: </span>
+                                    <span data-lang="en">JavaScript is disabled. Direct ticket shop: </span>
+                                    <a target="_blank" rel="noopener noreferrer" href="https://pretix.eu/kino-kaddish/kommissarin/">pretix.eu/kino-kaddish/kommissarin/</a>
+                                </div>
+                            </noscript>
                         </div>
                     </div>
 
@@ -1940,12 +1986,12 @@
                             <div data-lang="de">
                                 <p class="person-name"><a href="https://www.zfl-berlin.org/person/scherbakowa.html" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dr. Irina Scherbakowa</a></p>
                                 <p class="speaker-role">Historikerin, Publizistin und Mitbegründerin von MEMORIAL</p>
-                                <p class="person-bio">Irina Scherbakowa ist Germanistin, Historikerin, Publizistin und Übersetzerin, Ehrenmitglied des <a href="https://www.zfl-berlin.org/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Leibniz-Zentrums für Literatur- und Kulturforschung Berlin</a> und Mitbegründerin von <a href="https://www.memorial.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">MEMORIAL</a>, der 2022 mit dem Friedensnobelpreis ausgezeichneten Gesellschaft. Seit den späten 1970er Jahren arbeitet sie mit Oral-History-Zeugnissen von Opfern des Stalinismus und forscht zu Gulag, sowjetischen Speziallagern, kulturellem Gedächtnis und Erinnerungspolitik; für das Gespräch in Karlshorst bringt sie eine genaue Perspektive auf staatliche Siegesnarrative, verdrängte Gewaltgeschichte und jüdisch-sowjetische Erinnerung ein.</p>
+                                <p class="person-bio">Irina Scherbakowa ist Germanistin, Historikerin, Publizistin und Übersetzerin, Ehrenmitglied des <a href="https://www.zfl-berlin.org/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Leibniz-Zentrums für Literatur- und Kulturforschung Berlin</a> und Mitbegründerin von <a href="https://www.memorial.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">MEMORIAL</a>, der 2022 mit dem Friedensnobelpreis ausgezeichneten Gesellschaft. Seit den späten 1970er Jahren arbeitet sie mit Oral-History-Zeugnissen von Opfern des Stalinismus und forscht zu Gulag, kulturellem Gedächtnis und Erinnerungspolitik; in Karlshorst wird sie Aleksandr Askoldovs Biografie aus der Perspektive ihrer eigenen Arbeit zu Stalinismus, verdrängter Gewaltgeschichte und sowjetischer Erinnerung kontextualisieren.</p>
                             </div>
                             <div data-lang="en">
                                 <p class="person-name"><a href="https://www.zfl-berlin.org/person/scherbakowa.html" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dr. Irina Scherbakowa</a></p>
                                 <p class="speaker-role">Historian, publicist, and co-founder of MEMORIAL</p>
-                                <p class="person-bio">Irina Scherbakowa is a Germanist, historian, publicist, and translator, an honorary member of the <a href="https://www.zfl-berlin.org/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Leibniz Centre for Literary and Cultural Research Berlin</a>, and a co-founder of <a href="https://www.memorial.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">MEMORIAL</a>, the society awarded the 2022 Nobel Peace Prize. Since the late 1970s, she has worked with oral-history testimonies of victims of Stalinism and researched the Gulag, Soviet special camps, cultural memory, and the politics of remembrance; in Karlshorst, she brings a precise perspective on state narratives of victory, suppressed violence, and Jewish-Soviet memory.</p>
+                                <p class="person-bio">Irina Scherbakowa is a Germanist, historian, publicist, and translator, an honorary member of the <a href="https://www.zfl-berlin.org/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Leibniz Centre for Literary and Cultural Research Berlin</a>, and a co-founder of <a href="https://www.memorial.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">MEMORIAL</a>, the society awarded the 2022 Nobel Peace Prize. Since the late 1970s, she has worked with oral-history testimonies of victims of Stalinism and researched the Gulag, cultural memory, and the politics of remembrance; in Karlshorst, she will contextualize Aleksandr Askoldov’s biography through her own work on Stalinism, suppressed violence, and Soviet memory.</p>
                             </div>
                         </div>
 
@@ -1956,12 +2002,12 @@
                             <div data-lang="de">
                                 <p class="person-name"><a href="https://www.dubnow.de/person/prof-dr-victoryia-a-sukovata" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Prof. Dr. Viktoriya Sukovata</a></p>
                                 <p class="speaker-role">Professorin für Kulturtheorie | Dubnow-Institut Leipzig</p>
-                                <p class="person-bio">Viktoriya Sukovata ist seit 2012 Professorin an der <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">V. N. Karazin Nationalen Universität Charkiw</a> und seit 2022 wissenschaftliche Mitarbeiterin am <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dubnow-Institut Leipzig</a>; seit 2024 forscht sie dort mit einem Walter-Benjamin-Fellowship der DFG. Ihr Projekt untersucht Holocaust-Wahrnehmungen in Film und Literatur und die Veränderungen jüdisch-sowjetischer Holocaust-Erinnerung in der Ukraine seit 1945 und schärft für das Karlshorster Gespräch den Blick auf Zensur, Pogromgewalt und die Sichtbarkeit jüdischer Erfahrung im sowjetischen und postsowjetischen Kino.</p>
+                                <p class="person-bio">Viktoriya Sukovata ist seit 2012 Professorin an der <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">V. N. Karazin Nationalen Universität Charkiw</a> und seit 2022 wissenschaftliche Mitarbeiterin am <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dubnow-Institut Leipzig</a>; seit 2024 forscht sie dort mit einem Walter-Benjamin-Fellowship der DFG. Ihr Projekt untersucht Holocaust-Wahrnehmungen in Film und Literatur und die Veränderungen jüdisch-sowjetischer Holocaust-Erinnerung in der Ukraine seit 1945; in Karlshorst stellt sie unveröffentlichte Arbeiten aus ihrer Forschung zur Entstehungsgeschichte von <em>Die Kommissarin</em> vor und richtet den Blick auf Zensur, Pogromgewalt und jüdische Sichtbarkeit im sowjetischen Kino.</p>
                             </div>
                             <div data-lang="en">
                                 <p class="person-name"><a href="https://www.dubnow.de/person/prof-dr-victoryia-a-sukovata" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Prof. Dr. Viktoriya Sukovata</a></p>
                                 <p class="speaker-role">Professor of Cultural Theory | Dubnow Institute Leipzig</p>
-                                <p class="person-bio">Viktoriya Sukovata has been a professor at <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">V. N. Karazin Kharkiv National University</a> since 2012 and has worked at the <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dubnow Institute Leipzig</a> since 2022, where she has held a Walter Benjamin Fellowship funded by the German Research Foundation since 2024. Her current project examines Holocaust perceptions in film and literature and the changing forms of Jewish-Soviet Holocaust memory in Ukraine since 1945, sharpening the conversation in Karlshorst around censorship, pogrom violence, and the visibility of Jewish experience in Soviet and post-Soviet cinema.</p>
+                                <p class="person-bio">Viktoriya Sukovata has been a professor at <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">V. N. Karazin Kharkiv National University</a> since 2012 and has worked at the <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: none;">Dubnow Institute Leipzig</a> since 2022, where she has held a Walter Benjamin Fellowship funded by the German Research Foundation since 2024. Her current project examines Holocaust perceptions in film and literature and the changing forms of Jewish-Soviet Holocaust memory in Ukraine since 1945; in Karlshorst, she will present unpublished work from her research on the production history of <em>The Commissar</em> and focus on censorship, pogrom violence, and Jewish visibility in Soviet cinema.</p>
                             </div>
                         </div>
                     </div>

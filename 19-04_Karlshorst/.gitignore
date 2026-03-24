@@ -1,0 +1,12 @@
+*.aux
+*.log
+*.out
+*.synctex.gz
+~$*.pptx
+
+.tmp_budget_xlsx/
+.tmp_budget_xlsx.zip
+
+Ticketting/_ticket_pdfimages/
+Ticketting/_ticket_*preview.png
+Ticketting/_ticket_text.txt

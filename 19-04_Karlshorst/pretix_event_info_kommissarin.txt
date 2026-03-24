@@ -1,0 +1,47 @@
+Pretix event setup
+KINO KADDISH: Die Kommissarin
+
+Event name
+English: KINO KADDISH: The Commissar
+German: KINO KADDISH: Die Kommissarin
+
+Short form
+Preferred: kommissarin
+Fallback if taken: kommissarin-2026
+
+Event start time
+Date: 2026-04-19
+Time: 11:45:00
+
+Event end time
+Date: 2026-04-19
+Time: 18:00:00
+
+Location
+English:
+Museum Berlin-Karlshorst
+Zwieseler Str. 4
+10318 Berlin
+Germany
+
+German:
+Museum Berlin-Karlshorst
+Zwieseler Str. 4
+10318 Berlin
+Deutschland
+
+Geo coordinates
+Leave blank if Pretix already says "Geo coordinates updated".
+
+Current published schedule for reference
+11:45-12:00 Welcome
+12:00-13:00 Guided tour of Karlshorst
+14:00-14:30 Presentation by Irina Scherbakowa
+14:30-14:35 Short break
+14:35-15:05 Presentation by Viktoriya Sukovata
+15:05-15:15 Break
+15:15-17:15 Film screening
+17:15-18:00 Q&A discussion
+
+Note
+These times reflect the current website schedule as updated on 2026-03-24.
