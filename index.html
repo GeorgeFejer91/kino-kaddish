@@ -607,18 +607,6 @@
             z-index: 1;
         }
 
-        @property --poster-reveal-radius {
-            syntax: '<length>';
-            inherits: false;
-            initial-value: 0px;
-        }
-
-        @property --poster-reveal-opacity {
-            syntax: '<number>';
-            inherits: false;
-            initial-value: 0;
-        }
-
         .kommissarin-side-column {
             display: flex;
             flex-direction: column;
@@ -636,69 +624,34 @@
             position: relative;
             overflow: hidden;
             isolation: isolate;
-            --poster-cursor-x: 50%;
-            --poster-cursor-y: 50%;
-            --poster-reveal-radius: 0px;
-            --poster-reveal-opacity: 0;
-            --poster-image: none;
+            background: #090909;
         }
 
-        .kommissarin-poster::before,
-        .kommissarin-poster::after {
-            content: "";
+        .kommissarin-poster-glow,
+        .kommissarin-poster-reveal {
             position: absolute;
             inset: 0;
             pointer-events: none;
-            transition:
-                --poster-reveal-radius 0.24s ease-out,
-                --poster-reveal-opacity 0.18s ease-out,
-                opacity 0.18s linear;
+            opacity: 0;
+            transition: opacity 0.18s linear;
         }
 
-        .kommissarin-poster::before {
-            inset: -6%;
-            opacity: calc(var(--poster-reveal-opacity) * 0.9);
-            background: radial-gradient(
-                circle calc(var(--poster-reveal-radius) * 1.12) at var(--poster-cursor-x) var(--poster-cursor-y),
-                rgba(255, 162, 126, 0.34) 0%,
-                rgba(236, 118, 88, 0.22) 28%,
-                rgba(150, 64, 48, 0.12) 52%,
-                rgba(0, 0, 0, 0) 76%
-            );
+        .kommissarin-poster-glow {
+            inset: -8%;
             mix-blend-mode: screen;
-            filter: blur(10px);
+            filter: blur(18px);
             z-index: 1;
         }
 
-        .kommissarin-poster::after {
-            background-image: var(--poster-image);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: calc(var(--poster-reveal-opacity) * 0.98);
+        .kommissarin-poster-reveal {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
             filter: saturate(1.18) contrast(1.04) brightness(1.02);
-            -webkit-mask-image: radial-gradient(
-                circle calc(var(--poster-reveal-radius) * 1.02) at var(--poster-cursor-x) var(--poster-cursor-y),
-                rgba(0, 0, 0, 1) 0%,
-                rgba(0, 0, 0, 0.98) 16%,
-                rgba(0, 0, 0, 0.82) 40%,
-                rgba(0, 0, 0, 0.46) 66%,
-                rgba(0, 0, 0, 0.14) 86%,
-                rgba(0, 0, 0, 0) 100%
-            );
-            mask-image: radial-gradient(
-                circle calc(var(--poster-reveal-radius) * 1.02) at var(--poster-cursor-x) var(--poster-cursor-y),
-                rgba(0, 0, 0, 1) 0%,
-                rgba(0, 0, 0, 0.98) 16%,
-                rgba(0, 0, 0, 0.82) 40%,
-                rgba(0, 0, 0, 0.46) 66%,
-                rgba(0, 0, 0, 0.14) 86%,
-                rgba(0, 0, 0, 0) 100%
-            );
             z-index: 2;
         }
 
-        .kommissarin-poster img {
+        .kommissarin-poster-base {
             width: 100%;
             max-width: none;
             display: block;
@@ -2285,7 +2238,9 @@
                     <div class="film-content">
                         <div class="kommissarin-side-column">
                             <div class="film-image kommissarin-poster">
-                                <img src="19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png" alt="Die Kommissarin (1967)">
+                                <img class="kommissarin-poster-base" src="19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png" alt="Die Kommissarin (1967)">
+                                <div class="kommissarin-poster-glow" aria-hidden="true"></div>
+                                <img class="kommissarin-poster-reveal" src="19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png" alt="" aria-hidden="true">
                             </div>
                             <div class="kommissarin-quick-actions">
                                 <a class="kommissarin-jump-button kommissarin-proximity-accent" href="#kommissarin-anmeldung">
@@ -3153,8 +3108,14 @@
         const kommissarinPoster = kommissarinSection
             ? kommissarinSection.querySelector('.kommissarin-poster')
             : null;
-        const kommissarinPosterImage = kommissarinPoster
-            ? kommissarinPoster.querySelector('img')
+        const kommissarinPosterBaseImage = kommissarinPoster
+            ? kommissarinPoster.querySelector('.kommissarin-poster-base')
+            : null;
+        const kommissarinPosterRevealImage = kommissarinPoster
+            ? kommissarinPoster.querySelector('.kommissarin-poster-reveal')
+            : null;
+        const kommissarinPosterGlow = kommissarinPoster
+            ? kommissarinPoster.querySelector('.kommissarin-poster-glow')
             : null;
         const kommissarinPointerMedia = kommissarinSection
             ? Array.from(kommissarinSection.querySelectorAll('.kommissarin-proximity-media'))
@@ -3170,24 +3131,37 @@
         let kommissarinPendingPoint = null;
 
         function updateKommissarinPosterPointer(clientX, clientY) {
-            if (!kommissarinPoster || !kommissarinPointerQuery.matches) {
+            if (!kommissarinPoster || !kommissarinPosterRevealImage || !kommissarinPosterGlow || !kommissarinPointerQuery.matches) {
                 return;
             }
 
             const posterRect = kommissarinPoster.getBoundingClientRect();
-            kommissarinPoster.style.setProperty('--poster-cursor-x', `${clientX - posterRect.left}px`);
-            kommissarinPoster.style.setProperty('--poster-cursor-y', `${clientY - posterRect.top}px`);
-            kommissarinPoster.style.setProperty('--poster-reveal-radius', '220px');
-            kommissarinPoster.style.setProperty('--poster-reveal-opacity', '1');
+            const cursorX = clientX - posterRect.left;
+            const cursorY = clientY - posterRect.top;
+            const revealRadius = 220;
+            const revealMask = `radial-gradient(circle ${revealRadius}px at ${cursorX}px ${cursorY}px, rgba(0, 0, 0, 1) 0px, rgba(0, 0, 0, 0.98) 38px, rgba(0, 0, 0, 0.86) 96px, rgba(0, 0, 0, 0.46) 156px, rgba(0, 0, 0, 0.12) 204px, rgba(0, 0, 0, 0) 100%)`;
+            const glowRadius = 248;
+
+            kommissarinPosterRevealImage.style.opacity = '1';
+            kommissarinPosterRevealImage.style.clipPath = `circle(${revealRadius}px at ${cursorX}px ${cursorY}px)`;
+            kommissarinPosterRevealImage.style.webkitMaskImage = revealMask;
+            kommissarinPosterRevealImage.style.maskImage = revealMask;
+
+            kommissarinPosterGlow.style.opacity = '1';
+            kommissarinPosterGlow.style.background = `radial-gradient(circle ${glowRadius}px at ${cursorX}px ${cursorY}px, rgba(255, 154, 122, 0.44) 0px, rgba(225, 98, 74, 0.22) 84px, rgba(148, 62, 49, 0.10) 154px, rgba(0, 0, 0, 0) 100%)`;
         }
 
         function resetKommissarinPosterPointer() {
-            if (!kommissarinPoster) {
+            if (!kommissarinPosterRevealImage || !kommissarinPosterGlow) {
                 return;
             }
 
-            kommissarinPoster.style.setProperty('--poster-reveal-opacity', '0');
-            kommissarinPoster.style.setProperty('--poster-reveal-radius', '0px');
+            kommissarinPosterRevealImage.style.opacity = '0';
+            kommissarinPosterRevealImage.style.clipPath = 'none';
+            kommissarinPosterRevealImage.style.webkitMaskImage = 'none';
+            kommissarinPosterRevealImage.style.maskImage = 'none';
+            kommissarinPosterGlow.style.opacity = '0';
+            kommissarinPosterGlow.style.background = 'none';
         }
 
         function kommissarinDistanceToRect(x, y, rect) {
@@ -3283,8 +3257,8 @@
         }
 
         if (kommissarinSection) {
-            if (kommissarinPoster && kommissarinPosterImage) {
-                kommissarinPoster.style.setProperty('--poster-image', `url("${kommissarinPosterImage.currentSrc || kommissarinPosterImage.src}")`);
+            if (kommissarinPoster && kommissarinPosterBaseImage && kommissarinPosterRevealImage) {
+                kommissarinPosterRevealImage.src = kommissarinPosterBaseImage.currentSrc || kommissarinPosterBaseImage.src;
                 kommissarinPoster.addEventListener('mousemove', (event) => {
                     updateKommissarinPosterPointer(event.clientX, event.clientY);
                 });
