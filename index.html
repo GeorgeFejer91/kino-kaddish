@@ -633,6 +633,8 @@
             --poster-reveal-y: 50%;
             --poster-reveal-radius: 0px;
             --poster-reveal-opacity: 0;
+            --poster-reveal-offset-x: 0px;
+            --poster-reveal-offset-y: 0px;
         }
 
         .kommissarin-poster-glow,
@@ -645,12 +647,18 @@
         .kommissarin-poster-glow {
             inset: -10%;
             opacity: calc(var(--poster-reveal-opacity) * 0.42);
-            background: radial-gradient(
-                circle calc(var(--poster-reveal-radius) * 1.12) at var(--poster-reveal-x) var(--poster-reveal-y),
-                rgba(255, 168, 132, 0.24) 0%,
-                rgba(214, 103, 76, 0.12) 38%,
-                rgba(0, 0, 0, 0) 72%
-            );
+            background:
+                radial-gradient(
+                    circle calc(var(--poster-reveal-radius) * 1.06) at calc(var(--poster-reveal-x) - (var(--poster-reveal-offset-x) * 0.22)) calc(var(--poster-reveal-y) - (var(--poster-reveal-offset-y) * 0.18)),
+                    rgba(255, 168, 132, 0.18) 0%,
+                    rgba(214, 103, 76, 0.08) 42%,
+                    rgba(0, 0, 0, 0) 74%
+                ),
+                radial-gradient(
+                    circle calc(var(--poster-reveal-radius) * 0.74) at calc(var(--poster-reveal-x) + (var(--poster-reveal-offset-x) * 0.42)) calc(var(--poster-reveal-y) + (var(--poster-reveal-offset-y) * 0.34)),
+                    rgba(255, 196, 156, 0.10) 0%,
+                    rgba(0, 0, 0, 0) 72%
+                );
             filter: blur(18px);
             transition: opacity 0.16s linear;
             z-index: 1;
@@ -664,8 +672,33 @@
             background-size: cover;
             clip-path: circle(var(--poster-reveal-radius) at var(--poster-reveal-x) var(--poster-reveal-y));
             filter: saturate(1.18) contrast(1.04) brightness(1.02);
-            transition: opacity 0.16s linear, clip-path 0.18s ease-out;
+            transition: opacity 0.16s linear;
+            will-change: opacity, clip-path;
             z-index: 2;
+        }
+
+        .kommissarin-poster-reveal::before,
+        .kommissarin-poster-reveal::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: var(--poster-image);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .kommissarin-poster-reveal::before {
+            opacity: 0.76;
+            clip-path: circle(calc(var(--poster-reveal-radius) * 0.74) at calc(var(--poster-reveal-x) - (var(--poster-reveal-offset-x) * 0.58)) calc(var(--poster-reveal-y) - (var(--poster-reveal-offset-y) * 0.44)));
+            filter: saturate(1.14) contrast(1.03) brightness(1.02);
+        }
+
+        .kommissarin-poster-reveal::after {
+            opacity: 0.46;
+            clip-path: circle(calc(var(--poster-reveal-radius) * 0.46) at calc(var(--poster-reveal-x) + (var(--poster-reveal-offset-x) * 0.68)) calc(var(--poster-reveal-y) + (var(--poster-reveal-offset-y) * 0.52)));
+            filter: saturate(1.26) contrast(1.08) brightness(1.04);
         }
 
         @supports ((mask-image: radial-gradient(circle at center, #000 0%, transparent 100%)) or (-webkit-mask-image: radial-gradient(circle at center, #000 0%, transparent 100%))) {
@@ -690,6 +723,48 @@
                 -webkit-mask-repeat: no-repeat;
                 mask-repeat: no-repeat;
             }
+
+            .kommissarin-poster-reveal::before,
+            .kommissarin-poster-reveal::after {
+                -webkit-mask-repeat: no-repeat;
+                mask-repeat: no-repeat;
+            }
+
+            .kommissarin-poster-reveal::before {
+                clip-path: none;
+                -webkit-mask-image: radial-gradient(
+                    circle calc(var(--poster-reveal-radius) * 0.76) at calc(var(--poster-reveal-x) - (var(--poster-reveal-offset-x) * 0.58)) calc(var(--poster-reveal-y) - (var(--poster-reveal-offset-y) * 0.44)),
+                    rgba(0, 0, 0, 0.96) 0%,
+                    rgba(0, 0, 0, 0.92) 44%,
+                    rgba(0, 0, 0, 0.22) 82%,
+                    rgba(0, 0, 0, 0) 100%
+                );
+                mask-image: radial-gradient(
+                    circle calc(var(--poster-reveal-radius) * 0.76) at calc(var(--poster-reveal-x) - (var(--poster-reveal-offset-x) * 0.58)) calc(var(--poster-reveal-y) - (var(--poster-reveal-offset-y) * 0.44)),
+                    rgba(0, 0, 0, 0.96) 0%,
+                    rgba(0, 0, 0, 0.92) 44%,
+                    rgba(0, 0, 0, 0.22) 82%,
+                    rgba(0, 0, 0, 0) 100%
+                );
+            }
+
+            .kommissarin-poster-reveal::after {
+                clip-path: none;
+                -webkit-mask-image: radial-gradient(
+                    circle calc(var(--poster-reveal-radius) * 0.48) at calc(var(--poster-reveal-x) + (var(--poster-reveal-offset-x) * 0.68)) calc(var(--poster-reveal-y) + (var(--poster-reveal-offset-y) * 0.52)),
+                    rgba(0, 0, 0, 0.92) 0%,
+                    rgba(0, 0, 0, 0.88) 40%,
+                    rgba(0, 0, 0, 0.14) 78%,
+                    rgba(0, 0, 0, 0) 100%
+                );
+                mask-image: radial-gradient(
+                    circle calc(var(--poster-reveal-radius) * 0.48) at calc(var(--poster-reveal-x) + (var(--poster-reveal-offset-x) * 0.68)) calc(var(--poster-reveal-y) + (var(--poster-reveal-offset-y) * 0.52)),
+                    rgba(0, 0, 0, 0.92) 0%,
+                    rgba(0, 0, 0, 0.88) 40%,
+                    rgba(0, 0, 0, 0.14) 78%,
+                    rgba(0, 0, 0, 0) 100%
+                );
+            }
         }
 
         .kommissarin-poster--simple-reveal .kommissarin-poster-glow {
@@ -701,6 +776,11 @@
             -webkit-mask-image: none;
             mask-image: none;
             opacity: calc(var(--poster-reveal-opacity) * 0.56);
+        }
+
+        .kommissarin-poster--simple-reveal .kommissarin-poster-reveal::before,
+        .kommissarin-poster--simple-reveal .kommissarin-poster-reveal::after {
+            display: none;
         }
 
         .kommissarin-poster-base {
@@ -719,10 +799,36 @@
         @keyframes kommissarinPosterBreathe {
             0%,
             100% {
-                opacity: 0.14;
+                opacity: 0.16;
+                filter: saturate(1.08) contrast(1.02) brightness(1.01);
             }
-            50% {
-                opacity: 0.54;
+            32% {
+                opacity: 0.28;
+                filter: saturate(1.12) contrast(1.03) brightness(1.02);
+            }
+            58% {
+                opacity: 0.44;
+                filter: saturate(1.18) contrast(1.04) brightness(1.03);
+            }
+            78% {
+                opacity: 0.34;
+                filter: saturate(1.14) contrast(1.03) brightness(1.02);
+            }
+        }
+
+        @keyframes kommissarinPosterBaseBreathe {
+            0%,
+            100% {
+                filter: grayscale(58%) saturate(0.52) contrast(0.98) brightness(0.96);
+            }
+            34% {
+                filter: grayscale(54%) saturate(0.56) contrast(0.99) brightness(0.97);
+            }
+            60% {
+                filter: grayscale(48%) saturate(0.64) contrast(1) brightness(0.98);
+            }
+            82% {
+                filter: grayscale(53%) saturate(0.58) contrast(0.99) brightness(0.97);
             }
         }
 
@@ -736,8 +842,17 @@
                 clip-path: none;
                 -webkit-mask-image: none;
                 mask-image: none;
-                animation: kommissarinPosterBreathe 4s ease-in-out infinite;
+                animation: kommissarinPosterBreathe 4s cubic-bezier(0.44, 0.05, 0.32, 0.96) infinite;
                 transition: none;
+            }
+
+            .kommissarin-poster-reveal::before,
+            .kommissarin-poster-reveal::after {
+                display: none;
+            }
+
+            .kommissarin-poster-base {
+                animation: kommissarinPosterBaseBreathe 4s cubic-bezier(0.44, 0.05, 0.32, 0.96) infinite;
             }
         }
 
@@ -753,6 +868,15 @@
                 mask-image: none;
                 animation: none !important;
                 transition: none !important;
+            }
+
+            .kommissarin-poster-base {
+                animation: none !important;
+            }
+
+            .kommissarin-poster-reveal::before,
+            .kommissarin-poster-reveal::after {
+                display: none;
             }
         }
 
@@ -3228,31 +3352,76 @@
         let kommissarinPointerFrame = null;
         let kommissarinPendingPoint = null;
         let kommissarinPosterFrame = null;
-        let kommissarinPosterPendingPoint = null;
+        let kommissarinPosterState = null;
+
+        if (kommissarinPoster) {
+            const posterWidth = kommissarinPoster.clientWidth || 360;
+            const posterHeight = (posterWidth * 3) / 2;
+            kommissarinPosterState = {
+                currentX: posterWidth / 2,
+                currentY: posterHeight / 2,
+                targetX: posterWidth / 2,
+                targetY: posterHeight / 2,
+                currentRadius: 0,
+                targetRadius: 0,
+                currentOpacity: 0,
+                targetOpacity: 0,
+                currentOffsetX: 0,
+                currentOffsetY: 0,
+                targetOffsetX: 0,
+                targetOffsetY: 0
+            };
+        }
 
         function canUseKommissarinPosterPointer() {
             return Boolean(
                 kommissarinPoster &&
                 kommissarinPosterReveal &&
                 kommissarinPosterGlow &&
+                kommissarinPosterState &&
                 kommissarinPointerQuery.matches &&
                 !kommissarinReducedMotionQuery.matches
             );
         }
 
-        function renderKommissarinPosterPointer(clientX, clientY) {
-            if (!canUseKommissarinPosterPointer()) {
+        function renderKommissarinPosterPointerFrame() {
+            if (!kommissarinPoster || !kommissarinPosterState) {
+                kommissarinPosterFrame = null;
                 return;
             }
 
-            const posterRect = kommissarinPoster.getBoundingClientRect();
-            const cursorX = clientX - posterRect.left;
-            const cursorY = clientY - posterRect.top;
+            const ease = 0.16;
+            const opacityEase = 0.12;
+            const offsetEase = 0.11;
+            const radiusEase = 0.15;
 
-            kommissarinPoster.style.setProperty('--poster-reveal-x', `${cursorX}px`);
-            kommissarinPoster.style.setProperty('--poster-reveal-y', `${cursorY}px`);
-            kommissarinPoster.style.setProperty('--poster-reveal-radius', '218px');
-            kommissarinPoster.style.setProperty('--poster-reveal-opacity', '1');
+            kommissarinPosterState.currentX += (kommissarinPosterState.targetX - kommissarinPosterState.currentX) * ease;
+            kommissarinPosterState.currentY += (kommissarinPosterState.targetY - kommissarinPosterState.currentY) * ease;
+            kommissarinPosterState.currentRadius += (kommissarinPosterState.targetRadius - kommissarinPosterState.currentRadius) * radiusEase;
+            kommissarinPosterState.currentOpacity += (kommissarinPosterState.targetOpacity - kommissarinPosterState.currentOpacity) * opacityEase;
+            kommissarinPosterState.currentOffsetX += (kommissarinPosterState.targetOffsetX - kommissarinPosterState.currentOffsetX) * offsetEase;
+            kommissarinPosterState.currentOffsetY += (kommissarinPosterState.targetOffsetY - kommissarinPosterState.currentOffsetY) * offsetEase;
+
+            kommissarinPoster.style.setProperty('--poster-reveal-x', `${kommissarinPosterState.currentX}px`);
+            kommissarinPoster.style.setProperty('--poster-reveal-y', `${kommissarinPosterState.currentY}px`);
+            kommissarinPoster.style.setProperty('--poster-reveal-radius', `${Math.max(0, kommissarinPosterState.currentRadius)}px`);
+            kommissarinPoster.style.setProperty('--poster-reveal-opacity', `${Math.max(0, Math.min(1, kommissarinPosterState.currentOpacity))}`);
+            kommissarinPoster.style.setProperty('--poster-reveal-offset-x', `${kommissarinPosterState.currentOffsetX}px`);
+            kommissarinPoster.style.setProperty('--poster-reveal-offset-y', `${kommissarinPosterState.currentOffsetY}px`);
+
+            const stillAnimating =
+                Math.abs(kommissarinPosterState.targetX - kommissarinPosterState.currentX) > 0.35 ||
+                Math.abs(kommissarinPosterState.targetY - kommissarinPosterState.currentY) > 0.35 ||
+                Math.abs(kommissarinPosterState.targetRadius - kommissarinPosterState.currentRadius) > 0.35 ||
+                Math.abs(kommissarinPosterState.targetOpacity - kommissarinPosterState.currentOpacity) > 0.02 ||
+                Math.abs(kommissarinPosterState.targetOffsetX - kommissarinPosterState.currentOffsetX) > 0.3 ||
+                Math.abs(kommissarinPosterState.targetOffsetY - kommissarinPosterState.currentOffsetY) > 0.3;
+
+            if (stillAnimating) {
+                kommissarinPosterFrame = window.requestAnimationFrame(renderKommissarinPosterPointerFrame);
+            } else {
+                kommissarinPosterFrame = null;
+            }
         }
 
         function queueKommissarinPosterPointer(event) {
@@ -3260,42 +3429,41 @@
                 return;
             }
 
-            kommissarinPosterPendingPoint = {
-                x: event.clientX,
-                y: event.clientY
-            };
+            const posterRect = kommissarinPoster.getBoundingClientRect();
+            const nextX = event.clientX - posterRect.left;
+            const nextY = event.clientY - posterRect.top;
+            const deltaX = nextX - kommissarinPosterState.targetX;
+            const deltaY = nextY - kommissarinPosterState.targetY;
+
+            kommissarinPosterState.targetX = nextX;
+            kommissarinPosterState.targetY = nextY;
+            kommissarinPosterState.targetRadius = 214;
+            kommissarinPosterState.targetOpacity = 1;
+            kommissarinPosterState.targetOffsetX = Math.max(-34, Math.min(34, deltaX * 0.72));
+            kommissarinPosterState.targetOffsetY = Math.max(-28, Math.min(28, deltaY * 0.62));
 
             if (kommissarinPosterFrame !== null) {
                 return;
             }
 
-            kommissarinPosterFrame = window.requestAnimationFrame(() => {
-                kommissarinPosterFrame = null;
-                if (!kommissarinPosterPendingPoint) {
-                    return;
-                }
-
-                renderKommissarinPosterPointer(
-                    kommissarinPosterPendingPoint.x,
-                    kommissarinPosterPendingPoint.y
-                );
-            });
+            kommissarinPosterFrame = window.requestAnimationFrame(renderKommissarinPosterPointerFrame);
         }
 
         function resetKommissarinPosterPointer() {
-            if (!kommissarinPoster) {
+            if (!kommissarinPoster || !kommissarinPosterState) {
                 return;
             }
 
-            kommissarinPosterPendingPoint = null;
+            kommissarinPosterState.targetOpacity = 0;
+            kommissarinPosterState.targetRadius = 0;
+            kommissarinPosterState.targetOffsetX = 0;
+            kommissarinPosterState.targetOffsetY = 0;
 
             if (kommissarinPosterFrame !== null) {
-                window.cancelAnimationFrame(kommissarinPosterFrame);
-                kommissarinPosterFrame = null;
+                return;
             }
 
-            kommissarinPoster.style.setProperty('--poster-reveal-opacity', '0');
-            kommissarinPoster.style.setProperty('--poster-reveal-radius', '0px');
+            kommissarinPosterFrame = window.requestAnimationFrame(renderKommissarinPosterPointerFrame);
         }
 
         function kommissarinDistanceToRect(x, y, rect) {
