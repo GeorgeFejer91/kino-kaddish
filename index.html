@@ -3359,7 +3359,7 @@
         const kommissarinPosterSupportsClipPath = typeof CSS !== 'undefined' &&
             CSS.supports('clip-path', 'circle(120px at 50% 50%)');
         const kommissarinPointerRadius = 240;
-        const kommissarinPosterVicinityRadius = 170;
+        const kommissarinPosterVicinityRadius = 210;
         let kommissarinPointerFrame = null;
         let kommissarinPendingPoint = null;
         let kommissarinPosterFrame = null;
@@ -3431,7 +3431,7 @@
 
             const wavePhaseA = kommissarinPosterState.wavePhase;
             const wavePhaseB = (kommissarinPosterState.wavePhase + 0.46) % 1;
-            const waveReach = 46 + (kommissarinPosterState.currentStrength * 292);
+            const waveReach = 60 + (kommissarinPosterState.currentStrength * 344);
             const waveARadius = 18 + (wavePhaseA * waveReach);
             const waveBRadius = 18 + (wavePhaseB * waveReach);
             const waveAWidth = Math.max(5, 22 - (wavePhaseA * 15));
@@ -3496,7 +3496,7 @@
 
             kommissarinPosterState.targetX = nextX;
             kommissarinPosterState.targetY = nextY;
-            kommissarinPosterState.targetRadius = 52 + (organicStrength * 214);
+            kommissarinPosterState.targetRadius = 68 + (organicStrength * 264);
             kommissarinPosterState.targetOpacity = 0.06 + (organicStrength * 0.76);
             kommissarinPosterState.targetOffsetX = Math.max(-8, Math.min(8, deltaX * 0.14 * organicStrength));
             kommissarinPosterState.targetOffsetY = Math.max(-6, Math.min(6, deltaY * 0.12 * organicStrength));
