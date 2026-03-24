@@ -607,6 +607,18 @@
             z-index: 1;
         }
 
+        @property --poster-reveal-radius {
+            syntax: '<length>';
+            inherits: false;
+            initial-value: 0px;
+        }
+
+        @property --poster-reveal-opacity {
+            syntax: '<number>';
+            inherits: false;
+            initial-value: 0;
+        }
+
         .kommissarin-side-column {
             display: flex;
             flex-direction: column;
@@ -625,7 +637,8 @@
             overflow: hidden;
             --poster-cursor-x: 50%;
             --poster-cursor-y: 50%;
-            --poster-hover-opacity: 0;
+            --poster-reveal-radius: 0px;
+            --poster-reveal-opacity: 0;
             --poster-image: none;
         }
 
@@ -638,19 +651,28 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
-            opacity: var(--poster-hover-opacity);
-            transition: opacity 0.14s linear;
+            opacity: var(--poster-reveal-opacity);
+            transition:
+                --poster-reveal-radius 0.24s ease-out,
+                --poster-reveal-opacity 0.18s ease-out,
+                opacity 0.18s linear;
             -webkit-mask-image: radial-gradient(
-                circle 130px at var(--poster-cursor-x) var(--poster-cursor-y),
+                circle var(--poster-reveal-radius) at var(--poster-cursor-x) var(--poster-cursor-y),
                 rgba(0, 0, 0, 1) 0%,
-                rgba(0, 0, 0, 0.96) 44%,
-                rgba(0, 0, 0, 0) 80%
+                rgba(0, 0, 0, 0.96) 18%,
+                rgba(0, 0, 0, 0.76) 46%,
+                rgba(0, 0, 0, 0.34) 72%,
+                rgba(0, 0, 0, 0.08) 90%,
+                rgba(0, 0, 0, 0) 100%
             );
             mask-image: radial-gradient(
-                circle 130px at var(--poster-cursor-x) var(--poster-cursor-y),
+                circle var(--poster-reveal-radius) at var(--poster-cursor-x) var(--poster-cursor-y),
                 rgba(0, 0, 0, 1) 0%,
-                rgba(0, 0, 0, 0.96) 44%,
-                rgba(0, 0, 0, 0) 80%
+                rgba(0, 0, 0, 0.96) 18%,
+                rgba(0, 0, 0, 0.76) 46%,
+                rgba(0, 0, 0, 0.34) 72%,
+                rgba(0, 0, 0, 0.08) 90%,
+                rgba(0, 0, 0, 0) 100%
             );
         }
 
@@ -3131,7 +3153,8 @@
             const posterRect = kommissarinPoster.getBoundingClientRect();
             kommissarinPoster.style.setProperty('--poster-cursor-x', `${clientX - posterRect.left}px`);
             kommissarinPoster.style.setProperty('--poster-cursor-y', `${clientY - posterRect.top}px`);
-            kommissarinPoster.style.setProperty('--poster-hover-opacity', '1');
+            kommissarinPoster.style.setProperty('--poster-reveal-radius', '190px');
+            kommissarinPoster.style.setProperty('--poster-reveal-opacity', '1');
         }
 
         function resetKommissarinPosterPointer() {
@@ -3139,7 +3162,8 @@
                 return;
             }
 
-            kommissarinPoster.style.setProperty('--poster-hover-opacity', '0');
+            kommissarinPoster.style.setProperty('--poster-reveal-opacity', '0');
+            kommissarinPoster.style.setProperty('--poster-reveal-radius', '0px');
         }
 
         function kommissarinDistanceToRect(x, y, rect) {
