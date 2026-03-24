@@ -3413,7 +3413,7 @@
             kommissarinPosterLastTs = timestamp;
             const opacityEase = 0.075;
             const offsetEase = 0.08;
-            const radiusEase = 0.085;
+            const radiusEase = 0.06;
             const strengthEase = 0.07;
 
             kommissarinPosterState.currentX += (kommissarinPosterState.targetX - kommissarinPosterState.currentX) * 0.11;
@@ -3425,15 +3425,15 @@
             kommissarinPosterState.currentStrength += (kommissarinPosterState.targetStrength - kommissarinPosterState.currentStrength) * strengthEase;
 
             if (kommissarinPosterState.currentStrength > 0.01 || kommissarinPosterState.targetStrength > 0.01) {
-                const waveSpeed = 0.00012 + (kommissarinPosterState.currentStrength * 0.00017);
+                const waveSpeed = 0.00007 + (kommissarinPosterState.currentStrength * 0.00010);
                 kommissarinPosterState.wavePhase = (kommissarinPosterState.wavePhase + (deltaMs * waveSpeed)) % 1;
             }
 
             const wavePhaseA = kommissarinPosterState.wavePhase;
             const wavePhaseB = (kommissarinPosterState.wavePhase + 0.46) % 1;
-            const waveReach = 28 + (kommissarinPosterState.currentStrength * 212);
-            const waveARadius = 16 + (wavePhaseA * waveReach);
-            const waveBRadius = 16 + (wavePhaseB * waveReach);
+            const waveReach = 46 + (kommissarinPosterState.currentStrength * 292);
+            const waveARadius = 18 + (wavePhaseA * waveReach);
+            const waveBRadius = 18 + (wavePhaseB * waveReach);
             const waveAWidth = Math.max(5, 22 - (wavePhaseA * 15));
             const waveBWidth = Math.max(4, 18 - (wavePhaseB * 13));
             const waveAOpacity = kommissarinPosterState.currentOpacity * Math.pow(Math.max(0, 1 - wavePhaseA), 1.18) * 0.44;
@@ -3496,7 +3496,7 @@
 
             kommissarinPosterState.targetX = nextX;
             kommissarinPosterState.targetY = nextY;
-            kommissarinPosterState.targetRadius = 34 + (organicStrength * 154);
+            kommissarinPosterState.targetRadius = 52 + (organicStrength * 214);
             kommissarinPosterState.targetOpacity = 0.06 + (organicStrength * 0.76);
             kommissarinPosterState.targetOffsetX = Math.max(-8, Math.min(8, deltaX * 0.14 * organicStrength));
             kommissarinPosterState.targetOffsetY = Math.max(-6, Math.min(6, deltaY * 0.12 * organicStrength));
