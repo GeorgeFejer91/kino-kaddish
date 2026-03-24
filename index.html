@@ -860,22 +860,21 @@
         .speaker-bio-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 2rem;
-            margin-top: 2.5rem;
+            gap: 2.75rem;
+            margin-top: 2.75rem;
         }
 
         .speaker-card {
             display: grid;
-            grid-template-columns: 160px minmax(0, 1fr);
-            gap: 1.25rem 1.5rem;
+            grid-template-columns: 136px minmax(0, 1fr);
+            gap: 1rem 1.4rem;
             align-items: start;
-            background: none;
-            border: 0;
-            padding: 0;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.16);
         }
 
         .speaker-photo-frame {
-            width: 160px;
+            width: 136px;
             aspect-ratio: 1 / 1;
             overflow: visible;
             border: 0;
@@ -889,19 +888,32 @@
             object-fit: contain;
             object-position: center;
             display: block;
+            filter: grayscale(100%) contrast(1.05);
         }
 
         .speaker-card > [data-lang] {
             min-width: 0;
         }
 
+        .speaker-card .person-name {
+            font-size: 1.28rem;
+            line-height: 1.3;
+            margin-bottom: 0.45rem;
+        }
+
         .speaker-role {
-            font-size: 0.82rem;
+            font-size: 0.96rem;
             line-height: 1.5;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: rgba(255, 255, 255, 0.74);
-            margin-bottom: 0.85rem;
+            text-transform: none;
+            letter-spacing: 0.01em;
+            color: rgba(255, 255, 255, 0.68);
+            margin-bottom: 0.95rem;
+            max-width: 26ch;
+        }
+
+        .speaker-card .person-bio {
+            text-align: left;
+            line-height: 1.75;
         }
 
         .speaker-subheading {
@@ -1473,11 +1485,12 @@
             .speaker-card {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+                padding-top: 0.85rem;
             }
 
             .speaker-photo-frame {
-                width: min(180px, 55vw);
-                margin: 0 auto;
+                width: min(150px, 45vw);
+                margin: 0 auto 0.25rem;
                 justify-self: center;
             }
 
@@ -2026,7 +2039,7 @@
                     <h3 class="golem-people-title" data-lang="de">Gesprächspartnerinnen</h3>
                     <h3 class="golem-people-title" data-lang="en">Speakers</h3>
                     <div class="speaker-bio-grid">
-                        <div class="person-box speaker-card">
+                        <div class="speaker-card">
                             <div class="speaker-photo-frame">
                                 <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="speaker-photo">
                             </div>
@@ -2042,7 +2055,7 @@
                             </div>
                         </div>
 
-                        <div class="person-box speaker-card">
+                        <div class="speaker-card">
                             <div class="speaker-photo-frame">
                                 <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Prof. Dr. Viktoriya Sukovata" class="speaker-photo">
                             </div>
