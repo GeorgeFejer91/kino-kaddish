@@ -1337,7 +1337,7 @@
 
         #kommissarin .schedule-list {
             display: grid;
-            gap: 0.9rem;
+            gap: 0.62rem;
         }
 
         #kommissarin .schedule-list[data-lang="en"] {
@@ -1355,9 +1355,9 @@
         #kommissarin .schedule-entry {
             display: grid;
             grid-template-columns: 112px minmax(0, 1fr);
-            gap: 1rem;
+            gap: 0.85rem;
             align-items: start;
-            padding: 1rem 0.95rem;
+            padding: 0.82rem 0.84rem;
             background-color: rgba(255, 255, 255, calc(0.015 + (var(--proximity-strength, 0) * 0.04)));
             border: 1px solid rgba(255, 255, 255, calc(0.08 + (var(--proximity-strength, 0) * 0.18)));
         }
@@ -1365,12 +1365,12 @@
         #kommissarin .schedule-slot {
             display: flex;
             flex-direction: column;
-            gap: 0.18rem;
+            gap: 0.08rem;
             align-items: flex-start;
         }
 
         #kommissarin .schedule-label {
-            font-size: 0.68rem;
+            font-size: 0.64rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.42);
@@ -1379,19 +1379,19 @@
         #kommissarin .schedule-copy {
             min-width: 0;
             display: grid;
-            gap: 0.45rem;
+            gap: 0.34rem;
         }
 
         #kommissarin .schedule-title {
-            font-size: 1rem;
-            line-height: 1.45;
+            font-size: 0.96rem;
+            line-height: 1.36;
             font-weight: 500;
         }
 
         #kommissarin .schedule-note,
         #kommissarin .schedule-description {
-            font-size: 0.93rem;
-            line-height: 1.6;
+            font-size: 0.89rem;
+            line-height: 1.48;
             max-width: none;
         }
 
@@ -1402,17 +1402,17 @@
         #kommissarin .schedule-tag-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.55rem;
+            gap: 0.45rem;
         }
 
         #kommissarin .schedule-tag {
             display: inline-flex;
             align-items: center;
-            min-height: 1.9rem;
-            padding: 0.2rem 0.55rem;
+            min-height: 1.75rem;
+            padding: 0.16rem 0.48rem;
             border: 1px solid rgba(255, 255, 255, calc(0.1 + (var(--proximity-strength, 0) * 0.2)));
             background-color: rgba(255, 255, 255, calc(0.025 + (var(--proximity-strength, 0) * 0.045)));
-            font-size: 0.78rem;
+            font-size: 0.73rem;
             letter-spacing: 0.04em;
             color: rgba(255, 255, 255, calc(0.74 + (var(--proximity-strength, 0) * 0.16)));
         }
@@ -1427,13 +1427,13 @@
         #kommissarin .schedule-person {
             display: flex;
             align-items: center;
-            gap: 0.7rem;
-            min-width: min(280px, 100%);
+            gap: 0.58rem;
+            min-width: min(240px, 100%);
         }
 
         #kommissarin .schedule-avatar {
-            width: 56px;
-            height: 56px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             object-fit: cover;
             object-position: center;
@@ -1444,7 +1444,7 @@
         }
 
         #kommissarin .schedule-person-label {
-            font-size: 0.8rem;
+            font-size: 0.76rem;
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
@@ -1452,19 +1452,19 @@
         #kommissarin .schedule-media-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.7rem;
-            margin-top: 0.2rem;
+            gap: 0.42rem;
+            margin-top: 0.1rem;
         }
 
         #kommissarin .schedule-media-grid--tour {
-            width: min(100%, 31rem);
+            width: min(100%, 26.5rem);
         }
 
         #kommissarin .schedule-media-card {
             position: relative;
             margin: 0;
             overflow: hidden;
-            aspect-ratio: 4 / 3;
+            aspect-ratio: 5 / 4;
             background-color: rgba(255, 255, 255, calc(0.02 + (var(--proximity-strength, 0) * 0.04)));
             border: 1px solid rgba(255, 255, 255, calc(0.08 + (var(--proximity-strength, 0) * 0.16)));
         }
@@ -1481,17 +1481,17 @@
             left: 0;
             right: 0;
             bottom: 0;
-            padding: 0.45rem 0.6rem;
+            padding: 0.34rem 0.5rem;
             background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(6, 6, 6, 0.88) 100%);
-            font-size: 0.73rem;
-            letter-spacing: 0.04em;
+            font-size: 0.67rem;
+            letter-spacing: 0.03em;
             color: rgba(245, 234, 214, calc(0.82 + (var(--proximity-strength, 0) * 0.12)));
         }
 
         @media (max-width: 980px) {
             #kommissarin .schedule-entry {
                 grid-template-columns: 1fr;
-                gap: 0.75rem;
+                gap: 0.62rem;
             }
 
             #kommissarin .schedule-slot {
@@ -1504,7 +1504,7 @@
 
         @media (max-width: 680px) {
             #kommissarin .schedule-entry {
-                padding: 0.9rem 0.8rem;
+                padding: 0.76rem 0.72rem;
             }
 
             #kommissarin .schedule-person {
@@ -1513,8 +1513,8 @@
             }
 
             #kommissarin .schedule-avatar {
-                width: 52px;
-                height: 52px;
+                width: 46px;
+                height: 46px;
             }
 
             #kommissarin .schedule-media-grid {
@@ -1542,9 +1542,20 @@
         }
 
         #kommissarin .kommissarin-registration-disclaimer {
-            border-left-color: rgba(255, 255, 255, calc(0.12 + (var(--proximity-strength, 0) * 0.22)));
+            border-color: rgba(255, 255, 255, calc(0.12 + (var(--proximity-strength, 0) * 0.22)));
+            background-color: rgba(255, 255, 255, calc(0.024 + (var(--proximity-strength, 0) * 0.036)));
             color: rgba(255, 255, 255, calc(0.8 + (var(--proximity-strength, 0) * 0.12)));
-            transition: border-left-color 0.16s ease, color 0.16s ease;
+            transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+        }
+
+        #kommissarin .kommissarin-registration-disclaimer[data-registration-state="locked"] {
+            border-color: rgba(219, 207, 184, calc(0.28 + (var(--proximity-strength, 0) * 0.22)));
+            background-color: rgba(219, 207, 184, calc(0.06 + (var(--proximity-strength, 0) * 0.05)));
+        }
+
+        #kommissarin .kommissarin-registration-disclaimer[data-registration-state="ready"] {
+            border-color: rgba(169, 208, 182, calc(0.24 + (var(--proximity-strength, 0) * 0.18)));
+            background-color: rgba(102, 140, 115, calc(0.09 + (var(--proximity-strength, 0) * 0.04)));
         }
 
         .speaker-subheading {
@@ -1818,10 +1829,7 @@
             }
 
             .kommissarin-registration-disclaimer {
-                border-left: 0;
-                border-top: 1px solid var(--separator-color);
-                padding-left: 0;
-                padding-top: 1rem;
+                padding: 0.9rem 0.95rem;
             }
 
             #kommissarin .kommissarin-meta-line {
@@ -2061,10 +2069,7 @@
             }
 
             .kommissarin-registration-disclaimer {
-                border-left: 0;
-                border-top: 1px solid var(--separator-color);
-                padding-left: 0;
-                padding-top: 1rem;
+                padding: 0.9rem 0.95rem;
             }
             
             .film-image img:not(.kommissarin-poster-base) {
@@ -2282,30 +2287,71 @@
         }
 
         .kommissarin-registration-disclaimer {
+            display: grid;
+            gap: 0.78rem;
+            min-height: 100%;
             font-size: 0.95rem;
             line-height: 1.65;
             color: rgba(255, 255, 255, 0.88);
-            border-left: 1px solid var(--separator-color);
-            padding: 0.2rem 0 0.2rem 1.15rem;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background-color: rgba(255, 255, 255, 0.028);
+            padding: 0.95rem 1rem;
+            transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+        }
+
+        .kommissarin-registration-disclaimer[data-registration-state="locked"] {
+            border-color: rgba(219, 207, 184, 0.36);
+            background-color: rgba(219, 207, 184, 0.06);
+            box-shadow: inset 0 0 0 1px rgba(219, 207, 184, 0.08);
+        }
+
+        .kommissarin-registration-disclaimer[data-registration-state="ready"] {
+            border-color: rgba(169, 208, 182, 0.34);
+            background-color: rgba(102, 140, 115, 0.12);
+            box-shadow: inset 0 0 0 1px rgba(169, 208, 182, 0.08);
+        }
+
+        .kommissarin-registration-title {
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(245, 234, 214, 0.9);
+        }
+
+        .kommissarin-registration-hint {
+            font-size: 0.84rem;
+            line-height: 1.45;
+            color: rgba(255, 255, 255, 0.72);
         }
 
         .kommissarin-registration-check {
             display: grid;
             grid-template-columns: auto minmax(0, 1fr);
-            gap: 0.9rem;
+            gap: 0.95rem;
             align-items: flex-start;
             cursor: pointer;
         }
 
         .kommissarin-registration-checkbox {
-            width: 1rem;
-            height: 1rem;
-            margin-top: 0.18rem;
+            width: 1.16rem;
+            height: 1.16rem;
+            margin-top: 0.08rem;
             accent-color: #d7c8a7;
             flex-shrink: 0;
+            outline: 1px solid rgba(215, 200, 167, 0.45);
+            outline-offset: 2px;
+        }
+
+        .kommissarin-registration-checkbox:focus-visible {
+            outline-color: rgba(245, 234, 214, 0.92);
+            box-shadow: 0 0 0 4px rgba(215, 200, 167, 0.12);
         }
 
         .kommissarin-registration-copy {
+            display: block;
+        }
+
+        .kommissarin-registration-copy [data-lang] {
             display: block;
         }
 
@@ -2387,6 +2433,7 @@
 
         #kommissarin-anmelde-button {
             align-self: stretch;
+            cursor: pointer;
         }
 
         #kommissarin-anmelde-button button,
@@ -2423,6 +2470,17 @@
             border-color: rgba(255, 255, 255, 0.16) !important;
             box-shadow: none !important;
             cursor: not-allowed !important;
+        }
+
+        #kommissarin-anmelde-button[data-registration-locked="true"] {
+            cursor: not-allowed !important;
+        }
+
+        #kommissarin-anmelde-button[data-registration-locked="true"] button,
+        #kommissarin-anmelde-button[data-registration-locked="true"] a,
+        #kommissarin-anmelde-button[data-registration-locked="true"] .pretix-button {
+            pointer-events: none !important;
+            user-select: none !important;
         }
 
         #kommissarin-anmelde-button[data-registration-locked="true"] button:hover,
@@ -2809,7 +2867,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <h4 class="schedule-title">Begrüßung</h4>
-                                        <p class="schedule-description">Ankommen, kurze Einführung und organisatorischer Auftakt.</p>
+                                        <p class="schedule-description">Ankommen, kurze Einführung, organisatorischer Auftakt.</p>
                                     </div>
                                 </article>
 
@@ -2820,12 +2878,8 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <h4 class="schedule-title">Historische Führung durch Museum und Gelände Berlin-Karlshorst</h4>
-                                        <p class="schedule-note"><strong>Zwei parallele Führungen:</strong> eine auf Deutsch, eine auf Englisch.</p>
-                                        <p class="schedule-description">Rundgang zu Kapitulation, Vernichtungskrieg und jüdisch-sowjetischer Erinnerung am historischen Ort.</p>
-                                        <div class="schedule-tag-row">
-                                            <span class="schedule-tag">Deutsch</span>
-                                            <span class="schedule-tag">Englisch</span>
-                                        </div>
+                                        <p class="schedule-note"><strong>Zwei parallele Führungen:</strong> eine Führung für die deutschsprachige Gruppe und eine weitere für die englischsprachige Gruppe.</p>
+                                        <p class="schedule-description">Rundgang durch Museum und Gelände zu Kapitulation, Vernichtungskrieg und jüdisch-sowjetischer Erinnerung.</p>
                                         <div class="schedule-media-grid schedule-media-grid--tour">
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-red-gallery.webp" alt="Ausstellungsraum im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
@@ -2833,15 +2887,15 @@
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-historic-room.webp" alt="Historischer Konferenzraum in Karlshorst" class="kommissarin-proximity-media">
-                                                <figcaption class="schedule-media-caption">Historischer Konferenzraum</figcaption>
+                                                <figcaption class="schedule-media-caption">Konferenzraum</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-exhibition-gallery.webp" alt="Ausstellungsraum mit Plakaten im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
-                                                <figcaption class="schedule-media-caption">Sammlungsraum</figcaption>
+                                                <figcaption class="schedule-media-caption">Sammlung</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-conference-hall.webp" alt="Kapitulationssaal im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
-                                                <figcaption class="schedule-media-caption">Kapitulationssaal heute</figcaption>
+                                                <figcaption class="schedule-media-caption">Saal heute</figcaption>
                                             </figure>
                                         </div>
                                     </div>
@@ -2854,7 +2908,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <h4 class="schedule-title">Mittagspause mit Mahlzeit, Kaffee und Getränken</h4>
-                                        <p class="schedule-description">Zeit für Austausch vor Ort, bevor die beiden Vorträge beginnen.</p>
+                                        <p class="schedule-description">Zeit für Austausch, bevor die beiden Vorträge beginnen.</p>
                                     </div>
                                 </article>
 
@@ -2882,7 +2936,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <h4 class="schedule-title">Kurze Pause</h4>
-                                        <p class="schedule-description">Kurzer Umbau und Zeit zum Durchatmen.</p>
+                                        <p class="schedule-description">Kurzer Umbau.</p>
                                     </div>
                                 </article>
 
@@ -2910,7 +2964,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <h4 class="schedule-title">Pause</h4>
-                                        <p class="schedule-description">Kurze Unterbrechung vor der Vorführung.</p>
+                                        <p class="schedule-description">Kurze Pause vor der Vorführung.</p>
                                     </div>
                                 </article>
 
@@ -2942,7 +2996,7 @@
                                                 <div class="schedule-person-label">Viktoriya Sukovata</div>
                                             </div>
                                         </div>
-                                        <p class="schedule-description">Offenes Publikumsgespräch mit beiden Referentinnen zu Zensur, Pogromgewalt und Erinnerungspolitik.</p>
+                                        <p class="schedule-description">Publikumsgespräch mit beiden Referentinnen zu Zensur, Pogromgewalt und Erinnerungspolitik.</p>
                                     </div>
                                 </article>
                             </div>
@@ -2954,7 +3008,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <h4 class="schedule-title">Arrival and welcome</h4>
-                                        <p class="schedule-description">Arrival, brief introduction, and practical opening remarks.</p>
+                                        <p class="schedule-description">Arrival, brief introduction, opening remarks.</p>
                                     </div>
                                 </article>
 
@@ -2965,28 +3019,24 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <h4 class="schedule-title">Historical guided tour of Museum Berlin-Karlshorst and the surrounding site</h4>
-                                        <p class="schedule-note"><strong>Two parallel tours:</strong> one in German and one in English.</p>
-                                        <p class="schedule-description">A focused walk through the museum and its grounds, centering capitulation, the war of annihilation, and Jewish-Soviet memory.</p>
-                                        <div class="schedule-tag-row">
-                                            <span class="schedule-tag">German</span>
-                                            <span class="schedule-tag">English</span>
-                                        </div>
+                                        <p class="schedule-note"><strong>Two parallel tours:</strong> one tour for the German-speaking group and another for the English-speaking group.</p>
+                                        <p class="schedule-description">A focused walk through the museum and grounds around capitulation, the war of annihilation, and Jewish-Soviet memory.</p>
                                         <div class="schedule-media-grid schedule-media-grid--tour">
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-red-gallery.webp" alt="Exhibition room at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
-                                                <figcaption class="schedule-media-caption">Exhibition gallery</figcaption>
+                                                <figcaption class="schedule-media-caption">Gallery</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-historic-room.webp" alt="Historic conference room in Karlshorst" class="kommissarin-proximity-media">
-                                                <figcaption class="schedule-media-caption">Historic conference room</figcaption>
+                                                <figcaption class="schedule-media-caption">Conference room</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-exhibition-gallery.webp" alt="Exhibition room with posters at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
-                                                <figcaption class="schedule-media-caption">Collection display</figcaption>
+                                                <figcaption class="schedule-media-caption">Collection</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-conference-hall.webp" alt="Conference hall at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
-                                                <figcaption class="schedule-media-caption">Conference hall today</figcaption>
+                                                <figcaption class="schedule-media-caption">Hall today</figcaption>
                                             </figure>
                                         </div>
                                     </div>
@@ -2999,7 +3049,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <h4 class="schedule-title">Lunch break with a meal, coffee, and drinks</h4>
-                                        <p class="schedule-description">Time to gather and talk before the lecture sequence begins.</p>
+                                        <p class="schedule-description">Time to gather before the lecture sequence begins.</p>
                                     </div>
                                 </article>
 
@@ -3027,7 +3077,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <h4 class="schedule-title">Short break</h4>
-                                        <p class="schedule-description">A brief pause and room reset.</p>
+                                        <p class="schedule-description">Brief room reset.</p>
                                     </div>
                                 </article>
 
@@ -3055,7 +3105,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <h4 class="schedule-title">Break</h4>
-                                        <p class="schedule-description">A short pause before the screening begins.</p>
+                                        <p class="schedule-description">Short pause before the screening.</p>
                                     </div>
                                 </article>
 
@@ -3087,7 +3137,7 @@
                                                 <div class="schedule-person-label">Viktoriya Sukovata</div>
                                             </div>
                                         </div>
-                                        <p class="schedule-description">An open audience discussion with both speakers on censorship, pogrom violence, and memory politics.</p>
+                                        <p class="schedule-description">Audience discussion with both speakers on censorship, pogrom violence, and memory politics.</p>
                                     </div>
                                 </article>
                             </div>
@@ -3127,12 +3177,16 @@
                         <h3 class="golem-people-title" data-lang="de">Anmeldung</h3>
                         <h3 class="golem-people-title" data-lang="en">Registration</h3>
                         <div class="kommissarin-registration-actions">
-                            <pretix-button event="https://pretix.eu/kino-kaddish/kommissarin/" language="de" class="anmelde-button kommissarin-proximity-accent" id="kommissarin-anmelde-button">
+                            <pretix-button event="https://pretix.eu/kino-kaddish/kommissarin/" language="de" class="anmelde-button kommissarin-proximity-accent" id="kommissarin-anmelde-button" data-registration-locked="true" aria-disabled="true">
                                 <span data-lang="de">Anmelden</span>
                                 <span data-lang="en">Register</span>
                             </pretix-button>
                             <div>
-                                <div class="kommissarin-registration-disclaimer kommissarin-proximity-accent">
+                                <div class="kommissarin-registration-disclaimer kommissarin-proximity-accent" data-registration-state="locked">
+                                    <p class="kommissarin-registration-title">
+                                        <span data-lang="de">Verbindliche Bestätigung vor der Anmeldung</span>
+                                        <span data-lang="en">Required acknowledgment before registration</span>
+                                    </p>
                                     <label class="kommissarin-registration-check" for="kommissarin-registration-confirm">
                                         <input class="kommissarin-registration-checkbox" type="checkbox" id="kommissarin-registration-confirm" required aria-controls="kommissarin-anmelde-button">
                                         <span class="kommissarin-registration-copy">
@@ -3140,6 +3194,10 @@
                                             <span data-lang="en">I confirm that I will register only if I seriously expect to attend. I understand that we are planning catering, and that registering but not showing up takes a place from someone else and causes a financial loss for us as organizers.</span>
                                         </span>
                                     </label>
+                                    <p class="kommissarin-registration-hint">
+                                        <span data-lang="de">Die Anmeldung wird erst freigeschaltet, wenn diese Bestätigung aktiv angehakt ist.</span>
+                                        <span data-lang="en">Registration is only unlocked once this acknowledgment has been actively checked.</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -3667,34 +3725,139 @@
         // Call once on page load
         window.addEventListener('load', updateActiveMenuItem);
 
-        function animatePageScroll(targetY, duration = 1800) {
+        let activePageScrollSequence = 0;
+
+        function animatePageScroll(targetY, duration = 1800, sequenceId = null) {
             const startY = window.pageYOffset;
             const distance = targetY - startY;
 
             if (Math.abs(distance) < 4) {
                 window.scrollTo(0, targetY);
-                return;
+                return Promise.resolve();
             }
 
-            const startTime = performance.now();
-            const easeInOutCubic = (t) => (
-                t < 0.5
-                    ? 4 * t * t * t
-                    : 1 - Math.pow(-2 * t + 2, 3) / 2
+            return new Promise((resolve) => {
+                const startTime = performance.now();
+                const easeInOutCubic = (t) => (
+                    t < 0.5
+                        ? 4 * t * t * t
+                        : 1 - Math.pow(-2 * t + 2, 3) / 2
+                );
+
+                function step(now) {
+                    if (sequenceId !== null && sequenceId !== activePageScrollSequence) {
+                        resolve();
+                        return;
+                    }
+
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = easeInOutCubic(progress);
+                    window.scrollTo(0, startY + (distance * eased));
+
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        resolve();
+                    }
+                }
+
+                window.requestAnimationFrame(step);
+            });
+        }
+
+        function waitForScrollPause(delay, sequenceId) {
+            return new Promise((resolve) => {
+                window.setTimeout(() => {
+                    if (sequenceId !== activePageScrollSequence) {
+                        resolve();
+                        return;
+                    }
+
+                    resolve();
+                }, delay);
+            });
+        }
+
+        function getViewportAwareScrollTarget(element, revealOffset = 0.14) {
+            if (!element) {
+                return window.pageYOffset;
+            }
+
+            const maxScroll = Math.max(
+                document.documentElement.scrollHeight - window.innerHeight,
+                0
             );
+            const top = element.getBoundingClientRect().top + window.pageYOffset;
+            const target = top - (window.innerHeight * revealOffset);
 
-            function step(now) {
-                const elapsed = now - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = easeInOutCubic(progress);
-                window.scrollTo(0, startY + (distance * eased));
+            return Math.min(Math.max(target, 0), maxScroll);
+        }
 
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
+        function getVisibleKommissarinScheduleList() {
+            if (!kommissarinSection) {
+                return null;
+            }
+
+            const activeLang = document.body.classList.contains('lang-en') ? 'en' : 'de';
+            return kommissarinSection.querySelector(`.schedule-list[data-lang="${activeLang}"]`);
+        }
+
+        async function animateKommissarinProgramScroll(finalTargetElement) {
+            const scheduleBox = kommissarinSection
+                ? kommissarinSection.querySelector('.schedule-box')
+                : null;
+            const activeScheduleList = getVisibleKommissarinScheduleList();
+            const scheduleEntries = activeScheduleList
+                ? Array.from(activeScheduleList.querySelectorAll('.schedule-entry'))
+                : [];
+
+            const sequenceId = ++activePageScrollSequence;
+            const revealStops = [
+                {
+                    element: scheduleBox,
+                    duration: 720,
+                    pause: 180,
+                    offset: 0.14
+                },
+                {
+                    element: scheduleEntries[1] || scheduleEntries[0] || scheduleBox,
+                    duration: 860,
+                    pause: 240,
+                    offset: 0.18
+                },
+                {
+                    element: scheduleEntries[3] || scheduleEntries[4] || scheduleEntries[2] || scheduleBox,
+                    duration: 880,
+                    pause: 240,
+                    offset: 0.18
+                },
+                {
+                    element: scheduleEntries[7] || scheduleEntries[scheduleEntries.length - 1] || scheduleBox,
+                    duration: 920,
+                    pause: 220,
+                    offset: 0.18
+                },
+                {
+                    element: finalTargetElement,
+                    duration: 980,
+                    pause: 0,
+                    offset: window.innerWidth <= 768 ? 0.08 : 0.12
+                }
+            ].filter((step) => Boolean(step.element));
+
+            for (const step of revealStops) {
+                if (sequenceId !== activePageScrollSequence) {
+                    return;
+                }
+
+                const targetY = getViewportAwareScrollTarget(step.element, step.offset);
+                await animatePageScroll(targetY, step.duration, sequenceId);
+
+                if (step.pause > 0) {
+                    await waitForScrollPause(step.pause, sequenceId);
                 }
             }
-
-            window.requestAnimationFrame(step);
         }
 
         // Smooth scrolling for navigation links (with disabled section check)
@@ -3723,9 +3886,10 @@
                                 behavior: 'smooth'
                             });
                         } else {
-                            animatePageScroll(scrollPos, 3200);
+                            animateKommissarinProgramScroll(targetElement);
                         }
                     } else {
+                        activePageScrollSequence += 1;
                         window.scrollTo({
                             top: scrollPos,
                             behavior: 'smooth'
@@ -3811,10 +3975,15 @@
 
             // Save preference
             localStorage.setItem('preferred-language', lang);
+
+            if (typeof syncKommissarinRegistrationLock === 'function') {
+                syncKommissarinRegistrationLock();
+            }
         }
 
         const kommissarinRegistrationButton = document.getElementById('kommissarin-anmelde-button');
         const kommissarinRegistrationConfirm = document.getElementById('kommissarin-registration-confirm');
+        const kommissarinRegistrationDisclaimer = document.querySelector('#kommissarin-anmeldung .kommissarin-registration-disclaimer');
 
         function syncKommissarinRegistrationLock() {
             if (!kommissarinRegistrationButton || !kommissarinRegistrationConfirm) {
@@ -3822,14 +3991,24 @@
             }
 
             const acknowledged = kommissarinRegistrationConfirm.checked;
+            const lockedTitle = document.body.classList.contains('lang-en')
+                ? 'Please confirm the acknowledgment first.'
+                : 'Bitte zuerst die Bestätigung aktiv anhaken.';
 
             if (acknowledged) {
                 kommissarinRegistrationButton.removeAttribute('data-registration-locked');
+                kommissarinRegistrationButton.removeAttribute('title');
             } else {
                 kommissarinRegistrationButton.setAttribute('data-registration-locked', 'true');
+                kommissarinRegistrationButton.setAttribute('title', lockedTitle);
             }
 
             kommissarinRegistrationButton.setAttribute('aria-disabled', acknowledged ? 'false' : 'true');
+            kommissarinRegistrationButton.dataset.registrationState = acknowledged ? 'ready' : 'locked';
+
+            if (kommissarinRegistrationDisclaimer) {
+                kommissarinRegistrationDisclaimer.dataset.registrationState = acknowledged ? 'ready' : 'locked';
+            }
 
             kommissarinRegistrationButton.querySelectorAll('a, button').forEach((node) => {
                 const isAnchor = node.tagName === 'A';
@@ -3871,13 +4050,19 @@
             if (kommissarinRegistrationConfirm && !kommissarinRegistrationConfirm.checked) {
                 event.preventDefault();
                 event.stopPropagation();
-                kommissarinRegistrationConfirm.focus();
+                try {
+                    kommissarinRegistrationConfirm.focus({ preventScroll: true });
+                } catch (error) {
+                    kommissarinRegistrationConfirm.focus();
+                }
             }
         }
 
         if (kommissarinRegistrationButton && kommissarinRegistrationConfirm) {
             kommissarinRegistrationConfirm.addEventListener('change', syncKommissarinRegistrationLock);
             kommissarinRegistrationButton.addEventListener('click', guardKommissarinRegistration, true);
+            kommissarinRegistrationButton.addEventListener('pointerdown', guardKommissarinRegistration, true);
+            kommissarinRegistrationButton.addEventListener('touchstart', guardKommissarinRegistration, true);
             kommissarinRegistrationButton.addEventListener('keydown', function(event) {
                 if (!kommissarinRegistrationConfirm.checked && (event.key === 'Enter' || event.key === ' ')) {
                     guardKommissarinRegistration(event);
