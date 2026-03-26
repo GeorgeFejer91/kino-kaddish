@@ -2286,16 +2286,22 @@
             margin-top: 1.2rem;
         }
 
+        .kommissarin-registration-actions > div {
+            display: flex;
+            align-self: stretch;
+        }
+
         .kommissarin-registration-disclaimer {
-            display: grid;
-            gap: 0.78rem;
+            flex: 1 1 auto;
+            display: flex;
+            align-items: center;
             min-height: 100%;
             font-size: 0.95rem;
             line-height: 1.65;
             color: rgba(255, 255, 255, 0.88);
             border: 1px solid rgba(255, 255, 255, 0.16);
             background-color: rgba(255, 255, 255, 0.028);
-            padding: 0.95rem 1rem;
+            padding: 1rem 1.05rem;
             transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
         }
 
@@ -2311,31 +2317,19 @@
             box-shadow: inset 0 0 0 1px rgba(169, 208, 182, 0.08);
         }
 
-        .kommissarin-registration-title {
-            font-size: 0.72rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: rgba(245, 234, 214, 0.9);
-        }
-
-        .kommissarin-registration-hint {
-            font-size: 0.84rem;
-            line-height: 1.45;
-            color: rgba(255, 255, 255, 0.72);
-        }
-
         .kommissarin-registration-check {
             display: grid;
             grid-template-columns: auto minmax(0, 1fr);
-            gap: 0.95rem;
-            align-items: flex-start;
+            gap: 0.9rem;
+            align-items: center;
             cursor: pointer;
+            width: 100%;
         }
 
         .kommissarin-registration-checkbox {
-            width: 1.16rem;
-            height: 1.16rem;
-            margin-top: 0.08rem;
+            width: 1.2rem;
+            height: 1.2rem;
+            margin-top: 0;
             accent-color: #d7c8a7;
             flex-shrink: 0;
             outline: 1px solid rgba(215, 200, 167, 0.45);
@@ -2349,6 +2343,9 @@
 
         .kommissarin-registration-copy {
             display: block;
+            font-size: 0.88rem;
+            line-height: 1.42;
+            color: rgba(255, 255, 255, 0.84);
         }
 
         .kommissarin-registration-copy [data-lang] {
@@ -2432,13 +2429,19 @@
         }
 
         #kommissarin-anmelde-button {
+            display: flex !important;
+            min-height: 112px;
+            height: 100%;
             align-self: stretch;
             cursor: pointer;
+            transition: opacity 0.18s ease, filter 0.18s ease;
         }
 
         #kommissarin-anmelde-button button,
         #kommissarin-anmelde-button a {
-            min-height: 78px !important;
+            flex: 1 1 auto !important;
+            min-height: 100% !important;
+            height: 100% !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
@@ -2469,11 +2472,28 @@
             color: rgba(255, 255, 255, 0.42) !important;
             border-color: rgba(255, 255, 255, 0.16) !important;
             box-shadow: none !important;
-            cursor: not-allowed !important;
         }
 
         #kommissarin-anmelde-button[data-registration-locked="true"] {
-            cursor: not-allowed !important;
+            opacity: 0.52;
+            filter: grayscale(1) saturate(0.1);
+            cursor: default !important;
+        }
+
+        #kommissarin-anmelde-button[data-registration-state="ready"] {
+            opacity: 1;
+            filter: none;
+            cursor: pointer !important;
+        }
+
+        #kommissarin-anmelde-button[data-registration-state="ready"] button,
+        #kommissarin-anmelde-button[data-registration-state="ready"] a {
+            background-color: rgba(255, 255, 255, calc(0.075 + (var(--proximity-strength, 0) * 0.07))) !important;
+            background: rgba(255, 255, 255, calc(0.075 + (var(--proximity-strength, 0) * 0.07))) !important;
+            color: #ffffff !important;
+            border-color: rgba(245, 234, 214, calc(0.58 + (var(--proximity-strength, 0) * 0.18))) !important;
+            box-shadow: inset 0 0 0 1px rgba(245, 234, 214, calc(0.05 + (var(--proximity-strength, 0) * 0.06))) !important;
+            cursor: pointer !important;
         }
 
         #kommissarin-anmelde-button[data-registration-locked="true"] button,
@@ -2481,6 +2501,7 @@
         #kommissarin-anmelde-button[data-registration-locked="true"] .pretix-button {
             pointer-events: none !important;
             user-select: none !important;
+            cursor: default !important;
         }
 
         #kommissarin-anmelde-button[data-registration-locked="true"] button:hover,
@@ -3183,21 +3204,13 @@
                             </pretix-button>
                             <div>
                                 <div class="kommissarin-registration-disclaimer kommissarin-proximity-accent" data-registration-state="locked">
-                                    <p class="kommissarin-registration-title">
-                                        <span data-lang="de">Verbindliche Bestätigung vor der Anmeldung</span>
-                                        <span data-lang="en">Required acknowledgment before registration</span>
-                                    </p>
                                     <label class="kommissarin-registration-check" for="kommissarin-registration-confirm">
                                         <input class="kommissarin-registration-checkbox" type="checkbox" id="kommissarin-registration-confirm" required aria-controls="kommissarin-anmelde-button">
                                         <span class="kommissarin-registration-copy">
-                                            <span data-lang="de">Ich bestätige, dass ich mich nur anmelde, wenn ich ernsthaft teilnehmen kann. Mir ist bewusst, dass wir Catering planen und dass ein Nichterscheinen trotz Anmeldung anderen einen Platz nimmt und für uns als Veranstalter:innen einen finanziellen Verlust verursacht.</span>
-                                            <span data-lang="en">I confirm that I will register only if I seriously expect to attend. I understand that we are planning catering, and that registering but not showing up takes a place from someone else and causes a financial loss for us as organizers.</span>
+                                            <span data-lang="de">Ich melde mich nur an, wenn ich sehr wahrscheinlich teilnehmen kann, da Nichterscheinen Plätze blockiert und Cateringkosten verursacht.</span>
+                                            <span data-lang="en">I will register only if I am very likely to attend, since no-shows block places and still incur catering costs.</span>
                                         </span>
                                     </label>
-                                    <p class="kommissarin-registration-hint">
-                                        <span data-lang="de">Die Anmeldung wird erst freigeschaltet, wenn diese Bestätigung aktiv angehakt ist.</span>
-                                        <span data-lang="en">Registration is only unlocked once this acknowledgment has been actively checked.</span>
-                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -3738,11 +3751,7 @@
 
             return new Promise((resolve) => {
                 const startTime = performance.now();
-                const easeInOutCubic = (t) => (
-                    t < 0.5
-                        ? 4 * t * t * t
-                        : 1 - Math.pow(-2 * t + 2, 3) / 2
-                );
+                const easeInOutSine = (t) => -(Math.cos(Math.PI * t) - 1) / 2;
 
                 function step(now) {
                     if (sequenceId !== null && sequenceId !== activePageScrollSequence) {
@@ -3752,7 +3761,7 @@
 
                     const elapsed = now - startTime;
                     const progress = Math.min(elapsed / duration, 1);
-                    const eased = easeInOutCubic(progress);
+                    const eased = easeInOutSine(progress);
                     window.scrollTo(0, startY + (distance * eased));
 
                     if (progress < 1) {
@@ -3816,31 +3825,25 @@
             const revealStops = [
                 {
                     element: scheduleBox,
-                    duration: 720,
-                    pause: 180,
+                    duration: 1180,
+                    pause: 320,
                     offset: 0.14
                 },
                 {
                     element: scheduleEntries[1] || scheduleEntries[0] || scheduleBox,
-                    duration: 860,
-                    pause: 240,
-                    offset: 0.18
+                    duration: 1480,
+                    pause: 380,
+                    offset: 0.2
                 },
                 {
-                    element: scheduleEntries[3] || scheduleEntries[4] || scheduleEntries[2] || scheduleBox,
-                    duration: 880,
-                    pause: 240,
-                    offset: 0.18
-                },
-                {
-                    element: scheduleEntries[7] || scheduleEntries[scheduleEntries.length - 1] || scheduleBox,
-                    duration: 920,
-                    pause: 220,
-                    offset: 0.18
+                    element: scheduleEntries[3] || scheduleEntries[4] || scheduleEntries[5] || scheduleBox,
+                    duration: 1560,
+                    pause: 400,
+                    offset: 0.19
                 },
                 {
                     element: finalTargetElement,
-                    duration: 980,
+                    duration: 1740,
                     pause: 0,
                     offset: window.innerWidth <= 768 ? 0.08 : 0.12
                 }
@@ -3991,26 +3994,24 @@
             }
 
             const acknowledged = kommissarinRegistrationConfirm.checked;
-            const lockedTitle = document.body.classList.contains('lang-en')
-                ? 'Please confirm the acknowledgment first.'
-                : 'Bitte zuerst die Bestätigung aktiv anhaken.';
 
             if (acknowledged) {
                 kommissarinRegistrationButton.removeAttribute('data-registration-locked');
-                kommissarinRegistrationButton.removeAttribute('title');
             } else {
                 kommissarinRegistrationButton.setAttribute('data-registration-locked', 'true');
-                kommissarinRegistrationButton.setAttribute('title', lockedTitle);
             }
+
+            kommissarinRegistrationButton.removeAttribute('title');
 
             kommissarinRegistrationButton.setAttribute('aria-disabled', acknowledged ? 'false' : 'true');
             kommissarinRegistrationButton.dataset.registrationState = acknowledged ? 'ready' : 'locked';
+            kommissarinRegistrationButton.style.cursor = acknowledged ? 'pointer' : 'default';
 
             if (kommissarinRegistrationDisclaimer) {
                 kommissarinRegistrationDisclaimer.dataset.registrationState = acknowledged ? 'ready' : 'locked';
             }
 
-            kommissarinRegistrationButton.querySelectorAll('a, button').forEach((node) => {
+            kommissarinRegistrationButton.querySelectorAll('a, button, .pretix-button, [role="button"]').forEach((node) => {
                 const isAnchor = node.tagName === 'A';
                 const isButton = node.tagName === 'BUTTON';
 
@@ -4022,8 +4023,11 @@
 
                     if (isButton) {
                         node.disabled = false;
+                        node.removeAttribute('disabled');
                     }
 
+                    node.style.pointerEvents = 'auto';
+                    node.style.cursor = 'pointer';
                     node.removeAttribute('aria-disabled');
                     node.removeAttribute('tabindex');
                     return;
@@ -4038,9 +4042,12 @@
                 }
 
                 if (isButton) {
-                    node.disabled = true;
+                    node.disabled = false;
+                    node.removeAttribute('disabled');
                 }
 
+                node.style.pointerEvents = 'none';
+                node.style.cursor = 'default';
                 node.setAttribute('aria-disabled', 'true');
                 node.setAttribute('tabindex', '-1');
             });
