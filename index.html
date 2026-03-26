@@ -2474,6 +2474,14 @@
             display: block;
         }
 
+        body:not(.lang-en) #kommissarin-anmelde-button [data-lang="en"] {
+            display: none;
+        }
+
+        body.lang-en #kommissarin-anmelde-button [data-lang="de"] {
+            display: none;
+        }
+
         .kommissarin-register-shell[data-registration-state="ready"] #kommissarin-anmelde-button {
             opacity: 1;
             visibility: visible;
