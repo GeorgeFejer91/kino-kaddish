@@ -519,6 +519,22 @@
             color: #000;
         }
 
+        .anmelde-button--disabled,
+        .anmelde-button:disabled,
+        .anmelde-button[aria-disabled="true"] {
+            background-color: #111;
+            color: rgba(255, 255, 255, 0.44);
+            border-color: rgba(219, 207, 184, 0.28);
+            cursor: default;
+        }
+
+        .anmelde-button--disabled:hover,
+        .anmelde-button:disabled:hover,
+        .anmelde-button[aria-disabled="true"]:hover {
+            background-color: #111;
+            color: rgba(255, 255, 255, 0.44);
+        }
+
         /* Artist Attribution */
         .artist-attribution {
             text-align: center;
@@ -1457,7 +1473,10 @@
         }
 
         #kommissarin .schedule-media-grid--tour {
-            width: min(100%, 26.5rem);
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            width: 100%;
+            max-width: 100%;
+            gap: 0.38rem;
         }
 
         #kommissarin .schedule-media-card {
@@ -1523,6 +1542,7 @@
 
             #kommissarin .schedule-media-grid--tour {
                 width: 100%;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
@@ -1543,19 +1563,19 @@
 
         #kommissarin .kommissarin-registration-disclaimer {
             border-color: rgba(255, 255, 255, calc(0.12 + (var(--proximity-strength, 0) * 0.22)));
-            background-color: rgba(255, 255, 255, calc(0.024 + (var(--proximity-strength, 0) * 0.036)));
+            background-color: rgba(255, 255, 255, calc(0.018 + (var(--proximity-strength, 0) * 0.03)));
             color: rgba(255, 255, 255, calc(0.8 + (var(--proximity-strength, 0) * 0.12)));
             transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
         }
 
         #kommissarin .kommissarin-registration-disclaimer[data-registration-state="locked"] {
-            border-color: rgba(219, 207, 184, calc(0.28 + (var(--proximity-strength, 0) * 0.22)));
-            background-color: rgba(219, 207, 184, calc(0.06 + (var(--proximity-strength, 0) * 0.05)));
+            border-color: rgba(255, 255, 255, calc(0.12 + (var(--proximity-strength, 0) * 0.18)));
+            background-color: rgba(255, 255, 255, calc(0.018 + (var(--proximity-strength, 0) * 0.03)));
         }
 
         #kommissarin .kommissarin-registration-disclaimer[data-registration-state="ready"] {
-            border-color: rgba(169, 208, 182, calc(0.24 + (var(--proximity-strength, 0) * 0.18)));
-            background-color: rgba(102, 140, 115, calc(0.09 + (var(--proximity-strength, 0) * 0.04)));
+            border-color: rgba(219, 207, 184, calc(0.18 + (var(--proximity-strength, 0) * 0.16)));
+            background-color: rgba(255, 255, 255, calc(0.024 + (var(--proximity-strength, 0) * 0.036)));
         }
 
         .speaker-subheading {
@@ -1826,10 +1846,21 @@
 
             .kommissarin-registration-actions {
                 grid-template-columns: 1fr;
+                width: min(100%, 540px);
+                gap: 0.85rem;
+            }
+
+            .kommissarin-registration-note-wrap {
+                order: -1;
+            }
+
+            .kommissarin-register-shell,
+            .kommissarin-registration-disclaimer {
+                min-height: 112px;
             }
 
             .kommissarin-registration-disclaimer {
-                padding: 0.9rem 0.95rem;
+                padding: 0;
             }
 
             #kommissarin .kommissarin-meta-line {
@@ -2066,10 +2097,21 @@
 
             .kommissarin-registration-actions {
                 grid-template-columns: 1fr;
+                width: min(100%, 540px);
+                gap: 0.85rem;
+            }
+
+            .kommissarin-registration-note-wrap {
+                order: -1;
+            }
+
+            .kommissarin-register-shell,
+            .kommissarin-registration-disclaimer {
+                min-height: 112px;
             }
 
             .kommissarin-registration-disclaimer {
-                padding: 0.9rem 0.95rem;
+                padding: 0;
             }
             
             .film-image img:not(.kommissarin-poster-base) {
@@ -2280,55 +2322,97 @@
 
         .kommissarin-registration-actions {
             display: grid;
-            grid-template-columns: minmax(300px, 390px) minmax(0, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: minmax(280px, 300px) minmax(0, 1fr);
+            gap: 1rem;
             align-items: stretch;
-            margin-top: 1.2rem;
+            width: min(100%, 840px);
+            margin: 1.2rem auto 0;
         }
 
-        .kommissarin-registration-actions > div {
+        .kommissarin-registration-note-wrap {
             display: flex;
             align-self: stretch;
+        }
+
+        .kommissarin-register-shell,
+        .kommissarin-registration-disclaimer {
+            min-height: 124px;
+        }
+
+        .kommissarin-register-shell {
+            position: relative;
+            display: flex;
+            align-items: stretch;
+            min-width: 0;
+        }
+
+        .kommissarin-register-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            align-items: stretch;
+            justify-content: stretch;
+            user-select: none;
+            cursor: default;
+            transition: opacity 0.18s ease, visibility 0.18s ease;
+        }
+
+        .kommissarin-register-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 124px;
+            width: 100%;
+            height: 100%;
+            padding: 1.2rem 1.6rem;
+            line-height: 1.25;
+            pointer-events: none;
+        }
+
+        .kommissarin-register-overlay [data-lang] {
+            display: block;
+        }
+
+        .kommissarin-register-shell[data-registration-state="ready"] .kommissarin-register-overlay {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
         .kommissarin-registration-disclaimer {
             flex: 1 1 auto;
             display: flex;
-            align-items: center;
-            min-height: 100%;
-            font-size: 0.95rem;
-            line-height: 1.65;
-            color: rgba(255, 255, 255, 0.88);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            background-color: rgba(255, 255, 255, 0.028);
-            padding: 1rem 1.05rem;
-            transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+            align-items: stretch;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background-color: rgba(255, 255, 255, 0.02);
+            transition: border-color 0.18s ease, background-color 0.18s ease;
         }
 
         .kommissarin-registration-disclaimer[data-registration-state="locked"] {
-            border-color: rgba(219, 207, 184, 0.36);
-            background-color: rgba(219, 207, 184, 0.06);
-            box-shadow: inset 0 0 0 1px rgba(219, 207, 184, 0.08);
+            border-color: rgba(255, 255, 255, 0.14);
+            background-color: rgba(255, 255, 255, 0.02);
         }
 
         .kommissarin-registration-disclaimer[data-registration-state="ready"] {
-            border-color: rgba(169, 208, 182, 0.34);
-            background-color: rgba(102, 140, 115, 0.12);
-            box-shadow: inset 0 0 0 1px rgba(169, 208, 182, 0.08);
+            border-color: rgba(219, 207, 184, 0.22);
+            background-color: rgba(255, 255, 255, 0.03);
         }
 
         .kommissarin-registration-check {
             display: grid;
             grid-template-columns: auto minmax(0, 1fr);
-            gap: 0.9rem;
+            gap: 1rem;
             align-items: center;
             cursor: pointer;
             width: 100%;
+            min-height: 100%;
+            padding: 1rem 1.1rem;
         }
 
         .kommissarin-registration-checkbox {
-            width: 1.2rem;
-            height: 1.2rem;
+            width: 1.3rem;
+            height: 1.3rem;
             margin-top: 0;
             accent-color: #d7c8a7;
             flex-shrink: 0;
@@ -2342,14 +2426,18 @@
         }
 
         .kommissarin-registration-copy {
-            display: block;
-            font-size: 0.88rem;
-            line-height: 1.42;
-            color: rgba(255, 255, 255, 0.84);
+            display: flex;
+            align-items: center;
+            min-height: 100%;
+            font-size: 0.98rem;
+            line-height: 1.45;
+            color: rgba(255, 255, 255, 0.92);
+            font-weight: 700;
         }
 
         .kommissarin-registration-copy [data-lang] {
             display: block;
+            width: 100%;
         }
 
         .event-section-divider {
@@ -2366,14 +2454,16 @@
             );
         }
 
-        /* Force Pretix button to match Anmelde button style - ULTRA AGGRESSIVE */
         pretix-button {
             display: block !important;
             width: 100% !important;
-            min-height: 60px !important;
         }
 
-        /* Target all possible Pretix button elements */
+        pretix-button,
+        #kommissarin-anmelde-button {
+            height: 100%;
+        }
+
         pretix-button button,
         pretix-button > a,
         pretix-button a,
@@ -2398,9 +2488,9 @@
             text-decoration: none !important;
             font-size: 1.1rem !important;
             font-weight: bold !important;
-            font-family: 'Roboto', 'Helvetica Neue', sans-serif !important;
+            font-family: inherit !important;
             letter-spacing: 1px !important;
-            border: 2px solid #c0c0c0 !important;
+            border: 2px solid var(--highlight-color) !important;
             border-radius: 0 !important;
             transition: background-color 0.5s ease, color 0.5s ease !important;
             cursor: pointer !important;
@@ -2425,101 +2515,57 @@
             background: #fff !important;
             background-image: none !important;
             color: #000 !important;
-            border-color: #c0c0c0 !important;
+            border-color: var(--highlight-color) !important;
         }
 
         #kommissarin-anmelde-button {
-            display: flex !important;
-            min-height: 112px;
+            position: relative;
+            z-index: 1;
+            flex: 1 1 auto;
+            display: block !important;
+            width: 100% !important;
+            min-height: 100% !important;
             height: 100%;
-            align-self: stretch;
-            cursor: pointer;
-            transition: opacity 0.18s ease, filter 0.18s ease;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.18s ease, visibility 0.18s ease;
         }
 
         #kommissarin-anmelde-button button,
         #kommissarin-anmelde-button a {
-            flex: 1 1 auto !important;
-            min-height: 100% !important;
+            width: 100% !important;
+            min-width: 100% !important;
+            min-height: 124px !important;
             height: 100% !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            padding: 1rem 1.4rem !important;
-            background-color: rgba(255, 255, 255, calc(0.04 + (var(--proximity-strength, 0) * 0.05))) !important;
-            background: rgba(255, 255, 255, calc(0.04 + (var(--proximity-strength, 0) * 0.05))) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, calc(0.38 + (var(--proximity-strength, 0) * 0.2))) !important;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, calc(0.04 + (var(--proximity-strength, 0) * 0.04))) !important;
-            font-size: 0.98rem !important;
-            font-weight: 600 !important;
-            letter-spacing: 0.12em !important;
-            line-height: 1.3 !important;
+            padding: 1.2rem 1.6rem !important;
         }
 
-        #kommissarin-anmelde-button button:hover,
-        #kommissarin-anmelde-button a:hover {
-            background-color: rgba(255, 255, 255, 0.94) !important;
-            background: rgba(255, 255, 255, 0.94) !important;
-            color: #000 !important;
-            border-color: rgba(255, 255, 255, 0.94) !important;
-        }
-
-        #kommissarin-anmelde-button[data-registration-locked="true"] button,
-        #kommissarin-anmelde-button[data-registration-locked="true"] a {
-            background-color: rgba(255, 255, 255, 0.03) !important;
-            background: rgba(255, 255, 255, 0.03) !important;
-            color: rgba(255, 255, 255, 0.42) !important;
-            border-color: rgba(255, 255, 255, 0.16) !important;
-            box-shadow: none !important;
-        }
-
-        #kommissarin-anmelde-button[data-registration-locked="true"] {
-            opacity: 0.52;
-            filter: grayscale(1) saturate(0.1);
-            cursor: default !important;
-        }
-
-        #kommissarin-anmelde-button[data-registration-state="ready"] {
+        .kommissarin-register-shell[data-registration-state="ready"] #kommissarin-anmelde-button {
             opacity: 1;
-            filter: none;
-            cursor: pointer !important;
+            visibility: visible;
+            pointer-events: auto;
         }
 
-        #kommissarin-anmelde-button[data-registration-state="ready"] button,
-        #kommissarin-anmelde-button[data-registration-state="ready"] a {
-            background-color: rgba(255, 255, 255, calc(0.075 + (var(--proximity-strength, 0) * 0.07))) !important;
-            background: rgba(255, 255, 255, calc(0.075 + (var(--proximity-strength, 0) * 0.07))) !important;
-            color: #ffffff !important;
-            border-color: rgba(245, 234, 214, calc(0.58 + (var(--proximity-strength, 0) * 0.18))) !important;
-            box-shadow: inset 0 0 0 1px rgba(245, 234, 214, calc(0.05 + (var(--proximity-strength, 0) * 0.06))) !important;
-            cursor: pointer !important;
-        }
-
-        #kommissarin-anmelde-button[data-registration-locked="true"] button,
-        #kommissarin-anmelde-button[data-registration-locked="true"] a,
-        #kommissarin-anmelde-button[data-registration-locked="true"] .pretix-button {
-            pointer-events: none !important;
-            user-select: none !important;
+        .anmelde-button--disabled,
+        button.anmelde-button:disabled,
+        button.anmelde-button[aria-disabled="true"] {
+            background-color: #111 !important;
+            background: #111 !important;
+            color: rgba(255, 255, 255, 0.44) !important;
+            border-color: rgba(219, 207, 184, 0.28) !important;
             cursor: default !important;
         }
 
-        #kommissarin-anmelde-button[data-registration-locked="true"] button:hover,
-        #kommissarin-anmelde-button[data-registration-locked="true"] a:hover {
-            background-color: rgba(255, 255, 255, 0.03) !important;
-            background: rgba(255, 255, 255, 0.03) !important;
-            color: rgba(255, 255, 255, 0.42) !important;
-            border-color: rgba(255, 255, 255, 0.16) !important;
-        }
-
-        /* Override any inline styles and nested elements */
         pretix-button *,
         #golem-anmelde-button *,
         #kommissarin-anmelde-button * {
-            font-family: 'Roboto', 'Helvetica Neue', sans-serif !important;
+            font-family: inherit !important;
         }
 
-        /* Hide any Pretix branding or extra elements */
         pretix-button img,
         pretix-button svg {
             display: none !important;
@@ -2907,8 +2953,8 @@
                                                 <figcaption class="schedule-media-caption">Ausstellung</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
-                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-historic-room.webp" alt="Historischer Konferenzraum in Karlshorst" class="kommissarin-proximity-media">
-                                                <figcaption class="schedule-media-caption">Konferenzraum</figcaption>
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-ort-der-kapitulation.webp" alt="Außenansicht des Museums Berlin-Karlshorst mit dem Schriftzug Ort der Kapitulation" class="kommissarin-proximity-media">
+                                                <figcaption class="schedule-media-caption">Ort der Kapitulation</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-exhibition-gallery.webp" alt="Ausstellungsraum mit Plakaten im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
@@ -2916,7 +2962,7 @@
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-conference-hall.webp" alt="Kapitulationssaal im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
-                                                <figcaption class="schedule-media-caption">Saal heute</figcaption>
+                                                <figcaption class="schedule-media-caption">Kapitulationssaal</figcaption>
                                             </figure>
                                         </div>
                                     </div>
@@ -3048,16 +3094,16 @@
                                                 <figcaption class="schedule-media-caption">Gallery</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
-                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-historic-room.webp" alt="Historic conference room in Karlshorst" class="kommissarin-proximity-media">
-                                                <figcaption class="schedule-media-caption">Conference room</figcaption>
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-ort-der-kapitulation.webp" alt="Exterior view of Museum Berlin-Karlshorst with the lettering Ort der Kapitulation" class="kommissarin-proximity-media">
+                                                <figcaption class="schedule-media-caption">Ort der Kapitulation</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-exhibition-gallery.webp" alt="Exhibition room with posters at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
                                                 <figcaption class="schedule-media-caption">Collection</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
-                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-conference-hall.webp" alt="Conference hall at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
-                                                <figcaption class="schedule-media-caption">Hall today</figcaption>
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-conference-hall.webp" alt="Capitulation Hall at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <figcaption class="schedule-media-caption">Kapitulationssaal</figcaption>
                                             </figure>
                                         </div>
                                     </div>
@@ -3198,17 +3244,25 @@
                         <h3 class="golem-people-title" data-lang="de">Anmeldung</h3>
                         <h3 class="golem-people-title" data-lang="en">Registration</h3>
                         <div class="kommissarin-registration-actions">
-                            <pretix-button event="https://pretix.eu/kino-kaddish/kommissarin/" language="de" class="anmelde-button kommissarin-proximity-accent" id="kommissarin-anmelde-button" data-registration-locked="true" aria-disabled="true">
-                                <span data-lang="de">Anmelden</span>
-                                <span data-lang="en">Register</span>
-                            </pretix-button>
-                            <div>
+                            <div class="kommissarin-register-shell kommissarin-proximity-accent" id="kommissarin-register-shell" data-registration-state="locked" aria-disabled="true">
+                                <pretix-button event="https://pretix.eu/kino-kaddish/kommissarin/" language="de" class="anmelde-button kommissarin-proximity-accent" id="kommissarin-anmelde-button">
+                                    <span data-lang="de">Anmelden</span>
+                                    <span data-lang="en">Register</span>
+                                </pretix-button>
+                                <div class="kommissarin-register-overlay" id="kommissarin-register-overlay" aria-hidden="true">
+                                    <div class="anmelde-button anmelde-button--disabled kommissarin-register-placeholder" aria-hidden="true">
+                                        <span data-lang="de">Anmelden</span>
+                                        <span data-lang="en">Register</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kommissarin-registration-note-wrap">
                                 <div class="kommissarin-registration-disclaimer kommissarin-proximity-accent" data-registration-state="locked">
                                     <label class="kommissarin-registration-check" for="kommissarin-registration-confirm">
                                         <input class="kommissarin-registration-checkbox" type="checkbox" id="kommissarin-registration-confirm" required aria-controls="kommissarin-anmelde-button">
                                         <span class="kommissarin-registration-copy">
-                                            <span data-lang="de">Ich melde mich nur an, wenn ich sehr wahrscheinlich teilnehmen kann, da Nichterscheinen Plätze blockiert und Cateringkosten verursacht.</span>
-                                            <span data-lang="en">I will register only if I am very likely to attend, since no-shows block places and still incur catering costs.</span>
+                                            <span data-lang="de">Ich melde mich nur an, wenn ich sehr wahrscheinlich teilnehmen kann, da Nichterscheinen Plätze blockiert und finanzielle Verluste für uns verursacht!</span>
+                                            <span data-lang="en">I will register only if I am very likely to attend, since a no-show blocks places and causes financial loss for us.</span>
                                         </span>
                                     </label>
                                 </div>
@@ -3250,10 +3304,10 @@
                                     <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/Instagram.svg" alt="Instagram" class="social-icon instagram-icon">
                                 </a>
                             </div>
-                            <pretix-button event="https://pretix.eu/kino-kaddish/golem/" language="de" class="anmelde-button" id="golem-anmelde-button">
-                                <span data-lang="de">Anmelden</span>
-                                <span data-lang="en">Register</span>
-                            </pretix-button>
+                            <button class="anmelde-button anmelde-button--disabled" id="golem-anmelde-button" type="button" disabled aria-disabled="true">
+                                <span data-lang="de">Anmeldung geschlossen</span>
+                                <span data-lang="en">Registration closed</span>
+                            </button>
                         </div>
                         <div class="film-details golem-text-column">
                             <div data-lang="de">
@@ -3825,25 +3879,25 @@
             const revealStops = [
                 {
                     element: scheduleBox,
-                    duration: 1180,
-                    pause: 320,
+                    duration: 1400,
+                    pause: 400,
                     offset: 0.14
                 },
                 {
                     element: scheduleEntries[1] || scheduleEntries[0] || scheduleBox,
-                    duration: 1480,
-                    pause: 380,
+                    duration: 1700,
+                    pause: 500,
                     offset: 0.2
                 },
                 {
                     element: scheduleEntries[3] || scheduleEntries[4] || scheduleEntries[5] || scheduleBox,
-                    duration: 1560,
-                    pause: 400,
+                    duration: 1800,
+                    pause: 500,
                     offset: 0.19
                 },
                 {
                     element: finalTargetElement,
-                    duration: 1740,
+                    duration: 2200,
                     pause: 0,
                     offset: window.innerWidth <= 768 ? 0.08 : 0.12
                 }
@@ -3972,7 +4026,7 @@
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
             // Update Pretix button language
-            document.querySelectorAll('#golem-anmelde-button, #kommissarin-anmelde-button').forEach((pretixButton) => {
+            document.querySelectorAll('pretix-button#golem-anmelde-button, pretix-button#kommissarin-anmelde-button').forEach((pretixButton) => {
                 pretixButton.setAttribute('language', lang);
             });
 
@@ -3984,73 +4038,27 @@
             }
         }
 
-        const kommissarinRegistrationButton = document.getElementById('kommissarin-anmelde-button');
+        const kommissarinRegisterShell = document.getElementById('kommissarin-register-shell');
+        const kommissarinRegisterOverlay = document.getElementById('kommissarin-register-overlay');
         const kommissarinRegistrationConfirm = document.getElementById('kommissarin-registration-confirm');
         const kommissarinRegistrationDisclaimer = document.querySelector('#kommissarin-anmeldung .kommissarin-registration-disclaimer');
 
         function syncKommissarinRegistrationLock() {
-            if (!kommissarinRegistrationButton || !kommissarinRegistrationConfirm) {
+            if (!kommissarinRegisterShell || !kommissarinRegistrationConfirm || !kommissarinRegisterOverlay) {
                 return;
             }
 
             const acknowledged = kommissarinRegistrationConfirm.checked;
+            const state = acknowledged ? 'ready' : 'locked';
 
-            if (acknowledged) {
-                kommissarinRegistrationButton.removeAttribute('data-registration-locked');
-            } else {
-                kommissarinRegistrationButton.setAttribute('data-registration-locked', 'true');
-            }
-
-            kommissarinRegistrationButton.removeAttribute('title');
-
-            kommissarinRegistrationButton.setAttribute('aria-disabled', acknowledged ? 'false' : 'true');
-            kommissarinRegistrationButton.dataset.registrationState = acknowledged ? 'ready' : 'locked';
-            kommissarinRegistrationButton.style.cursor = acknowledged ? 'pointer' : 'default';
+            kommissarinRegisterShell.dataset.registrationState = state;
+            kommissarinRegisterShell.setAttribute('aria-disabled', acknowledged ? 'false' : 'true');
+            kommissarinRegisterOverlay.hidden = acknowledged;
+            kommissarinRegisterOverlay.setAttribute('aria-hidden', acknowledged ? 'true' : 'false');
 
             if (kommissarinRegistrationDisclaimer) {
-                kommissarinRegistrationDisclaimer.dataset.registrationState = acknowledged ? 'ready' : 'locked';
+                kommissarinRegistrationDisclaimer.dataset.registrationState = state;
             }
-
-            kommissarinRegistrationButton.querySelectorAll('a, button, .pretix-button, [role="button"]').forEach((node) => {
-                const isAnchor = node.tagName === 'A';
-                const isButton = node.tagName === 'BUTTON';
-
-                if (acknowledged) {
-                    if (isAnchor && node.dataset.lockedHref) {
-                        node.setAttribute('href', node.dataset.lockedHref);
-                        delete node.dataset.lockedHref;
-                    }
-
-                    if (isButton) {
-                        node.disabled = false;
-                        node.removeAttribute('disabled');
-                    }
-
-                    node.style.pointerEvents = 'auto';
-                    node.style.cursor = 'pointer';
-                    node.removeAttribute('aria-disabled');
-                    node.removeAttribute('tabindex');
-                    return;
-                }
-
-                if (isAnchor) {
-                    const href = node.getAttribute('href');
-                    if (href) {
-                        node.dataset.lockedHref = href;
-                        node.removeAttribute('href');
-                    }
-                }
-
-                if (isButton) {
-                    node.disabled = false;
-                    node.removeAttribute('disabled');
-                }
-
-                node.style.pointerEvents = 'none';
-                node.style.cursor = 'default';
-                node.setAttribute('aria-disabled', 'true');
-                node.setAttribute('tabindex', '-1');
-            });
         }
 
         function guardKommissarinRegistration(event) {
@@ -4065,25 +4073,11 @@
             }
         }
 
-        if (kommissarinRegistrationButton && kommissarinRegistrationConfirm) {
+        if (kommissarinRegisterShell && kommissarinRegisterOverlay && kommissarinRegistrationConfirm) {
             kommissarinRegistrationConfirm.addEventListener('change', syncKommissarinRegistrationLock);
-            kommissarinRegistrationButton.addEventListener('click', guardKommissarinRegistration, true);
-            kommissarinRegistrationButton.addEventListener('pointerdown', guardKommissarinRegistration, true);
-            kommissarinRegistrationButton.addEventListener('touchstart', guardKommissarinRegistration, true);
-            kommissarinRegistrationButton.addEventListener('keydown', function(event) {
-                if (!kommissarinRegistrationConfirm.checked && (event.key === 'Enter' || event.key === ' ')) {
-                    guardKommissarinRegistration(event);
-                }
-            }, true);
-
-            const kommissarinRegistrationObserver = new MutationObserver(() => {
-                syncKommissarinRegistrationLock();
-            });
-
-            kommissarinRegistrationObserver.observe(kommissarinRegistrationButton, {
-                childList: true,
-                subtree: true
-            });
+            kommissarinRegisterOverlay.addEventListener('click', guardKommissarinRegistration, true);
+            kommissarinRegisterOverlay.addEventListener('pointerdown', guardKommissarinRegistration, true);
+            kommissarinRegisterOverlay.addEventListener('touchstart', guardKommissarinRegistration, true);
 
             syncKommissarinRegistrationLock();
         }
@@ -4201,6 +4195,8 @@
             '.kommissarin-venue-copy a',
             '.venue-meta',
             '.kommissarin-jump-button',
+            '.kommissarin-register-shell',
+            '.kommissarin-register-overlay',
             '.kommissarin-registration-disclaimer',
             '.kommissarin-registration-check'
         ].join(', ');
