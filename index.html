@@ -1340,6 +1340,18 @@
             gap: 0.9rem;
         }
 
+        #kommissarin .schedule-list[data-lang="en"] {
+            display: none;
+        }
+
+        body.lang-en #kommissarin .schedule-list[data-lang="de"] {
+            display: none;
+        }
+
+        body.lang-en #kommissarin .schedule-list[data-lang="en"] {
+            display: grid;
+        }
+
         #kommissarin .schedule-entry {
             display: grid;
             grid-template-columns: 112px minmax(0, 1fr);
@@ -1444,6 +1456,10 @@
             margin-top: 0.2rem;
         }
 
+        #kommissarin .schedule-media-grid--tour {
+            width: min(100%, 31rem);
+        }
+
         #kommissarin .schedule-media-card {
             position: relative;
             margin: 0;
@@ -1503,6 +1519,10 @@
 
             #kommissarin .schedule-media-grid {
                 gap: 0.55rem;
+            }
+
+            #kommissarin .schedule-media-grid--tour {
+                width: 100%;
             }
         }
 
@@ -2269,6 +2289,26 @@
             padding: 0.2rem 0 0.2rem 1.15rem;
         }
 
+        .kommissarin-registration-check {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            gap: 0.9rem;
+            align-items: flex-start;
+            cursor: pointer;
+        }
+
+        .kommissarin-registration-checkbox {
+            width: 1rem;
+            height: 1rem;
+            margin-top: 0.18rem;
+            accent-color: #d7c8a7;
+            flex-shrink: 0;
+        }
+
+        .kommissarin-registration-copy {
+            display: block;
+        }
+
         .event-section-divider {
             width: 100%;
             height: 1px;
@@ -2373,6 +2413,24 @@
             background: rgba(255, 255, 255, 0.94) !important;
             color: #000 !important;
             border-color: rgba(255, 255, 255, 0.94) !important;
+        }
+
+        #kommissarin-anmelde-button[data-registration-locked="true"] button,
+        #kommissarin-anmelde-button[data-registration-locked="true"] a {
+            background-color: rgba(255, 255, 255, 0.03) !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            color: rgba(255, 255, 255, 0.42) !important;
+            border-color: rgba(255, 255, 255, 0.16) !important;
+            box-shadow: none !important;
+            cursor: not-allowed !important;
+        }
+
+        #kommissarin-anmelde-button[data-registration-locked="true"] button:hover,
+        #kommissarin-anmelde-button[data-registration-locked="true"] a:hover {
+            background-color: rgba(255, 255, 255, 0.03) !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            color: rgba(255, 255, 255, 0.42) !important;
+            border-color: rgba(255, 255, 255, 0.16) !important;
         }
 
         /* Override any inline styles and nested elements */
@@ -2768,7 +2826,7 @@
                                             <span class="schedule-tag">Deutsch</span>
                                             <span class="schedule-tag">Englisch</span>
                                         </div>
-                                        <div class="schedule-media-grid">
+                                        <div class="schedule-media-grid schedule-media-grid--tour">
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-red-gallery.webp" alt="Ausstellungsraum im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
                                                 <figcaption class="schedule-media-caption">Ausstellung</figcaption>
@@ -2913,7 +2971,7 @@
                                             <span class="schedule-tag">German</span>
                                             <span class="schedule-tag">English</span>
                                         </div>
-                                        <div class="schedule-media-grid">
+                                        <div class="schedule-media-grid schedule-media-grid--tour">
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
                                                 <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-red-gallery.webp" alt="Exhibition room at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
                                                 <figcaption class="schedule-media-caption">Exhibition gallery</figcaption>
@@ -3074,8 +3132,15 @@
                                 <span data-lang="en">Register</span>
                             </pretix-button>
                             <div>
-                                <p class="kommissarin-registration-disclaimer kommissarin-proximity-accent" data-lang="de">Bitte nur ernst gemeinte Anmeldungen: Die Veranstaltung umfasst auch Catering. Wer trotz Anmeldung nicht erscheint, nimmt anderen einen Platz weg und verursacht uns zusätzliche Kosten.</p>
-                                <p class="kommissarin-registration-disclaimer kommissarin-proximity-accent" data-lang="en">Please register only if you genuinely plan to attend: the event includes catering, so no-shows take a place from someone else and also create extra costs for us.</p>
+                                <div class="kommissarin-registration-disclaimer kommissarin-proximity-accent">
+                                    <label class="kommissarin-registration-check" for="kommissarin-registration-confirm">
+                                        <input class="kommissarin-registration-checkbox" type="checkbox" id="kommissarin-registration-confirm" required aria-controls="kommissarin-anmelde-button">
+                                        <span class="kommissarin-registration-copy">
+                                            <span data-lang="de">Ich bestätige, dass ich mich nur anmelde, wenn ich ernsthaft teilnehmen kann. Mir ist bewusst, dass wir Catering planen und dass ein Nichterscheinen trotz Anmeldung anderen einen Platz nimmt und für uns als Veranstalter:innen einen finanziellen Verlust verursacht.</span>
+                                            <span data-lang="en">I confirm that I will register only if I seriously expect to attend. I understand that we are planning catering, and that registering but not showing up takes a place from someone else and causes a financial loss for us as organizers.</span>
+                                        </span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -3602,6 +3667,36 @@
         // Call once on page load
         window.addEventListener('load', updateActiveMenuItem);
 
+        function animatePageScroll(targetY, duration = 1800) {
+            const startY = window.pageYOffset;
+            const distance = targetY - startY;
+
+            if (Math.abs(distance) < 4) {
+                window.scrollTo(0, targetY);
+                return;
+            }
+
+            const startTime = performance.now();
+            const easeInOutCubic = (t) => (
+                t < 0.5
+                    ? 4 * t * t * t
+                    : 1 - Math.pow(-2 * t + 2, 3) / 2
+            );
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = easeInOutCubic(progress);
+                window.scrollTo(0, startY + (distance * eased));
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            }
+
+            window.requestAnimationFrame(step);
+        }
+
         // Smooth scrolling for navigation links (with disabled section check)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -3620,10 +3715,22 @@
                         scrollPos -= 20; // Small additional offset
                     }
 
-                    window.scrollTo({
-                        top: scrollPos,
-                        behavior: 'smooth'
-                    });
+                    if (this.classList.contains('kommissarin-jump-button')) {
+                        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                        if (prefersReducedMotion) {
+                            window.scrollTo({
+                                top: scrollPos,
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            animatePageScroll(scrollPos, 3200);
+                        }
+                    } else {
+                        window.scrollTo({
+                            top: scrollPos,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
                 // If disabled, do nothing (link is already non-clickable via CSS)
             });
@@ -3704,6 +3811,89 @@
 
             // Save preference
             localStorage.setItem('preferred-language', lang);
+        }
+
+        const kommissarinRegistrationButton = document.getElementById('kommissarin-anmelde-button');
+        const kommissarinRegistrationConfirm = document.getElementById('kommissarin-registration-confirm');
+
+        function syncKommissarinRegistrationLock() {
+            if (!kommissarinRegistrationButton || !kommissarinRegistrationConfirm) {
+                return;
+            }
+
+            const acknowledged = kommissarinRegistrationConfirm.checked;
+
+            if (acknowledged) {
+                kommissarinRegistrationButton.removeAttribute('data-registration-locked');
+            } else {
+                kommissarinRegistrationButton.setAttribute('data-registration-locked', 'true');
+            }
+
+            kommissarinRegistrationButton.setAttribute('aria-disabled', acknowledged ? 'false' : 'true');
+
+            kommissarinRegistrationButton.querySelectorAll('a, button').forEach((node) => {
+                const isAnchor = node.tagName === 'A';
+                const isButton = node.tagName === 'BUTTON';
+
+                if (acknowledged) {
+                    if (isAnchor && node.dataset.lockedHref) {
+                        node.setAttribute('href', node.dataset.lockedHref);
+                        delete node.dataset.lockedHref;
+                    }
+
+                    if (isButton) {
+                        node.disabled = false;
+                    }
+
+                    node.removeAttribute('aria-disabled');
+                    node.removeAttribute('tabindex');
+                    return;
+                }
+
+                if (isAnchor) {
+                    const href = node.getAttribute('href');
+                    if (href) {
+                        node.dataset.lockedHref = href;
+                        node.removeAttribute('href');
+                    }
+                }
+
+                if (isButton) {
+                    node.disabled = true;
+                }
+
+                node.setAttribute('aria-disabled', 'true');
+                node.setAttribute('tabindex', '-1');
+            });
+        }
+
+        function guardKommissarinRegistration(event) {
+            if (kommissarinRegistrationConfirm && !kommissarinRegistrationConfirm.checked) {
+                event.preventDefault();
+                event.stopPropagation();
+                kommissarinRegistrationConfirm.focus();
+            }
+        }
+
+        if (kommissarinRegistrationButton && kommissarinRegistrationConfirm) {
+            kommissarinRegistrationConfirm.addEventListener('change', syncKommissarinRegistrationLock);
+            kommissarinRegistrationButton.addEventListener('click', guardKommissarinRegistration, true);
+            kommissarinRegistrationButton.addEventListener('keydown', function(event) {
+                if (!kommissarinRegistrationConfirm.checked && (event.key === 'Enter' || event.key === ' ')) {
+                    guardKommissarinRegistration(event);
+                }
+            }, true);
+
+            const kommissarinRegistrationObserver = new MutationObserver(() => {
+                syncKommissarinRegistrationLock();
+            });
+
+            kommissarinRegistrationObserver.observe(kommissarinRegistrationButton, {
+                childList: true,
+                subtree: true
+            });
+
+            syncKommissarinRegistrationLock();
         }
 
         // Handle URL hash navigation (e.g., #golem, #der-golem)
@@ -3819,7 +4009,8 @@
             '.kommissarin-venue-copy a',
             '.venue-meta',
             '.kommissarin-jump-button',
-            '.kommissarin-registration-disclaimer'
+            '.kommissarin-registration-disclaimer',
+            '.kommissarin-registration-check'
         ].join(', ');
         const kommissarinPointerAccents = kommissarinSection
             ? Array.from(kommissarinSection.querySelectorAll(kommissarinPointerAccentSelector))
