@@ -1,0 +1,134 @@
+Pretix texts for KINO KADDISH: The Commissar
+Copy-paste sheet
+
+Event:
+KINO KADDISH: The Commissar
+Sunday, 19 April 2026
+Museum Berlin-Karlshorst
+Zwieseler Str. 4, 10318 Berlin
+
+========================================
+FRONTPAGE TEXT
+========================================
+
+English:
+**KINO KADDISH: The Commissar**
+
+*The Commissar* (`Комиссар`, USSR 1967/1987) will be shown on **Sunday, 19 April 2026** at **Museum Berlin-Karlshorst**, Zwieseler Str. 4, 10318 Berlin.
+
+The program includes:
+- 11:45 Welcome
+- 12:00 Guided tour of Karlshorst
+- 13:00 Lunch break, food provided onsite
+- 14:00 Presentation by Dr. Irina Scherbakowa
+- 14:35 Presentation by Prof. Dr. Viktoriya Sukovata
+- 15:15 Film screening
+- 17:15 Q&A discussion
+
+Please register only if you genuinely plan to attend. Seating is limited and the event includes catering.
+
+German:
+**KINO KADDISH: Die Kommissarin**
+
+*Die Kommissarin* (`Комиссар`, SU 1967/1987) wird am **Sonntag, 19. April 2026** im **Museum Berlin-Karlshorst**, Zwieseler Str. 4, 10318 Berlin, gezeigt.
+
+Das Programm umfasst:
+- 11:45 Begrüßung
+- 12:00 Führung durch Karlshorst
+- 13:00 Mittagspause, Verpflegung vor Ort
+- 14:00 Vortrag von Dr. Irina Scherbakowa
+- 14:35 Vortrag von Prof. Dr. Viktoriya Sukovata
+- 15:15 Filmvorführung
+- 17:15 Q&A / Gespräch
+
+Bitte melden Sie sich nur an, wenn Sie tatsächlich teilnehmen möchten. Die Plätze sind begrenzt und die Veranstaltung umfasst auch Catering.
+
+========================================
+END OF PRESALE TEXT
+========================================
+
+English:
+Registration for this event has closed. If you have questions or would like to be placed on a waiting list, please contact us at info@kaddish-kino.org.
+
+German:
+Die Anmeldung für diese Veranstaltung ist geschlossen. Bei Fragen oder wenn Sie auf die Warteliste gesetzt werden möchten, kontaktieren Sie uns bitte unter info@kaddish-kino.org.
+
+========================================
+VOUCHER EXPLANATION
+========================================
+
+English:
+If you have received a voucher code from the organizers, please enter it here. If you believe you should have received one, contact us at info@kaddish-kino.org.
+
+German:
+Wenn Sie einen Gutscheincode von den Veranstalter:innen erhalten haben, geben Sie ihn bitte hier ein. Falls Sie meinen, einen Gutscheincode erhalten zu haben, kontaktieren Sie uns unter info@kaddish-kino.org.
+
+========================================
+CONFIRMATION TEXT
+========================================
+
+English:
+I understand that this event has limited capacity and includes catering. I will only register if I genuinely plan to attend, and if my plans change I will cancel my registration as early as possible.
+
+German:
+Ich verstehe, dass diese Veranstaltung nur begrenzte Plätze hat und Catering umfasst. Ich melde mich nur an, wenn ich tatsächlich teilnehmen möchte, und werde meine Anmeldung rechtzeitig stornieren, falls sich meine Pläne ändern.
+
+========================================
+ADDITIONAL SUCCESS MESSAGE
+========================================
+
+English:
+Thank you for registering. You will receive an order confirmation by email. Please keep your ticket available on the day of the event. If you can no longer attend, please cancel your registration in good time so that someone else can take your place.
+
+German:
+Vielen Dank für Ihre Anmeldung. Sie erhalten eine Bestellbestätigung per E-Mail. Bitte halten Sie Ihr Ticket am Veranstaltungstag bereit. Wenn Sie doch nicht teilnehmen können, stornieren Sie Ihre Anmeldung bitte rechtzeitig, damit jemand anderes den Platz nutzen kann.
+
+========================================
+HELP TEXT OF THE EMAIL FIELD
+========================================
+
+English:
+Please enter a valid email address that you check regularly. We will send your order confirmation and all important event information to this address.
+
+German:
+Bitte geben Sie eine gültige E-Mail-Adresse an, die Sie regelmäßig abrufen. Wir senden Ihre Bestellbestätigung und alle wichtigen Informationen zur Veranstaltung an diese Adresse.
+
+========================================
+HELP TEXT OF THE PHONE NUMBER FIELD
+========================================
+
+English:
+Optional: Please enter a phone number where we can reach you in case of last-minute schedule changes or urgent questions on the day of the event.
+
+German:
+Optional: Bitte geben Sie eine Telefonnummer an, unter der wir Sie bei kurzfristigen Änderungen oder dringenden Rückfragen am Veranstaltungstag erreichen können.
+
+========================================
+BANNER TEXT (TOP)
+========================================
+
+English:
+ELES fellows: Please register via ELESnet, not here.
+
+German:
+ELES-Stipendiat:innen: Bitte über ELESnet anmelden, nicht hier.
+
+========================================
+BANNER TEXT (BOTTOM)
+========================================
+
+English:
+Please register only if you genuinely plan to attend. This event includes catering and has limited seating.
+
+German:
+Bitte melden Sie sich nur an, wenn Sie tatsächlich teilnehmen möchten. Diese Veranstaltung umfasst Catering und hat nur begrenzte Plätze.
+
+========================================
+INFO TEXT
+========================================
+
+English:
+Screening of *The Commissar* (`Комиссар`, USSR 1967/1987) at Museum Berlin-Karlshorst on 19 April 2026, with contributions by Dr. Irina Scherbakowa and Prof. Dr. Viktoriya Sukovata. Program includes welcome, guided tour, lunch/catering, presentations, film screening, and Q&A discussion.
+
+German:
+Vorführung von *Die Kommissarin* (`Комиссар`, SU 1967/1987) im Museum Berlin-Karlshorst am 19. April 2026 mit Beiträgen von Dr. Irina Scherbakowa und Prof. Dr. Viktoriya Sukovata. Das Programm umfasst Begrüßung, Führung, Mittagspause mit Verpflegung, Vorträge, Filmvorführung und Q&A / Gespräch.
