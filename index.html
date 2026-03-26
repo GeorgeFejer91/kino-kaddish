@@ -14,11 +14,11 @@
     <meta property="og:site_name" content="Kino Kaddish">
     <meta property="og:title" content="Kino Kaddish - Filmriss und Widerhall">
     <meta property="og:description" content="Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen: ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png">
-    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png">
+    <meta property="og:image" content="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04_Karlshorst/Filmplakat/FilmPlakat_motif6_done.png">
+    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04_Karlshorst/Filmplakat/FilmPlakat_motif6_done.png">
     <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="1536">
+    <meta property="og:image:width" content="1407">
+    <meta property="og:image:height" content="2109">
     <meta property="og:image:alt" content="Kino Kaddish - The Commissar poster">
 
     <!-- Twitter Card Meta Tags -->
@@ -26,7 +26,7 @@
     <meta name="twitter:url" content="https://kino-kaddish.org/">
     <meta name="twitter:title" content="Kino Kaddish - Filmriss und Widerhall">
     <meta name="twitter:description" content="Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen: ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04_Karlshorst/Filmplakat/FilmPlakat_motif6_done.png">
     <meta name="twitter:image:alt" content="Kino Kaddish - The Commissar poster">
 
     <style>
@@ -2454,94 +2454,24 @@
             );
         }
 
-        pretix-button {
-            display: block !important;
-            width: 100% !important;
-        }
-
-        pretix-button,
         #kommissarin-anmelde-button {
-            height: 100%;
-        }
-
-        pretix-button button,
-        pretix-button > a,
-        pretix-button a,
-        pretix-button a.pretix-button,
-        pretix-button .pretix-button,
-        #golem-anmelde-button button,
-        #golem-anmelde-button a,
-        #kommissarin-anmelde-button button,
-        #kommissarin-anmelde-button a,
-        .anmelde-button button,
-        .anmelde-button a {
-            display: block !important;
-            width: 100% !important;
-            min-width: 100% !important;
-            max-width: 100% !important;
-            padding: 1.2rem 2rem !important;
-            background-color: #000 !important;
-            background: #000 !important;
-            background-image: none !important;
-            color: #fff !important;
-            text-align: center !important;
-            text-decoration: none !important;
-            font-size: 1.1rem !important;
-            font-weight: bold !important;
-            font-family: inherit !important;
-            letter-spacing: 1px !important;
-            border: 2px solid var(--highlight-color) !important;
-            border-radius: 0 !important;
-            transition: background-color 0.5s ease, color 0.5s ease !important;
-            cursor: pointer !important;
-            box-shadow: none !important;
-            outline: none !important;
-            margin: 0 !important;
-            line-height: 1.5 !important;
-        }
-
-        pretix-button button:hover,
-        pretix-button > a:hover,
-        pretix-button a:hover,
-        pretix-button a.pretix-button:hover,
-        pretix-button .pretix-button:hover,
-        #golem-anmelde-button button:hover,
-        #golem-anmelde-button a:hover,
-        #kommissarin-anmelde-button button:hover,
-        #kommissarin-anmelde-button a:hover,
-        .anmelde-button button:hover,
-        .anmelde-button a:hover {
-            background-color: #fff !important;
-            background: #fff !important;
-            background-image: none !important;
-            color: #000 !important;
-            border-color: var(--highlight-color) !important;
-        }
-
-        #kommissarin-anmelde-button {
-            position: relative;
+            position: absolute;
+            inset: 0;
             z-index: 1;
-            flex: 1 1 auto;
-            display: block !important;
-            width: 100% !important;
-            min-height: 100% !important;
-            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            padding: 1.2rem 1.6rem;
+            box-sizing: border-box;
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
             transition: opacity 0.18s ease, visibility 0.18s ease;
         }
 
-        #kommissarin-anmelde-button button,
-        #kommissarin-anmelde-button a {
-            width: 100% !important;
-            min-width: 100% !important;
-            min-height: 124px !important;
-            height: 100% !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            padding: 1.2rem 1.6rem !important;
+        #kommissarin-anmelde-button [data-lang] {
+            display: block;
         }
 
         .kommissarin-register-shell[data-registration-state="ready"] #kommissarin-anmelde-button {
@@ -2560,24 +2490,12 @@
             cursor: default !important;
         }
 
-        pretix-button *,
         #golem-anmelde-button *,
         #kommissarin-anmelde-button * {
-            font-family: inherit !important;
-        }
-
-        pretix-button img,
-        pretix-button svg {
-            display: none !important;
+            font-family: inherit;
         }
 
     </style>
-
-    <!-- Pretix Widget Scripts -->
-    <link rel="stylesheet" type="text/css" href="https://pretix.eu/kino-kaddish/golem/widget/v1.css" crossorigin>
-    <link rel="stylesheet" type="text/css" href="https://pretix.eu/kino-kaddish/kommissarin/widget/v1.css" crossorigin>
-    <script type="text/javascript" src="https://pretix.eu/widget/v1.de.js" async crossorigin id="pretix-widget-de"></script>
-    <script type="text/javascript" src="https://pretix.eu/widget/v1.en.js" async crossorigin id="pretix-widget-en"></script>
 </head>
 <body>
     <!-- Language Switcher -->
@@ -2854,8 +2772,8 @@
                     <p class="film-year kommissarin-meta-line" data-lang="en"><span class="kommissarin-meta-primary">The Commissar (Комиссар) | USSR 1967/1987 | Screening and discussion |</span> <strong class="kommissarin-meta-emphasis">19 April 2026 | Museum Berlin-Karlshorst</strong></p>
                     <div class="film-content">
                         <div class="kommissarin-side-column">
-                            <div class="film-image kommissarin-poster" style="--poster-image: url('19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png');">
-                                <img class="kommissarin-poster-base" src="19-04_Karlshorst/Filmplakat/FilmPlakat_motif5_done.png" alt="Die Kommissarin (1967)">
+                            <div class="film-image kommissarin-poster" style="--poster-image: url('19-04_Karlshorst/Filmplakat/FilmPlakat_motif6_done.png');">
+                                <img class="kommissarin-poster-base" src="19-04_Karlshorst/Filmplakat/FilmPlakat_motif6_done.png" alt="Die Kommissarin (1967)">
                                 <div class="kommissarin-poster-glow" aria-hidden="true"></div>
                                 <div class="kommissarin-poster-reveal" aria-hidden="true"></div>
                             </div>
@@ -3245,10 +3163,10 @@
                         <h3 class="golem-people-title" data-lang="en">Registration</h3>
                         <div class="kommissarin-registration-actions">
                             <div class="kommissarin-register-shell kommissarin-proximity-accent" id="kommissarin-register-shell" data-registration-state="locked" aria-disabled="true">
-                                <pretix-button event="https://pretix.eu/kino-kaddish/kommissarin/" language="de" class="anmelde-button kommissarin-proximity-accent" id="kommissarin-anmelde-button">
+                                <a href="https://pretix.eu/kino-kaddish/kommissarin/" class="anmelde-button kommissarin-proximity-accent" id="kommissarin-anmelde-button" target="_blank" rel="noopener">
                                     <span data-lang="de">Anmelden</span>
                                     <span data-lang="en">Register</span>
-                                </pretix-button>
+                                </a>
                                 <div class="kommissarin-register-overlay" id="kommissarin-register-overlay" aria-hidden="true">
                                     <div class="anmelde-button anmelde-button--disabled kommissarin-register-placeholder" aria-hidden="true">
                                         <span data-lang="de">Anmelden</span>
@@ -4024,11 +3942,6 @@
             // Update button states
             document.getElementById('btn-de').classList.toggle('active', lang === 'de');
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-            // Update Pretix button language
-            document.querySelectorAll('pretix-button#golem-anmelde-button, pretix-button#kommissarin-anmelde-button').forEach((pretixButton) => {
-                pretixButton.setAttribute('language', lang);
-            });
 
             // Save preference
             localStorage.setItem('preferred-language', lang);
