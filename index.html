@@ -1300,6 +1300,212 @@
             line-height: 1.55;
         }
 
+        #kommissarin .kommissarin-proximity-media {
+            filter: grayscale(100%) saturate(0.72) contrast(1.02);
+            transition: filter 0.16s linear, border-color 0.16s ease, background-color 0.16s ease;
+        }
+
+        #kommissarin .golem-people-title,
+        #kommissarin .film-description,
+        #kommissarin .speaker-role,
+        #kommissarin .person-bio,
+        #kommissarin .venue-meta,
+        #kommissarin .schedule-entry,
+        #kommissarin .schedule-title,
+        #kommissarin .schedule-note,
+        #kommissarin .schedule-description,
+        #kommissarin .schedule-person-label,
+        #kommissarin .schedule-tag,
+        #kommissarin .schedule-media-caption {
+            transition: color 0.16s ease, background-color 0.16s ease, border-color 0.16s ease;
+        }
+
+        #kommissarin .golem-people-title,
+        #kommissarin .schedule-title {
+            color: rgba(255, 255, 255, calc(0.9 + (var(--proximity-strength, 0) * 0.08)));
+        }
+
+        #kommissarin .film-description,
+        #kommissarin .speaker-role,
+        #kommissarin .person-bio,
+        #kommissarin .venue-meta,
+        #kommissarin .schedule-note,
+        #kommissarin .schedule-description,
+        #kommissarin .schedule-person-label {
+            color: rgba(255, 255, 255, calc(0.68 + (var(--proximity-strength, 0) * 0.24)));
+        }
+
+        #kommissarin .schedule-list {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        #kommissarin .schedule-entry {
+            display: grid;
+            grid-template-columns: 112px minmax(0, 1fr);
+            gap: 1rem;
+            align-items: start;
+            padding: 1rem 0.95rem;
+            background-color: rgba(255, 255, 255, calc(0.015 + (var(--proximity-strength, 0) * 0.04)));
+            border: 1px solid rgba(255, 255, 255, calc(0.08 + (var(--proximity-strength, 0) * 0.18)));
+        }
+
+        #kommissarin .schedule-slot {
+            display: flex;
+            flex-direction: column;
+            gap: 0.18rem;
+            align-items: flex-start;
+        }
+
+        #kommissarin .schedule-label {
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.42);
+        }
+
+        #kommissarin .schedule-copy {
+            min-width: 0;
+            display: grid;
+            gap: 0.45rem;
+        }
+
+        #kommissarin .schedule-title {
+            font-size: 1rem;
+            line-height: 1.45;
+            font-weight: 500;
+        }
+
+        #kommissarin .schedule-note,
+        #kommissarin .schedule-description {
+            font-size: 0.93rem;
+            line-height: 1.6;
+            max-width: none;
+        }
+
+        #kommissarin .schedule-note strong {
+            color: rgba(255, 255, 255, calc(0.84 + (var(--proximity-strength, 0) * 0.12)));
+        }
+
+        #kommissarin .schedule-tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+        }
+
+        #kommissarin .schedule-tag {
+            display: inline-flex;
+            align-items: center;
+            min-height: 1.9rem;
+            padding: 0.2rem 0.55rem;
+            border: 1px solid rgba(255, 255, 255, calc(0.1 + (var(--proximity-strength, 0) * 0.2)));
+            background-color: rgba(255, 255, 255, calc(0.025 + (var(--proximity-strength, 0) * 0.045)));
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, calc(0.74 + (var(--proximity-strength, 0) * 0.16)));
+        }
+
+        #kommissarin .schedule-people {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1rem;
+            margin-bottom: 0.1rem;
+        }
+
+        #kommissarin .schedule-person {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            min-width: min(280px, 100%);
+        }
+
+        #kommissarin .schedule-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, calc(0.1 + (var(--proximity-strength, 0) * 0.16)));
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        #kommissarin .schedule-person-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        #kommissarin .schedule-media-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.7rem;
+            margin-top: 0.2rem;
+        }
+
+        #kommissarin .schedule-media-card {
+            position: relative;
+            margin: 0;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            background-color: rgba(255, 255, 255, calc(0.02 + (var(--proximity-strength, 0) * 0.04)));
+            border: 1px solid rgba(255, 255, 255, calc(0.08 + (var(--proximity-strength, 0) * 0.16)));
+        }
+
+        #kommissarin .schedule-media-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #kommissarin .schedule-media-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.45rem 0.6rem;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(6, 6, 6, 0.88) 100%);
+            font-size: 0.73rem;
+            letter-spacing: 0.04em;
+            color: rgba(245, 234, 214, calc(0.82 + (var(--proximity-strength, 0) * 0.12)));
+        }
+
+        @media (max-width: 980px) {
+            #kommissarin .schedule-entry {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            #kommissarin .schedule-slot {
+                flex-direction: row;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 680px) {
+            #kommissarin .schedule-entry {
+                padding: 0.9rem 0.8rem;
+            }
+
+            #kommissarin .schedule-person {
+                min-width: 0;
+                width: 100%;
+            }
+
+            #kommissarin .schedule-avatar {
+                width: 52px;
+                height: 52px;
+            }
+
+            #kommissarin .schedule-media-grid {
+                gap: 0.55rem;
+            }
+        }
+
         #kommissarin .venue-card {
             background-color: rgba(255, 255, 255, 0.02);
             border-color: rgba(255, 255, 255, 0.12);
@@ -2537,45 +2743,295 @@
                         <div class="schedule-box kommissarin-proximity-accent">
                             <h3 class="golem-people-title" data-lang="de">Ablauf</h3>
                             <h3 class="golem-people-title" data-lang="en">Schedule</h3>
-                            <div class="schedule-grid" data-lang="de">
-                                <div class="schedule-time">11:45-12:00</div>
-                                <div class="schedule-item">Begrüßung</div>
-                                <div class="schedule-time">12:00-13:00</div>
-                                <div class="schedule-item">Historische Führung durch Museum und Gelände Berlin-Karlshorst</div>
-                                <div class="schedule-time">13:00-14:00</div>
-                                <div class="schedule-item">Mittagspause mit Mahlzeit, Kaffee und Getränken vor Ort</div>
-                                <div class="schedule-time">14:00-14:30</div>
-                                <div class="schedule-item">Vortrag von Irina Scherbakowa: Askoldov, Zensur und sowjetische Erinnerungspolitik</div>
-                                <div class="schedule-time">14:30-14:35</div>
-                                <div class="schedule-item">Kurze Pause</div>
-                                <div class="schedule-time">14:35-15:05</div>
-                                <div class="schedule-item">Vortrag von Viktoriya Sukovata: Holocaustdarstellungen im sowjetischen Kino und <em>Die Kommissarin</em> im Kontext</div>
-                                <div class="schedule-time">15:05-15:15</div>
-                                <div class="schedule-item">Pause</div>
-                                <div class="schedule-time">15:15-17:15</div>
-                                <div class="schedule-item">Filmvorführung: <em>Die Kommissarin</em></div>
-                                <div class="schedule-time">17:15-18:00</div>
-                                <div class="schedule-item">Fragerunde und Gespräch</div>
+                            <div class="schedule-list" data-lang="de">
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Zeit</div>
+                                        <div class="schedule-time">11:45-12:00</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Begrüßung</h4>
+                                        <p class="schedule-description">Ankommen, kurze Einführung und organisatorischer Auftakt.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Zeit</div>
+                                        <div class="schedule-time">12:00-13:00</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Historische Führung durch Museum und Gelände Berlin-Karlshorst</h4>
+                                        <p class="schedule-note"><strong>Zwei parallele Führungen:</strong> eine auf Deutsch, eine auf Englisch.</p>
+                                        <p class="schedule-description">Rundgang zu Kapitulation, Vernichtungskrieg und jüdisch-sowjetischer Erinnerung am historischen Ort.</p>
+                                        <div class="schedule-tag-row">
+                                            <span class="schedule-tag">Deutsch</span>
+                                            <span class="schedule-tag">Englisch</span>
+                                        </div>
+                                        <div class="schedule-media-grid">
+                                            <figure class="schedule-media-card kommissarin-proximity-accent">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-red-gallery.webp" alt="Ausstellungsraum im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <figcaption class="schedule-media-caption">Ausstellung</figcaption>
+                                            </figure>
+                                            <figure class="schedule-media-card kommissarin-proximity-accent">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-historic-room.webp" alt="Historischer Konferenzraum in Karlshorst" class="kommissarin-proximity-media">
+                                                <figcaption class="schedule-media-caption">Historischer Konferenzraum</figcaption>
+                                            </figure>
+                                            <figure class="schedule-media-card kommissarin-proximity-accent">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-exhibition-gallery.webp" alt="Ausstellungsraum mit Plakaten im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <figcaption class="schedule-media-caption">Sammlungsraum</figcaption>
+                                            </figure>
+                                            <figure class="schedule-media-card kommissarin-proximity-accent">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-conference-hall.webp" alt="Kapitulationssaal im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <figcaption class="schedule-media-caption">Kapitulationssaal heute</figcaption>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Zeit</div>
+                                        <div class="schedule-time">13:00-14:00</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Mittagspause mit Mahlzeit, Kaffee und Getränken</h4>
+                                        <p class="schedule-description">Zeit für Austausch vor Ort, bevor die beiden Vorträge beginnen.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Zeit</div>
+                                        <div class="schedule-time">14:00-14:30</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <div class="schedule-person">
+                                            <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait von Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media">
+                                            <div>
+                                                <div class="schedule-person-label">Dr. Irina Scherbakowa</div>
+                                                <h4 class="schedule-title">Askoldov, Zensur und sowjetische Erinnerungspolitik</h4>
+                                            </div>
+                                        </div>
+                                        <p class="schedule-description">Irina Scherbakowa kontextualisiert den Film aus ihrer Arbeit zu Stalinismus, verdrängter Gewaltgeschichte und sowjetischer Erinnerung.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Zeit</div>
+                                        <div class="schedule-time">14:30-14:35</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Kurze Pause</h4>
+                                        <p class="schedule-description">Kurzer Umbau und Zeit zum Durchatmen.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Zeit</div>
+                                        <div class="schedule-time">14:35-15:05</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <div class="schedule-person">
+                                            <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait von Prof. Dr. Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media">
+                                            <div>
+                                                <div class="schedule-person-label">Prof. Dr. Viktoriya Sukovata</div>
+                                                <h4 class="schedule-title">Holocaustdarstellungen im sowjetischen Kino und <em>Die Kommissarin</em> im Kontext</h4>
+                                            </div>
+                                        </div>
+                                        <p class="schedule-description">Mit Fokus auf Holocaustdarstellungen, Pogromgewalt und jüdische Sichtbarkeit im sowjetischen Kino.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Zeit</div>
+                                        <div class="schedule-time">15:05-15:15</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Pause</h4>
+                                        <p class="schedule-description">Kurze Unterbrechung vor der Vorführung.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Zeit</div>
+                                        <div class="schedule-time">15:15-17:15</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Filmvorführung: <em>Die Kommissarin</em></h4>
+                                        <p class="schedule-description">Aleksandr Askoldov, SU 1967/1987, 104 Minuten.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Zeit</div>
+                                        <div class="schedule-time">17:15-18:00</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Fragerunde und Gespräch</h4>
+                                        <div class="schedule-people">
+                                            <div class="schedule-person">
+                                                <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait von Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media">
+                                                <div class="schedule-person-label">Irina Scherbakowa</div>
+                                            </div>
+                                            <div class="schedule-person">
+                                                <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait von Prof. Dr. Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media">
+                                                <div class="schedule-person-label">Viktoriya Sukovata</div>
+                                            </div>
+                                        </div>
+                                        <p class="schedule-description">Offenes Publikumsgespräch mit beiden Referentinnen zu Zensur, Pogromgewalt und Erinnerungspolitik.</p>
+                                    </div>
+                                </article>
                             </div>
-                            <div class="schedule-grid" data-lang="en">
-                                <div class="schedule-time">11:45-12:00</div>
-                                <div class="schedule-item">Arrival and welcome</div>
-                                <div class="schedule-time">12:00-13:00</div>
-                                <div class="schedule-item">Historical guided tour of Museum Berlin-Karlshorst and the surrounding site</div>
-                                <div class="schedule-time">13:00-14:00</div>
-                                <div class="schedule-item">Lunch break with a meal, coffee, and drinks served onsite</div>
-                                <div class="schedule-time">14:00-14:30</div>
-                                <div class="schedule-item">Presentation by Irina Scherbakowa: Askoldov, censorship, and Soviet memory politics</div>
-                                <div class="schedule-time">14:30-14:35</div>
-                                <div class="schedule-item">Short break</div>
-                                <div class="schedule-time">14:35-15:05</div>
-                                <div class="schedule-item">Presentation by Viktoriya Sukovata: Holocaust representation in Soviet cinema and <em>The Commissar</em> in context</div>
-                                <div class="schedule-time">15:05-15:15</div>
-                                <div class="schedule-item">Break</div>
-                                <div class="schedule-time">15:15-17:15</div>
-                                <div class="schedule-item">Screening: <em>The Commissar</em></div>
-                                <div class="schedule-time">17:15-18:00</div>
-                                <div class="schedule-item">Q&amp;A discussion</div>
+                            <div class="schedule-list" data-lang="en">
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Time</div>
+                                        <div class="schedule-time">11:45-12:00</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Arrival and welcome</h4>
+                                        <p class="schedule-description">Arrival, brief introduction, and practical opening remarks.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Time</div>
+                                        <div class="schedule-time">12:00-13:00</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Historical guided tour of Museum Berlin-Karlshorst and the surrounding site</h4>
+                                        <p class="schedule-note"><strong>Two parallel tours:</strong> one in German and one in English.</p>
+                                        <p class="schedule-description">A focused walk through the museum and its grounds, centering capitulation, the war of annihilation, and Jewish-Soviet memory.</p>
+                                        <div class="schedule-tag-row">
+                                            <span class="schedule-tag">German</span>
+                                            <span class="schedule-tag">English</span>
+                                        </div>
+                                        <div class="schedule-media-grid">
+                                            <figure class="schedule-media-card kommissarin-proximity-accent">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-red-gallery.webp" alt="Exhibition room at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <figcaption class="schedule-media-caption">Exhibition gallery</figcaption>
+                                            </figure>
+                                            <figure class="schedule-media-card kommissarin-proximity-accent">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-historic-room.webp" alt="Historic conference room in Karlshorst" class="kommissarin-proximity-media">
+                                                <figcaption class="schedule-media-caption">Historic conference room</figcaption>
+                                            </figure>
+                                            <figure class="schedule-media-card kommissarin-proximity-accent">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-exhibition-gallery.webp" alt="Exhibition room with posters at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <figcaption class="schedule-media-caption">Collection display</figcaption>
+                                            </figure>
+                                            <figure class="schedule-media-card kommissarin-proximity-accent">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-conference-hall.webp" alt="Conference hall at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <figcaption class="schedule-media-caption">Conference hall today</figcaption>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Time</div>
+                                        <div class="schedule-time">13:00-14:00</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Lunch break with a meal, coffee, and drinks</h4>
+                                        <p class="schedule-description">Time to gather and talk before the lecture sequence begins.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Time</div>
+                                        <div class="schedule-time">14:00-14:30</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <div class="schedule-person">
+                                            <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media">
+                                            <div>
+                                                <div class="schedule-person-label">Dr. Irina Scherbakowa</div>
+                                                <h4 class="schedule-title">Askoldov, censorship, and Soviet memory politics</h4>
+                                            </div>
+                                        </div>
+                                        <p class="schedule-description">Irina Scherbakowa situates the film through her work on Stalinism, suppressed violence, and Soviet memory.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Time</div>
+                                        <div class="schedule-time">14:30-14:35</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Short break</h4>
+                                        <p class="schedule-description">A brief pause and room reset.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Time</div>
+                                        <div class="schedule-time">14:35-15:05</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <div class="schedule-person">
+                                            <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Prof. Dr. Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media">
+                                            <div>
+                                                <div class="schedule-person-label">Prof. Dr. Viktoriya Sukovata</div>
+                                                <h4 class="schedule-title">Holocaust representation in Soviet cinema and <em>The Commissar</em> in context</h4>
+                                            </div>
+                                        </div>
+                                        <p class="schedule-description">A close look at Holocaust representation, pogrom violence, and Jewish visibility in Soviet cinema.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Time</div>
+                                        <div class="schedule-time">15:05-15:15</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Break</h4>
+                                        <p class="schedule-description">A short pause before the screening begins.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Time</div>
+                                        <div class="schedule-time">15:15-17:15</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Screening: <em>The Commissar</em></h4>
+                                        <p class="schedule-description">Aleksandr Askoldov, USSR 1967/1987, 104 minutes.</p>
+                                    </div>
+                                </article>
+
+                                <article class="schedule-entry kommissarin-proximity-accent">
+                                    <div class="schedule-slot">
+                                        <div class="schedule-label">Time</div>
+                                        <div class="schedule-time">17:15-18:00</div>
+                                    </div>
+                                    <div class="schedule-copy">
+                                        <h4 class="schedule-title">Q&amp;A discussion</h4>
+                                        <div class="schedule-people">
+                                            <div class="schedule-person">
+                                                <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media">
+                                                <div class="schedule-person-label">Irina Scherbakowa</div>
+                                            </div>
+                                            <div class="schedule-person">
+                                                <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Prof. Dr. Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media">
+                                                <div class="schedule-person-label">Viktoriya Sukovata</div>
+                                            </div>
+                                        </div>
+                                        <p class="schedule-description">An open audience discussion with both speakers on censorship, pogrom violence, and memory politics.</p>
+                                    </div>
+                                </article>
                             </div>
                         </div>
                     </div>
@@ -3345,10 +3801,28 @@
         const kommissarinPointerMedia = kommissarinSection
             ? Array.from(kommissarinSection.querySelectorAll('.kommissarin-proximity-media'))
             : [];
+        const kommissarinPointerAccentSelector = [
+            '.kommissarin-proximity-accent',
+            '.film-details',
+            '.film-details a',
+            '.golem-people-title',
+            '.speaker-card',
+            '.speaker-card a',
+            '.schedule-entry',
+            '.schedule-title',
+            '.schedule-note',
+            '.schedule-description',
+            '.schedule-person-label',
+            '.schedule-tag',
+            '.schedule-media-caption',
+            '.kommissarin-venue-copy',
+            '.kommissarin-venue-copy a',
+            '.venue-meta',
+            '.kommissarin-jump-button',
+            '.kommissarin-registration-disclaimer'
+        ].join(', ');
         const kommissarinPointerAccents = kommissarinSection
-            ? Array.from(kommissarinSection.querySelectorAll(
-                '.kommissarin-proximity-accent, .film-details a, .speaker-card a, .kommissarin-venue-copy a'
-            ))
+            ? Array.from(kommissarinSection.querySelectorAll(kommissarinPointerAccentSelector))
             : [];
         const kommissarinPointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
         const kommissarinReducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
