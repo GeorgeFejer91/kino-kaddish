@@ -36,12 +36,16 @@ Leave blank if Pretix already says "Geo coordinates updated".
 Current published schedule for reference
 11:45-12:00 Welcome
 12:00-13:00 Guided tour of Karlshorst
-14:00-14:30 Presentation by Irina Scherbakowa
-14:30-14:35 Short break
-14:35-15:05 Presentation by Viktoriya Sukovata
-15:05-15:15 Break
+14:00-14:20 Presentation by Dr. Irina Scherbakowa: Askoldov, Censorship, and Soviet Memory Politics
+14:20-14:25 Short break
+14:25-14:45 Presentation by Prof. Dr. habil. Viktoriya Sukovata: Alexander Askoldov's film "Commissar" in the context of Soviet cinematic representations of the Holocaust
+14:45-15:15 Break
 15:15-17:15 Film screening
 17:15-18:00 Q&A discussion
 
+Recording note
+Photography during the event is welcome for documentation and reporting purposes.
+No audio or video recording of Prof. Dr. habil. Viktoriya Sukovata's talk.
+
 Note
-These times reflect the current website schedule as updated on 2026-03-24.
+These times reflect the current website schedule as updated on 2026-03-30.
