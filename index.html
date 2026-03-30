@@ -904,6 +904,13 @@
             .kommissarin-poster-reveal::after {
                 display: none;
             }
+
+            .speaker-bio-toggle,
+            .speaker-bio-toggle::after,
+            .speaker-bio-expandable,
+            .speaker-bio-expandable-inner {
+                transition: none !important;
+            }
         }
 
         #kommissarin .kommissarin-proximity-media {
@@ -1245,6 +1252,108 @@
         .speaker-card .person-bio {
             text-align: left;
             line-height: 1.75;
+        }
+
+        .speaker-bio-toggle {
+            clear: both;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            margin-top: 0.15rem;
+            padding: 0.5rem 0.78rem;
+            border: 1px solid rgba(255, 255, 255, calc(0.16 + (var(--proximity-strength, 0) * 0.14)));
+            border-radius: 8px;
+            background: rgba(255, 255, 255, calc(0.03 + (var(--proximity-strength, 0) * 0.04)));
+            color: rgba(255, 255, 255, 0.84);
+            font: inherit;
+            font-size: 0.92rem;
+            line-height: 1.35;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+        }
+
+        .speaker-bio-toggle:hover {
+            background: rgba(255, 255, 255, calc(0.05 + (var(--proximity-strength, 0) * 0.05)));
+            border-color: rgba(255, 255, 255, calc(0.24 + (var(--proximity-strength, 0) * 0.18)));
+            color: rgba(255, 255, 255, 0.96);
+        }
+
+        .speaker-bio-toggle:focus-visible {
+            outline: none;
+            border-color: rgba(219, 207, 184, 0.62);
+            box-shadow: 0 0 0 2px rgba(219, 207, 184, 0.14);
+        }
+
+        .speaker-bio-toggle::after {
+            content: "+";
+            flex: 0 0 auto;
+            font-size: 1.08rem;
+            line-height: 1;
+            transform: rotate(0deg);
+            transition: transform 0.18s ease;
+        }
+
+        .speaker-bio-toggle[aria-expanded="true"]::after {
+            transform: rotate(45deg);
+        }
+
+        .speaker-bio-toggle-label--open {
+            display: none;
+        }
+
+        .speaker-bio-toggle[aria-expanded="true"] .speaker-bio-toggle-label--closed {
+            display: none;
+        }
+
+        .speaker-bio-toggle[aria-expanded="true"] .speaker-bio-toggle-label--open {
+            display: inline;
+        }
+
+        .speaker-bio-expandable {
+            clear: both;
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            margin-top: 0;
+            transition: grid-template-rows 0.22s ease, opacity 0.18s ease, margin-top 0.18s ease;
+        }
+
+        .speaker-bio-expandable.is-open {
+            grid-template-rows: 1fr;
+            opacity: 1;
+            margin-top: 0.95rem;
+        }
+
+        .speaker-bio-expandable-inner {
+            min-height: 0;
+            overflow: hidden;
+            padding-top: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            transition: padding-top 0.18s ease;
+        }
+
+        .speaker-bio-expandable.is-open .speaker-bio-expandable-inner {
+            padding-top: 0.95rem;
+        }
+
+        .speaker-publications-label {
+            margin-bottom: 0.65rem;
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        .speaker-publications {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .speaker-publications li {
+            line-height: 1.65;
+        }
+
+        .speaker-publications li + li {
+            margin-top: 0.75rem;
         }
 
         #kommissarin .film-year {
@@ -2173,6 +2282,11 @@
                 justify-self: center;
             }
 
+            .speaker-bio-toggle {
+                width: 100%;
+                justify-content: space-between;
+            }
+
             #kommissarin .film-description {
                 max-width: none;
             }
@@ -2831,19 +2945,53 @@
                         <div class="speaker-card kommissarin-proximity-accent">
                             <div class="speaker-copy" data-lang="de">
                                 <p class="person-name"><a href="https://www.dubnow.de/person/prof-dr-victoryia-a-sukovata" target="_blank" rel="noopener noreferrer">Professor, Doctor Habilitus Viktoriya Sukovata</a></p>
-                                <p class="speaker-role">Professorin für Kulturtheorie | Dubnow-Institut Leipzig</p>
+                                <p class="speaker-role">Kulturwissenschaft | Simon-Dubnow-Institut</p>
                                 <div class="speaker-photo-frame">
                                     <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Professor, Doctor Habilitus Viktoriya Sukovata" class="speaker-photo kommissarin-proximity-media">
                                 </div>
-                                <p class="person-bio">Professor, Doctor Habilitus Viktoriya Sukovata ist seit 2012 Professorin an der <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer">V. N. Karazin Nationalen Universität Charkiw</a> und seit 2022 wissenschaftliche Mitarbeiterin am <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer">Dubnow-Institut Leipzig</a>; seit 2024 forscht sie dort mit einem Walter-Benjamin-Fellowship der DFG. Ihr Projekt untersucht Holocaust-Wahrnehmungen in Film und Literatur und die Veränderungen jüdisch-sowjetischer Holocaust-Erinnerung in der Ukraine seit 1945; in Karlshorst stellt sie unveröffentlichte Arbeiten aus ihrer Forschung zur Entstehungsgeschichte von <em>Die Kommissarin</em> vor und richtet den Blick auf Zensur, Pogromgewalt und jüdische Sichtbarkeit im sowjetischen Kino.</p>
+                                <p class="person-bio">Professor, Doctor Habilitus Viktoriya Sukovata ist Kulturwissenschaftlerin mit Schwerpunkten in sowjetischen und postsowjetischen Studien, jüdischen Studien und Holocaust-Memory-Studies sowie in Gender-, Film- und Visual-Culture-Studies. Nach mehr als zwanzig Jahren an der Nationalen Universität Charkiw lebt sie seit 2022 in Leipzig und arbeitet am <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer">Leibniz-Institut für jüdische Geschichte und Kultur - Simon Dubnow</a>.</p>
+                                <button class="speaker-bio-toggle kommissarin-proximity-accent" type="button" aria-expanded="false" aria-controls="sukovata-bio-de">
+                                    <span class="speaker-bio-toggle-label speaker-bio-toggle-label--closed">Erweiterte Biografie und Publikationen</span>
+                                    <span class="speaker-bio-toggle-label speaker-bio-toggle-label--open">Biografie und Publikationen ausblenden</span>
+                                </button>
+                                <div class="speaker-bio-expandable" id="sukovata-bio-de" aria-hidden="true">
+                                    <div class="speaker-bio-expandable-inner">
+                                        <p class="person-bio">Professor, Doctor Habilitus Viktoriya Sukovata hat einen Ph.D. sowie eine Habilitation in Kulturwissenschaften. Sie war mehr als zwanzig Jahre an der <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer">Nationalen Universität Charkiw</a> tätig und dort von 2010 bis 2022 Professorin auf Lebenszeit.</p>
+                                        <p class="person-bio">Sie war an elf Sammelmonografien beteiligt, die in der Ukraine, in der Tschechischen Republik, den Niederlanden, Russland, Italien, Belarus, Luxemburg und Deutschland erschienen sind. Darüber hinaus veröffentlichte sie mehr als 190 Aufsätze in Fachzeitschriften in der Ukraine, Polen, Serbien, Rumänien, Russland, Georgien, Belarus, Tschechien, der Slowakei, Italien, Brasilien, Deutschland, den USA und Schweden.</p>
+                                        <p class="person-bio">In den vergangenen fünfzehn Jahren erhielt Professor, Doctor Habilitus Viktoriya Sukovata mehrere internationale akademische Fellowships und Stipendien, darunter am Kennan Institute (USA), an der Lund University (Schweden), als Fulbright Fellow an der George Washington University (USA), über den DAAD an der Universität Hamburg sowie an der University of Virginia (USA), der Freien Universität Berlin, der University of California, Berkeley (USA), dem Amsterdam Center for Holocaust and Genocide Studies (Niederlande), der Central European University, der Columbia University (USA), dem Jüdischen Museum in Prag und der Ruhr-Universität Bochum.</p>
+                                        <p class="person-bio speaker-publications-label">Ausgewählte Publikationen zum Thema des Vortrags:</p>
+                                        <ol class="speaker-publications">
+                                            <li>Sukovata V. <a href="https://doi.org/10.3726/b10961" target="_blank" rel="noopener noreferrer">"The Holocaust Response in American and Soviet Cultures as a Reflection of the Different War Experiences and the Cold War Politics."</a> In: <em>American Responses to the Holocaust. Transatlantic Perspectives</em>, Frankfurt am Main: Peter Lang Verlag, 2017, pp. 131-150.</li>
+                                            <li>Sukovata V. <a href="https://content-select.com/en/portal/media/view/5e637d9e-caf4-4151-ba63-688ab0dd2d03" target="_blank" rel="noopener noreferrer">"Scientific Freedom during Stalinism: Creativity in Sharashka."</a> In: <em>Scientific Freedom under Attack! Political Oppression, Structural Challenges, and Intellectual Resistance in Modern and Contemporary History</em>, Frankfurt/New York: Campus Verlag, 2020, pp. 55-74. <a href="https://api.pageplace.de/preview/DT0400.9783593445687_A40417477/preview-9783593445687_A40417477.pdf" target="_blank" rel="noopener noreferrer">PDF preview</a>.</li>
+                                            <li>Sukovata V. <a href="https://sciendo.com/article/10.2478/jnmlp-2021-0008" target="_blank" rel="noopener noreferrer">"The Stalinist Past in Contemporary Russian TV Serials: Reconfigurations of Memory."</a> In: <em>Journal of Nationalism, Memory &amp; Language Politics</em>, ed. by the Institute of Political Studies, Faculty of Social Sciences, Prague, 2021, no. 1, pp. 69-86. <a href="https://sciendo.com/2/v2/download/article/10.2478/jnmlp-2021-0008.pdf" target="_blank" rel="noopener noreferrer">PDF</a>.</li>
+                                        </ol>
+                                    </div>
+                                </div>
                             </div>
                             <div class="speaker-copy" data-lang="en">
                                 <p class="person-name"><a href="https://www.dubnow.de/person/prof-dr-victoryia-a-sukovata" target="_blank" rel="noopener noreferrer">Professor, Doctor Habilitus Viktoriya Sukovata</a></p>
-                                <p class="speaker-role">Professor of Cultural Theory | Dubnow Institute Leipzig</p>
+                                <p class="speaker-role">Cultural Studies | Simon Dubnow Institute</p>
                                 <div class="speaker-photo-frame">
                                     <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Professor, Doctor Habilitus Viktoriya Sukovata" class="speaker-photo kommissarin-proximity-media">
                                 </div>
-                                <p class="person-bio">Professor, Doctor Habilitus Viktoriya Sukovata has been a professor at <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer">V. N. Karazin Kharkiv National University</a> since 2012 and has worked at the <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer">Dubnow Institute Leipzig</a> since 2022, where she has held a Walter Benjamin Fellowship funded by the German Research Foundation since 2024. Her current project examines Holocaust perceptions in film and literature and the changing forms of Jewish-Soviet Holocaust memory in Ukraine since 1945; in Karlshorst, she will present unpublished work from her research on the production history of <em>The Commissar</em> and focus on censorship, pogrom violence, and Jewish visibility in Soviet cinema.</p>
+                                <p class="person-bio">Professor, Doctor Habilitus Viktoriya Sukovata is a cultural studies scholar specializing in Soviet and post-Soviet studies, Jewish and Holocaust memory studies, gender, film, and visual arts. After more than twenty years at Kharkiv National University, she has been based in Leipzig since 2022 and works at the <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer">Leibniz Institute for Jewish History and Culture Simon Dubnow</a>.</p>
+                                <button class="speaker-bio-toggle kommissarin-proximity-accent" type="button" aria-expanded="false" aria-controls="sukovata-bio-en">
+                                    <span class="speaker-bio-toggle-label speaker-bio-toggle-label--closed">Extended biography and publications</span>
+                                    <span class="speaker-bio-toggle-label speaker-bio-toggle-label--open">Hide biography and publications</span>
+                                </button>
+                                <div class="speaker-bio-expandable" id="sukovata-bio-en" aria-hidden="true">
+                                    <div class="speaker-bio-expandable-inner">
+                                        <p class="person-bio">Professor, Doctor Habilitus Viktoriya Sukovata holds a Ph.D. and a Doctor of Habilitation in Cultural Studies. She worked for more than twenty years at <a href="https://karazin.ua/en/" target="_blank" rel="noopener noreferrer">Kharkiv National University</a> and was a tenured professor there from 2010 to 2022.</p>
+                                        <p class="person-bio">She has contributed to eleven collective monographs published in Ukraine, the Czech Republic, the Netherlands, Russia, Italy, Belarus, Luxembourg, and Germany. She has also published more than 190 articles in scholarly journals in Ukraine, Poland, Serbia, Romania, Russia, Georgia, Belarus, the Czech Republic, Slovakia, Italy, Brazil, Germany, the United States, and Sweden.</p>
+                                        <p class="person-bio">Over the past fifteen years, Professor, Doctor Habilitus Viktoriya Sukovata has received several international academic fellowships and scholarships, including at the Kennan Institute (USA), Lund University (Sweden), George Washington University as a Fulbright fellow, Hamburg University through DAAD, the University of Virginia (USA), Free University Berlin, the University of California, Berkeley (USA), the Amsterdam Center for Holocaust and Genocide Studies (the Netherlands), Central European University, Columbia University (USA), the Jewish Museum in Prague, and Ruhr University Bochum.</p>
+                                        <p class="person-bio speaker-publications-label">Selected publications related to the presentation:</p>
+                                        <ol class="speaker-publications">
+                                            <li>Sukovata V. <a href="https://doi.org/10.3726/b10961" target="_blank" rel="noopener noreferrer">"The Holocaust Response in American and Soviet Cultures as a Reflection of the Different War Experiences and the Cold War Politics."</a> In: <em>American Responses to the Holocaust. Transatlantic Perspectives</em>, Frankfurt am Main: Peter Lang Verlag, 2017, pp. 131-150.</li>
+                                            <li>Sukovata V. <a href="https://content-select.com/en/portal/media/view/5e637d9e-caf4-4151-ba63-688ab0dd2d03" target="_blank" rel="noopener noreferrer">"Scientific Freedom during Stalinism: Creativity in Sharashka."</a> In: <em>Scientific Freedom under Attack! Political Oppression, Structural Challenges, and Intellectual Resistance in Modern and Contemporary History</em>, Frankfurt/New York: Campus Verlag, 2020, pp. 55-74. <a href="https://api.pageplace.de/preview/DT0400.9783593445687_A40417477/preview-9783593445687_A40417477.pdf" target="_blank" rel="noopener noreferrer">PDF preview</a>.</li>
+                                            <li>Sukovata V. <a href="https://sciendo.com/article/10.2478/jnmlp-2021-0008" target="_blank" rel="noopener noreferrer">"The Stalinist Past in Contemporary Russian TV Serials: Reconfigurations of Memory."</a> In: <em>Journal of Nationalism, Memory &amp; Language Politics</em>, ed. by the Institute of Political Studies, Faculty of Social Sciences, Prague, 2021, no. 1, pp. 69-86. <a href="https://sciendo.com/2/v2/download/article/10.2478/jnmlp-2021-0008.pdf" target="_blank" rel="noopener noreferrer">PDF</a>.</li>
+                                        </ol>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -4400,6 +4548,23 @@
                 node.style.removeProperty('--proximity-strength');
             });
         }
+
+        const speakerBioToggles = Array.from(document.querySelectorAll('.speaker-bio-toggle'));
+        speakerBioToggles.forEach((button) => {
+            const panelId = button.getAttribute('aria-controls');
+            const panel = panelId ? document.getElementById(panelId) : null;
+
+            if (!panel) {
+                return;
+            }
+
+            button.addEventListener('click', () => {
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                button.setAttribute('aria-expanded', String(!isExpanded));
+                panel.classList.toggle('is-open', !isExpanded);
+                panel.setAttribute('aria-hidden', String(isExpanded));
+            });
+        });
 
         if (kommissarinSection) {
             if (kommissarinPoster && !kommissarinPosterSupportsMask && !kommissarinPosterSupportsClipPath) {
