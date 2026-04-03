@@ -14,8 +14,8 @@
     <meta property="og:site_name" content="Kino Kaddish">
     <meta property="og:title" content="Kino Kaddish - Filmriss und Widerhall">
     <meta property="og:description" content="Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen: ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04_Karlshorst/Filmplakat/FilmPlakat_motif7done.png">
-    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04_Karlshorst/Filmplakat/FilmPlakat_motif7done.png">
+    <meta property="og:image" content="https://kino-kaddish.org/19-04_Karlshorst/Filmplakat/FilmPlakat_motif7done.png">
+    <meta property="og:image:secure_url" content="https://kino-kaddish.org/19-04_Karlshorst/Filmplakat/FilmPlakat_motif7done.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1024">
     <meta property="og:image:height" content="1536">
@@ -26,8 +26,9 @@
     <meta name="twitter:url" content="https://kino-kaddish.org/">
     <meta name="twitter:title" content="Kino Kaddish - Filmriss und Widerhall">
     <meta name="twitter:description" content="Eine Serie filmischer Interventionen, Wiederbelebungen und ortsspezifischer Versammlungen: ein Versuch, das Kino zurück in jene Räume zu bringen, in denen Erinnerung zum Ereignis werden kann.">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04_Karlshorst/Filmplakat/FilmPlakat_motif7done.png">
+    <meta name="twitter:image" content="https://kino-kaddish.org/19-04_Karlshorst/Filmplakat/FilmPlakat_motif7done.png">
     <meta name="twitter:image:alt" content="Kino Kaddish - The Commissar poster">
+    <link rel="preload" as="image" href="images/hero-background.jpeg">
 
     <style>
         /* ---- ROOT VARIABLES ---- */
@@ -285,7 +286,8 @@
             transition: all 0.3s ease;
             border-bottom: 3px solid var(--frame-border);
             padding: 0;
-            height: var(--frame-height);
+            height: var(--nav-frame-height, var(--frame-height));
+            min-height: var(--nav-frame-height, var(--frame-height));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -304,6 +306,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            line-height: 1.2;
         }
 
         .nav-menu li a .original-title {
@@ -859,6 +862,11 @@
         }
 
         @media (hover: none), (pointer: coarse) {
+            .hero {
+                background-attachment: scroll;
+                background-position: center top;
+            }
+
             .kommissarin-poster-glow {
                 display: none;
             }
@@ -1855,7 +1863,7 @@
             align-items: center;
             text-align: center;
             padding: 0 2rem;
-            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/hero-background.jpeg') no-repeat center center;
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('images/hero-background.jpeg') no-repeat center center;
             background-size: cover;
             background-attachment: fixed;
         }
@@ -2043,7 +2051,7 @@
                 position: relative;
                 width: 100%;
                 height: 100%;
-                overflow-x: hidden; /* Disable horizontal scrolling */
+                overflow-x: auto;
                 overflow-y: hidden;
                 white-space: nowrap;
                 background-color: #0a0a0a;
@@ -2052,6 +2060,9 @@
                 background-blend-mode: overlay;
                 background-size: 100px;
                 -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+                scroll-behavior: smooth;
+                scroll-snap-type: x proximity;
+                scroll-padding-inline: 1rem;
                 /* Custom scrollbar */
                 scrollbar-width: none; /* Firefox */
                 -ms-overflow-style: none; /* IE and Edge */
@@ -2069,18 +2080,23 @@
                 padding: 0.5rem;
                 margin: 0;
                 height: 100%;
+                min-width: 100%;
+                width: max-content;
                 justify-content: flex-start; /* Keep items aligned to the left */
             }
             
             .mobile-nav li {
                 position: relative;
-                display: inline-block;
+                display: inline-flex;
+                flex: 0 0 var(--mobile-nav-item-width, 110px);
                 height: calc(var(--mobile-menu-height) - 0.5rem);
-                min-width: 110px;
+                width: var(--mobile-nav-item-width, 110px);
+                min-width: var(--mobile-nav-item-width, 110px);
                 margin: 0 0.2rem;
                 border-left: 3px solid var(--frame-border);
                 border-right: 3px solid var(--frame-border);
                 background-color: rgba(20, 20, 20, 0.8);
+                scroll-snap-align: center;
                 transition: all 0.3s ease;
             }
             
@@ -2102,6 +2118,7 @@
                 padding: 0 0.8rem;
                 font-size: 0.8rem;
                 letter-spacing: 1px;
+                line-height: 1.15;
             }
             
             .mobile-nav li a .original-title {
@@ -2362,7 +2379,9 @@
         /* Extra adjustments for smaller screens */
         @media (max-width: 480px) {
             .mobile-nav li {
-                min-width: 100px;
+                flex-basis: var(--mobile-nav-item-width, 100px);
+                width: var(--mobile-nav-item-width, 100px);
+                min-width: var(--mobile-nav-item-width, 100px);
             }
             
             .mobile-nav li a {
@@ -2895,7 +2914,7 @@
                     <div class="film-content">
                         <div class="kommissarin-side-column">
                             <div class="film-image kommissarin-poster" style="--poster-image: url('19-04_Karlshorst/Filmplakat/FilmPlakat_motif7done.png');">
-                                <img class="kommissarin-poster-base" src="19-04_Karlshorst/Filmplakat/FilmPlakat_motif7done.png" alt="Die Kommissarin (1967)">
+                                <img class="kommissarin-poster-base" src="19-04_Karlshorst/Filmplakat/FilmPlakat_motif7done.png" alt="Die Kommissarin (1967)" decoding="async" fetchpriority="high">
                                 <div class="kommissarin-poster-glow" aria-hidden="true"></div>
                                 <div class="kommissarin-poster-reveal" aria-hidden="true"></div>
                             </div>
@@ -2928,7 +2947,7 @@
                                 <p class="person-name"><a href="https://www.zfl-berlin.org/person/scherbakowa.html" target="_blank" rel="noopener noreferrer">Dr. Irina Scherbakowa</a></p>
                                 <p class="speaker-role">Historikerin, Publizistin und Mitbegründerin von MEMORIAL</p>
                                 <div class="speaker-photo-frame">
-                                    <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="speaker-photo kommissarin-proximity-media">
+                                    <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="speaker-photo kommissarin-proximity-media" loading="lazy" decoding="async">
                                 </div>
                                 <p class="person-bio">Irina Scherbakowa ist Germanistin, Historikerin, Publizistin und Übersetzerin, Ehrenmitglied des <a href="https://www.zfl-berlin.org/" target="_blank" rel="noopener noreferrer">Leibniz-Zentrums für Literatur- und Kulturforschung Berlin</a> und Mitbegründerin von <a href="https://www.memorial.de/" target="_blank" rel="noopener noreferrer">MEMORIAL</a>, der 2022 mit dem Friedensnobelpreis ausgezeichneten Gesellschaft. Seit den späten 1970er Jahren arbeitet sie mit Oral-History-Zeugnissen von Opfern des Stalinismus und forscht zu Gulag, kulturellem Gedächtnis und Erinnerungspolitik; in Karlshorst wird sie Aleksandr Askoldovs Biografie aus der Perspektive ihrer eigenen Arbeit zu Stalinismus, verdrängter Gewaltgeschichte und sowjetischer Erinnerung kontextualisieren.</p>
                             </div>
@@ -2936,7 +2955,7 @@
                                 <p class="person-name"><a href="https://www.zfl-berlin.org/person/scherbakowa.html" target="_blank" rel="noopener noreferrer">Dr. Irina Scherbakowa</a></p>
                                 <p class="speaker-role">Historian, publicist, and co-founder of MEMORIAL</p>
                                 <div class="speaker-photo-frame">
-                                    <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="speaker-photo kommissarin-proximity-media">
+                                    <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="speaker-photo kommissarin-proximity-media" loading="lazy" decoding="async">
                                 </div>
                                 <p class="person-bio">Irina Scherbakowa is a Germanist, historian, publicist, and translator, an honorary member of the <a href="https://www.zfl-berlin.org/" target="_blank" rel="noopener noreferrer">Leibniz Centre for Literary and Cultural Research Berlin</a>, and a co-founder of <a href="https://www.memorial.de/" target="_blank" rel="noopener noreferrer">MEMORIAL</a>, the society awarded the 2022 Nobel Peace Prize. Since the late 1970s, she has worked with oral-history testimonies of victims of Stalinism and researched the Gulag, cultural memory, and the politics of remembrance; in Karlshorst, she will contextualize Aleksandr Askoldov’s biography through her own work on Stalinism, suppressed violence, and Soviet memory.</p>
                             </div>
@@ -2947,7 +2966,7 @@
                                 <p class="person-name"><a href="https://www.dubnow.de/person/prof-dr-victoryia-a-sukovata" target="_blank" rel="noopener noreferrer">Professor, Doctor Habilitus Viktoriya Sukovata</a></p>
                                 <p class="speaker-role">Kulturwissenschaft | Simon-Dubnow-Institut</p>
                                 <div class="speaker-photo-frame">
-                                    <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Professor, Doctor Habilitus Viktoriya Sukovata" class="speaker-photo kommissarin-proximity-media">
+                                    <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Professor, Doctor Habilitus Viktoriya Sukovata" class="speaker-photo kommissarin-proximity-media" loading="lazy" decoding="async">
                                 </div>
                                 <p class="person-bio">Professor, Doctor Habilitus Viktoriya Sukovata ist Kulturwissenschaftlerin mit Schwerpunkten in sowjetischen und postsowjetischen Studien, jüdischen Studien und Holocaust-Memory-Studies sowie in Gender-, Film- und Visual-Culture-Studies. Nach mehr als zwanzig Jahren an der Nationalen Universität Charkiw lebt sie seit 2022 in Leipzig und arbeitet am <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer">Leibniz-Institut für jüdische Geschichte und Kultur - Simon Dubnow</a>.</p>
                                 <button class="speaker-bio-toggle kommissarin-proximity-accent" type="button" aria-expanded="false" aria-controls="sukovata-bio-de">
@@ -2972,7 +2991,7 @@
                                 <p class="person-name"><a href="https://www.dubnow.de/person/prof-dr-victoryia-a-sukovata" target="_blank" rel="noopener noreferrer">Professor, Doctor Habilitus Viktoriya Sukovata</a></p>
                                 <p class="speaker-role">Cultural Studies | Simon Dubnow Institute</p>
                                 <div class="speaker-photo-frame">
-                                    <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Professor, Doctor Habilitus Viktoriya Sukovata" class="speaker-photo kommissarin-proximity-media">
+                                    <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Professor, Doctor Habilitus Viktoriya Sukovata" class="speaker-photo kommissarin-proximity-media" loading="lazy" decoding="async">
                                 </div>
                                 <p class="person-bio">Professor, Doctor Habilitus Viktoriya Sukovata is a cultural studies scholar specializing in Soviet and post-Soviet studies, Jewish and Holocaust memory studies, gender, film, and visual arts. After more than twenty years at Kharkiv National University, she has been based in Leipzig since 2022 and works at the <a href="https://www.dubnow.de/" target="_blank" rel="noopener noreferrer">Leibniz Institute for Jewish History and Culture Simon Dubnow</a>.</p>
                                 <button class="speaker-bio-toggle kommissarin-proximity-accent" type="button" aria-expanded="false" aria-controls="sukovata-bio-en">
@@ -3023,19 +3042,19 @@
                                         <p class="schedule-description">Historische Führung durch Museum und Gelände Berlin-Karlshorst zu Kapitulation, Vernichtungskrieg und jüdisch-sowjetischer Erinnerung.</p>
                                         <div class="schedule-media-grid schedule-media-grid--tour">
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
-                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-red-gallery.webp" alt="Ausstellungsraum im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-red-gallery.webp" alt="Ausstellungsraum im Museum Berlin-Karlshorst" class="kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <figcaption class="schedule-media-caption">Ausstellung</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
-                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-ort-der-kapitulation.webp" alt="Außenansicht des Museums Berlin-Karlshorst mit dem Schriftzug Ort der Kapitulation" class="kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-ort-der-kapitulation.webp" alt="Außenansicht des Museums Berlin-Karlshorst mit dem Schriftzug Ort der Kapitulation" class="kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <figcaption class="schedule-media-caption">Ort der Kapitulation</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
-                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-exhibition-gallery.webp" alt="Ausstellungsraum mit Plakaten im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-exhibition-gallery.webp" alt="Ausstellungsraum mit Plakaten im Museum Berlin-Karlshorst" class="kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <figcaption class="schedule-media-caption">Sammlung</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
-                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-conference-hall.webp" alt="Kapitulationssaal im Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-conference-hall.webp" alt="Kapitulationssaal im Museum Berlin-Karlshorst" class="kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <figcaption class="schedule-media-caption">Kapitulationssaal</figcaption>
                                             </figure>
                                         </div>
@@ -3060,7 +3079,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <div class="schedule-person">
-                                            <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait von Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media">
+                                            <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait von Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media" loading="lazy" decoding="async">
                                             <div>
                                                 <div class="schedule-person-label">Dr. Irina Scherbakowa</div>
                                                 <h4 class="schedule-title">Antisemitismus in der Sowjetunion</h4>
@@ -3089,7 +3108,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <div class="schedule-person">
-                                            <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait von Professor, Doctor Habilitus Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media">
+                                            <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait von Professor, Doctor Habilitus Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media" loading="lazy" decoding="async">
                                             <div>
                                                 <div class="schedule-person-label">Professor, Doctor Habilitus Viktoriya Sukovata</div>
                                                 <h4 class="schedule-title">Alexander Askoldov's film "Commissar" in the context of Soviet cinematic representations of the Holocaust</h4>
@@ -3120,11 +3139,11 @@
                                         <h4 class="schedule-title">Filmgespräch</h4>
                                         <div class="schedule-people">
                                             <div class="schedule-person">
-                                                <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait von Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait von Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <div class="schedule-person-label">Irina Scherbakowa</div>
                                             </div>
                                             <div class="schedule-person">
-                                                <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait von Professor, Doctor Habilitus Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait von Professor, Doctor Habilitus Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <div class="schedule-person-label">Professor, Doctor Habilitus Viktoriya Sukovata</div>
                                             </div>
                                         </div>
@@ -3155,19 +3174,19 @@
                                         <p class="schedule-description">Historical guided tours through Museum Berlin-Karlshorst and the surrounding site, focused on capitulation, the war of annihilation, and Jewish-Soviet memory.</p>
                                         <div class="schedule-media-grid schedule-media-grid--tour">
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
-                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-red-gallery.webp" alt="Exhibition room at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-red-gallery.webp" alt="Exhibition room at Museum Berlin-Karlshorst" class="kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <figcaption class="schedule-media-caption">Gallery</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
-                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-ort-der-kapitulation.webp" alt="Exterior view of Museum Berlin-Karlshorst with the lettering Ort der Kapitulation" class="kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-ort-der-kapitulation.webp" alt="Exterior view of Museum Berlin-Karlshorst with the lettering Ort der Kapitulation" class="kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <figcaption class="schedule-media-caption">Ort der Kapitulation</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
-                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-exhibition-gallery.webp" alt="Exhibition room with posters at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-exhibition-gallery.webp" alt="Exhibition room with posters at Museum Berlin-Karlshorst" class="kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <figcaption class="schedule-media-caption">Collection</figcaption>
                                             </figure>
                                             <figure class="schedule-media-card kommissarin-proximity-accent">
-                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-conference-hall.webp" alt="Capitulation Hall at Museum Berlin-Karlshorst" class="kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/KarshorstMuseumImages/guided-tour-conference-hall.webp" alt="Capitulation Hall at Museum Berlin-Karlshorst" class="kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <figcaption class="schedule-media-caption">Kapitulationssaal</figcaption>
                                             </figure>
                                         </div>
@@ -3192,7 +3211,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <div class="schedule-person">
-                                            <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media">
+                                            <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media" loading="lazy" decoding="async">
                                             <div>
                                                 <div class="schedule-person-label">Dr. Irina Scherbakowa</div>
                                                 <h4 class="schedule-title">Antisemitism in the Soviet Union</h4>
@@ -3221,7 +3240,7 @@
                                     </div>
                                     <div class="schedule-copy">
                                         <div class="schedule-person">
-                                            <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Professor, Doctor Habilitus Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media">
+                                            <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Professor, Doctor Habilitus Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media" loading="lazy" decoding="async">
                                             <div>
                                                 <div class="schedule-person-label">Professor, Doctor Habilitus Viktoriya Sukovata</div>
                                                 <h4 class="schedule-title">Alexander Askoldov's film "Commissar" in the context of Soviet cinematic representations of the Holocaust</h4>
@@ -3252,11 +3271,11 @@
                                         <h4 class="schedule-title">Film discussion</h4>
                                         <div class="schedule-people">
                                             <div class="schedule-person">
-                                                <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/profile_images/IrinaScherbakova_circle.png" alt="Portrait of Dr. Irina Scherbakowa" class="schedule-avatar kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <div class="schedule-person-label">Irina Scherbakowa</div>
                                             </div>
                                             <div class="schedule-person">
-                                                <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Professor, Doctor Habilitus Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media">
+                                                <img src="19-04_Karlshorst/profile_images/ViktoriyaSukovata_circle.png" alt="Portrait of Professor, Doctor Habilitus Viktoriya Sukovata" class="schedule-avatar kommissarin-proximity-media" loading="lazy" decoding="async">
                                                 <div class="schedule-person-label">Professor, Doctor Habilitus Viktoriya Sukovata</div>
                                             </div>
                                         </div>
@@ -3344,7 +3363,7 @@
                     <div class="film-content">
                         <div class="golem-poster-column">
                             <div class="film-image golem-poster">
-                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/refs/heads/main/images/FilmPosters/golem_svg.svg" alt="Der Golem (1920)" class="golem-svg" id="golem-svg-object">
+                                <img src="images/FilmPosters/golem_svg.svg" alt="Der Golem (1920)" class="golem-svg" id="golem-svg-object" loading="lazy" decoding="async">
                             </div>
                             <div class="artist-attribution">
                                 <span data-lang="de">Artwork von</span>
@@ -3357,7 +3376,7 @@
                                     </svg>
                                 </a>
                                 <a href="https://www.instagram.com/anna._.fejer/" target="_blank" title="Instagram">
-                                    <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/Instagram.svg" alt="Instagram" class="social-icon instagram-icon">
+                                    <img src="images/Logos/Instagram.svg" alt="Instagram" class="social-icon instagram-icon" loading="lazy" decoding="async">
                                 </a>
                             </div>
                             <button class="anmelde-button anmelde-button--disabled" id="golem-anmelde-button" type="button" disabled aria-disabled="true">
@@ -3397,7 +3416,7 @@
                                         <a href="http://noland.fm/artists/robyn-schulkowsky-gebrueder-teichmann/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Hörprobe des Trios</a>
                                     </p>
                                     <div style="margin-top: 1rem;">
-                                        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://www.youtube.com/embed/FqZpx2N-3Tg" title="YouTube video player" allowfullscreen style="border-radius: 5px;"></iframe>
+                                        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://www.youtube.com/embed/FqZpx2N-3Tg" title="YouTube video player" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 5px;"></iframe>
                                     </div>
                                 </div>
                                 <div data-lang="en">
@@ -3407,7 +3426,7 @@
                                         <a href="http://noland.fm/artists/robyn-schulkowsky-gebrueder-teichmann/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Listen to the Trio</a>
                                     </p>
                                     <div style="margin-top: 1rem;">
-                                        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://www.youtube.com/embed/FqZpx2N-3Tg" title="YouTube video player" allowfullscreen style="border-radius: 5px;"></iframe>
+                                        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://www.youtube.com/embed/FqZpx2N-3Tg" title="YouTube video player" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 5px;"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -3417,14 +3436,14 @@
                                     <p class="person-name"><a href="https://gebruederteichmann.net/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Andi Teichmann & Hannes Teichmann</a></p>
                                     <p class="person-bio">Die <a href="https://gebruederteichmann.net/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Gebrüder Teichmann</a> sind Musiker, Produzenten und Komponisten, bekannt für ihre Arbeit zwischen Clubkultur, experimenteller Elektronik und globalen Musiktraditionen. Mit internationalen Soundcamps und Projekten verbinden sie Klangexperimente, interkulturellen Austausch und kollektiven Dialog.</p>
                                     <div style="margin-top: 1rem;">
-                                        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://www.youtube.com/embed/K8aricdOGNQ" title="YouTube video player" allowfullscreen style="border-radius: 5px;"></iframe>
+                                        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://www.youtube.com/embed/K8aricdOGNQ" title="YouTube video player" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 5px;"></iframe>
                                     </div>
                                 </div>
                                 <div data-lang="en">
                                     <p class="person-name"><a href="https://gebruederteichmann.net/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Andi Teichmann & Hannes Teichmann</a></p>
                                     <p class="person-bio">The <a href="https://gebruederteichmann.net/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Teichmann brothers</a> are musicians, producers, and composers known for their work between club culture, experimental electronics, and global music traditions. Through international sound camps and projects, they connect sound experiments, intercultural exchange, and collective dialogue.</p>
                                     <div style="margin-top: 1rem;">
-                                        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://www.youtube.com/embed/K8aricdOGNQ" title="YouTube video player" allowfullscreen style="border-radius: 5px;"></iframe>
+                                        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://www.youtube.com/embed/K8aricdOGNQ" title="YouTube video player" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 5px;"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -3464,7 +3483,7 @@
                             <p class="supporter-label" data-lang="de">Event des</p>
                             <p class="supporter-label" data-lang="en">Event by</p>
                             <div class="supporter-link">
-                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/ELES_Logo.jpg" alt="ELES Logo" class="supporter-logo">
+                                <img src="images/Logos/ELES_Logo.jpg" alt="ELES Logo" class="supporter-logo" loading="lazy" decoding="async">
                                 <p class="supporter-name" data-lang="de">Ernst Ludwig Ehrlich Studienwerk (ELES)</p>
                                 <p class="supporter-name" data-lang="en">Ernst Ludwig Ehrlich Studienwerk (ELES)</p>
                             </div>
@@ -3474,7 +3493,7 @@
                             <p class="supporter-label" data-lang="de">Zusätzlich gefördert von</p>
                             <p class="supporter-label" data-lang="en">Additionally supported by</p>
                             <div class="supporter-link">
-                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/Ursula-Lachnit-Fixson-Stiftung-logo.png" alt="Ursula Lachnit Fixson Stiftung Logo" class="supporter-logo">
+                                <img src="images/Logos/Ursula-Lachnit-Fixson-Stiftung-logo.png" alt="Ursula Lachnit Fixson Stiftung Logo" class="supporter-logo" loading="lazy" decoding="async">
                                 <p class="supporter-name" data-lang="de">Ursula Lachnit Fixson Stiftung</p>
                                 <p class="supporter-name" data-lang="en">Ursula Lachnit Fixson Foundation</p>
                             </div>
@@ -3484,7 +3503,7 @@
                             <p class="supporter-label" data-lang="de">Mit Unterstützung von</p>
                             <p class="supporter-label" data-lang="en">With support from</p>
                             <div class="supporter-link">
-                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logo_Stiftung_Neue_Synagoge_Berlin_Gold.png" alt="Stiftung Neue Synagoge Berlin – Centrum Judaicum Logo" class="supporter-logo">
+                                <img src="images/Logo_Stiftung_Neue_Synagoge_Berlin_Gold.png" alt="Stiftung Neue Synagoge Berlin – Centrum Judaicum Logo" class="supporter-logo" loading="lazy" decoding="async">
                                 <p class="supporter-name" data-lang="de">Stiftung Neue Synagoge Berlin – Centrum Judaicum</p>
                                 <p class="supporter-name" data-lang="en">Stiftung Neue Synagoge Berlin – Centrum Judaicum</p>
                             </div>
@@ -3500,7 +3519,7 @@
                     <p class="film-year">Korczak | PL/D/GB 1990</p>
                     <div class="film-content">
                         <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/korczak.png" alt="Korczak (1990)">
+                            <img src="images/FilmPosters/korczak.png" alt="Korczak (1990)" loading="lazy" decoding="async">
                         </div>
                         <div class="film-details">
                             <div data-lang="de">
@@ -3523,7 +3542,7 @@
                     <p class="film-year">Pasażerka | PL 1963</p>
                     <div class="film-content">
                         <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/passagierin.jpg" alt="Die Passagierin (1963)">
+                            <img src="images/FilmPosters/passagierin.jpg" alt="Die Passagierin (1963)" loading="lazy" decoding="async">
                         </div>
                         <div class="film-details">
                             <div data-lang="de">
@@ -3546,7 +3565,7 @@
                     <p class="film-year">Sanatorium pod Klepsydrą | PL 1973</p>
                     <div class="film-content">
                         <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/sanatorium.jpg" alt="Sanatorium pod Klepsydrą (1973)">
+                            <img src="images/FilmPosters/sanatorium.jpg" alt="Sanatorium pod Klepsydrą (1973)" loading="lazy" decoding="async">
                         </div>
                         <div class="film-details">
                             <div data-lang="de">
@@ -3576,7 +3595,7 @@
                     <p class="film-year credits-line" data-lang="en">An event by <a href="https://eles-studienwerk.de/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">Ernst Ludwig Ehrlich Studienwerk e.V.</a> | As part of the <a href="https://www.sachsenhausen-sbg.de/veranstaltungen/81-jahrestag-der-befreiung-des-kz-sachsenhausen-81st-anniversary-of-the-liberation-of-sachsenhausen-concentration-camp/" target="_blank" style="color: var(--highlight-color); text-decoration: none;">81st Anniversary of the Liberation of Sachsenhausen Concentration Camp</a> | Curated by <strong>George Fejer</strong></p>
                     <div class="film-content">
                         <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/come-and-see.jpg" alt="Komm und sieh (1985)">
+                            <img src="images/FilmPosters/come-and-see.jpg" alt="Komm und sieh (1985)" loading="lazy" decoding="async">
                         </div>
                         <div class="film-details">
                             <div data-lang="de">
@@ -3644,7 +3663,7 @@
                             <p class="supporter-label" data-lang="de">Event des</p>
                             <p class="supporter-label" data-lang="en">Event by</p>
                             <div class="supporter-link">
-                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/Logos/ELES_Logo.jpg" alt="ELES Logo" class="supporter-logo">
+                                <img src="images/Logos/ELES_Logo.jpg" alt="ELES Logo" class="supporter-logo" loading="lazy" decoding="async">
                                 <p class="supporter-name" data-lang="de">Ernst Ludwig Ehrlich Studienwerk (ELES)</p>
                                 <p class="supporter-name" data-lang="en">Ernst Ludwig Ehrlich Studienwerk (ELES)</p>
                             </div>
@@ -3654,7 +3673,7 @@
                             <p class="supporter-label" data-lang="de">Mit Unterstützung von</p>
                             <p class="supporter-label" data-lang="en">With support from</p>
                             <div class="supporter-link">
-                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04-2026_Sachsenhausen/logo_BGS_Stiftung_Gedenkstaetten_RGB.svg" alt="Stiftung Brandenburgische Gedenkstätten" class="supporter-logo brandenburg-logo">
+                                <img src="19-04-2026_Sachsenhausen/logo_BGS_Stiftung_Gedenkstaetten_RGB.svg" alt="Stiftung Brandenburgische Gedenkstätten" class="supporter-logo brandenburg-logo" loading="lazy" decoding="async">
                                 <p class="supporter-name" data-lang="de">Stiftung Brandenburgische Gedenkstätten</p>
                                 <p class="supporter-name" data-lang="en">Brandenburg Memorials Foundation</p>
                             </div>
@@ -3664,7 +3683,7 @@
                             <p class="supporter-label" data-lang="de">Veranstaltungsort</p>
                             <p class="supporter-label" data-lang="en">Venue</p>
                             <div class="supporter-link">
-                                <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/19-04-2026_Sachsenhausen/SachsenhausenGedenk.jpg" alt="Gedenkstätte Sachsenhausen" class="supporter-logo" style="max-height: 120px; width: auto; object-fit: contain;">
+                                <img src="19-04-2026_Sachsenhausen/SachsenhausenGedenk.jpg" alt="Gedenkstätte Sachsenhausen" class="supporter-logo" style="max-height: 120px; width: auto; object-fit: contain;" loading="lazy" decoding="async">
                                 <p class="supporter-name" data-lang="de">Gedenkstätte Sachsenhausen</p>
                                 <p class="supporter-name" data-lang="en">Sachsenhausen Memorial</p>
                             </div>
@@ -3708,7 +3727,7 @@
                     <p class="film-year">Saul fia | HU 2015</p>
                     <div class="film-content">
                         <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/son-of-saul.png" alt="Son of Saul (2015)">
+                            <img src="images/FilmPosters/son-of-saul.png" alt="Son of Saul (2015)" loading="lazy" decoding="async">
                         </div>
                         <div class="film-details">
                             <div data-lang="de">
@@ -3731,7 +3750,7 @@
                     <p class="film-year">The Painted Bird | CZ/SK/UA 2019</p>
                     <div class="film-content">
                         <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/painted-bird.png" alt="Der gemalte Vogel (2019)">
+                            <img src="images/FilmPosters/painted-bird.png" alt="Der gemalte Vogel (2019)" loading="lazy" decoding="async">
                         </div>
                         <div class="film-details">
                             <div data-lang="de">
@@ -3754,7 +3773,7 @@
                     <p class="film-year">Daleká cesta | CS 1949</p>
                     <div class="film-content">
                         <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/distatnt-journey.jpg" alt="Daleká cesta (1949)">
+                            <img src="images/FilmPosters/distatnt-journey.jpg" alt="Daleká cesta (1949)" loading="lazy" decoding="async">
                         </div>
                         <div class="film-details">
                             <div data-lang="de">
@@ -3779,7 +3798,7 @@
                     <p class="film-year">Cud Purymowy | PL 2000</p>
                     <div class="film-content">
                         <div class="film-image">
-                            <img src="https://raw.githubusercontent.com/GeorgeFejer91/kino-kaddish/main/images/FilmPosters/wunder-von-purim.jpeg" alt="Das Wunder von Purim (2000)">
+                            <img src="images/FilmPosters/wunder-von-purim.jpeg" alt="Das Wunder von Purim (2000)" loading="lazy" decoding="async">
                         </div>
                         <div class="film-details">
                             <div data-lang="de">
@@ -3804,15 +3823,302 @@
     </div>
 
     <!-- JAVASCRIPT -->
+    <script src="assets/js/vendor/pretext.global.js?v=20260403"></script>
     <script>
         // DOM Elements
-        const sections = document.querySelectorAll('.section');
+        const sections = document.querySelectorAll('section[id]:not(.disabled-section)');
+        const desktopNavItems = document.querySelectorAll('.nav-menu li');
         const desktopNavLinks = document.querySelectorAll('.nav-menu li a');
+        const mobileNavItems = document.querySelectorAll('.mobile-nav li');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav li a');
+        const mobileFilmStripEl = document.querySelector('.mobile-film-strip');
+        const menuBreakpointQuery = window.matchMedia('(max-width: 768px)');
+        const pretextBridge = window.Pretext || null;
+        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const preparedNavTextCache = new Map();
+        let activeMenuUpdateFrame = null;
+        let menuMeasurementFrame = null;
+        let activeSectionId = '';
+
+        function addMediaQueryChangeListener(query, listener) {
+            if (!query || typeof listener !== 'function') {
+                return;
+            }
+
+            if (typeof query.addEventListener === 'function') {
+                query.addEventListener('change', listener);
+            } else if (typeof query.addListener === 'function') {
+                query.addListener(listener);
+            }
+        }
+
+        function getActiveLanguage() {
+            return document.body.classList.contains('lang-en') ? 'en' : 'de';
+        }
+
+        function getVisibleNavLink(listItem) {
+            if (!listItem) {
+                return null;
+            }
+
+            const activeLang = getActiveLanguage();
+            return listItem.querySelector(`a[data-lang="${activeLang}"]`) || listItem.querySelector('a');
+        }
+
+        function extractNavLabel(link) {
+            if (!link) {
+                return '';
+            }
+
+            const clone = link.cloneNode(true);
+            clone.querySelectorAll('.nav-status').forEach((node) => node.remove());
+            return clone.textContent.replace(/\s+/g, ' ').trim();
+        }
+
+        function extractNavStatus(link) {
+            if (!link) {
+                return '';
+            }
+
+            const statusNode = link.querySelector('.nav-status');
+            return statusNode ? statusNode.textContent.replace(/\s+/g, ' ').trim() : '';
+        }
+
+        function getFontShorthand(element) {
+            const style = window.getComputedStyle(element);
+            if (style.font && style.font !== '') {
+                return style.font;
+            }
+
+            const fontStyle = style.fontStyle || 'normal';
+            const fontVariant = style.fontVariant || 'normal';
+            const fontWeight = style.fontWeight || '400';
+            const fontStretch = style.fontStretch && style.fontStretch !== 'normal'
+                ? `${style.fontStretch} `
+                : '';
+            const fontSize = style.fontSize || '16px';
+            const lineHeight = style.lineHeight && style.lineHeight !== 'normal'
+                ? `/${style.lineHeight}`
+                : '';
+            const fontFamily = style.fontFamily || 'sans-serif';
+
+            return `${fontStyle} ${fontVariant} ${fontWeight} ${fontStretch}${fontSize}${lineHeight} ${fontFamily}`
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function getNumericLineHeight(style) {
+            const lineHeight = parseFloat(style.lineHeight);
+            if (Number.isFinite(lineHeight)) {
+                return lineHeight;
+            }
+
+            const fontSize = parseFloat(style.fontSize);
+            return Number.isFinite(fontSize) ? fontSize * 1.2 : 19.2;
+        }
+
+        function getPreparedNavText(text, font) {
+            if (!pretextBridge || !text) {
+                return null;
+            }
+
+            const cacheKey = `${font}|||${text}`;
+            if (!preparedNavTextCache.has(cacheKey)) {
+                preparedNavTextCache.set(
+                    cacheKey,
+                    pretextBridge.prepareWithSegments(text, font, { whiteSpace: 'pre-wrap' })
+                );
+            }
+
+            return preparedNavTextCache.get(cacheKey);
+        }
+
+        function measurePreparedText(prepared, maxWidth) {
+            if (!pretextBridge || !prepared) {
+                return { widestLine: 0, lineCount: 1 };
+            }
+
+            let widestLine = 0;
+            let lineCount = 0;
+
+            pretextBridge.walkLineRanges(prepared, maxWidth, (line) => {
+                widestLine = Math.max(widestLine, line.width);
+                lineCount += 1;
+            });
+
+            return {
+                widestLine,
+                lineCount: Math.max(lineCount, 1)
+            };
+        }
+
+        function measureDesktopFilmStrip() {
+            const rootStyles = window.getComputedStyle(document.documentElement);
+            const baseFrameHeight = parseFloat(rootStyles.getPropertyValue('--frame-height')) || 70;
+
+            desktopNavItems.forEach((item) => {
+                item.style.removeProperty('--nav-frame-height');
+
+                if (item.getClientRects().length === 0 || window.getComputedStyle(item).display === 'none') {
+                    return;
+                }
+
+                const link = getVisibleNavLink(item);
+                if (!link) {
+                    return;
+                }
+
+                const linkStyle = window.getComputedStyle(link);
+                const label = extractNavLabel(link);
+                const availableWidth = Math.max(item.clientWidth - 72, 120);
+                const titleMetrics = measurePreparedText(
+                    getPreparedNavText(label, getFontShorthand(link)),
+                    availableWidth
+                );
+                let contentHeight = titleMetrics.lineCount * getNumericLineHeight(linkStyle);
+
+                const statusNode = link.querySelector('.nav-status');
+                const statusText = extractNavStatus(link);
+
+                if (statusNode && statusText) {
+                    const statusStyle = window.getComputedStyle(statusNode);
+                    const statusMetrics = measurePreparedText(
+                        getPreparedNavText(statusText, getFontShorthand(statusNode)),
+                        availableWidth
+                    );
+                    contentHeight += 4 + (statusMetrics.lineCount * getNumericLineHeight(statusStyle));
+                }
+
+                const paddingHeight =
+                    (parseFloat(linkStyle.paddingTop) || 0) +
+                    (parseFloat(linkStyle.paddingBottom) || 0);
+                const measuredHeight = Math.max(
+                    baseFrameHeight,
+                    Math.ceil(contentHeight + paddingHeight + 8)
+                );
+
+                item.style.setProperty('--nav-frame-height', `${measuredHeight}px`);
+            });
+        }
+
+        function measureMobileFilmStrip() {
+            const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 390;
+            const minItemWidth = viewportWidth <= 480 ? 100 : 110;
+            const maxItemWidth = Math.min(190, Math.max(136, viewportWidth * 0.5));
+
+            mobileNavItems.forEach((item) => {
+                item.style.removeProperty('--mobile-nav-item-width');
+
+                const link = getVisibleNavLink(item);
+                if (!link) {
+                    return;
+                }
+
+                const linkStyle = window.getComputedStyle(link);
+                const label = extractNavLabel(link);
+                let widestLine = measurePreparedText(
+                    getPreparedNavText(label, getFontShorthand(link)),
+                    Infinity
+                ).widestLine;
+
+                const statusNode = link.querySelector('.nav-status');
+                const statusText = extractNavStatus(link);
+
+                if (statusNode && statusText) {
+                    widestLine = Math.max(
+                        widestLine,
+                        measurePreparedText(
+                            getPreparedNavText(statusText, getFontShorthand(statusNode)),
+                            Infinity
+                        ).widestLine
+                    );
+                }
+
+                const paddingWidth =
+                    (parseFloat(linkStyle.paddingLeft) || 0) +
+                    (parseFloat(linkStyle.paddingRight) || 0);
+                const measuredWidth = Math.max(
+                    minItemWidth,
+                    Math.min(Math.ceil(widestLine + paddingWidth + 22), Math.ceil(maxItemWidth))
+                );
+
+                item.style.setProperty('--mobile-nav-item-width', `${measuredWidth}px`);
+            });
+        }
+
+        function measureFilmStripNav() {
+            if (!pretextBridge) {
+                return;
+            }
+
+            measureDesktopFilmStrip();
+            measureMobileFilmStrip();
+
+            const activeMobileListItem = document.querySelector('.mobile-nav li.active');
+            if (activeMobileListItem) {
+                scrollMobileNavItemIntoView(activeMobileListItem);
+            }
+        }
+
+        function scheduleFilmStripMeasurement() {
+            if (menuMeasurementFrame !== null) {
+                return;
+            }
+
+            menuMeasurementFrame = window.requestAnimationFrame(() => {
+                menuMeasurementFrame = null;
+                measureFilmStripNav();
+            });
+        }
+
+        function scrollMobileNavItemIntoView(listItem) {
+            if (!mobileFilmStripEl || !listItem || window.innerWidth > 768) {
+                return;
+            }
+
+            const stripRect = mobileFilmStripEl.getBoundingClientRect();
+            const itemRect = listItem.getBoundingClientRect();
+            const safePadding = 24;
+            const isOutOfView =
+                itemRect.left < stripRect.left + safePadding ||
+                itemRect.right > stripRect.right - safePadding;
+
+            if (!isOutOfView) {
+                return;
+            }
+
+            listItem.scrollIntoView({
+                behavior: reducedMotionQuery.matches ? 'auto' : 'smooth',
+                inline: 'center',
+                block: 'nearest'
+            });
+        }
+
+        function applyActiveMenuState(current) {
+            let activeMobileListItem = null;
+
+            desktopNavLinks.forEach(link => {
+                link.parentElement.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.parentElement.classList.add('active');
+                }
+            });
+
+            mobileNavLinks.forEach(link => {
+                link.parentElement.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.parentElement.classList.add('active');
+                    activeMobileListItem = link.parentElement;
+                }
+            });
+
+            activeSectionId = current;
+            scrollMobileNavItemIntoView(activeMobileListItem);
+        }
         
         // Function to update active menu item
         function updateActiveMenuItem() {
-            let current = '';
+            let current = 'home';
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
@@ -3822,31 +4128,33 @@
                     current = section.getAttribute('id');
                 }
             });
-            
-            // Update desktop menu
-            desktopNavLinks.forEach(link => {
-                link.parentElement.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.parentElement.classList.add('active');
-                }
-            });
-            
-            // Update mobile menu
-            mobileNavLinks.forEach(link => {
-                link.parentElement.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.parentElement.classList.add('active');
 
-                    // No auto-scrolling on mobile - keep film strip at left position
-                }
+            if (current !== activeSectionId) {
+                applyActiveMenuState(current);
+            }
+        }
+
+        function queueActiveMenuUpdate() {
+            if (activeMenuUpdateFrame !== null) {
+                return;
+            }
+
+            activeMenuUpdateFrame = window.requestAnimationFrame(() => {
+                activeMenuUpdateFrame = null;
+                updateActiveMenuItem();
             });
         }
         
         // Active menu highlighting on scroll
-        window.addEventListener('scroll', updateActiveMenuItem);
+        window.addEventListener('scroll', queueActiveMenuUpdate, { passive: true });
+        window.addEventListener('resize', queueActiveMenuUpdate);
+        window.addEventListener('resize', scheduleFilmStripMeasurement);
+        window.addEventListener('orientationchange', scheduleFilmStripMeasurement);
+        addMediaQueryChangeListener(menuBreakpointQuery, scheduleFilmStripMeasurement);
         
         // Call once on page load
         window.addEventListener('load', updateActiveMenuItem);
+        window.addEventListener('load', scheduleFilmStripMeasurement);
 
         let activePageScrollSequence = 0;
 
@@ -4087,6 +4395,8 @@
             if (typeof syncKommissarinRegistrationLock === 'function') {
                 syncKommissarinRegistrationLock();
             }
+
+            scheduleFilmStripMeasurement();
         }
 
         const kommissarinRegisterShell = document.getElementById('kommissarin-register-shell');
@@ -4186,6 +4496,8 @@
             if (savedLang === 'en') {
                 switchLanguage('en');
             }
+
+            scheduleFilmStripMeasurement();
 
             // Scroll mobile film strip to the left (first film) on load
             const mobileFilmStrip = document.querySelector('.mobile-film-strip');
