@@ -329,54 +329,65 @@
             border-top: 3px solid var(--frame-border);
         }
 
-        /* Create multiple sprocket holes using spans */
+        /* Create multiple sprocket holes using spans — 4-perf standard */
         .nav-menu li .sprocket-left-1,
         .nav-menu li .sprocket-left-2,
         .nav-menu li .sprocket-left-3,
+        .nav-menu li .sprocket-left-4,
         .nav-menu li .sprocket-right-1,
         .nav-menu li .sprocket-right-2,
-        .nav-menu li .sprocket-right-3 {
+        .nav-menu li .sprocket-right-3,
+        .nav-menu li .sprocket-right-4 {
             position: absolute;
             width: 10px;
             height: 7px;
             background-color: var(--sprocket-color);
             border: 1px solid var(--sprocket-border);
+            border-radius: 1px;
             z-index: 2;
             box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.7);
         }
 
-        /* Left side sprocket holes */
+        /* Left side sprocket holes — 4 evenly spaced per frame */
         .nav-menu li .sprocket-left-1 {
             left: 8px;
-            top: 12px;
-        }
-        
-        .nav-menu li .sprocket-left-2 {
-            left: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .nav-menu li .sprocket-left-3 {
-            left: 8px;
-            bottom: 12px;
+            top: 8px;
         }
 
-        /* Right side sprocket holes */
+        .nav-menu li .sprocket-left-2 {
+            left: 8px;
+            top: calc(33.33% - 3.5px);
+        }
+
+        .nav-menu li .sprocket-left-3 {
+            left: 8px;
+            top: calc(66.66% - 3.5px);
+        }
+
+        .nav-menu li .sprocket-left-4 {
+            left: 8px;
+            bottom: 8px;
+        }
+
+        /* Right side sprocket holes — 4 evenly spaced per frame */
         .nav-menu li .sprocket-right-1 {
             right: 8px;
-            top: 12px;
+            top: 8px;
         }
-        
+
         .nav-menu li .sprocket-right-2 {
             right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
+            top: calc(33.33% - 3.5px);
         }
-        
+
         .nav-menu li .sprocket-right-3 {
             right: 8px;
-            bottom: 12px;
+            top: calc(66.66% - 3.5px);
+        }
+
+        .nav-menu li .sprocket-right-4 {
+            right: 8px;
+            bottom: 8px;
         }
 
         /* ---- CONTENT STYLES ---- */
@@ -2659,25 +2670,30 @@
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#home">Home</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                     <li>
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#kommissarin" data-lang="de">Die Kommissarin</a>
                         <a href="#kommissarin" data-lang="en">The Commissar</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                     <li class="past-event">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#der-golem" data-lang="de">
                             Der Golem
                             <span class="nav-status" data-lang="de">Bereits gezeigt</span>
@@ -2689,95 +2705,114 @@
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                     <li>
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#uber-uns" data-lang="de">Über Uns</a>
                         <a href="#uber-uns" data-lang="en">About Us</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                     <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#come-and-see" data-lang="de">Komm und sieh</a>
                         <a href="#come-and-see" data-lang="en">Come and See</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                     <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#korczak" data-lang="de">Korczak</a>
                         <a href="#korczak" data-lang="en">Korczak</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                     <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#passagierin" data-lang="de">Die Passagierin</a>
                         <a href="#passagierin" data-lang="en">The Passenger</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                     <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#sanatorium" data-lang="de">Sanatorium zur Sanduhr</a>
                         <a href="#sanatorium" data-lang="en">The Hourglass Sanatorium</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                     <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#son-of-saul">Son of Saul</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                     <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#der-gemalte-vogel" data-lang="de">Der gemalte Vogel</a>
                         <a href="#der-gemalte-vogel" data-lang="en">The Painted Bird</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                     <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#distant-journey" data-lang="de">Die weite Reise</a>
                         <a href="#distant-journey" data-lang="en">Distant Journey</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                     <li class="disabled">
                         <span class="sprocket-left-1"></span>
                         <span class="sprocket-left-2"></span>
                         <span class="sprocket-left-3"></span>
+                        <span class="sprocket-left-4"></span>
                         <a href="#wunder-von-purim" data-lang="de">Das Wunder von Purim</a>
                         <a href="#wunder-von-purim" data-lang="en">The Purim Miracle</a>
                         <span class="sprocket-right-1"></span>
                         <span class="sprocket-right-2"></span>
                         <span class="sprocket-right-3"></span>
+                        <span class="sprocket-right-4"></span>
                     </li>
                 </ul>
             </div>
