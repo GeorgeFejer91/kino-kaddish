@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Readout — Kommissarin</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Private readout script for Kino Kaddish.">
+
+    <style>
+        :root {
+            --bg: #000;
+            --fg: #f4f4f4;
+            --muted: #8a8a8a;
+            --accent: #c0c0c0;
+            --menu-bg: rgba(12, 12, 12, 0.96);
+            --menu-border: #2a2a2a;
+            --active: #ffd27a;
+            --reading-max: 38rem;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            font-size: 22px;
+            background: var(--bg);
+            color: var(--fg);
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Charter', 'Georgia', 'Iowan Old Style', 'Palatino', serif;
+            line-height: 1.55;
+            padding-top: 96px;
+            padding-bottom: 40vh;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---------- TOP NAV ---------- */
+        .readout-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: var(--menu-bg);
+            border-bottom: 1px solid var(--menu-border);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .readout-nav-inner {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding: 12px 14px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .readout-nav-inner::-webkit-scrollbar { display: none; }
+        .readout-nav-inner { scrollbar-width: none; }
+
+        .readout-nav a {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            padding: 10px 14px;
+            border: 1px solid var(--menu-border);
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.4);
+            white-space: nowrap;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
+        }
+
+        .readout-nav a.active {
+            color: var(--active);
+            border-color: var(--active);
+            background: rgba(255, 210, 122, 0.08);
+        }
+
+        /* ---------- FONT SIZE CONTROLS ---------- */
+        .readout-tools {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 60;
+            display: flex;
+            gap: 8px;
+            background: var(--menu-bg);
+            border: 1px solid var(--menu-border);
+            border-radius: 999px;
+            padding: 6px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .readout-tools button {
+            background: transparent;
+            border: none;
+            color: var(--fg);
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .readout-tools button:hover,
+        .readout-tools button:active {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ---------- SEGMENTS ---------- */
+        .segment {
+            max-width: var(--reading-max);
+            margin: 0 auto;
+            padding: 32px 22px 56px;
+            scroll-margin-top: 96px;
+        }
+
+        .segment + .segment {
+            border-top: 1px solid #1a1a1a;
+            padding-top: 56px;
+        }
+
+        .segment-kicker {
+            font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .segment h2 {
+            font-family: 'Charter', 'Georgia', serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 28px;
+            color: #fff;
+        }
+
+        .segment h2 .q-num {
+            display: inline-block;
+            margin-right: 0.4em;
+            color: var(--active);
+            font-variant-numeric: oldstyle-nums;
+        }
+
+        .segment p {
+            font-size: 1.18rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            color: var(--fg);
+            /* Let Pretext-measured widths / browser text-wrap keep lines even */
+            text-wrap: pretty;
+        }
+
+        .segment p:last-child { margin-bottom: 0; }
+
+        .segment .prompt-body {
+            font-size: 1.28rem;
+            line-height: 1.6;
+        }
+
+        /* Larger reading preset, toggled via JS */
+        body.size-l  .segment p { font-size: 1.38rem; line-height: 1.7; }
+        body.size-l  .segment .prompt-body { font-size: 1.48rem; }
+        body.size-l  .segment h2 { font-size: 2rem; }
+
+        body.size-xl .segment p { font-size: 1.62rem; line-height: 1.75; }
+        body.size-xl .segment .prompt-body { font-size: 1.74rem; }
+        body.size-xl .segment h2 { font-size: 2.3rem; }
+
+        /* Progress indicator */
+        .progress {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 60;
+            background: var(--menu-bg);
+            border: 1px solid var(--menu-border);
+            border-radius: 999px;
+            padding: 10px 16px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .progress .current { color: var(--active); font-weight: 600; }
+
+        @media (min-width: 720px) {
+            html { font-size: 20px; }
+            .segment { padding-left: 32px; padding-right: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="readout-nav" aria-label="Readout sections">
+        <div class="readout-nav-inner" id="readoutNavInner">
+            <a href="#sukovata" data-target="sukovata">Sukovata</a>
+            <a href="#scherbakowa" data-target="scherbakowa">Scherbakowa</a>
+            <a href="#q1" data-target="q1">Q1 · Civil War</a>
+            <a href="#q2" data-target="q2">Q2 · Berdychiv</a>
+            <a href="#q3" data-target="q3">Q3 · War Canon</a>
+            <a href="#q4" data-target="q4">Q4 · Post-Soviet</a>
+        </div>
+    </nav>
+
+    <main id="readoutContent">
+
+        <!-- 1. SUKOVATA -->
+        <section class="segment" id="sukovata">
+            <div class="segment-kicker">Introduction · 1 / 6</div>
+            <h2>Viktoriya Sukovata</h2>
+            <p>It is a pleasure to welcome Viktoriya Sukovata to our screening this evening. She holds a PhD and a Doctor of Habilitation in Cultural Studies, and for more than twenty years taught at Kharkiv National University in Ukraine, where she held a tenured professorship until 2022. Since then she has been based in Leipzig, at the Leibniz Institute for Jewish History and Culture Simon Dubnow.</p>
+            <p>Her research specializes in Soviet and post-Soviet studies, in Jewish and Holocaust memory studies, and in gender, film, and visual culture. She has contributed to eleven collective monographs published across Europe and has authored more than 190 articles in scholarly journals, writing in more than a dozen languages.</p>
+            <p>Over the past fifteen years she has held a distinguished series of international fellowships, including a Fulbright fellowship at George Washington University, a DAAD fellowship at the University of Hamburg, and residencies at the Kennan Institute, Columbia University, and the Free University of Berlin, among others.</p>
+            <p>Her publications most closely tied to tonight's theme include a chapter on the Holocaust response in American and Soviet cultures, a chapter on scientific freedom and creativity under Stalinism, and an article on the reconfiguration of the Stalinist past in contemporary Russian television.</p>
+            <p><em>Please join me in welcoming Viktoriya Sukovata.</em></p>
+        </section>
+
+        <!-- 2. SCHERBAKOWA -->
+        <section class="segment" id="scherbakowa" lang="de">
+            <div class="segment-kicker">Einführung · 2 / 6</div>
+            <h2>Irina Scherbakowa</h2>
+            <p>Es ist mir eine besondere Ehre, heute Abend auch Irina Scherbakowa bei uns begrüßen zu dürfen. Sie ist russische Historikerin, Publizistin und Bürgerrechtlerin und zählt zu den zentralen Persönlichkeiten, die sich der Aufarbeitung der sowjetischen Repression und der Verteidigung historischer Wahrheit verschrieben haben.</p>
+            <p>Ende der 1980er Jahre gehörte sie zu den Mitbegründerinnen von Memorial, der ersten unabhängigen zivilgesellschaftlichen Organisation der Sowjetunion, und war seither eng mit deren Oral-History- und Bildungsarbeit verbunden. Ihre eigenen Interviews mit Überlebenden des Stalinismus begann sie bereits Ende der 1970er Jahre, zu einer Zeit, als solche Zeugnisse noch nicht offen erhoben werden konnten.</p>
+            <p>Ihre Forschung gilt dem Stalinismus, dem Gulag sowie den Politiken der Erinnerung und des Gedenkens. Auch wenn der Antisemitismus nicht ihr engeres Spezialgebiet ist, hat ihre Arbeit wesentlich dazu beigetragen, ihn in die breitere Geschichte der sowjetischen Repression einzuordnen und Zeugnisse jüdischer Opfer und anderer in den offiziellen Darstellungen zum Schweigen gebrachter Stimmen zugänglich zu machen.</p>
+            <p>Memorial wurde 2022 mit dem Friedensnobelpreis ausgezeichnet; die russischen Behörden verschärften ihr Vorgehen in den Jahren darauf, bis der Oberste Gerichtshof die Organisation 2026 als extremistisch einstufte.</p>
+            <p><em>Bitte heißen Sie Irina Scherbakowa mit mir herzlich willkommen.</em></p>
+        </section>
+
+        <!-- 3. Q1 -->
+        <section class="segment" id="q1">
+            <div class="segment-kicker">Question · 3 / 6</div>
+            <h2><span class="q-num">1.</span>On the Civil War as a frame for Jewish experience</h2>
+            <p class="prompt-body">In <em>The Commissar</em>, Jewish experience is represented not through a direct depiction of the Holocaust, but through antisemitic violence, the threat of pogroms, and the destruction of multicultural coexistence during the Civil War in the former Russian Empire.</p>
+            <p class="prompt-body">How productive, in your view, is it to read the film as a reflection on the Jewish experience in the twentieth century through the paradigm of imperial collapse, pogroms, civil war, and the breakdown of multicultural coexistence?</p>
+        </section>
+
+        <!-- 4. Q2 -->
+        <section class="segment" id="q2">
+            <div class="segment-kicker">Question · 4 / 6</div>
+            <h2><span class="q-num">2.</span>On the literary source and Berdychiv</h2>
+            <p class="prompt-body">The film is based on Vasily Grossman's short story <em>In the Town of Berdichev</em>.</p>
+            <p class="prompt-body">In your view, what motivated Aleksandr Askoldov to turn to this particular text and to the specifically Jewish space of Berdychiv? What does this city contribute to the film as a historical, cultural, and symbolic setting?</p>
+        </section>
+
+        <!-- 5. Q3 -->
+        <section class="segment" id="q3">
+            <div class="segment-kicker">Question · 5 / 6</div>
+            <h2><span class="q-num">3.</span>On the film's place within the Soviet war canon</h2>
+            <p class="prompt-body">To what extent, in your view, does <em>The Commissar</em> fit into the Soviet canon of war films?</p>
+            <p class="prompt-body">Can it be seen as a radical alternative to the official heroic narrative, even though it deals not with the Great Patriotic War, but with the Civil War and its violence?</p>
+        </section>
+
+        <!-- 6. Q4 -->
+        <section class="segment" id="q4">
+            <div class="segment-kicker">Question · 6 / 6</div>
+            <h2><span class="q-num">4.</span>On post-Soviet memory and contemporary memorial debates</h2>
+            <p class="prompt-body">If we move from the Soviet to the post-Soviet context, how did the reception of <em>The Commissar</em> change in Ukraine and Russia — the two cultural spaces connected both to Askoldov and to Grossman's world?</p>
+            <p class="prompt-body">How is the film being interpreted today in broader narrative and memorial debates: as a film about the Civil War, about pogroms, about the prehistory of the Holocaust, or in all of these registers at once?</p>
+        </section>
+
+    </main>
+
+    <div class="progress" aria-live="polite"><span class="current" id="progressCurrent">1</span> / 6</div>
+
+    <div class="readout-tools" role="group" aria-label="Text size">
+        <button type="button" id="sizeDown" aria-label="Smaller text">A−</button>
+        <button type="button" id="sizeUp" aria-label="Larger text">A+</button>
+    </div>
+
+    <script src="../../assets/js/vendor/pretext.global.js?v=20260419"></script>
+    <script>
+        (function () {
+            const segmentIds = ['sukovata', 'scherbakowa', 'q1', 'q2', 'q3', 'q4'];
+            const navLinks = Array.from(document.querySelectorAll('.readout-nav a'));
+            const navInner = document.getElementById('readoutNavInner');
+            const progressCurrent = document.getElementById('progressCurrent');
+
+            // Smooth-scroll nav clicks
+            navLinks.forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('data-target');
+                    const el = document.getElementById(targetId);
+                    if (!el) return;
+                    e.preventDefault();
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.replaceState(null, '', '#' + targetId);
+                });
+            });
+
+            // Track active segment via IntersectionObserver
+            const observer = new IntersectionObserver((entries) => {
+                let best = null;
+                let bestRatio = 0;
+                for (const entry of entries) {
+                    if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
+                        best = entry.target;
+                        bestRatio = entry.intersectionRatio;
+                    }
+                }
+                if (!best) return;
+                const id = best.id;
+                const idx = segmentIds.indexOf(id);
+                if (idx === -1) return;
+
+                navLinks.forEach((l) => l.classList.toggle('active', l.dataset.target === id));
+                progressCurrent.textContent = String(idx + 1);
+
+                // Auto-scroll the horizontal nav so the active chip stays visible
+                const activeLink = navLinks.find((l) => l.dataset.target === id);
+                if (activeLink && navInner) {
+                    const linkRect = activeLink.getBoundingClientRect();
+                    const navRect = navInner.getBoundingClientRect();
+                    if (linkRect.left < navRect.left + 12 || linkRect.right > navRect.right - 12) {
+                        const target = activeLink.offsetLeft - (navInner.clientWidth - activeLink.offsetWidth) / 2;
+                        navInner.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+                    }
+                }
+            }, {
+                rootMargin: '-20% 0px -55% 0px',
+                threshold: [0, 0.25, 0.5, 0.75, 1],
+            });
+
+            segmentIds.forEach((id) => {
+                const el = document.getElementById(id);
+                if (el) observer.observe(el);
+            });
+
+            // Text-size preset cycling (normal → L → XL → normal)
+            const sizes = ['', 'size-l', 'size-xl'];
+            const STORAGE_KEY = 'readout-size-idx';
+
+            function applySize(idx) {
+                sizes.forEach((cls) => { if (cls) document.body.classList.remove(cls); });
+                if (sizes[idx]) document.body.classList.add(sizes[idx]);
+                try { localStorage.setItem(STORAGE_KEY, String(idx)); } catch (_) {}
+                tunePretextWidths();
+            }
+
+            let sizeIdx = 0;
+            try {
+                const saved = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
+                if (!Number.isNaN(saved) && saved >= 0 && saved < sizes.length) sizeIdx = saved;
+            } catch (_) {}
+            applySize(sizeIdx);
+
+            document.getElementById('sizeUp').addEventListener('click', () => {
+                sizeIdx = Math.min(sizes.length - 1, sizeIdx + 1);
+                applySize(sizeIdx);
+            });
+            document.getElementById('sizeDown').addEventListener('click', () => {
+                sizeIdx = Math.max(0, sizeIdx - 1);
+                applySize(sizeIdx);
+            });
+
+            /* ---------- PRETEXT-DRIVEN WIDTH TUNING ----------
+               Pretext measures the natural widest line of each paragraph
+               without touching the DOM. We use that, plus a binary search
+               over walkLineRanges, to pick a max-width that avoids orphaned
+               last lines (a single short word hanging on its own row). */
+            const pretext = window.Pretext || null;
+            const preparedCache = new WeakMap();
+
+            function cssFontShorthand(el) {
+                const s = getComputedStyle(el);
+                // canvas font shorthand: style weight size/lineHeight family
+                return `${s.fontStyle} ${s.fontWeight} ${s.fontSize} ${s.fontFamily}`;
+            }
+
+            function countLines(prepared, width) {
+                let count = 0;
+                pretext.walkLineRanges(prepared, width, () => { count += 1; });
+                return count;
+            }
+
+            function tuneParagraph(p) {
+                if (!pretext) return;
+                const text = p.textContent || '';
+                if (text.length < 80) return; // short prompts: let CSS handle it
+
+                const font = cssFontShorthand(p);
+                let prepared = preparedCache.get(p);
+                if (!prepared || prepared._font !== font) {
+                    prepared = pretext.prepareWithSegments(text, font);
+                    prepared._font = font;
+                    preparedCache.set(p, prepared);
+                }
+
+                const rect = p.getBoundingClientRect();
+                const maxW = Math.max(240, rect.width);
+                const baseLines = countLines(prepared, maxW);
+                if (baseLines <= 1) return;
+
+                // Try narrowing by up to 14% to absorb an orphan without adding lines
+                let bestWidth = maxW;
+                for (let pct = 0.99; pct >= 0.86; pct -= 0.02) {
+                    const w = maxW * pct;
+                    const n = countLines(prepared, w);
+                    if (n !== baseLines) break;
+                    bestWidth = w;
+                }
+
+                if (bestWidth < maxW - 0.5) {
+                    p.style.maxWidth = bestWidth.toFixed(1) + 'px';
+                } else {
+                    p.style.maxWidth = '';
+                }
+            }
+
+            let tuneFrame = null;
+            function tunePretextWidths() {
+                if (!pretext) return;
+                if (tuneFrame) cancelAnimationFrame(tuneFrame);
+                tuneFrame = requestAnimationFrame(() => {
+                    document.querySelectorAll('.segment p').forEach(tuneParagraph);
+                });
+            }
+
+            window.addEventListener('load', tunePretextWidths);
+            window.addEventListener('resize', () => {
+                clearTimeout(window.__readoutResizeT);
+                window.__readoutResizeT = setTimeout(tunePretextWidths, 120);
+            });
+
+            // Keyboard shortcuts: j/k or arrow keys to jump between segments
+            document.addEventListener('keydown', (e) => {
+                if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+                let dir = 0;
+                if (e.key === 'ArrowDown' || e.key === 'j' || e.key === 'PageDown' || e.key === ' ') dir = 1;
+                else if (e.key === 'ArrowUp' || e.key === 'k' || e.key === 'PageUp') dir = -1;
+                if (!dir) return;
+
+                const currentIdx = segmentIds.findIndex((id) => {
+                    const r = document.getElementById(id).getBoundingClientRect();
+                    return r.top >= -20 && r.top < window.innerHeight * 0.5;
+                });
+                const fromIdx = currentIdx === -1 ? parseInt(progressCurrent.textContent, 10) - 1 : currentIdx;
+                const nextIdx = Math.max(0, Math.min(segmentIds.length - 1, fromIdx + dir));
+                const nextEl = document.getElementById(segmentIds[nextIdx]);
+                if (nextEl) {
+                    e.preventDefault();
+                    nextEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.replaceState(null, '', '#' + segmentIds[nextIdx]);
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
