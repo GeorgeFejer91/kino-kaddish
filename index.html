@@ -43,7 +43,7 @@
             --frame-border: #333333;
             --sprocket-color: #1a1a1a;
             --sprocket-border: #2a2a2a;
-            --frame-height: 70px;
+            --frame-height: 135px;
             --mobile-menu-height: 85px; /* Height for mobile menu */
         }
 
@@ -187,7 +187,7 @@
         .nav-status {
             display: block;
             margin-top: 0.2rem;
-            font-size: 0.58rem;
+            font-size: calc(0.58rem * var(--nav-font-scale, 1));
             letter-spacing: 0.08em;
             line-height: 1.1;
             text-transform: uppercase;
@@ -299,7 +299,7 @@
             display: block;
             width: 100%;
             height: 100%;
-            font-size: clamp(0.8rem, 1vw, 0.9rem);
+            font-size: calc(clamp(0.8rem, 1vw, 0.9rem) * var(--nav-font-scale, 1));
             letter-spacing: 1px;
             text-align: center;
             padding: 0.5rem 0;
@@ -311,7 +311,7 @@
 
         .nav-menu li a .original-title {
             display: block;
-            font-size: clamp(0.7rem, 0.8vw, 0.8rem);
+            font-size: calc(clamp(0.7rem, 0.8vw, 0.8rem) * var(--nav-font-scale, 1));
             color: var(--accent-color);
             margin-top: 0.3rem;
         }
@@ -339,8 +339,8 @@
         .nav-menu li .sprocket-right-3,
         .nav-menu li .sprocket-right-4 {
             position: absolute;
-            width: 10px;
-            height: 7px;
+            width: 18px;
+            height: 13px;
             background-color: var(--sprocket-color);
             border: 1px solid var(--sprocket-border);
             border-radius: 1px;
@@ -348,46 +348,46 @@
             box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.7);
         }
 
-        /* Left side sprocket holes — 4 evenly spaced per frame */
+        /* Left side sprocket holes — 4 evenly spaced at 12.5%, 37.5%, 62.5%, 87.5% */
         .nav-menu li .sprocket-left-1 {
-            left: 8px;
-            top: 8px;
+            left: 10px;
+            top: calc(12.5% - 6.5px);
         }
 
         .nav-menu li .sprocket-left-2 {
-            left: 8px;
-            top: calc(33.33% - 3.5px);
+            left: 10px;
+            top: calc(37.5% - 6.5px);
         }
 
         .nav-menu li .sprocket-left-3 {
-            left: 8px;
-            top: calc(66.66% - 3.5px);
+            left: 10px;
+            top: calc(62.5% - 6.5px);
         }
 
         .nav-menu li .sprocket-left-4 {
-            left: 8px;
-            bottom: 8px;
+            left: 10px;
+            top: calc(87.5% - 6.5px);
         }
 
-        /* Right side sprocket holes — 4 evenly spaced per frame */
+        /* Right side sprocket holes — 4 evenly spaced at 12.5%, 37.5%, 62.5%, 87.5% */
         .nav-menu li .sprocket-right-1 {
-            right: 8px;
-            top: 8px;
+            right: 10px;
+            top: calc(12.5% - 6.5px);
         }
 
         .nav-menu li .sprocket-right-2 {
-            right: 8px;
-            top: calc(33.33% - 3.5px);
+            right: 10px;
+            top: calc(37.5% - 6.5px);
         }
 
         .nav-menu li .sprocket-right-3 {
-            right: 8px;
-            top: calc(66.66% - 3.5px);
+            right: 10px;
+            top: calc(62.5% - 6.5px);
         }
 
         .nav-menu li .sprocket-right-4 {
-            right: 8px;
-            bottom: 8px;
+            right: 10px;
+            top: calc(87.5% - 6.5px);
         }
 
         /* ---- CONTENT STYLES ---- */
@@ -3987,12 +3987,30 @@
             };
         }
 
+        function buildScaledFontShorthand(element, scale) {
+            const style = window.getComputedStyle(element);
+            const fontStyle = style.fontStyle || 'normal';
+            const fontVariant = style.fontVariant || 'normal';
+            const fontWeight = style.fontWeight || '400';
+            const fontStretch = style.fontStretch && style.fontStretch !== 'normal'
+                ? `${style.fontStretch} `
+                : '';
+            const baseFontSize = parseFloat(style.fontSize) || 16;
+            const scaledSize = `${(baseFontSize * scale).toFixed(3)}px`;
+            const fontFamily = style.fontFamily || 'sans-serif';
+            return `${fontStyle} ${fontVariant} ${fontWeight} ${fontStretch}${scaledSize} ${fontFamily}`
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
         function measureDesktopFilmStrip() {
             const rootStyles = window.getComputedStyle(document.documentElement);
-            const baseFrameHeight = parseFloat(rootStyles.getPropertyValue('--frame-height')) || 70;
+            const baseFrameHeight = parseFloat(rootStyles.getPropertyValue('--frame-height')) || 135;
 
             desktopNavItems.forEach((item) => {
-                item.style.removeProperty('--nav-frame-height');
+                // Lock frame to 4-perf proportions; reset scale before measuring
+                item.style.setProperty('--nav-frame-height', `${baseFrameHeight}px`);
+                item.style.removeProperty('--nav-font-scale');
 
                 if (item.getClientRects().length === 0 || window.getComputedStyle(item).display === 'none') {
                     return;
@@ -4006,33 +4024,49 @@
                 const linkStyle = window.getComputedStyle(link);
                 const label = extractNavLabel(link);
                 const availableWidth = Math.max(item.clientWidth - 72, 120);
-                const titleMetrics = measurePreparedText(
-                    getPreparedNavText(label, getFontShorthand(link)),
-                    availableWidth
-                );
-                let contentHeight = titleMetrics.lineCount * getNumericLineHeight(linkStyle);
-
-                const statusNode = link.querySelector('.nav-status');
-                const statusText = extractNavStatus(link);
-
-                if (statusNode && statusText) {
-                    const statusStyle = window.getComputedStyle(statusNode);
-                    const statusMetrics = measurePreparedText(
-                        getPreparedNavText(statusText, getFontShorthand(statusNode)),
-                        availableWidth
-                    );
-                    contentHeight += 4 + (statusMetrics.lineCount * getNumericLineHeight(statusStyle));
-                }
-
                 const paddingHeight =
                     (parseFloat(linkStyle.paddingTop) || 0) +
                     (parseFloat(linkStyle.paddingBottom) || 0);
-                const measuredHeight = Math.max(
-                    baseFrameHeight,
-                    Math.ceil(contentHeight + paddingHeight + 8)
-                );
+                const availableHeight = Math.max(baseFrameHeight - paddingHeight - 8, 20);
 
-                item.style.setProperty('--nav-frame-height', `${measuredHeight}px`);
+                const baseTitleLineHeight = getNumericLineHeight(linkStyle);
+                const statusNode = link.querySelector('.nav-status');
+                const statusText = extractNavStatus(link);
+                const statusStyle = statusNode ? window.getComputedStyle(statusNode) : null;
+                const baseStatusLineHeight = statusStyle ? getNumericLineHeight(statusStyle) : 0;
+
+                const MIN_SCALE = 0.55;
+                const STEP = 0.05;
+                let chosenScale = MIN_SCALE;
+
+                for (let scale = 1; scale >= MIN_SCALE - 1e-6; scale -= STEP) {
+                    const titleFont = buildScaledFontShorthand(link, scale);
+                    const titleMetrics = measurePreparedText(
+                        getPreparedNavText(label, titleFont),
+                        availableWidth
+                    );
+                    let contentHeight = titleMetrics.lineCount * baseTitleLineHeight * scale;
+                    let widest = titleMetrics.widestLine;
+
+                    if (statusNode && statusText) {
+                        const statusFont = buildScaledFontShorthand(statusNode, scale);
+                        const statusMetrics = measurePreparedText(
+                            getPreparedNavText(statusText, statusFont),
+                            availableWidth
+                        );
+                        contentHeight += 4 + (statusMetrics.lineCount * baseStatusLineHeight * scale);
+                        widest = Math.max(widest, statusMetrics.widestLine);
+                    }
+
+                    if (contentHeight <= availableHeight && widest <= availableWidth) {
+                        chosenScale = scale;
+                        break;
+                    }
+                }
+
+                if (chosenScale < 1) {
+                    item.style.setProperty('--nav-font-scale', chosenScale.toFixed(3));
+                }
             });
         }
 
